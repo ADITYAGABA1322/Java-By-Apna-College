@@ -1,0 +1,15 @@
+{
+    "java.project.sourcePaths": [
+        "HomeWork Problems Solved",
+        ""
+    ],
+    "java.debug.settings.onBuildFailureProceed": true,
+    "C_Cpp.errorSquiggles": "enabled",
+    "java.completion.filteredTypes": [
+        "com.sun.*",
+        "sun.*",
+        "jdk.*",
+        "org.graalvm.*",
+        "io.micrometer.shaded.*"
+    ]
+}
