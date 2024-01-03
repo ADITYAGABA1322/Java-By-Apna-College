@@ -602,41 +602,41 @@
 //     }
 // }
 
-import java.util.*;
+// import java.util.*;
 
-class task
-{
-public static void main(String []args)
-    {
-    Scanner sc = new Scanner(System.in);
-     System.out.print("Enter the number of prime numbers to print: ");
-        int n = sc.nextInt();
-        printPrimeNumbers(n);
-    }
-    public static void printPrimeNumbers(int n){
-        int count  = 0;
-        int num = 2; // why we num = 2 because 2 is the first prime number
-        while(count < n){
-            if(isPrime(num)){
-                System.out.print(num + " ");
-                count++;
-            }
-            num++;
-        }
-    }
-    public static boolean isPrime(int num){
-        if(num <= 1){
-            return false;
-        }
-        int limit = (int)Math.sqrt(num); // why we use sqrt because if we take 100 then sqrt is 10 and 10 * 10 = 100 so we take sqrt
-        for(int i = 2; i <= limit; i++){
-            if(num % i == 0){
-                return false;
-            }
-        }
-        return true;
-    }
-}
+// class task
+// {
+// public static void main(String []args)
+//     {
+//     Scanner sc = new Scanner(System.in);
+//      System.out.print("Enter the number of prime numbers to print: ");
+//         int n = sc.nextInt();
+//         printPrimeNumbers(n);
+//     }
+//     public static void printPrimeNumbers(int n){
+//         int count  = 0;
+//         int num = 2; // why we num = 2 because 2 is the first prime number
+//         while(count < n){
+//             if(isPrime(num)){
+//                 System.out.print(num + " ");
+//                 count++;
+//             }
+//             num++;
+//         }
+//     }
+//     public static boolean isPrime(int num){
+//         if(num <= 1){
+//             return false;
+//         }
+//         int limit = (int)Math.sqrt(num); // why we use sqrt because if we take 100 then sqrt is 10 and 10 * 10 = 100 so we take sqrt
+//         for(int i = 2; i <= limit; i++){
+//             if(num % i == 0){
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// }
 
 // time and space complexity of this code is O(n * sqrt(n)) and space complexity is O(1)
 
@@ -832,4 +832,3 @@ public static void main(String []args)
 //         }
 
 // }
-
