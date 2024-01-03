@@ -254,14 +254,22 @@ public class tree {
     if (root == null) {
       return;
     }
-    String output = root.data + ": ";
+    // String output = root.data + ": ";
+    // if (root.left != null) {
+    // output += "L:" + root.left.data + ", ";
+    // }
+    // if (root.right != null) {
+    // output += "R:" + root.right.data;
+    // }
+    // System.out.println(output);
+    System.out.print(root.data + ":");
     if (root.left != null) {
-      output += "L:" + root.left.data + ", ";
+      System.out.print("L:" + root.left.data + ", ");
     }
     if (root.right != null) {
-      output += "R:" + root.right.data;
+      System.out.print("R:" + root.right.data);
     }
-    System.out.println(output);
+    System.out.println();
     printTree(root.left);
     printTree(root.right);
   }
@@ -364,4 +372,5 @@ public class tree {
 
 // 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
 
-// for using recursion we use this input : 1 2 4 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 -1
+// for using recursion we use this input :
+// 1 2 4 -1 -1 5 6 -1 -1 7 -1 -1 3 8 -1 -1 9 -1 -1
