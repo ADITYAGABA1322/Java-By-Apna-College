@@ -41,7 +41,6 @@
 //     }
 // }
 
-
 // 3.) GCD
 
 // import java.util.*;
@@ -90,7 +89,6 @@
 //     }
 // }
 
-
 // 4.) LCM
 
 // import java.util.*;
@@ -112,7 +110,6 @@
 //         }
 //     }
 // }
-
 
 // 5.) Armstrong Number
 
@@ -138,7 +135,6 @@
 //     }
 // }
 
-
 // 6.) Fibonacci Series
 
 // import java.util.*;
@@ -160,7 +156,6 @@
 //     }
 // }
 
-
 // 7.) Factorial
 
 // import java.util.*;
@@ -177,7 +172,6 @@
 //         System.out.println(fact);
 //     }
 // }
-
 
 // 8.) Palindrome Number
 
@@ -203,7 +197,6 @@
 //     }
 // }
 
-
 // 9.) Reverse a Number
 
 // import java.util.*;
@@ -222,7 +215,6 @@
 //         System.out.println(sum);
 //     }
 // }
-
 
 // 10.) Sum of Digits of a Number
 
@@ -243,7 +235,6 @@
 //     }
 // }
 
-
 // 11.) Sum of N Natural Numbers
 
 // import java.util.*;
@@ -260,7 +251,6 @@
 //         System.out.println(sum);
 //     }
 // }
-
 
 // 12.)  Distribute In Circle
 
@@ -330,7 +320,6 @@
 //     }
 // }
 
-
 // 14.) Roman to Integer
 
 // import java.util.*;
@@ -390,7 +379,6 @@
 //       System.out.println(longestCommonPrefix(arr));
 //     }
 // }
-
 
 // PALINDROME
 
@@ -458,7 +446,6 @@
 // time complexity: O(n^2)
 // space complexity: O(n^2)
 
-
 // import java.util.*;
 
 // class adi
@@ -496,7 +483,7 @@
 // class adi
 // {
 //     public static int findMinInsertions(String str, int n) {
-    
+
 //         StringBuilder s = new StringBuilder(str); 
 //         s = s.reverse(); 
 //         String revString = s.toString(); 
@@ -558,7 +545,6 @@
 //         }
 //     }
 // }
-
 
 // Strings
 
@@ -642,22 +628,13 @@
 //     }
 // }
 
-
-
-
-
-
 // Heafufy code
-  
-
 
 //import java.util.*;
-
 
 // 8
 // 8 9 3 11 6 1 0 21
 // 21 11 9 8 6 1 0 3
-
 
 // class adi
 // {
@@ -728,47 +705,43 @@
 //     }
 // }
 
+import java.util.*;
+import java.util.Arrays;
 
+class adi {
+    public static int findKthLargest(int[] nums, int k) {
+        int n = nums.length;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int i = 0; i < n; i++) {
+            pq.add(nums[i]);
+            if (pq.size() > k)
+                pq.poll();
+        }
+        return pq.peek();
+    }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
+        System.out.print("Enter the array elements as a space-separated string: ");
+        String arrayInput = sc.nextLine();
 
+        // Split the input string into an array of strings
+        String[] numStrings = arrayInput.split(" ");
 
-// import java.util.*;
-// import java.util.Arrays;
+        // // Convert the array of strings to an array of integers
+        int[] nums = Arrays.stream(numStrings).mapToInt(Integer::parseInt).toArray();
+        // int []nums = new int[numStrings.length];
+        // for(int i=0;i<numStrings.length;i++){
+        // nums[i] = Integer.parseInt(numStrings[i]);
+        // }
 
-// class adi {
-//     public static int findKthLargest(int[] nums, int k) {
-//         int n = nums.length;
-//         PriorityQueue<Integer> pq = new PriorityQueue<>();
-//         for (int i = 0; i < n; i++) {
-//             pq.add(nums[i]);
-//             if (pq.size() > k) pq.poll();
-//         }
-//         return pq.peek();
-//     }
+        System.out.print("Enter the value of k: ");
+        int k = sc.nextInt();
 
-//     public static void main(String[] args) {
-//         Scanner sc = new Scanner(System.in);
-
-//         System.out.print("Enter the array elements as a space-separated string: ");
-//         String arrayInput = sc.nextLine();
-
-//         // Split the input string into an array of strings
-//         String[] numStrings = arrayInput.split(" ");
-
-//         // // Convert the array of strings to an array of integers
-//         int[] nums = Arrays.stream(numStrings).mapToInt(Integer::parseInt).toArray();
-//         // int []nums = new int[numStrings.length];
-//         // for(int i=0;i<numStrings.length;i++){
-//         //     nums[i] = Integer.parseInt(numStrings[i]);
-//         // }
-        
-//         System.out.print("Enter the value of k: ");
-//         int k = sc.nextInt();
-
-//         System.out.println(findKthLargest(nums, k));
-//     }
-// }
+        System.out.println(findKthLargest(nums, k));
+    }
+}
 // input
 // 3 2 1 5 6 4
 // 2
@@ -776,83 +749,85 @@
 // output
 // 5
 
-
 // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
 // import java.util.*;
 
 // class adi {
-//     public static void computeLPS(String pattern, int[] lps) {
-//         int n = pattern.length();
-//         int len = 0;
-//         int i = 1;
-//         lps[0] = 0;
-//         while (i < n) {
-//             if (pattern.charAt(i) == pattern.charAt(len)) {
-//                 len++;
-//                 lps[i] = len;
-//                 i++;
-//             } else {
-//                 if (len != 0) {
-//                     len = lps[len - 1];
-//                 } else {
-//                     lps[i] = 0;
-//                     i++;
-//                 }
-//             }
-//         }
-//     }
-
-//     public static void KMPsearch(String text, String pattern) {
-//         int n = text.length();
-//         int m = pattern.length();
-//         int i = 0, j = 0;
-//         int[] lps = new int[m];
-//         computeLPS(pattern, lps);
-//         while (i < n ) {
-//             if(text.charAt(i) == pattern.charAt(j)){
-//             i++;
-//             j++;
-//             }
-//             if (j == m) {
-//                 System.out.println("Pattern found at index " + (i - j));
-//                 j = lps[j - 1];
-//             } else if (i < n && text.charAt(i) != pattern.charAt(j)) {
-//                 if (j != 0) {
-//                     j = lps[j - 1];
-//                 } else
-//                     i++;
-//             }
-//         }
-//     }
-
-//     public static void main(String[] args) {
-//          Scanner sc = new Scanner(System.in);
-//         //String text = "ABABDABACDABABCABAB";
-//         //String pattern = "ABABCABAB";
-//         String text = sc.next();
-//         String pattern = sc.next();
-        
-//         KMPsearch(text, pattern);
-//     }
+// public static void computeLPS(String pattern, int[] lps) {
+// int n = pattern.length();
+// int len = 0;
+// int i = 1;
+// lps[0] = 0;
+// while (i < n) {
+// if (pattern.charAt(i) == pattern.charAt(len)) {
+// len++;
+// lps[i] = len;
+// i++;
+// } else {
+// if (len != 0) {
+// len = lps[len - 1];
+// } else {
+// lps[i] = 0;
+// i++;
+// }
+// }
+// }
 // }
 
+// public static void KMPsearch(String text, String pattern) {
+// int n = text.length();
+// int m = pattern.length();
+// int i = 0, j = 0;
+// int[] lps = new int[m];
+// computeLPS(pattern, lps);
+// while (i < n ) {
+// if(text.charAt(i) == pattern.charAt(j)){
+// i++;
+// j++;
+// }
+// if (j == m) {
+// System.out.println("Pattern found at index " + (i - j));
+// j = lps[j - 1];
+// } else if (i < n && text.charAt(i) != pattern.charAt(j)) {
+// if (j != 0) {
+// j = lps[j - 1];
+// } else
+// i++;
+// }
+// }
+// }
 
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// //String text = "ABABDABACDABABCABAB";
+// //String pattern = "ABABCABAB";
+// String text = sc.next();
+// String pattern = sc.next();
 
+// KMPsearch(text, pattern);
+// }
+// }
 
 // Greedy Algorithm
 
 // 1.) Fractional Knapsack
-// Problem Statement: 
-// Given weights and values of n items, we need to put these items in a knapsack of capacity W to get the maximum total value in the knapsack.
+// Problem Statement:
+// Given weights and values of n items, we need to put these items in a knapsack
+// of capacity W to get the maximum total value in the knapsack.
 // Note: Unlike 0/1 knapsack, you are allowed to break the item.
 
 // Input:
-// First line consists of an integer T denoting the number of test cases. First line consists of two integers N and W, denoting number of items and weight respectively. Second line of every test case consists of 2*N spaced integers denoting Values and weight respectively. (Value1 Weight1 Value2 Weight2.... ValueN WeightN)
+// First line consists of an integer T denoting the number of test cases. First
+// line consists of two integers N and W, denoting number of items and weight
+// respectively. Second line of every test case consists of 2*N spaced integers
+// denoting Values and weight respectively. (Value1 Weight1 Value2 Weight2....
+// ValueN WeightN)
 
 // Output:
 
-// Print the maximum value possible to put items in a knapsack, upto 2 decimal place.
+// Print the maximum value possible to put items in a knapsack, upto 2 decimal
+// place.
 
 // Constraints:
 
@@ -912,74 +887,83 @@
 // import java.util.Arrays;
 
 // class Item{
-//     int value;
-//     int weight;
-//     Item(int value, int weight){
-//         this.value = value;
-//         this.weight = weight;
-//     }
+// int value;
+// int weight;
+// Item(int value, int weight){
+// this.value = value;
+// this.weight = weight;
+// }
 // }
 // class adi
 // {
-//     public static double fractionalKnapsack(Item[] arr , int W){
-//         // Arrays.sort(arr, new Comparator<Item>(){
-//         //     public int compare(Item a, Item b){
-//         //         double r1 = (double)a.value/a.weight;
-//         //         double r2 = (double)b.value/b.weight;
-//         //         if(r1<r2){
-//         //             return 1;
-//         //         }else if(r1>r2){
-//         //             return -1;
-//         //         }else{
-//         //             return 0;
-//         //         }
-//         //     }
-//         // });
-//         // 2nd one to sort
-//         //Arrays.sort(arr, (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
-//         // 3rd one to sort
-//          Arrays.sort(arr , Comparator.comparingDouble(i -> (double) i.value / i.weight));
-//       //  int curWeight 
-//         double maxValue = 0.0;
-//         for(int i=arr.length-1;i>=0;i--){
-//             if(arr[i].weight<=W){
-//                 maxValue = maxValue + arr[i].value;
-//                 W = W - arr[i].weight;
-//             }else{
-//                 maxValue = maxValue + (double)arr[i].value*((double)W/arr[i].weight);
-//                 break;
-//             }
-//         }
-//         return maxValue;
-        
-//     }
-//     public static void main (String[] args) throws IOException
-//     {
-//         Scanner sc = new Scanner(System.in);
-//         int t = sc.nextInt();
-//         while(t-->0){
-//             int n = sc.nextInt();
-//             int W = sc.nextInt();
-//             Item[] arr = new Item[n];
-//             for(int i=0;i<n;i++){
-//                 int value = sc.nextInt();
-//                 int weight = sc.nextInt();
-//                 arr[i] = new Item(value,weight);
-//             }
-//             System.out.println(fractionalKnapsack(arr,W));
-//         }
-//     }
+// public static double fractionalKnapsack(Item[] arr , int W){
+// // Arrays.sort(arr, new Comparator<Item>(){
+// // public int compare(Item a, Item b){
+// // double r1 = (double)a.value/a.weight;
+// // double r2 = (double)b.value/b.weight;
+// // if(r1<r2){
+// // return 1;
+// // }else if(r1>r2){
+// // return -1;
+// // }else{
+// // return 0;
+// // }
+// // }
+// // });
+// // 2nd one to sort
+// //Arrays.sort(arr,
+// (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
+// // 3rd one to sort
+// Arrays.sort(arr , Comparator.comparingDouble(i -> (double) i.value /
+// i.weight));
+// // int curWeight
+// double maxValue = 0.0;
+// for(int i=arr.length-1;i>=0;i--){
+// if(arr[i].weight<=W){
+// maxValue = maxValue + arr[i].value;
+// W = W - arr[i].weight;
+// }else{
+// maxValue = maxValue + (double)arr[i].value*((double)W/arr[i].weight);
+// break;
+// }
+// }
+// return maxValue;
+
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// int W = sc.nextInt();
+// Item[] arr = new Item[n];
+// for(int i=0;i<n;i++){
+// int value = sc.nextInt();
+// int weight = sc.nextInt();
+// arr[i] = new Item(value,weight);
+// }
+// System.out.println(fractionalKnapsack(arr,W));
+// }
+// }
 // }
 
 // 2.) Job Sequencing Problem
 
 // Problem Statement:
 
-// Given a set of N jobs where each job i has a deadline and profit associated to it. Each job takes 1 unit of time to complete and only one job can be scheduled at a time. We earn the profit if and only if the job is completed by its deadline. The task is to find the maximum profit and the number of jobs done.
+// Given a set of N jobs where each job i has a deadline and profit associated
+// to it. Each job takes 1 unit of time to complete and only one job can be
+// scheduled at a time. We earn the profit if and only if the job is completed
+// by its deadline. The task is to find the maximum profit and the number of
+// jobs done.
 
 // Input:
 
-// The first line of input contains an integer T denoting the number of test cases. Each test case consist of an integer N in first line denoting the number of jobs and the next line consist of Job id, Deadline and the Profit associated to that Job.
+// The first line of input contains an integer T denoting the number of test
+// cases. Each test case consist of an integer N in first line denoting the
+// number of jobs and the next line consist of Job id, Deadline and the Profit
+// associated to that Job.
 
 // Output:
 
@@ -1017,87 +1001,94 @@
 
 // Explanation:
 
-// Test Case 1: You can do job 3 followed by the job 1. The overall profit = 40 + 20 = 60
+// Test Case 1: You can do job 3 followed by the job 1. The overall profit = 40
+// + 20 = 60
 
-// Test Case 2: You can do job 1 followed by the job 3. The overall profit = 100 + 27 = 127
+// Test Case 2: You can do job 1 followed by the job 3. The overall profit = 100
+// + 27 = 127
 
 // time complexity: O(n^2)
-import java.util.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.lang.*;
-import java.io.*;
+// import java.util.*;
+// import java.util.Arrays;
+// import java.util.Comparator;
+// import java.lang.*;
+// import java.io.*;
 
-
-class Job{
-    int id;
-    int deadline;
-    int profit;
-    Job(int id, int deadline, int profit){
-        this.id = id;
-        this.deadline = deadline;
-        this.profit = profit;
-    }
-}
-class adi
-{
-    public static int[] jobSequencing(Job[] arr, int n){
-        Arrays.sort(arr, new Comparator<Job>(){
-            public int compare(Job a, Job b){
-                return b.profit-a.profit;
-            }
-        });
-        int[] res = new int[n];
-        boolean[] slot = new boolean[n];
-        for(int i=0;i<n;i++){
-            for(int j=Math.min(n,arr[i].deadline)-1;j>=0;j--){
-                if(slot[j]==false){
-                    res[j] = i;
-                    slot[j] = true;
-                    break;
-                }
-            }
-        }
-        return res;
-    }
-    public static void main (String[] args) throws IOException
-    {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while(t-->0){
-            int n = sc.nextInt();
-            Job[] arr = new Job[n];
-            for(int i=0;i<n;i++){
-                int id = sc.nextInt();
-                int deadline = sc.nextInt();
-                int profit = sc.nextInt();
-                arr[i] = new Job(id,deadline,profit);
-            }
-            int[] res = jobSequencing(arr,n);
-            int count = 0;
-            int maxProfit = 0;
-            for(int i=0;i<n;i++){
-                if(res[i]!=0){
-                    count++;
-                    maxProfit = maxProfit + arr[res[i]].profit;
-                }
-            }
-            System.out.println(count+" "+maxProfit);
-        }
-    }
-}
+// class Job{
+// int id;
+// int deadline;
+// int profit;
+// Job(int id, int deadline, int profit){
+// this.id = id;
+// this.deadline = deadline;
+// this.profit = profit;
+// }
+// }
+// class adi
+// {
+// public static int[] jobSequencing(Job[] arr, int n){
+// Arrays.sort(arr, new Comparator<Job>(){
+// public int compare(Job a, Job b){
+// return b.profit-a.profit;
+// }
+// });
+// int[] res = new int[n];
+// boolean[] slot = new boolean[n];
+// for(int i=0;i<n;i++){
+// for(int j=Math.min(n,arr[i].deadline)-1;j>=0;j--){
+// if(slot[j]==false){
+// res[j] = i;
+// slot[j] = true;
+// break;
+// }
+// }
+// }
+// return res;
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// Job[] arr = new Job[n];
+// for(int i=0;i<n;i++){
+// int id = sc.nextInt();
+// int deadline = sc.nextInt();
+// int profit = sc.nextInt();
+// arr[i] = new Job(id,deadline,profit);
+// }
+// int[] res = jobSequencing(arr,n);
+// int count = 0;
+// int maxProfit = 0;
+// for(int i=0;i<n;i++){
+// if(res[i]!=0){
+// count++;
+// maxProfit = maxProfit + arr[res[i]].profit;
+// }
+// }
+// System.out.println(count+" "+maxProfit);
+// }
+// }
+// }
 
 // 3.) Huffman Coding
 
 // Problem Statement:
 
-// Given a string S of distinct character of size N and their corresponding frequency f[ ] i.e. character S[i] has f[i] frequency. Your task is to build the Huffman tree print all the huffman codes in preorder traversal of the tree.
+// Given a string S of distinct character of size N and their corresponding
+// frequency f[ ] i.e. character S[i] has f[i] frequency. Your task is to build
+// the Huffman tree print all the huffman codes in preorder traversal of the
+// tree.
 
-// Note: If two elements have same frequency, then the element which occur at first will be taken on the left of Binary Tree and other one to the right.
+// Note: If two elements have same frequency, then the element which occur at
+// first will be taken on the left of Binary Tree and other one to the right.
 
 // Input Format:
 
-// First line of input contains number of testcases T. For each testcase, first line of input contains size of string N, next line contains N distinct characters and last line contains N elements of array f[ ].
+// First line of input contains number of testcases T. For each testcase, first
+// line of input contains size of string N, next line contains N distinct
+// characters and last line contains N elements of array f[ ].
 
 // Output Format:
 
@@ -1135,97 +1126,98 @@ class adi
 
 // Explanation:
 
-// Testcase 1: For the above test case we get the huffman tree as shown below where 0 is left and 1 is right.
+// Testcase 1: For the above test case we get the huffman tree as shown below
+// where 0 is left and 1 is right.
 
-//                   (0.0)
+// (0.0)
 
-//                /        \
+// / \
 
-//              (0.1)     (1.0)
+// (0.1) (1.0)
 
-//             /     \
+// / \
 
-//         (1.1)     (1.2)
+// (1.1) (1.2)
 
-//         Hence the huffman codes for a, b and c are 1.1, 1.2 and 0. respectively.
-
+// Hence the huffman codes for a, b and c are 1.1, 1.2 and 0. respectively.
 
 // time complexity: O(nlogn)
 
 // import java.util.*;
 
 // class Node{
-//     char data;
-//     int freq;
-//     Node left;
-//     Node right;
-//     Node(char data, int freq){
-//         this.data = data;
-//         this.freq = freq;
-//         this.left = null;
-//         this.right = null;
-//     }
+// char data;
+// int freq;
+// Node left;
+// Node right;
+// Node(char data, int freq){
+// this.data = data;
+// this.freq = freq;
+// this.left = null;
+// this.right = null;
+// }
 // }
 
 // class MyComparator implements Comparator<Node>{
-//     public int compare(Node a, Node b){
-//         return a.freq-b.freq;
-//     }
+// public int compare(Node a, Node b){
+// return a.freq-b.freq;
+// }
 // }
 
 // class adi
 // {
-//     public static void printCode(Node root, String s){
-//         if(root.left==null && root.right==null && Character.isLetter(root.data)){
-//             System.out.print(s+" ");
-//             return;
-//         }
-//         printCode(root.left,s+"0");
-//         printCode(root.right,s+"1");
-//     }
-//     public static void huffmanCode(char[] arr, int[] freq, int n){
-//         PriorityQueue<Node> pq = new PriorityQueue<>(n,new MyComparator());
-//         for(int i=0;i<n;i++){
-//             Node node = new Node(arr[i],freq[i]);
-//             pq.add(node);
-//         }
-//         Node root = null;
-//         while(pq.size()>1){
-//             Node x = pq.poll();
-//             Node y = pq.poll();
-//             Node f = new Node('$',x.freq+y.freq);
-//             f.left = x;
-//             f.right = y;
-//             root = f;
-//             pq.add(f);
-//         }
-//         printCode(root,"");
-//     }
-//     public static void main (String[] args) throws IOException
-//     {
-//         Scanner sc = new Scanner(System.in);
-//         int t = sc.nextInt();
-//         while(t-->0){
-//             int n = sc.nextInt();
-//             char[] arr = new char[n];
-//             int[] freq = new int[n];
-//             for(int i=0;i<n;i++){
-//                 arr[i] = sc.next().charAt(0);
-//             }
-//             for(int i=0;i<n;i++){
-//                 freq[i] = sc.nextInt();
-//             }
-//             huffmanCode(arr,freq,n);
-//             System.out.println();
-//         }
-//     }
+// public static void printCode(Node root, String s){
+// if(root.left==null && root.right==null && Character.isLetter(root.data)){
+// System.out.print(s+" ");
+// return;
+// }
+// printCode(root.left,s+"0");
+// printCode(root.right,s+"1");
+// }
+// public static void huffmanCode(char[] arr, int[] freq, int n){
+// PriorityQueue<Node> pq = new PriorityQueue<>(n,new MyComparator());
+// for(int i=0;i<n;i++){
+// Node node = new Node(arr[i],freq[i]);
+// pq.add(node);
+// }
+// Node root = null;
+// while(pq.size()>1){
+// Node x = pq.poll();
+// Node y = pq.poll();
+// Node f = new Node('$',x.freq+y.freq);
+// f.left = x;
+// f.right = y;
+// root = f;
+// pq.add(f);
+// }
+// printCode(root,"");
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// char[] arr = new char[n];
+// int[] freq = new int[n];
+// for(int i=0;i<n;i++){
+// arr[i] = sc.next().charAt(0);
+// }
+// for(int i=0;i<n;i++){
+// freq[i] = sc.nextInt();
+// }
+// huffmanCode(arr,freq,n);
+// System.out.println();
+// }
+// }
 // }
 
 // 4.) Interval Scheduling
 
 // Problem Statement:
 
-// Given N jobs where every job is represented by following three elements of it.
+// Given N jobs where every job is represented by following three elements of
+// it.
 
 // Start Time
 
@@ -1233,11 +1225,15 @@ class adi
 
 // Profit or Value Associated (>= 0)
 
-// Find the maximum profit subset of jobs such that no two jobs in the subset overlap.
+// Find the maximum profit subset of jobs such that no two jobs in the subset
+// overlap.
 
 // Input:
 
-// The first line of input contains an integer T denoting the number of test cases. In each test case, first line consists of an integer N denoting the number of jobs. Second line will be of the format start time of job[i] , followed by finish time of job[i] and the profit associated with job[i].
+// The first line of input contains an integer T denoting the number of test
+// cases. In each test case, first line consists of an integer N denoting the
+// number of jobs. Second line will be of the format start time of job[i] ,
+// followed by finish time of job[i] and the profit associated with job[i].
 
 // Output:
 
@@ -1277,86 +1273,93 @@ class adi
 
 // Explanation:
 
-// Test Case 1: We can choose jobs 1, 4 and 3 for maximum profit. The maximum profit is 50+100+100 = 250
+// Test Case 1: We can choose jobs 1, 4 and 3 for maximum profit. The maximum
+// profit is 50+100+100 = 250
 
-// Test Case 2: We can choose jobs 1, 2, 4 and 3 for maximum profit. The maximum profit is 50+20+100+100 = 270
+// Test Case 2: We can choose jobs 1, 2, 4 and 3 for maximum profit. The maximum
+// profit is 50+20+100+100 = 270
 
 // time complexity: O(nlogn)
 
 // import java.util.*;
 
 // class Job{
-//     int start;
-//     int end;
-//     int profit;
-//     Job(int start, int end, int profit){
-//         this.start = start;
-//         this.end = end;
-//         this.profit = profit;
-//     }
+// int start;
+// int end;
+// int profit;
+// Job(int start, int end, int profit){
+// this.start = start;
+// this.end = end;
+// this.profit = profit;
+// }
 // }
 
 // class MyComparator implements Comparator<Job>{
-//     public int compare(Job a, Job b){
-//         return a.end-b.end;
-//     }
+// public int compare(Job a, Job b){
+// return a.end-b.end;
+// }
 // }
 
 // class adi
 // {
-//     public static int maxProfit(Job[] arr, int n){
-//         Arrays.sort(arr,new MyComparator());
-//         int[] dp = new int[n];
-//         dp[0] = arr[0].profit;
-//         for(int i=1;i<n;i++){
-//             dp[i] = Math.max(arr[i].profit,dp[i-1]);
-//             for(int j=i-1;j>=0;j--){
-//                 if(arr[j].end<=arr[i].start){
-//                     dp[i] = Math.max(dp[i],arr[i].profit+dp[j]);
-//                     break;
-//                 }
-//             }
-//         }
-//         int max = Integer.MIN_VALUE;
-//         for(int i=0;i<n;i++){
-//             if(dp[i]>max){
-//                 max = dp[i];
-//             }
-//         }
-//         return max;
-//     }
-//     public static void main (String[] args) throws IOException
-//     {
-//         Scanner sc = new Scanner(System.in);
-//         int t = sc.nextInt();
-//         while(t-->0){
-//             int n = sc.nextInt();
-//             Job[] arr = new Job[n];
-//             for(int i=0;i<n;i++){
-//                 int start = sc.nextInt();
-//                 int end = sc.nextInt();
-//                 int profit = sc.nextInt();
-//                 arr[i] = new Job(start,end,profit);
-//             }
-//             System.out.println(maxProfit(arr,n));
-//         }
-//     }
+// public static int maxProfit(Job[] arr, int n){
+// Arrays.sort(arr,new MyComparator());
+// int[] dp = new int[n];
+// dp[0] = arr[0].profit;
+// for(int i=1;i<n;i++){
+// dp[i] = Math.max(arr[i].profit,dp[i-1]);
+// for(int j=i-1;j>=0;j--){
+// if(arr[j].end<=arr[i].start){
+// dp[i] = Math.max(dp[i],arr[i].profit+dp[j]);
+// break;
 // }
-
+// }
+// }
+// int max = Integer.MIN_VALUE;
+// for(int i=0;i<n;i++){
+// if(dp[i]>max){
+// max = dp[i];
+// }
+// }
+// return max;
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// Job[] arr = new Job[n];
+// for(int i=0;i<n;i++){
+// int start = sc.nextInt();
+// int end = sc.nextInt();
+// int profit = sc.nextInt();
+// arr[i] = new Job(start,end,profit);
+// }
+// System.out.println(maxProfit(arr,n));
+// }
+// }
+// }
 
 // 5.) Activity Selection
 
 // Problem Statement:
 
-// You are given n activities with their start and finish times. Select the maximum number of activities that can be performed by a single person, assuming that a person can only work on a single activity at a time.
+// You are given n activities with their start and finish times. Select the
+// maximum number of activities that can be performed by a single person,
+// assuming that a person can only work on a single activity at a time.
 
 // Input:
 
-// The first line of input contains T denoting the number of testcases. Then follows description of testcases. First line is N number of activities then second line contains N numbers which are starting time of activies.Third line contains N finishing time of activities.
+// The first line of input contains T denoting the number of testcases. Then
+// follows description of testcases. First line is N number of activities then
+// second line contains N numbers which are starting time of activies.Third line
+// contains N finishing time of activities.
 
 // Output:
 
-// For each test case, output a single number denoting maximum activites which can be performed in new line.
+// For each test case, output a single number denoting maximum activites which
+// can be performed in new line.
 
 // Constraints:
 
@@ -1417,64 +1420,71 @@ class adi
 // import java.util.*;
 
 // class Activity{
-//     int start;
-//     int end;
-//     Activity(int start, int end){
-//         this.start = start;
-//         this.end = end;
-//     }
+// int start;
+// int end;
+// Activity(int start, int end){
+// this.start = start;
+// this.end = end;
+// }
 // }
 
 // class MyComparator implements Comparator<Activity>{
-//     public int compare(Activity a, Activity b){
-//         return a.end-b.end;
-//     }
+// public int compare(Activity a, Activity b){
+// return a.end-b.end;
+// }
 // }
 
 // class adi
 // {
-//     public static int maxActivity(Activity[] arr, int n){
-//         Arrays.sort(arr,new MyComparator());
-//         int count = 1;
-//         int i = 0;
-//         for(int j=1;j<n;j++){
-//             if(arr[j].start>=arr[i].end){
-//                 count++;
-//                 i = j;
-//             }
-//         }
-//         return count;
-//     }
-//     public static void main (String[] args) throws IOException
-//     {
-//         Scanner sc = new Scanner(System.in);
-//         int t = sc.nextInt();
-//         while(t-->0){
-//             int n = sc.nextInt();
-//             Activity[] arr = new Activity[n];
-//             for(int i=0;i<n;i++){
-//                 int start = sc.nextInt();
-//                 int end = sc.nextInt();
-//                 arr[i] = new Activity(start,end);
-//             }
-//             System.out.println(maxActivity(arr,n));
-//         }
-//     }
+// public static int maxActivity(Activity[] arr, int n){
+// Arrays.sort(arr,new MyComparator());
+// int count = 1;
+// int i = 0;
+// for(int j=1;j<n;j++){
+// if(arr[j].start>=arr[i].end){
+// count++;
+// i = j;
+// }
+// }
+// return count;
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// Activity[] arr = new Activity[n];
+// for(int i=0;i<n;i++){
+// int start = sc.nextInt();
+// int end = sc.nextInt();
+// arr[i] = new Activity(start,end);
+// }
+// System.out.println(maxActivity(arr,n));
+// }
+// }
 // }
 
 // 6.) Minimum Platforms
 
 // Problem Statement:
 
-// Given arrival and departure times of all trains that reach a railway station. Your task is to find the minimum number of platforms required for the railway station so that no train waits.
+// Given arrival and departure times of all trains that reach a railway station.
+// Your task is to find the minimum number of platforms required for the railway
+// station so that no train waits.
 
-// Note: Consider that all the trains arrive on the same day and leave on the same day. Also, arrival and departure times must not be same for a train.
+// Note: Consider that all the trains arrive on the same day and leave on the
+// same day. Also, arrival and departure times must not be same for a train.
 
 // Input:
 
-// The first line of input contains T, the number of test cases. For each test case, first line will contain an integer N, the number of trains. Next two lines will consist of N space separated time intervals denoting arrival and departure times respectively.
+// The first line of input contains T, the number of test cases. For each test
+// case, first line will contain an integer N, the number of trains. Next two
+// lines will consist of N space separated time intervals denoting arrival and
+// departure times respectively.
 
-// Note: Time intervals are in the 24-hour format(hhmm), preceding zeros are insignificant. 200 means 2:00.
+// Note: Time intervals are in the 24-hour format(hhmm), preceding zeros are
+// insignificant. 200 means 2:00.
 
 // Consider the example for better understanding of input.
 
@@ -1494,7 +1504,7 @@ class adi
 
 // 6
 
-// 900  940 950  1100 1500 1800
+// 900 940 950 1100 1500 1800
 
 // 910 1200 1120 1130 1900 2000
 
@@ -1512,7 +1522,8 @@ class adi
 
 // Explanation:
 
-// Testcase 1: Minimum 3 platforms are required to safely arrive and depart all trains.
+// Testcase 1: Minimum 3 platforms are required to safely arrive and depart all
+// trains.
 
 // time complexity: O(nlogn)
 
@@ -1520,48 +1531,42 @@ class adi
 
 // class adi
 // {
-//     public static int minPlatforms(int[] arr, int[] dep, int n){
-//         Arrays.sort(arr);
-//         Arrays.sort(dep);
-//         int i = 1;
-//         int j = 0;
-//         int count = 1;
-//         int res = 1;
-//         while(i<n && j<n){
-//             if(arr[i]<=dep[j]){
-//                 count++;
-//                 i++;
-//             }else{
-//                 count--;
-//                 j++;
-//             }
-//             if(count>res){
-//                 res = count;
-//             }
-//         }
-//         return res;
-//     }
-//     public static void main (String[] args) throws IOException
-//     {
-//         Scanner sc = new Scanner(System.in);
-//         int t = sc.nextInt();
-//         while(t-->0){
-//             int n = sc.nextInt();
-//             int[] arr = new int[n];
-//             int[] dep = new int[n];
-//             for(int i=0;i<n;i++){
-//                 arr[i] = sc.nextInt();
-//             }
-//             for(int i=0;i<n;i++){
-//                 dep[i] = sc.nextInt();
-//             }
-//             System.out.println(minPlatforms(arr,dep,n));
-//         }
-//     }
+// public static int minPlatforms(int[] arr, int[] dep, int n){
+// Arrays.sort(arr);
+// Arrays.sort(dep);
+// int i = 1;
+// int j = 0;
+// int count = 1;
+// int res = 1;
+// while(i<n && j<n){
+// if(arr[i]<=dep[j]){
+// count++;
+// i++;
+// }else{
+// count--;
+// j++;
 // }
-
-
-
-
-
-
+// if(count>res){
+// res = count;
+// }
+// }
+// return res;
+// }
+// public static void main (String[] args) throws IOException
+// {
+// Scanner sc = new Scanner(System.in);
+// int t = sc.nextInt();
+// while(t-->0){
+// int n = sc.nextInt();
+// int[] arr = new int[n];
+// int[] dep = new int[n];
+// for(int i=0;i<n;i++){
+// arr[i] = sc.nextInt();
+// }
+// for(int i=0;i<n;i++){
+// dep[i] = sc.nextInt();
+// }
+// System.out.println(minPlatforms(arr,dep,n));
+// }
+// }
+// }
