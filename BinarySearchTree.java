@@ -589,7 +589,7 @@ public class BinarySearchTree {
       // For top view, put the node in the map only if it's not already there
       topViewMap.putIfAbsent(current.hd, current.key);
 
-      // For bottom view, overwrite the node in the map
+      // For bottomc view, overwrite the node in the map
       bottomViewMap.put(current.hd, current.key);
 
       if (current.left != null) {
@@ -782,7 +782,7 @@ public class BinarySearchTree {
     // tree.levelOrderRec();
     // tree.levelOrder();
     // tree.printTree(tree.root);
-    // tree.levelOrderTopBottom();
+    tree.levelOrderTopBottom();
 
     // System.out.println("Is BST: " + tree.isBST());
 
