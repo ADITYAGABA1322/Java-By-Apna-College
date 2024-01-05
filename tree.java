@@ -393,7 +393,6 @@
 
 // 3rd Binary Search Tree
 
-
 import java.util.*;
 
 class BinaryTreeNode<T> {
@@ -666,57 +665,57 @@ class tree {
 
   // now we inset , delete and search in BST
 
-  public static BinaryTreeNode<Integer> insert(BinaryTreeNode<Integer> root, int data) {
-    if (root == null) {
-      BinaryTreeNode<Integer> newNode = new BinaryTreeNode<>(data);
-      return newNode;
-    }
-    if (root.data > data) {
-      root.left = insert(root.left, data);
-    } else {
-      root.right = insert(root.right, data);
-    }
-    return root;
-  }
+  // public static BinaryTreeNode<Integer> insert(BinaryTreeNode<Integer> root, int data) {
+  //   if (root == null) {
+  //     BinaryTreeNode<Integer> newNode = new BinaryTreeNode<>(data);
+  //     return newNode;
+  //   }
+  //   if (root.data > data) {
+  //     root.left = insert(root.left, data);
+  //   } else {
+  //     root.right = insert(root.right, data);
+  //   }
+  //   return root;
+  // }
 
-  public static BinaryTreeNode<Integer> delete(BinaryTreeNode<Integer> root, int data) {
-    if (root == null)
-      return null;
-    if (root.data > data) {
-      root.left = delete(root.left, data);
-      return root;
-    } else if (root.data < data) {
-      root.right = delete(root.right, data);
-      return root;
-    } else {
-      if (root.left == null && root.right == null) {
-        return null;
-      } else if (root.left == null) {
-        return root.right;
-      } else if (root.right == null) {
-        return root.left;
-      } else {
-        BinaryTreeNode<Integer> minNode = root.right;
-        while (minNode.left != null) {
-          minNode = minNode.left;
-        }
-        root.data = minNode.data;
-        root.right = delete(root.right, minNode.data);
-        return root;
-      }
-    }
-  }
+  // public static BinaryTreeNode<Integer> delete(BinaryTreeNode<Integer> root, int data) {
+  //   if (root == null)
+  //     return null;
+  //   if (root.data > data) {
+  //     root.left = delete(root.left, data);
+  //     return root;
+  //   } else if (root.data < data) {
+  //     root.right = delete(root.right, data);
+  //     return root;
+  //   } else {
+  //     if (root.left == null && root.right == null) {
+  //       return null;
+  //     } else if (root.left == null) {
+  //       return root.right;
+  //     } else if (root.right == null) {
+  //       return root.left;
+  //     } else {
+  //       BinaryTreeNode<Integer> minNode = root.right;
+  //       while (minNode.left != null) {
+  //         minNode = minNode.left;
+  //       }
+  //       root.data = minNode.data;
+  //       root.right = delete(root.right, minNode.data);
+  //       return root;
+  //     }
+  //   }
+  // }
 
-  public static boolean search(BinaryTreeNode<Integer> root, int data) {
-    if (root == null)
-      return false;
-    if (root.data == data)
-      return true;
-    if (root.data > data)
-      return search(root.left, data);
-    else
-      return search(root.right, data);
-  }
+  // public static boolean search(BinaryTreeNode<Integer> root, int data) {
+  //   if (root == null)
+  //     return false;
+  //   if (root.data == data)
+  //     return true;
+  //   if (root.data > data)
+  //     return search(root.left, data);
+  //   else
+  //     return search(root.right, data);
+  // }
 
   // Now we will delete the tree
   public static void deleteTree(BinaryTreeNode<Integer> root) {
@@ -730,62 +729,61 @@ class tree {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    // int[] in = { 4, 2, 1, 7, 5, 8, 3, 6 };
-    // int[] pre = { 1, 2, 4, 3, 5, 7, 8, 6 };
-    // // BinaryTreeNode<Integer> root = buildTree(in, pre);
+    int[] in = { 4, 2, 1, 7, 5, 8, 3, 6 };
+    int[] pre = { 1, 2, 4, 3, 5, 7, 8, 6 };
+    // BinaryTreeNode<Integer> root = buildTree(in, pre);
     BinaryTreeNode<Integer> root = takeInputLevelWise();
+    printTree(root);
+    System.out.println("Number of nodes: " + numNodes(root));
+    System.out.print("Inorder traversal: ");
+    inorder(root);
+    System.out.println();
+    Pair p = heightDiameter(root);
+    System.out.println("Height: " + p.height);
+    System.out.println("Diameter: " + p.diameter);
+    System.out.println("Enter a node to find");
+    int data = sc.nextInt();
+    BinaryTreeNode<Integer> node = findNode(root, data);
+    if (node != null) {
+    System.out.println("Node found");
+    } else {
+    System.out.println("Node not found");
+    }
+    System.out.println("Enter k1 and k2");
+    int k1 = sc.nextInt();
+    int k2 = sc.nextInt();
+    printK1K2(root, k1, k2);
+    System.out.println();
+    System.out.println("Enter a node to find path");
+    int nodeData = sc.nextInt();
+    ArrayList<Integer> output = getRootToNodePath(root, nodeData);
+    if (output != null) {
+    for (int i : output) {
+    System.out.print(i + " ");
+    }
+    }
+    System.out.println();
+    System.out.println("Is BST: " + isBST(root));
+    System.out.println("Is BST: " + isBST2(root).isBST);
+    System.out.println("Is BST: " + isBST3(root, Integer.MIN_VALUE,
+    Integer.MAX_VALUE));
+    System.out.println();
+
+    // System.out.println("Enter a node to insert");
+    // int insertData = sc.nextInt();
+    // root = insert(root, insertData);
     // printTree(root);
-    // System.out.println("Number of nodes: " + numNodes(root));
-    // System.out.print("Inorder traversal: ");
-    // inorder(root);
     // System.out.println();
-    // Pair p = heightDiameter(root);
-    // System.out.println("Height: " + p.height);
-    // System.out.println("Diameter: " + p.diameter);
-    // System.out.println("Enter a node to find");
-    // int data = sc.nextInt();
-    // BinaryTreeNode<Integer> node = findNode(root, data);
-    // if (node != null) {
-    // System.out.println("Node found");
-    // } else {
-    // System.out.println("Node not found");
-    // }
-    // System.out.println("Enter k1 and k2");
-    // int k1 = sc.nextInt();
-    // int k2 = sc.nextInt();
-    // printK1K2(root, k1, k2);
+    // System.out.println("Enter a node to delete");
+    // int deleteData = sc.nextInt();
+    // root = delete(root, deleteData);
+    // printTree(root);
     // System.out.println();
-    // System.out.println("Enter a node to find path");
-    // int nodeData = sc.nextInt();
-    // ArrayList<Integer> output = getRootToNodePath(root, nodeData);
-    // if (output != null) {
-    // for (int i : output) {
-    // System.out.print(i + " ");
-    // }
-    // }
-    // System.out.println();
-    // System.out.println("Is BST: " + isBST(root));
-    // System.out.println("Is BST: " + isBST2(root).isBST);
-    // System.out.println("Is BST: " + isBST3(root, Integer.MIN_VALUE,
-    // Integer.MAX_VALUE));
-    // System.out.println();
-    System.out.println("Enter a node to insert");
-    int insertData = sc.nextInt();
-    root = insert(root, insertData);
-    printTree(root);
-    System.out.println();
-    System.out.println("Enter a node to delete");
-    int deleteData = sc.nextInt();
-    root = delete(root, deleteData);
-    printTree(root);
-    System.out.println();
-    System.out.println("Enter a node to search");
-    int searchData = sc.nextInt();
-    System.out.println("Is present: " + search(root, searchData));
+    // System.out.println("Enter a node to search");
+    // int searchData = sc.nextInt();
+    // System.out.println("Is present: " + search(root, searchData));
     // delete tree
     deleteTree(root);
     root.destroy();
   }
 }
-
-
