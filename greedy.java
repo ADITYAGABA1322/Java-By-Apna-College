@@ -914,3 +914,75 @@
 //     towerOfHanoi(n, 'A', 'C', 'B');
 //   }
 // }
+
+// 3. Let's Go Shopping!
+// A person visits a merchandise showroom and sees 5 items available, T-shirts - Rs 1000, bags- Rs 2000, Jackets - Rs 3000, Ball - Rs 4000, Shoes - Rs 5000. All items of same type are priced the same and there are at least 100 pieces of every item available. Also there was an offer buy 2 get 1 free on same item. So, he decided to buy some stuff, but he had only one condition that number of items he takes home should be minimum.
+// Note - You've to spend all of yours money.
+
+// Example 1:
+// Input: n = 22000
+// Output: 6 
+// Explanation: For Rs 22000 he will buy 1 ball 
+// for 4000, 1 jacket for 3000 & 3 shoes for 
+// 15000 and he will get 1 extra pair of 
+// shoes free. On total making it 6 items.
+// Example 2:
+// Input: n = 3500
+// Output: -1
+// Explanation: Impossible to use full
+// amount of 3500.
+
+// Your Task:  
+// You don’t need to read input or print anything. Complete the function minimumItem() which takes n as input parameter and returns minimum number of item you can purchase in total money you have. If it is impossible to use full amount return -1.
+
+// Expected Time Complexity: O(log n)
+// Expected Auxiliary Space: O(1)
+
+// import java.util.*;
+
+// class greedy {
+//   public static int minimumItem(int n) {
+//     int[] arr = { 1000, 2000, 3000, 4000, 5000 };
+//     int count = 0;
+//     for (int i = 4; i >= 0; i--) {
+//       if (n >= arr[i]) {
+//         count = count + n / arr[i];
+//         n = n % arr[i];
+//       }
+//     }
+//     if (n != 0) {
+//       return -1;
+//     }
+//     return count;
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     System.out.println(minimumItem(n));
+//   }
+// }
+
+public class greedy {
+  public static int minimumItem(int n) {
+    if (n < 1000 || n == 2000 || n == 3000 || n == 5000) {
+      return -1;
+    }
+    int[] prices = { 1000, 2000, 3000, 4000, 5000 };
+    int minItems = Integer.MAX_VALUE;
+    for (int price : prices) {
+      if (n >= price) {
+        int items = n / price;
+        if (n % price == 0) {
+          minItems = Math.min(minItems, items + items / 2);
+        }
+      }
+    }
+    return minItems == Integer.MAX_VALUE ? -1 : minItems;
+  }
+
+  public static void main(String[] args) {
+    int n = 22000;
+    System.out.println(minimumItem(n));
+  }
+}
