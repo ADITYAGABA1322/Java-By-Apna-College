@@ -759,3 +759,63 @@
 // }
 // }
 // }
+
+// extra questions
+
+// 1.) 1. Generate All Possible Combinations
+// Write a Java program to generate all possible combinations of a given set of elements using recursion.
+// Input	Output	Description
+// 1 2 3	[1, 2, 3]
+// [1, 2]
+// [1, 3]
+// [1]
+// [2, 3]
+// [2]
+// [3]
+// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
+// 7 8 9	[7, 8, 9]
+// [7, 8]
+// [7, 9]
+// [7]
+// [8, 9]
+// [8]
+// [9]
+// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
+// 100 85 9	[100, 85, 9]
+// [100, 85]
+// [100, 9]
+// [100]
+// [85, 9]
+// [85]
+// [9]
+// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
+
+import java.util.*;
+
+class greedy {
+  public static void generateCombinations(int[] arr, int n) {
+    ArrayList<Integer> res = new ArrayList<>();
+    generateCombinationsUtil(arr, n, 0, res);
+  }
+
+  public static void generateCombinationsUtil(int[] arr, int n, int index, ArrayList<Integer> res) {
+    if (index == n) {
+      System.out.println(res);
+      return;
+    }
+    res.add(arr[index]);
+    generateCombinationsUtil(arr, n, index + 1, res);
+    res.remove(res.size() - 1);
+    generateCombinationsUtil(arr, n, index + 1, res);
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = 3;
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = sc.nextInt();
+    }
+    generateCombinations(arr, n);
+  }
+}
