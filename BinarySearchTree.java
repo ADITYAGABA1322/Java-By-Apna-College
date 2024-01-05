@@ -658,6 +658,63 @@ public class BinarySearchTree {
     return Math.max(leftHeight + rightHeight + 1, Math.max(leftDiameter, rightDiameter));
   }
 
+  // findK1K2
+
+  public void findK1K2(int k1, int k2) {
+    findK1K2Util(root, k1, k2);
+  }
+
+  private void findK1K2Util(TreeNode root, int k1, int k2) {
+    if (root == null) {
+      return;
+    }
+
+    if (k1 < root.key) {
+      findK1K2Util(root.left, k1, k2);
+    }
+
+    if (k1 <= root.key && k2 >= root.key) {
+      System.out.print(root.key + " ");
+    }
+
+    if (k2 > root.key) {
+      findK1K2Util(root.right, k1, k2);
+    }
+  }
+
+  // build tree from inorder and preorder
+
+  public TreeNode buildTree(int[] preorder, int[] inorder) {
+    int preStart = 0;
+    int preEnd = preorder.length - 1;
+    int inStart = 0;
+    int inEnd = inorder.length - 1;
+
+    return buildTree(preorder, preStart, preEnd, inorder, inStart, inEnd);
+  }
+
+  private TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+    if (preStart > preEnd || inStart > inEnd) {
+      return null;
+    }
+
+    int rootValue = preorder[preStart];
+    TreeNode root = new TreeNode(rootValue);
+
+    int k = 0;
+    for (int i = 0; i < inorder.length; i++) {
+      if (rootValue == inorder[i]) {
+        k = i;
+        break;
+      }
+    }
+
+    root.left = buildTree(preorder, preStart + 1, preStart + (k - inStart), inorder, inStart, k - 1);
+    root.right = buildTree(preorder, preStart + (k - inStart) + 1, preEnd, inorder, k + 1, inEnd);
+
+    return root;
+  }
+
   public static void main(String[] args) {
     BinarySearchTree tree = new BinarySearchTree();
     Scanner scanner = new Scanner(System.in);
@@ -701,7 +758,8 @@ public class BinarySearchTree {
     // int pathKey = scanner.nextInt();
     // tree.printPath(pathKey);
 
-    // tree.levelOrder();
+    tree.levelOrder();
+    // tree.printTree(tree.root);
     // tree.levelOrderTopBottom();
 
     // System.out.println("Is BST: " + tree.isBST());

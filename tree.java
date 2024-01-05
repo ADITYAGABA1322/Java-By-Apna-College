@@ -665,56 +665,58 @@ class tree {
 
   // now we inset , delete and search in BST
 
-  // public static BinaryTreeNode<Integer> insert(BinaryTreeNode<Integer> root, int data) {
-  //   if (root == null) {
-  //     BinaryTreeNode<Integer> newNode = new BinaryTreeNode<>(data);
-  //     return newNode;
-  //   }
-  //   if (root.data > data) {
-  //     root.left = insert(root.left, data);
-  //   } else {
-  //     root.right = insert(root.right, data);
-  //   }
-  //   return root;
+  // public static BinaryTreeNode<Integer> insert(BinaryTreeNode<Integer> root,
+  // int data) {
+  // if (root == null) {
+  // BinaryTreeNode<Integer> newNode = new BinaryTreeNode<>(data);
+  // return newNode;
+  // }
+  // if (root.data > data) {
+  // root.left = insert(root.left, data);
+  // } else {
+  // root.right = insert(root.right, data);
+  // }
+  // return root;
   // }
 
-  // public static BinaryTreeNode<Integer> delete(BinaryTreeNode<Integer> root, int data) {
-  //   if (root == null)
-  //     return null;
-  //   if (root.data > data) {
-  //     root.left = delete(root.left, data);
-  //     return root;
-  //   } else if (root.data < data) {
-  //     root.right = delete(root.right, data);
-  //     return root;
-  //   } else {
-  //     if (root.left == null && root.right == null) {
-  //       return null;
-  //     } else if (root.left == null) {
-  //       return root.right;
-  //     } else if (root.right == null) {
-  //       return root.left;
-  //     } else {
-  //       BinaryTreeNode<Integer> minNode = root.right;
-  //       while (minNode.left != null) {
-  //         minNode = minNode.left;
-  //       }
-  //       root.data = minNode.data;
-  //       root.right = delete(root.right, minNode.data);
-  //       return root;
-  //     }
-  //   }
+  // public static BinaryTreeNode<Integer> delete(BinaryTreeNode<Integer> root,
+  // int data) {
+  // if (root == null)
+  // return null;
+  // if (root.data > data) {
+  // root.left = delete(root.left, data);
+  // return root;
+  // } else if (root.data < data) {
+  // root.right = delete(root.right, data);
+  // return root;
+  // } else {
+  // if (root.left == null && root.right == null) {
+  // return null;
+  // } else if (root.left == null) {
+  // return root.right;
+  // } else if (root.right == null) {
+  // return root.left;
+  // } else {
+  // BinaryTreeNode<Integer> minNode = root.right;
+  // while (minNode.left != null) {
+  // minNode = minNode.left;
+  // }
+  // root.data = minNode.data;
+  // root.right = delete(root.right, minNode.data);
+  // return root;
+  // }
+  // }
   // }
 
   // public static boolean search(BinaryTreeNode<Integer> root, int data) {
-  //   if (root == null)
-  //     return false;
-  //   if (root.data == data)
-  //     return true;
-  //   if (root.data > data)
-  //     return search(root.left, data);
-  //   else
-  //     return search(root.right, data);
+  // if (root == null)
+  // return false;
+  // if (root.data == data)
+  // return true;
+  // if (root.data > data)
+  // return search(root.left, data);
+  // else
+  // return search(root.right, data);
   // }
 
   // Now we will delete the tree
@@ -745,9 +747,9 @@ class tree {
     int data = sc.nextInt();
     BinaryTreeNode<Integer> node = findNode(root, data);
     if (node != null) {
-    System.out.println("Node found");
+      System.out.println("Node found");
     } else {
-    System.out.println("Node not found");
+      System.out.println("Node not found");
     }
     System.out.println("Enter k1 and k2");
     int k1 = sc.nextInt();
@@ -758,16 +760,15 @@ class tree {
     int nodeData = sc.nextInt();
     ArrayList<Integer> output = getRootToNodePath(root, nodeData);
     if (output != null) {
-    for (int i : output) {
-    System.out.print(i + " ");
-    }
+      for (int i : output) {
+        System.out.print(i + " ");
+      }
     }
     System.out.println();
     System.out.println("Is BST: " + isBST(root));
     System.out.println("Is BST: " + isBST2(root).isBST);
     System.out.println("Is BST: " + isBST3(root, Integer.MIN_VALUE,
-    Integer.MAX_VALUE));
-    System.out.println();
+        Integer.MAX_VALUE));
 
     // System.out.println("Enter a node to insert");
     // int insertData = sc.nextInt();
