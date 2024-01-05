@@ -70,72 +70,72 @@
 
 // time complexity: O(nlogn)
 
-// import java.util.*;
-// import java.lang.*;1
-// import java.io.*;
-// import java.util.Arrays;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.util.Arrays;
 
-// class Item{
-// int value;
-// int weight;
-// Item(int value, int weight){
-// this.value = value;
-// this.weight = weight;
-// }
-// }
-// class adi
-// {
-// public static double fractionalKnapsack(Item[] arr , int W){
-// // Arrays.sort(arr, new Comparator<Item>(){
-// // public int compare(Item a, Item b){
-// // double r1 = (double)a.value/a.weight;
-// // double r2 = (double)b.value/b.weight;
-// // if(r1<r2){
-// // return 1;
-// // }else if(r1>r2){
-// // return -1;
-// // }else{
-// // return 0;
-// // }
-// // }
-// // });
-// // 2nd one to sort
-// //Arrays.sort(arr,
-// (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
-// // 3rd one to sort
-// Arrays.sort(arr , Comparator.comparingDouble(i -> (double) i.value /
-// i.weight));
-// // int curWeight
-// double maxValue = 0.0;
-// for(int i=arr.length-1;i>=0;i--){
-// if(arr[i].weight<=W){
-// maxValue = maxValue + arr[i].value;
-// W = W - arr[i].weight;
+class Item {
+  int value;
+  int weight;
+
+  Item(int value, int weight) {
+    this.value = value;
+    this.weight = weight;
+  }
+}
+
+class greedy {
+public static double fractionalKnapsack(Item[] arr , int W){
+// Arrays.sort(arr, new Comparator<Item>(){
+// public int compare(Item a, Item b){
+// double r1 = (double)a.value/a.weight;
+// double r2 = (double)b.value/b.weight;
+// if(r1<r2){
+// return 1;
+// }else if(r1>r2){
+// return -1;
 // }else{
-// maxValue = maxValue + (double)arr[i].value*((double)W/arr[i].weight);
-// break;
+// return 0;
 // }
 // }
-// return maxValue;
+// });
+// 2nd one to sort
+//Arrays.sort(arr, (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
+// 3rd one to sort
+Arrays.sort(arr , Comparator.comparingDouble(i -> (double) i.value /
+i.weight));
+// int curWeight
+double maxValue = 0.0;
+for(int i=arr.length-1;i>=0;i--){
+if(arr[i].weight<=W){
+maxValue = maxValue + arr[i].value;
+W = W - arr[i].weight;
+}else{
+maxValue = maxValue + (double)arr[i].value*((double)W/arr[i].weight);
+break;
+}
+}
+return maxValue;
 
-// }
-// public static void main (String[] args) throws IOException
-// {
-// Scanner sc = new Scanner(System.in);
-// int t = sc.nextInt();
-// while(t-->0){
-// int n = sc.nextInt();
-// int W = sc.nextInt();
-// Item[] arr = new Item[n];
-// for(int i=0;i<n;i++){
-// int value = sc.nextInt();
-// int weight = sc.nextInt();
-// arr[i] = new Item(value,weight);
-// }
-// System.out.println(fractionalKnapsack(arr,W));
-// }
-// }
-// }
+}
+
+  public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int t = sc.nextInt();
+    while (t-- > 0) {
+      int n = sc.nextInt();
+      int W = sc.nextInt();
+      Item[] arr = new Item[n];
+      for (int i = 0; i < n; i++) {
+        int value = sc.nextInt();
+        int weight = sc.nextInt();
+        arr[i] = new Item(value, weight);
+      }
+      System.out.println(fractionalKnapsack(arr, W));
+    }
+  }
+}
 
 // 2.) Job Sequencing Problem
 
@@ -763,61 +763,66 @@
 // extra questions
 
 // 1.) 1. Generate All Possible Combinations
-// Write a Java program to generate all possible combinations of a given set of elements using recursion.
-// Input	Output	Description
-// 1 2 3	[1, 2, 3]
+// Write a Java program to generate all possible combinations of a given set of
+// elements using recursion.
+// Input Output Description
+// 1 2 3 [1, 2, 3]
 // [1, 2]
 // [1, 3]
 // [1]
 // [2, 3]
 // [2]
 // [3]
-// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
-// 7 8 9	[7, 8, 9]
+// [] Inputs are the 3 values to check the pairs. Output tells all possible sets
+// from the given values.
+// 7 8 9 [7, 8, 9]
 // [7, 8]
 // [7, 9]
 // [7]
 // [8, 9]
 // [8]
 // [9]
-// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
-// 100 85 9	[100, 85, 9]
+// [] Inputs are the 3 values to check the pairs. Output tells all possible sets
+// from the given values.
+// 100 85 9 [100, 85, 9]
 // [100, 85]
 // [100, 9]
 // [100]
 // [85, 9]
 // [85]
 // [9]
-// []	Inputs are the 3 values to check the pairs. Output tells all possible sets from the given values.
+// [] Inputs are the 3 values to check the pairs. Output tells all possible sets
+// from the given values.
 
 // import java.util.*;
 
 // class greedy {
-//   public static void generateCombinations(int[] arr, int n) {
-//     ArrayList<Integer> res = new ArrayList<>();
-//     generateCombinationsUtil(arr, n, 0, res);
-//   }
+// public static void generateCombinations(int[] arr, int n) {
+// ArrayList<Integer> res = new ArrayList<>();
+// generateCombinationsUtil(arr, n, 0, res);
+// }
 
-//   public static void generateCombinationsUtil(int[] arr, int n, int index, ArrayList<Integer> res) {
-//     if (index == n) {
-//       System.out.println(res);
-//       return;
-//     }
-//     res.add(arr[index]);
-//     generateCombinationsUtil(arr, n, index + 1, res);
-//     res.remove(res.size() - 1);
-//     generateCombinationsUtil(arr, n, index + 1, res);
-//   }
+// public static void generateCombinationsUtil(int[] arr, int n, int index,
+// ArrayList<Integer> res) {
+// if (index == n) {
+// System.out.println(res);
+// return;
+// }
+// res.add(arr[index]);
+// generateCombinationsUtil(arr, n, index + 1, res);
+// res.remove(res.size() - 1);
+// generateCombinationsUtil(arr, n, index + 1, res);
+// }
 
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = 3;
-//     int[] arr = new int[n];
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = sc.nextInt();
-//     }
-//     generateCombinations(arr, n);
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = 3;
+// int[] arr = new int[n];
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
+// generateCombinations(arr, n);
+// }
 // }
 
 // 2nd method Using list
@@ -825,46 +830,54 @@
 // import java.util.*;
 
 // public class greedy {
-//   public static void generateCombinations(List<Integer> input, List<Integer> combo, int start) {
-//     System.out.println(combo);
-//     for (int i = start; i < input.size(); i++) {
-//       combo.add(input.get(i));
-//       generateCombinations(input, combo, i + 1);
-//       combo.remove(combo.size() - 1);
-//     }
-//   }
-
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = 3;
-//     List<Integer> input = new ArrayList<>();
-//     for (int i = 0; i < n; i++) {
-//       input.add(sc.nextInt());
-//     }
-//     List<Integer> combo = new ArrayList<>();
-//     generateCombinations(input, combo, 0);
-
-//   }
+// public static void generateCombinations(List<Integer> input, List<Integer>
+// combo, int start) {
+// System.out.println(combo);
+// for (int i = start; i < input.size(); i++) {
+// combo.add(input.get(i));
+// generateCombinations(input, combo, i + 1);
+// combo.remove(combo.size() - 1);
+// }
 // }
 
-//2.) Tower of Hanoi
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = 3;
+// List<Integer> input = new ArrayList<>();
+// for (int i = 0; i < n; i++) {
+// input.add(sc.nextInt());
+// }
+// List<Integer> combo = new ArrayList<>();
+// generateCombinations(input, combo, 0);
+
+// }
+// }
+
+// 2.) Tower of Hanoi
 // Write a Java program to solve the Tower of Hanoi problem using recursion.
 
-// “The Tower of Hanoi is a mathematical problem formed of three towers. The purpose of the puzzle is to push the whole stack to another bar. While moving the stacks, we need to obey some simple rules: we can only remove one disk at a time.” User enter the integer value of the no. of disks for the Hanoi. Print the statements of the steps required to solve the problem.
-// Eg: If you need to move disk 1 from tower A to C, print -> “Move disk 1 from A to C” 
+// “The Tower of Hanoi is a mathematical problem formed of three towers. The
+// purpose of the puzzle is to push the whole stack to another bar. While moving
+// the stacks, we need to obey some simple rules: we can only remove one disk at
+// a time.” User enter the integer value of the no. of disks for the Hanoi.
+// Print the statements of the steps required to solve the problem.
+// Eg: If you need to move disk 1 from tower A to C, print -> “Move disk 1 from
+// A to C”
 
-// Input	Output	Description
-// 3	Move disk 1 from A to C
+// Input Output Description
+// 3 Move disk 1 from A to C
 // Move disk 2 from A to B
 // Move disk 1 from C to B
 // Move disk 3 from A to C
 // Move disk 1 from B to A
 // Move disk 2 from B to C
-// Move disk 1 from A to C	Input is the integer value of the no. of disk for the Tower of Hanoi. Output contains the step to solve the problem.
-// 2	Move disk 1 from A to B
+// Move disk 1 from A to C Input is the integer value of the no. of disk for the
+// Tower of Hanoi. Output contains the step to solve the problem.
+// 2 Move disk 1 from A to B
 // Move disk 2 from A to C
-// Move disk 1 from B to C	Input is the integer value of the no. of disk for the Tower of Hanoi. Output contains the step to solve the problem.
-// 5	Move disk 1 from A to C
+// Move disk 1 from B to C Input is the integer value of the no. of disk for the
+// Tower of Hanoi. Output contains the step to solve the problem.
+// 5 Move disk 1 from A to C
 // Move disk 2 from A to B
 // Move disk 1 from C to B
 // Move disk 3 from A to C
@@ -894,37 +907,45 @@
 // Move disk 3 from A to C
 // Move disk 1 from B to A
 // Move disk 2 from B to C
-// Move disk 1 from A to C	Input is the integer value of the no. of disk for the Tower of Hanoi. Output contains the step to solve the problem.
+// Move disk 1 from A to C Input is the integer value of the no. of disk for the
+// Tower of Hanoi. Output contains the step to solve the problem.
 // import java.util.*;
 
 // class greedy {
-//   public static void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) {
-//     if (n == 1) {
-//       System.out.println("Move disk 1 from rod " + from_rod + " to rod " + to_rod);
-//       return;
-//     }
-//     towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
-//     System.out.println("Move disk " + n + " from rod " + from_rod + " to rod " + to_rod);
-//     towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
-//   }
+// public static void towerOfHanoi(int n, char from_rod, char to_rod, char
+// aux_rod) {
+// if (n == 1) {
+// System.out.println("Move disk 1 from rod " + from_rod + " to rod " + to_rod);
+// return;
+// }
+// towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+// System.out.println("Move disk " + n + " from rod " + from_rod + " to rod " +
+// to_rod);
+// towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+// }
 
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     towerOfHanoi(n, 'A', 'C', 'B');
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// towerOfHanoi(n, 'A', 'C', 'B');
+// }
 // }
 
 // 3. Let's Go Shopping!
-// A person visits a merchandise showroom and sees 5 items available, T-shirts - Rs 1000, bags- Rs 2000, Jackets - Rs 3000, Ball - Rs 4000, Shoes - Rs 5000. All items of same type are priced the same and there are at least 100 pieces of every item available. Also there was an offer buy 2 get 1 free on same item. So, he decided to buy some stuff, but he had only one condition that number of items he takes home should be minimum.
+// A person visits a merchandise showroom and sees 5 items available, T-shirts -
+// Rs 1000, bags- Rs 2000, Jackets - Rs 3000, Ball - Rs 4000, Shoes - Rs 5000.
+// All items of same type are priced the same and there are at least 100 pieces
+// of every item available. Also there was an offer buy 2 get 1 free on same
+// item. So, he decided to buy some stuff, but he had only one condition that
+// number of items he takes home should be minimum.
 // Note - You've to spend all of yours money.
 
 // Example 1:
 // Input: n = 22000
 // Output: 6 
-// Explanation: For Rs 22000 he will buy 1 ball 
-// for 4000, 1 jacket for 3000 & 3 shoes for 
-// 15000 and he will get 1 extra pair of 
+// Explanation: For Rs 22000 he will buy 1 ball
+// for 4000, 1 jacket for 3000 & 3 shoes for
+// 15000 and he will get 1 extra pair of
 // shoes free. On total making it 6 items.
 // Example 2:
 // Input: n = 3500
@@ -933,7 +954,10 @@
 // amount of 3500.
 
 // Your Task:  
-// You don’t need to read input or print anything. Complete the function minimumItem() which takes n as input parameter and returns minimum number of item you can purchase in total money you have. If it is impossible to use full amount return -1.
+// You don’t need to read input or print anything. Complete the
+// function minimumItem() which takes n as input parameter and returns minimum
+// number of item you can purchase in total money you have. If it is impossible
+// to use full amount return -1.
 
 // Expected Time Complexity: O(log n)
 // Expected Auxiliary Space: O(1)
@@ -941,48 +965,48 @@
 // import java.util.*;
 
 // class greedy {
-//   public static int minimumItem(int n) {
-//     int[] arr = { 1000, 2000, 3000, 4000, 5000 };
-//     int count = 0;
-//     for (int i = 4; i >= 0; i--) {
-//       if (n >= arr[i]) {
-//         count = count + n / arr[i];
-//         n = n % arr[i];
-//       }
-//     }
-//     if (n != 0) {
-//       return -1;
-//     }
-//     return count;
-//   }
-
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     System.out.println(minimumItem(n));
-//   }
+// public static int minimumItem(int n) {
+// int[] arr = { 1000, 2000, 3000, 4000, 5000 };
+// int count = 0;
+// for (int i = 4; i >= 0; i--) {
+// if (n >= arr[i]) {
+// count = count + n / arr[i];
+// n = n % arr[i];
+// }
+// }
+// if (n != 0) {
+// return -1;
+// }
+// return count;
 // }
 
-public class greedy {
-  public static int minimumItem(int n) {
-    if (n < 1000 || n == 2000 || n == 3000 || n == 5000) {
-      return -1;
-    }
-    int[] prices = { 1000, 2000, 3000, 4000, 5000 };
-    int minItems = Integer.MAX_VALUE;
-    for (int price : prices) {
-      if (n >= price) {
-        int items = n / price;
-        if (n % price == 0) {
-          minItems = Math.min(minItems, items + items / 2);
-        }
-      }
-    }
-    return minItems == Integer.MAX_VALUE ? -1 : minItems;
-  }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// System.out.println(minimumItem(n));
+// }
+// }
 
-  public static void main(String[] args) {
-    int n = 22000;
-    System.out.println(minimumItem(n));
-  }
-}
+// public class greedy {
+// public static int minimumItem(int n) {
+// if (n < 1000 || n == 2000 || n == 3000 || n == 5000) {
+// return -1;
+// }
+// int[] prices = { 1000, 2000, 3000, 4000, 5000 };
+// int minItems = Integer.MAX_VALUE;
+// for (int price : prices) {
+// if (n >= price) {
+// int items = n / price;
+// if (n % price == 0) {
+// minItems = Math.min(minItems, items + items / 2);
+// }
+// }
+// }
+// return minItems == Integer.MAX_VALUE ? -1 : minItems;
+// }
+
+// public static void main(String[] args) {
+// int n = 22000;
+// System.out.println(minimumItem(n));
+// }
+// }
