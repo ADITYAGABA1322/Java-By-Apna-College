@@ -520,6 +520,27 @@ public class BinarySearchTree {
     }
   }
 
+  // recursive level order traversal
+
+  public void levelOrderRec() {
+    int h = height(root);
+    for (int i = 1; i <= h; i++) {
+      printGivenLevel(root, i);
+    }
+  }
+
+  private void printGivenLevel(TreeNode root, int level) {
+    if (root == null) {
+      return;
+    }
+    if (level == 1) {
+      System.out.print(root.key + " ");
+    } else if (level > 1) {
+      printGivenLevel(root.left, level - 1);
+      printGivenLevel(root.right, level - 1);
+    }
+  }
+
   // Level Order Traversal
 
   public void levelOrder() {
@@ -758,7 +779,8 @@ public class BinarySearchTree {
     // int pathKey = scanner.nextInt();
     // tree.printPath(pathKey);
 
-    tree.levelOrder();
+    tree.levelOrderRec();
+    // tree.levelOrder();
     // tree.printTree(tree.root);
     // tree.levelOrderTopBottom();
 
