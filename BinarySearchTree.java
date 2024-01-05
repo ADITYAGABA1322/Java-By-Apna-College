@@ -756,16 +756,16 @@ public class BinarySearchTree {
     tree.preOrder();
     // tree.preOrderNonRecursive();
 
-    // System.out.print("Enter the key to delete: ");
-    // int deleteKey = scanner.nextInt();
-    // tree.delete(deleteKey);
-    // tree.printTree(tree.root);
+    System.out.print("Enter the key to delete: ");
+    int deleteKey = scanner.nextInt();
+    tree.delete(deleteKey);
+    tree.printTree(tree.root);
 
     // tree.inOrder();
 
     tree.findHeight();
-    System.out.println("Diameter of the tree: " + tree.diameter());
-    // search a key in the tree
+    // System.out.println("Diameter of the tree: " + tree.diameter());
+    // // search a key in the tree
 
     System.out.print("Enter the key to search: ");
     int searchKey = scanner.nextInt();
@@ -775,11 +775,11 @@ public class BinarySearchTree {
       System.out.println("Key not found in the tree.");
     }
 
-    // System.out.print("Enter the key to find path: ");
-    // int pathKey = scanner.nextInt();
-    // tree.printPath(pathKey);
+    System.out.print("Enter the key to find path: ");
+    int pathKey = scanner.nextInt();
+    tree.printPath(pathKey);
 
-    tree.levelOrderRec();
+    // tree.levelOrderRec();
     // tree.levelOrder();
     // tree.printTree(tree.root);
     // tree.levelOrderTopBottom();
