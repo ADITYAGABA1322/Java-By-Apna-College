@@ -10,8 +10,6 @@ class TreeNode {
     left = right = null;
   }
 }
-
-
 public class AVLTree {
   private TreeNode root;
 
