@@ -1,136 +1,222 @@
 import java.util.Scanner;
 
-class TreeNode {
+class Node {
   int key, height;
-  TreeNode left, right;
+  Node left, right;
 
-  public TreeNode(int item) {
-    key = item;
-    height = 1;
-    left = right = null;
+  Node(int key) {
+    this.key = key;
+    this.height = 1;
   }
 }
+
 public class AVLTree {
-  private TreeNode root;
+  private Node root;
 
-  public AVLTree() {
-    root = null;
+  // Helper function to get the height of a node
+  private int height(Node node) {
+    return (node == null) ? 0 : node.height;
   }
 
-  // Get height of a node
-  private int height(TreeNode node) {
-    if (node == null) {
-      return 0;
+  // Helper function to get the balance factor of a node
+  private int getBalance(Node node) {
+    return (node == null) ? 0 : height(node.left) - height(node.right);
+  }
+
+  // Helper function to update the height of a node
+  private void updateHeight(Node node) {
+    if (node != null) {
+      node.height = 1 + Math.max(height(node.left), height(node.right));
     }
-    return node.height;
   }
 
-  // Get balance factor of a node
-  private int getBalance(TreeNode node) {
-    if (node == null) {
-      return 0;
-    }
-    return height(node.left) - height(node.right);
-  }
+  // Right rotate subtree rooted with y
+  private Node rightRotate(Node y) {
+    Node x = y.left;
+    Node T2 = x.right;
 
-  // Perform a right rotation
-  private TreeNode rightRotate(TreeNode y) {
-    TreeNode x = y.left;
-    TreeNode T2 = x.right;
-
-    // Perform rotation
     x.right = y;
     y.left = T2;
 
-    // Update heights
-    y.height = Math.max(height(y.left), height(y.right)) + 1;
-    x.height = Math.max(height(x.left), height(x.right)) + 1;
+    updateHeight(y);
+    updateHeight(x);
 
-    // Return new root
     return x;
   }
 
-  // Perform a left rotation
-  private TreeNode leftRotate(TreeNode x) {
-    TreeNode y = x.right;
-    TreeNode T2 = y.left;
+  // Left rotate subtree rooted with x
+  private Node leftRotate(Node x) {
+    Node y = x.right;
+    Node T2 = y.left;
 
-    // Perform rotation
     y.left = x;
     x.right = T2;
 
-    // Update heights
-    x.height = Math.max(height(x.left), height(x.right)) + 1;
-    y.height = Math.max(height(y.left), height(y.right)) + 1;
+    updateHeight(x);
+    updateHeight(y);
 
-    // Return new root
     return y;
   }
 
-  // Insert a key into the tree
-  public void insert(int key) {
-    root = insertRec(root, key);
-  }
+  // Perform balance and rotation after an insertion
+  private Node balance(Node node, int key) {
+    updateHeight(node);
 
-  private TreeNode insertRec(TreeNode root, int key) {
-    // Perform standard BST insert
-    if (root == null) {
-      return new TreeNode(key);
-    }
-
-    if (key < root.key) {
-      root.left = insertRec(root.left, key);
-    } else if (key > root.key) {
-      root.right = insertRec(root.right, key);
-    } else {
-      // Duplicate keys are not allowed in AVL trees
-      return root;
-    }
-
-    // Update height of the current node
-    root.height = 1 + Math.max(height(root.left), height(root.right));
-
-    // Get the balance factor to check if this node became unbalanced
-    int balance = getBalance(root);
+    int balance = getBalance(node);
 
     // Left Left Case
-    if (balance > 1 && key < root.left.key) {
-      return rightRotate(root);
+    if (balance > 1 && key < node.left.key) {
+      return rightRotate(node);
     }
 
     // Right Right Case
-    if (balance < -1 && key > root.right.key) {
-      return leftRotate(root);
+    if (balance < -1 && key > node.right.key) {
+      return leftRotate(node);
     }
 
     // Left Right Case
-    if (balance > 1 && key > root.left.key) {
-      root.left = leftRotate(root.left);
-      return rightRotate(root);
+    if (balance > 1 && key > node.left.key) {
+      node.left = leftRotate(node.left);
+      return rightRotate(node);
     }
 
     // Right Left Case
-    if (balance < -1 && key < root.right.key) {
-      root.right = rightRotate(root.right);
-      return leftRotate(root);
+    if (balance < -1 && key < node.right.key) {
+      node.right = rightRotate(node.right);
+      return leftRotate(node);
     }
 
-    return root;
+    return node;
   }
 
-  // Print the tree in-order
-  public void inOrder() {
-    System.out.print("In-order: ");
-    inOrderRec(root);
+  // Insert a key into the AVL tree
+  public void insert(int key) {
+    root = insert(root, key);
+  }
+
+  private Node insert(Node node, int key) {
+    if (node == null) {
+      return new Node(key);
+    }
+
+    if (key < node.key) {
+      node.left = insert(node.left, key);
+    } else if (key > node.key) {
+      node.right = insert(node.right, key);
+    } else {
+      // Duplicate keys are not allowed
+      return node;
+    }
+
+    return balance(node, key);
+  }
+
+  // Perform balance and rotation after a deletion
+  private Node minValueNode(Node node) {
+    Node current = node;
+    while (current.left != null) {
+      current = current.left;
+    }
+    return current;
+  }
+
+  private Node deleteNode(Node root, int key) {
+    if (root == null) {
+      return root;
+    }
+
+    if (key < root.key) {
+      root.left = deleteNode(root.left, key);
+    } else if (key > root.key) {
+      root.right = deleteNode(root.right, key);
+    } else {
+      // Node with only one child or no child
+      if (root.left == null || root.right == null) {
+        Node temp = (root.left != null) ? root.left : root.right;
+
+        // No child case
+        if (temp == null) {
+          temp = root;
+          root = null;
+        } else { // One child case
+          root = temp;
+        }
+      } else {
+        // Node with two children
+        // Node temp = minValueNode(root.right);
+        // root.key = temp.key;
+        // root.right = deleteNode(root.right, temp.key);
+        Node temp = root.right;
+        while (temp.left != null) {
+          temp = temp.left;
+        }
+        root.key = temp.key;
+        root.right = deleteNode(root.right, temp.key);
+      }
+    }
+
+    // If the tree had only one node then return
+    if (root == null) {
+      return root;
+    }
+
+    // Update height of current node
+    updateHeight(root);
+
+    // Balance the tree
+    return balance(root, key);
+  }
+
+  // Delete a key from the AVL tree
+  public void delete(int key) {
+    root = deleteNode(root, key);
+  }
+
+  // Search for a key in the AVL tree
+  public boolean search(int key) {
+    return search(root, key);
+  }
+
+  private boolean search(Node node, int key) {
+    if (node == null) {
+      return false;
+    }
+
+    if (key == node.key) {
+      return true;
+    } else if (key < node.key) {
+      return search(node.left, key);
+    } else {
+      return search(node.right, key);
+    }
+  }
+
+  // Print the inorder traversal of the AVL tree
+  public void inorder() {
+    inorder(root);
     System.out.println();
   }
 
-  private void inOrderRec(TreeNode root) {
-    if (root != null) {
-      inOrderRec(root.left);
-      System.out.print(root.key + " ");
-      inOrderRec(root.right);
+  private void inorder(Node node) {
+    if (node != null) {
+      inorder(node.left);
+      System.out.print(node.key + " ");
+      inorder(node.right);
     }
+  }
+
+  public void printTree(Node node) {
+    if (node == null) {
+      return;
+    }
+    System.out.print(node.key + " ");
+    if (node.left != null)
+      System.out.print("L:" + node.left.key + ", ");
+    if (node.right != null)
+      System.out.print("R:" + node.right.key);
+    System.out.println();
+    printTree(node.left);
+    printTree(node.right);
   }
 
   public static void main(String[] args) {
@@ -145,13 +231,19 @@ public class AVLTree {
       int key = scanner.nextInt();
       tree.insert(key);
     }
+    tree.printTree(tree.root);
 
-    tree.inOrder();
+    int deleteKey = 0;
+    System.out.print("Enter the key to delete: ");
+    deleteKey = scanner.nextInt();
+    tree.delete(deleteKey);
+    tree.printTree(tree.root);
+
+    tree.inorder();
   }
 }
 
-
-// Input 
+// Input
 // Enter the number of nodes: 7
 // Enter the keys for the nodes: 10 20 30 15 25 5 35
 
