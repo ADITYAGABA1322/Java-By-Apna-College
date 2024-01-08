@@ -7,7 +7,7 @@ class Node {
   Node(int key) {
     this.key = key;
     this.height = 1;
-  }r
+  }
 }
 
 public class AVLTree {
