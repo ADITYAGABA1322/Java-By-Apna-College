@@ -569,6 +569,16 @@ public class RedBlackTree<T extends Comparable<T>> {
         if (cmphi > 0) keys(x.right, queue, lo, hi); 
     }
 
+    /**
+     * 
+     * 
+     * @return number of keys in the symbol table in the given range
+     * 
+     * @throws IllegalArgumentException if either lo or hi is null
+     */
+
+     
+
 
 
 
