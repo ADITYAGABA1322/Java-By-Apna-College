@@ -959,25 +959,38 @@ import java.util.*;
 class task {
   public static void main(String[] args) {
     String pattern = "IDIIDDII";
-    List<List<Integer>> sequences = generateSequences(pattern, 9, 16);
-    for (List<Integer> sequence : sequences) {
+    Result result = generateSequences(pattern, 9, 16);
+    System.out.println("Count: " + result.count);
+    for (List<Integer> sequence : result.sequences) {
       System.out.println(sequence);
     }
   }
 
-  public static List<List<Integer>> generateSequences(String pattern, int low, int high) {
+  public static class Result {
+    List<List<Integer>> sequences;
+    int count;
+
+    Result(List<List<Integer>> sequences, int count) {
+      this.sequences = sequences;
+      this.count = count;
+    }
+  }
+
+  public static Result generateSequences(String pattern, int low, int high) {
     List<List<Integer>> sequences = new ArrayList<>();
     List<Integer> numbers = new ArrayList<>();
     for (int i = low; i <= high; i++) {
       numbers.add(i);
     }
     List<List<Integer>> permutations = generatePermutations(numbers);
+    int count = 0;
     for (List<Integer> permutation : permutations) {
       if (matchesPattern(permutation, pattern)) {
         sequences.add(permutation);
+        count++;
       }
     }
-    return sequences;
+    return new Result(sequences, count);
   }
 
   private static List<List<Integer>> generatePermutations(List<Integer> numbers) {
@@ -1005,8 +1018,8 @@ class task {
 
   private static boolean matchesPattern(List<Integer> sequence, String pattern) {
     for (int i = 0; i < pattern.length() - 1; i++) {
-      if ((pattern.charAt(i) == 'I' && sequence.get(i) >= sequence.get(i + 1)) ||
-          (pattern.charAt(i) == 'D' && sequence.get(i) <= sequence.get(i + 1))) {
+      if ((pattern.charAt(i) == 'I' && sequence.get(i) >= sequence.get(i + 1))
+          || (pattern.charAt(i) == 'D' && sequence.get(i) <= sequence.get(i + 1))) {
         return false;
       }
     }
