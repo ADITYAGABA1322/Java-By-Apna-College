@@ -832,3 +832,124 @@
 //         }
 
 // }
+
+//  using a a given string sequence like I D I I D D I I -> means increasing and decreasing we hjave to give low = 9 and there is  8 numbers in which we have to print in betwenn 9 to 17 acc to given pattern and all numbers are unique and low  = 9 and array of no,s
+
+// import java.util.*;
+
+// class task {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     System.out.print("Enter the string: ");
+//     String str = sc.nextLine();
+//     int n = str.length();
+//     int low = 9;
+//     int high = n + 1;
+//     int[] arr = new int[n + 1];
+//     for (int i = 0; i < n; i++) {
+//       if (str.charAt(i) == 'I') {
+//         arr[i] = low;
+//         low++;
+//       } else {
+//         arr[i] = high;
+//         high--;
+//       }
+//     }
+//     arr[n] = low;
+//     for (int i = 0; i <= n; i++) {
+//       System.out.print(arr[i] + " ");
+//     }
+//   }
+// }
+
+// import java.util.*;
+
+// class task {
+//   public static void main(String[] args) {
+//     String pattern = "IDIIDDII";
+//     List<Integer> res = generateSequence(pattern, 9, 17);
+//     System.out.println(res);
+//   }
+//   // ans is correct but i want to genarte all possible seq or combinations in this
+//   // we using
+//   // backtracking
+
+//   public static List<Integer> generateSequence(String pattern, int low, int high) {
+//     // not do this i want to genarte all possible seq or combinations in this we
+//     // using backtracking
+//     List<Integer> res = new ArrayList<>();
+//     for (char c : pattern.toCharArray()) {
+//       if (c == 'I') {
+//         res.add(low);
+//         low++;
+//       } else if (c == 'D') {
+//         res.add(high);
+//         high--;
+//       }
+//     }
+//     res.add(low);
+//     return res;
+//   }
+
+// }
+
+import java.util.*;
+
+class task {
+  public static void main(String[] args) {
+    String pattern = "IDIIDDII";
+    List<List<Integer>> sequences = generateSequences(pattern, 9, 17);
+    for (List<Integer> sequence : sequences) {
+      System.out.println(sequence);
+    }
+  }
+
+  public static List<List<Integer>> generateSequences(String pattern, int low, int high) {
+    List<List<Integer>> sequences = new ArrayList<>();
+    List<Integer> numbers = new ArrayList<>();
+    for (int i = low + 1; i <= high; i++) {
+      numbers.add(i);
+    }
+    List<List<Integer>> permutations = generatePermutations(numbers);
+    for (List<Integer> permutation : permutations) {
+      permutation.add(0, low); // add 9 at the beginning
+      if (matchesPattern(permutation, pattern)) {
+        sequences.add(permutation);
+      }
+    }
+    return sequences;
+  }
+
+  private static List<List<Integer>> generatePermutations(List<Integer> numbers) {
+    List<List<Integer>> permutations = new ArrayList<>();
+    backtrack(permutations, new ArrayList<>(), numbers, new boolean[numbers.size()]);
+    return permutations;
+  }
+
+  private static void backtrack(List<List<Integer>> permutations, List<Integer> current, List<Integer> numbers,
+      boolean[] used) {
+    if (current.size() == numbers.size()) {
+      permutations.add(new ArrayList<>(current));
+      return;
+    }
+    for (int i = 0; i < numbers.size(); i++) {
+      if (used[i])
+        continue;
+      current.add(numbers.get(i));
+      used[i] = true;
+      backtrack(permutations, current, numbers, used);
+      used[i] = false;
+      current.remove(current.size() - 1);
+    }
+  }
+
+  private static boolean matchesPattern(List<Integer> sequence, String pattern) {
+    for (int i = 0; i < pattern.length(); i++) {
+      if ((pattern.charAt(i) == 'I' && sequence.get(i) >= sequence.get(i + 1)) ||
+          (pattern.charAt(i) == 'D' && sequence.get(i) <= sequence.get(i + 1))) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
