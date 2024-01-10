@@ -893,12 +893,73 @@
 
 // }
 
+// import java.util.*;
+
+// class task {
+//   public static void main(String[] args) {
+//     String pattern = "IDIIDDII";
+//     List<List<Integer>> sequences = generateSequences(pattern, 9, 17);
+//     for (List<Integer> sequence : sequences) {
+//       System.out.println(sequence);
+//     }
+//   }
+
+//   public static List<List<Integer>> generateSequences(String pattern, int low, int high) {
+//     List<List<Integer>> sequences = new ArrayList<>();
+//     List<Integer> numbers = new ArrayList<>();
+//     for (int i = low + 1; i <= high; i++) {
+//       numbers.add(i);
+//     }
+//     List<List<Integer>> permutations = generatePermutations(numbers);
+//     for (List<Integer> permutation : permutations) {
+//       permutation.add(0, low); // add 9 at the beginning
+//       if (matchesPattern(permutation, pattern)) {
+//         sequences.add(permutation);
+//       }
+//     }
+//     return sequences;
+//   }
+
+//   private static List<List<Integer>> generatePermutations(List<Integer> numbers) {
+//     List<List<Integer>> permutations = new ArrayList<>();
+//     backtrack(permutations, new ArrayList<>(), numbers, new boolean[numbers.size()]);
+//     return permutations;
+//   }
+
+//   private static void backtrack(List<List<Integer>> permutations, List<Integer> current, List<Integer> numbers,
+//       boolean[] used) {
+//     if (current.size() == numbers.size()) {
+//       permutations.add(new ArrayList<>(current));
+//       return;
+//     }
+//     for (int i = 0; i < numbers.size(); i++) {
+//       if (used[i])
+//         continue;
+//       current.add(numbers.get(i));
+//       used[i] = true;
+//       backtrack(permutations, current, numbers, used);
+//       used[i] = false;
+//       current.remove(current.size() - 1);
+//     }
+//   }
+
+//   private static boolean matchesPattern(List<Integer> sequence, String pattern) {
+//     for (int i = 0; i < pattern.length(); i++) {
+//       if ((pattern.charAt(i) == 'I' && sequence.get(i) >= sequence.get(i + 1)) ||
+//           (pattern.charAt(i) == 'D' && sequence.get(i) <= sequence.get(i + 1))) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+// }
+
 import java.util.*;
 
 class task {
   public static void main(String[] args) {
     String pattern = "IDIIDDII";
-    List<List<Integer>> sequences = generateSequences(pattern, 9, 17);
+    List<List<Integer>> sequences = generateSequences(pattern, 9, 16);
     for (List<Integer> sequence : sequences) {
       System.out.println(sequence);
     }
@@ -907,12 +968,11 @@ class task {
   public static List<List<Integer>> generateSequences(String pattern, int low, int high) {
     List<List<Integer>> sequences = new ArrayList<>();
     List<Integer> numbers = new ArrayList<>();
-    for (int i = low + 1; i <= high; i++) {
+    for (int i = low; i <= high; i++) {
       numbers.add(i);
     }
     List<List<Integer>> permutations = generatePermutations(numbers);
     for (List<Integer> permutation : permutations) {
-      permutation.add(0, low); // add 9 at the beginning
       if (matchesPattern(permutation, pattern)) {
         sequences.add(permutation);
       }
@@ -944,7 +1004,7 @@ class task {
   }
 
   private static boolean matchesPattern(List<Integer> sequence, String pattern) {
-    for (int i = 0; i < pattern.length(); i++) {
+    for (int i = 0; i < pattern.length() - 1; i++) {
       if ((pattern.charAt(i) == 'I' && sequence.get(i) >= sequence.get(i + 1)) ||
           (pattern.charAt(i) == 'D' && sequence.get(i) <= sequence.get(i + 1))) {
         return false;
