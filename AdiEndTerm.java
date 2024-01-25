@@ -885,7 +885,6 @@
 
 // OR 
 
-
 // import java.util.*;
 
 // class AdiEndTerm {
@@ -909,5 +908,152 @@
 //   public static void main(String[] args) {
 //     int[] arr = { 3, 4, 2, 8, 10 };
 //     System.out.println(longestSubsequence(arr.length, arr));
+//   }
+// }
+
+// Question 11: 
+
+// Problem Statement
+// You are given an integer array “heights” representing the heights of buildings, some bricks, and some ladders. You start your journey from building 0 and move to the next building by possibly using bricks or ladders. While moving from building i to building i+1 (0-indexed), If the current building's height is greater than or equal to the next building's height, you do not need a ladder or bricks. If the current building's height is less than the next building's height, you can either use one ladder or (h[i+1] - h[i]) bricks. If the number of bricks is less than the difference in the two building heights then you cannot move to the next building. Return the furthest building index (starting from the 0-indexed array) you can reach if you use the given ladders and bricks optimally.
+
+// Note: You can use “PriorityQueue” in java.
+// Input Format
+// Integer array
+// Integer // Number of Bricks
+// Integer // Number of Ladders
+// Output Format
+// Integer // Furthest Building Index
+// Constraints
+// 1 <= heights.length <= 10^5
+// 1 <= heights[i] <= 10^6
+// 0 <= bricks <= 10^9
+// 0 <= ladders <= heights.length
+// Example
+// Sample Input 1
+// 4 2 7 6 9 14 12      // Integer array without brackets and separated by space
+// 5                            // Number of Bricks
+// 1                           // Number of Ladders
+// Sample Output 1
+// 4                     // Furthest Building Index
+// Sample Input 2
+// 14 3 19 3       // Integer array without brackets and separated by space
+// 14                 // Number of Bricks
+// 0                  // Number of Ladders
+// Sample Output 2
+// 1
+// Sample test case Explanation
+// In the first test case, starting at building 0, you can follow these steps:
+// - Go to building 1 without using ladders or bricks since 4 >= 2.
+// - Go to building 2 using 5 bricks. You must use either bricks or ladders because 2 < 7.
+// - Go to building 3 without using ladders or bricks since 7 >= 6.
+// - Go to building 4 using your only ladder. You must use ladders because 6 < 9 and you have 0 bricks left.
+// It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
+// In the second test case starting at building 0, you can follow these steps:
+// - Go to building 1 without using ladders or bricks since 14 >= 3.
+// It is impossible to go beyond building 1 because you do not have any enough bricks or ladders.
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     // int n = sc.nextInt();
+//     // int[] heights = new int[n];
+//     // for (int i = 0; i < n; i++) {
+//     // heights[i] = sc.nextInt();
+//     // }
+//     String[] heights = sc.nextLine().split(" ");
+//     int bricks = sc.nextInt();
+//     int ladders = sc.nextInt();
+//     int[] arr = new int[heights.length];
+//     for (int i = 0; i < heights.length; i++) {
+//       arr[i] = Integer.parseInt(heights[i]);
+//     }
+//     System.out.println(furthestBuilding(arr, bricks, ladders));
+//   }
+
+//   public static int furthestBuilding(int[] heights, int bricks, int ladders) {
+//     PriorityQueue<Integer> pq = new PriorityQueue<>();
+//     for (int i = 0; i < heights.length - 1; i++) {
+//       int diff = heights[i + 1] - heights[i];
+//       if (diff > 0) {
+//         pq.add(diff);
+//       }
+//       if (pq.size() > ladders) {
+//         bricks -= pq.poll();
+//       }
+//       if (bricks < 0) {
+//         return i;
+//       }
+//     }
+//     return heights.length - 1;
+//   }
+// }
+
+// Question 12: Password of the treasure box
+
+// Problem Statement
+
+// While digging in his backyard, Anil has found a treasure box and a bottle with a note inside it. The first line in the note says,” Biggers will be rewarded and the Smalls will be slaughtered” and the second line is some arbitrary space separated words which does not make any sense. After searching about such a  treasure and note online, he came to understand that the note holds the password for the treasure box. The arbitrary space separated words actually form a number which could be used to open the box.
+
+// The number of those arbitrary words in the note is the number of digits of the required number to open the box. A word represents a digit that cannot be less than 0 and greater than 9. So, if the word deciphered into a number comes greater than 9, it is taken as 9 and if it comes less than 0, it is taken as 0. The word can be transformed into a number by using the following rules:
+
+// 1.Alphabets written in Capital are to be added while small ones are to be subtracted. Example:
+// If the word is ANil
+// Value of A and N is to be added and the value of i and l is to be subtracted.
+// 2.Alphabets (either small case or upper case) are assigned values in ascending order from 1 to 26. Example:
+// A-1, C-3…………Z-26 
+// So word ANil will give 0.
+
+// Help Anil write a JAVA program to find the code to open the treasure box and see what is inside it.
+// Input Format
+// String: Space Separated Words
+// DO NOT INPUT numbers or alphanumeric characters.
+// Output Format
+// Returns the code Number
+// Example
+// Sample Input 1
+// ABc CDeF GHi 
+// Sample Output 1
+// 086
+// Sample Input 2
+// ANil
+// Sample Output 2
+// 0
+// Sample test case Explanation
+// In the first test case, there are 3 words 
+// for the first word ABc – A-1, B-2, c-3 (1+2 -3 =0)
+// for the second word CDeF – C-3, D-4, e-5, F-6 (3 + 4 -5 +6 =8)
+// for the third word GHi – G-7, H-8, i-9 (7 +8 -9 =6)
+// So, the code is 086
+// In the second test case, there is single word
+// For ANil – A-1, N-14, i-9, l-12 (1 +14 -9-12 =-6 that automatically converts to 0)
+// As if the number is less than 0 (zero) then the code is equal to 0
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] words = sc.nextLine().split(" ");
+//     StringBuilder sb = new StringBuilder();
+//     for (String word : words) {
+//       int sum = 0;
+//       for (int i = 0; i < word.length(); i++) {
+//         char ch = word.charAt(i);
+//         if (Character.isUpperCase(ch)) {
+//           sum += ch - 'A' + 1;
+//         } else {
+//           sum -= ch - 'a' + 1;
+//         }
+//       }
+//       if (sum > 9) {
+//         sum = 9;
+//       } else if (sum < 0) {
+//         sum = 0;
+//       }
+//       sb.append(sum);
+//     }
+//     System.out.println(sb.toString());
 //   }
 // }
