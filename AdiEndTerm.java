@@ -734,41 +734,180 @@
 // Sample Test Case Explanation
 // In the given examples , esYes and es are the given substring of  YesYesYes(Yes repeated many times in a row)
 
-import java.util.Scanner;
+// import java.util.Scanner;
 
-public class AdiEndTerm {
+// public class AdiEndTerm {
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-    // Read the number of test cases
-    int t = scanner.nextInt();
-    scanner.nextLine(); // consume the newline character
+//     // Read the number of test cases
+//     int t = scanner.nextInt();
+//     scanner.nextLine(); // consume the newline character
 
-    // Process each test case
-    for (int i = 0; i < t; i++) {
-      // Read the substring for each test case
-      String s = scanner.nextLine().trim();
+//     // Process each test case
+//     for (int i = 0; i < t; i++) {
+//       // Read the substring for each test case
+//       String s = scanner.nextLine().trim();
 
-      // Check if the substring is part of the repeated "Yes" sequence
-      String result = isSubstringOfYes(s);
+//       // Check if the substring is part of the repeated "Yes" sequence
+//       String result = isSubstringOfYes(s);
 
-      // Print the result for each test case
-      System.out.println(result);
-    }
-  }
+//       // Print the result for each test case
+//       System.out.println(result);
+//     }
+//   }
 
-  static String isSubstringOfYes(String s) {
-    int n = s.length();
+//   static String isSubstringOfYes(String s) {
+//     int n = s.length();
 
-    // Check if s is a substring of "YesYesYes..."
-    for (int len = 3; len <= n * 2; len += 3) {
-      String repeatedYes = "Yes".repeat(len / 3);
-      if (repeatedYes.contains(s)) {
-        return "YES";
-      }
-    }
+//     // Check if s is a substring of "YesYesYes..."
+//     for (int len = 3; len <= n * 2; len += 3) {
+//       String repeatedYes = "Yes".repeat(len / 3);
+//       if (repeatedYes.contains(s)) {
+//         return "YES";
+//       }
+//     }
 
-    return "NO";
-  }
-}
+//     return "NO";
+//   }
+// }
+
+// Que 9  :- Given an array and a positive integer k, find the first negative integer for each window(contiguous subarray) of size k. If a window does not contain a negative integer, then print 0 for that window.
+
+// Input : arr[] = {12, -1, -7, 8, -15, 30, 16, 28} , k = 3
+// Output : -1 -1 -7 -15 -15 0
+
+// Example :-
+// Input: 
+// 5
+// -8 2 3 -6 10
+// 2
+// Output: 
+// -8 0 -6 -6
+// Explanation:
+// First negative integer for each window of size k
+// {-8, 2} = -8
+// {2, 3} = 0 (does not contain a negative integer)
+// {3, -6} = -6
+// {-6, 10} = -6
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     int k = sc.nextInt();
+//     int[] ans = new int[n - k + 1];
+//     int j = 0;
+//     Deque<Integer> dq = new LinkedList<>();
+//     for (int i = 0; i < n; i++) {
+//       if (arr[i] < 0) {
+//         dq.add(i);
+//       }
+//       if (i - j + 1 == k) {
+//         if (dq.isEmpty()) {
+//           ans[j] = 0;
+//         } else {
+//           ans[j] = arr[dq.peek()];
+//         }
+//         j++;
+//         if (!dq.isEmpty() && dq.peek() < j) {
+//           dq.remove();
+//         }
+//       }
+//     }
+//     for (int i = 0; i < n - k + 1; i++) {
+//       System.out.print(ans[i] + " ");
+//     }
+//   }
+// }
+
+// Que 10.  Longest Increasing Subsequence
+
+// Problem Statement : Given an array of integers, find the length of the longest subsequence in the array such that all elements of the subsequence are sorted in strictly increasing order.
+
+// Input Format : The input begins with an integer N denoting the size of the array. This is followed by N integers representing the elements of the array.
+
+// Output Format: Print an integer representing the length of the longest increasing subsequence.
+
+// Constraints : 
+//     1 ≤ N ≤ 1000
+//     -10^9 ≤ Array elements ≤ 10^9
+
+// Time Limit : 1 second
+
+// Example
+// Input:
+// 8
+// 10 22 9 33 21 50 41 60
+
+// Output: 
+// 5
+
+// Explanation: 
+// For the given input array [10, 22, 9, 33, 21, 50, 41, 60], the longest increasing subsequence is [10, 22, 33, 50, 60] with a length of 5.
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+
+//     int[] dp = new int[n];
+//     dp[0] = 1;
+//     int ans = 1;
+
+//     for (int i = 1; i < n; i++) {
+//       int max = 0;
+//       for (int j = 0; j < i; j++) {
+//         if (arr[i] > arr[j]) {
+//           max = Math.max(max, dp[j]);
+//         }
+//       }
+//       dp[i] = max + 1;
+//       ans = Math.max(ans, dp[i]);
+//     }
+//     System.out.println(ans);
+//   }
+// }
+
+// OR 
+
+
+// import java.util.*;
+
+// class AdiEndTerm {
+//   public static int longestSubsequence(int size, int arr[]) {
+//     // code here
+//     int[] dp = new int[size];
+//     dp[0] = 1;
+//     int res = 1;
+//     for (int i = 1; i < size; i++) {
+//       dp[i] = 1;
+//       for (int j = 0; j < i; j++) {
+//         if (arr[i] > arr[j]) {
+//           dp[i] = Math.max(dp[i], dp[j] + 1);
+//         }
+//       }
+//       res = Math.max(res, dp[i]);
+//     }
+//     return res;
+//   }
+
+//   public static void main(String[] args) {
+//     int[] arr = { 3, 4, 2, 8, 10 };
+//     System.out.println(longestSubsequence(arr.length, arr));
+//   }
+// }
