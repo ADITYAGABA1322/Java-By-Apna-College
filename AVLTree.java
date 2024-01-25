@@ -231,13 +231,13 @@ public class AVLTree {
       int key = scanner.nextInt();
       tree.insert(key);
     }
-    tree.printTree(tree.root);
+    // tree.printTree(tree.root);
 
     int deleteKey = 0;
     System.out.print("Enter the key to delete: ");
     deleteKey = scanner.nextInt();
     tree.delete(deleteKey);
-    tree.printTree(tree.root);
+    // tree.printTree(tree.root);
 
     tree.inorder();
   }
