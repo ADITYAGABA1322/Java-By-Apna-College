@@ -455,3 +455,176 @@
 //     System.out.println(dp[r - 1][c - 1]);
 //   }
 // }
+
+// 5. Decode Ways
+
+// Problem Statement
+// A message containing letters from A-Z can be encoded into numbers using the following mapping:
+
+// 'A' -> "1"
+// 'B' -> "2"
+// ...
+// 'Z' -> "26"
+// To decode an encoded message, all the digits must be grouped and then mapped back into letters using the reverse of the mapping above (there may be multiple ways).
+
+// Input Format
+// contains an input string.
+// Output Format
+// An integer. (Total number of ways the code can be decoded)
+// Constraint
+// ●1 <= s.length <= 100
+// ●s contains only digits and may contain leading zero(s).
+
+// Example
+// Sample Input 1
+// 11106            // (encoded message string)
+// Sample Output 1
+// 2                         // number of ways the code can be decoded 
+// Sample Input 2
+// 226          // (encoded message string)
+// Sample Output 2
+// 3                   // number of ways the code can be decoded
+// Sample test case Explanation
+// In the first test case,  "11106" can be mapped into:
+
+// "AAJF" with the grouping (1 1 10 6)
+// "KJF" with the grouping (11 10 6)
+// Note that the grouping (1 11 06) is invalid because "06" cannot be mapped into 'F' since "6" is different from "06".
+// So, the total number of ways is 2.
+// In the second test case, “226” can be mapped into:
+// “BZ” with the grouping ( 2 26)
+// “VF” with the grouping (22 6)
+// “BBF” with the grouping (2 2 6)
+// So, the total number of ways is 3.
+
+// import java.util.*;
+
+// class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.next();
+//     int n = s.length();
+//     int[] dp = new int[n + 1];
+//     dp[0] = 1;
+//     dp[1] = s.charAt(0) == '0' ? 0 : 1;
+//     for (int i = 2; i <= n; i++) {
+//       int oneDigit = Integer.valueOf(s.substring(i - 1, i));
+//       int twoDigit = Integer.valueOf(s.substring(i - 2, i));
+//       if (oneDigit >= 1)
+//         dp[i] += dp[i - 1];
+//       if (twoDigit >= 10 && twoDigit <= 26)
+//         dp[i] += dp[i - 2];
+//     }
+//     System.out.println(dp[n]);
+//   }
+// }
+
+// 6. lowest common ancestor (LCA)
+
+// Problem Statement
+
+// Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST. 
+// According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).” 
+
+// Constraints: 
+// ●The number of nodes in the tree is in the range [2, 105]. 
+// ●-109 <= Node.val <= 109 
+// ●All Node.val are unique. 
+// ●p != q 
+// ●p and q will exist in the BST. 
+
+// Input Format
+// First Line: An integer array separated by space
+// Second Line: An integer (value of P)
+// Third line: An integer (value of q)
+// Output Format
+// An Integer.
+// Example
+// Sample Input 1
+// 6 2 8 0 4 7 9 3 5     // (Integer Array)
+// 2                               //  (Value of P)
+// 8                 // value of q
+// Sample Output 1
+// 6
+
+import java.util.*;
+
+class Node {
+  int data;
+  Node left, right;
+
+  Node(int data) {
+    this.data = data;
+    left = right = null;
+  }
+}
+
+class BST {
+  Node root;
+
+  BST() {
+    root = null;
+  }
+
+  void insert(int data) {
+    root = insertRec(root, data);
+  }
+
+  Node insertRec(Node root, int data) {
+    if (root == null) {
+      root = new Node(data);
+      return root;
+    }
+
+    if (data < root.data) {
+      root.left = insertRec(root.left, data);
+    } else if (data > root.data) {
+      root.right = insertRec(root.right, data);
+    }
+
+    return root;
+  }
+
+  Node lca(Node root, int p, int q) {
+    if (root == null)
+      return null;
+    if (root.data > p && root.data > q)
+      return lca(root.left, p, q);
+    if (root.data < p && root.data < q)
+      return lca(root.right, p, q);
+    return root;
+  }
+
+  void postOrderTraversal(Node root) {
+    if (root != null) {
+      postOrderTraversal(root.left);
+      postOrderTraversal(root.right);
+      System.out.print(root.data + " ");
+    }
+  }
+}
+
+class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    // Input array of integers
+    // int n = scanner.nextInt();
+    
+    // Create BST and insert values
+    BST bst = new BST();
+    for (int value : values) {
+      bst.insert(value);
+    }
+
+    // Input p and q
+    int p = scanner.nextInt();
+    int q = scanner.nextInt();
+
+    // Find LCA
+    Node lca = bst.lca(bst.root, p, q);
+
+    // Print LCA
+    System.out.println(lca.data);
+  }
+}
