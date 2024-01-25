@@ -549,82 +549,84 @@
 
 import java.util.*;
 
-class Node {
-  int data;
-  Node left, right;
+class TreeNode {
+  int val;
+  TreeNode left, right;
 
-  Node(int data) {
-    this.data = data;
+  public TreeNode(int value) {
+    val = value;
     left = right = null;
   }
 }
 
-class BST {
-  Node root;
+class BinaryTree {
+  TreeNode root;
 
-  BST() {
+  public BinaryTree() {
     root = null;
   }
 
-  void insert(int data) {
-    root = insertRec(root, data);
+  public void insert(int value) {
+    root = insertRec(root, value);
   }
 
-  Node insertRec(Node root, int data) {
+  private TreeNode insertRec(TreeNode root, int value) {
     if (root == null) {
-      root = new Node(data);
+      root = new TreeNode(value);
       return root;
     }
 
-    if (data < root.data) {
-      root.left = insertRec(root.left, data);
-    } else if (data > root.data) {
-      root.right = insertRec(root.right, data);
+    if (value < root.val) {
+      root.left = insertRec(root.left, value);
+    } else if (value > root.val) {
+      root.right = insertRec(root.right, value);
     }
 
     return root;
   }
 
-  Node lca(Node root, int p, int q) {
-    if (root == null)
-      return null;
-    if (root.data > p && root.data > q)
-      return lca(root.left, p, q);
-    if (root.data < p && root.data < q)
-      return lca(root.right, p, q);
-    return root;
+  public int findLCA(int p, int q) {
+    return findLCAUtil(root, p, q).val;
   }
 
-  void postOrderTraversal(Node root) {
-    if (root != null) {
-      postOrderTraversal(root.left);
-      postOrderTraversal(root.right);
-      System.out.print(root.data + " ");
+  private TreeNode findLCAUtil(TreeNode root, int p, int q) {
+    if (root == null) {
+      return null;
+    }
+
+    if (p < root.val && q < root.val) {
+      return findLCAUtil(root.left, p, q);
+    } else if (p > root.val && q > root.val) {
+      return findLCAUtil(root.right, p, q);
+    } else {
+      // root is the LCA
+      return root;
     }
   }
 }
 
-class AdiEndTerm {
+public class AdiEndTerm {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    // Input array of integers
-    // int n = scanner.nextInt();
-    
-    // Create BST and insert values
-    BST bst = new BST();
-    for (int value : values) {
-      bst.insert(value);
+    // Input integer array separated by space
+    System.out.println("Enter integers separated by space:");
+    String[] values = scanner.nextLine().split(" ");
+    BinaryTree bst = new BinaryTree();
+
+    for (String value : values) {
+      bst.insert(Integer.parseInt(value));
     }
 
-    // Input p and q
+    // Input values of p and q
+    System.out.println("Enter value of p:");
     int p = scanner.nextInt();
+
+    System.out.println("Enter value of q:");
     int q = scanner.nextInt();
 
-    // Find LCA
-    Node lca = bst.lca(bst.root, p, q);
-
-    // Print LCA
-    System.out.println(lca.data);
+    // Find and print the LCA
+    int lca = bst.findLCA(p, q);
+    System.out.println("Lowest Common Ancestor (LCA): " + lca);
   }
 }
