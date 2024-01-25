@@ -105,176 +105,176 @@
 // Explanation:
 // For the given input, nodes 30 20 40 10 50 are inserted into the AVL tree, and the preorder traversal of the created AVL tree is 30 20 10 40 50.
 
-import java.util.*;
+// import java.util.*;
 
-class Node {
-  int data;
-  Node left, right;
+// class Node {
+//   int data;
+//   Node left, right;
 
-  Node(int data) {
-    this.data = data;
-    left = right = null;
-  }
-}
+//   Node(int data) {
+//     this.data = data;
+//     left = right = null;
+//   }
+// }
 
-class AVLTree {
-  Node root;
+// class AVLTree {
+//   Node root;
 
-  AVLTree() {
-    root = null;
-  }
+//   AVLTree() {
+//     root = null;
+//   }
 
-  int height(Node node) {
-    if (node == null)
-      return 0;
-    return 1 + Math.max(height(node.left), height(node.right));
-  }
+//   int height(Node node) {
+//     if (node == null)
+//       return 0;
+//     return 1 + Math.max(height(node.left), height(node.right));
+//   }
 
-  int getBalance(Node node) {
-    if (node == null)
-      return 0;
-    return height(node.left) - height(node.right);
-  }
+//   int getBalance(Node node) {
+//     if (node == null)
+//       return 0;
+//     return height(node.left) - height(node.right);
+//   }
 
-  Node rightRotate(Node node) {
-    Node temp = node.left;
-    Node temp2 = temp.right;
-    temp.right = node;
-    node.left = temp2;
-    return temp;
-  }
+//   Node rightRotate(Node node) {
+//     Node temp = node.left;
+//     Node temp2 = temp.right;
+//     temp.right = node;
+//     node.left = temp2;
+//     return temp;
+//   }
 
-  Node leftRotate(Node node) {
-    Node temp = node.right;
-    Node temp2 = temp.left;
-    temp.left = node;
-    node.right = temp2;
-    return temp;
-  }
+//   Node leftRotate(Node node) {
+//     Node temp = node.right;
+//     Node temp2 = temp.left;
+//     temp.left = node;
+//     node.right = temp2;
+//     return temp;
+//   }
 
-  Node insert(Node node, int data) {
-    if (node == null)
-      return new Node(data);
-    if (data < node.data)
-      node.left = insert(node.left, data);
-    else if (data > node.data)
-      node.right = insert(node.right, data);
-    else
-      return node;
-    int balance = getBalance(node);
-    if (balance > 1 && data < node.left.data)
-      return rightRotate(node);
-    if (balance < -1 && data > node.right.data)
-      return leftRotate(node);
-    if (balance > 1 && data > node.left.data) {
-      node.left = leftRotate(node.left);
-      return rightRotate(node);
-    }
-    if (balance < -1 && data < node.right.data) {
-      node.right = rightRotate(node.right);
-      return leftRotate(node);
-    }
-    return node;
-  }
+//   Node insert(Node node, int data) {
+//     if (node == null)
+//       return new Node(data);
+//     if (data < node.data)
+//       node.left = insert(node.left, data);
+//     else if (data > node.data)
+//       node.right = insert(node.right, data);
+//     else
+//       return node;
+//     int balance = getBalance(node);
+//     if (balance > 1 && data < node.left.data)
+//       return rightRotate(node);
+//     if (balance < -1 && data > node.right.data)
+//       return leftRotate(node);
+//     if (balance > 1 && data > node.left.data) {
+//       node.left = leftRotate(node.left);
+//       return rightRotate(node);
+//     }
+//     if (balance < -1 && data < node.right.data) {
+//       node.right = rightRotate(node.right);
+//       return leftRotate(node);
+//     }
+//     return node;
+//   }
 
-  Node minValueNode(Node node) {
-    Node current = node;
-    while (current.left != null)
-      current = current.left;
-    return current;
-  }
+//   Node minValueNode(Node node) {
+//     Node current = node;
+//     while (current.left != null)
+//       current = current.left;
+//     return current;
+//   }
 
-  Node deleteNode(Node root, int data) {
-    if (root == null)
-      return root;
-    if (data < root.data)
-      root.left = deleteNode(root.left, data);
-    else if (data > root.data)
-      root.right = deleteNode(root.right, data);
-    else {
-      if ((root.left == null) || (root.right == null)) {
-        Node temp = null;
-        if (temp == root.left)
-          temp = root.right;
-        else
-          temp = root.left;
-        if (temp == null) {
-          temp = root;
-          root = null;
-        } else
-          root = temp;
-      } else {
-        Node temp = minValueNode(root.right);
-        root.data = temp.data;
-        root.right = deleteNode(root.right, temp.data);
-      }
-    }
-    if (root == null)
-      return root;
-    int balance = getBalance(root);
-    if (balance > 1 && getBalance(root.left) >= 0)
-      return rightRotate(root);
-    if (balance > 1 && getBalance(root.left) < 0) {
-      root.left = leftRotate(root.left);
-      return rightRotate(root);
-    }
-    if (balance < -1 && getBalance(root.right) <= 0)
-      return leftRotate(root);
-    if (balance < -1 && getBalance(root.right) > 0) {
-      root.right = rightRotate(root.right);
-      return leftRotate(root);
-    }
-    return root;
-  }
+//   Node deleteNode(Node root, int data) {
+//     if (root == null)
+//       return root;
+//     if (data < root.data)
+//       root.left = deleteNode(root.left, data);
+//     else if (data > root.data)
+//       root.right = deleteNode(root.right, data);
+//     else {
+//       if ((root.left == null) || (root.right == null)) {
+//         Node temp = null;
+//         if (temp == root.left)
+//           temp = root.right;
+//         else
+//           temp = root.left;
+//         if (temp == null) {
+//           temp = root;
+//           root = null;
+//         } else
+//           root = temp;
+//       } else {
+//         Node temp = minValueNode(root.right);
+//         root.data = temp.data;
+//         root.right = deleteNode(root.right, temp.data);
+//       }
+//     }
+//     if (root == null)
+//       return root;
+//     int balance = getBalance(root);
+//     if (balance > 1 && getBalance(root.left) >= 0)
+//       return rightRotate(root);
+//     if (balance > 1 && getBalance(root.left) < 0) {
+//       root.left = leftRotate(root.left);
+//       return rightRotate(root);
+//     }
+//     if (balance < -1 && getBalance(root.right) <= 0)
+//       return leftRotate(root);
+//     if (balance < -1 && getBalance(root.right) > 0) {
+//       root.right = rightRotate(root.right);
+//       return leftRotate(root);
+//     }
+//     return root;
+//   }
 
-  void preOrder(Node node) {
-    if (node != null) {
-      System.out.print(node.data + " ");
-      preOrder(node.left);
-      preOrder(node.right);
-    }
-  }
+//   void preOrder(Node node) {
+//     if (node != null) {
+//       System.out.print(node.data + " ");
+//       preOrder(node.left);
+//       preOrder(node.right);
+//     }
+//   }
 
-  void printTree(Node node) {
-    if (node != null) {
-      System.out.println(node.data);
-      if (node.left != null)
-        System.out.println("Left: " + node.left.data);
-      if (node.right != null)
-        System.out.println("Right: " + node.right.data);
+//   void printTree(Node node) {
+//     if (node != null) {
+//       System.out.println(node.data);
+//       if (node.left != null)
+//         System.out.println("Left: " + node.left.data);
+//       if (node.right != null)
+//         System.out.println("Right: " + node.right.data);
 
-      printTree(node.left);
-      printTree(node.right);
-    }
+//       printTree(node.left);
+//       printTree(node.right);
+//     }
 
-  }
-}
+//   }
+// }
 
-class AdiEndTerm {
+// class AdiEndTerm {
 
-  public static void main(String[] args) {
-    AVLTree tree = new AVLTree();
-    Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     AVLTree tree = new AVLTree();
+//     Scanner scanner = new Scanner(System.in);
 
-    System.out.print("Enter the number of nodes: ");
-    int n = scanner.nextInt();
+//     System.out.print("Enter the number of nodes: ");
+//     int n = scanner.nextInt();
 
-    System.out.println("Enter the keys for the nodes:");
-    for (int i = 0; i < n; i++) {
-      int key = scanner.nextInt();
-      tree.root = tree.insert(tree.root, key);
-    }
-    tree.printTree(tree.root);
+//     System.out.println("Enter the keys for the nodes:");
+//     for (int i = 0; i < n; i++) {
+//       int key = scanner.nextInt();
+//       tree.root = tree.insert(tree.root, key);
+//     }
+//     tree.printTree(tree.root);
 
-    int deleteKey = 0;
-    System.out.print("Enter the key to delete: ");
-    deleteKey = scanner.nextInt();
-    tree.root = tree.deleteNode(tree.root, deleteKey);
-    tree.printTree(tree.root);
-    tree.preOrder(tree.root);
+//     int deleteKey = 0;
+//     System.out.print("Enter the key to delete: ");
+//     deleteKey = scanner.nextInt();
+//     tree.root = tree.deleteNode(tree.root, deleteKey);
+//     tree.printTree(tree.root);
+//     tree.preOrder(tree.root);
 
-  }
-}
+//   }
+// }
 
 // 3. Problem Statement
 // Write a Java code to perform the Node Deletion of the Leaf Nodes form the
@@ -388,4 +388,70 @@ class AdiEndTerm {
 // System.out.println("Post-order traversal after deletion:");
 // bst.postOrderTraversal(bst.root);
 // }
+// }
+
+// 4. Robot Task Scheduling
+// Problem Statement
+// You are working on a project that involves designing a dynamic programming algorithm for a robotic system. The robot has to navigate through a grid, and at each cell, there is a task to be completed. Each task has a specific duration and a corresponding profit.
+// The robot can move only right or down in the grid, and it cannot revisit a cell. Your goal is to maximize the total profit the robot can achieve by scheduling tasks along its path.
+// Write a Java program using dynamic programming (tabulation) to find the maximum total profit. The input will consist of the dimensions of the grid (rows (R) and columns (C)) and the duration-profit values for each cell. You need to output the maximum total profit achievable by the robot.
+
+// Input Constraints : 
+
+// (1 <= R, C <= 100).
+// Input Format
+// The first line contains two space-separated integers: the number of rows (R) and the number of columns (C) in the grid (1 <= R, C <= 100).
+// The next R lines contain C pairs of space-separated integers each: the duration and profit of each task at the corresponding cell.
+// Output Format
+// Print the maximum total profit achievable by the robot.
+// Example
+// Sample Input 1
+// 3 4        // number of rows (R) and the number of columns (C)
+// 2 5 1 3   //Grid Values
+// 3 7 2 8 
+// 4 8 3 4 
+
+// Sample Output 1
+// 29                          //  maximum total profit achievable by the robot
+// Sample Input 2
+// 2 2         // number of rows (R) and the number of columns (C)
+// 14 56    //Grid Values
+// 52 9
+// Sample Output 2
+// 79
+// Sample test case Explanation
+// In the first test case, the optimal path for the robot is (1,1) -> (1,2) -> (2,2) -> (2,3) -> (3,3) -> (3,4), maximizing the total profit.
+// In the second test case, the optimal path for the robot is (1,1) -> (1,2) -> (2,2) maximizing the total profit.
+
+// import java.util.*;
+
+// class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int r = sc.nextInt();
+//     int c = sc.nextInt();
+
+//     int[][] grid = new int[r][c];
+//     int[][] dp = new int[r][c];
+
+//     for (int i = 0; i < r; i++) {
+//       for (int j = 0; j < c; j++)
+//         grid[i][j] = sc.nextInt();
+//     }
+
+//     dp[0][0] = grid[0][0];
+
+//     for (int i = 1; i < r; i++)
+//       dp[i][0] = dp[i - 1][0] + grid[i][0];
+
+//     for (int j = 1; j < c; j++)
+//       dp[0][j] = dp[0][j - 1] + grid[0][j];
+
+//     for (int i = 1; i < r; i++) {
+//       for (int j = 1; j < c; j++)
+//         dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+//     }
+
+//     System.out.println(dp[r - 1][c - 1]);
+//   }
 // }
