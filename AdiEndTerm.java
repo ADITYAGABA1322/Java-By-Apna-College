@@ -547,86 +547,228 @@
 // Sample Output 1
 // 6
 
-import java.util.*;
+// import java.util.*;
 
-class TreeNode {
-  int val;
-  TreeNode left, right;
+// class TreeNode {
+//   int val;
+//   TreeNode left, right;
 
-  public TreeNode(int value) {
-    val = value;
-    left = right = null;
-  }
-}
+//   public TreeNode(int value) {
+//     val = value;
+//     left = right = null;
+//   }
+// }
 
-class BinaryTree {
-  TreeNode root;
+// class BinaryTree {
+//   TreeNode root;
 
-  public BinaryTree() {
-    root = null;
-  }
+//   public BinaryTree() {
+//     root = null;
+//   }
 
-  public void insert(int value) {
-    root = insertRec(root, value);
-  }
+//   public void insert(int value) {
+//     root = insertRec(root, value);
+//   }
 
-  private TreeNode insertRec(TreeNode root, int value) {
-    if (root == null) {
-      root = new TreeNode(value);
-      return root;
-    }
+//   private TreeNode insertRec(TreeNode root, int value) {
+//     if (root == null) {
+//       root = new TreeNode(value);
+//       return root;
+//     }
 
-    if (value < root.val) {
-      root.left = insertRec(root.left, value);
-    } else if (value > root.val) {
-      root.right = insertRec(root.right, value);
-    }
+//     if (value < root.val) {
+//       root.left = insertRec(root.left, value);
+//     } else if (value > root.val) {
+//       root.right = insertRec(root.right, value);
+//     }
 
-    return root;
-  }
+//     return root;
+//   }
 
-  public int findLCA(int p, int q) {
-    return findLCAUtil(root, p, q).val;
-  }
+//   public int findLCA(int p, int q) {
+//     return findLCAUtil(root, p, q).val;
+//   }
 
-  private TreeNode findLCAUtil(TreeNode root, int p, int q) {
-    if (root == null) {
-      return null;
-    }
+//   private TreeNode findLCAUtil(TreeNode root, int p, int q) {
+//     if (root == null) {
+//       return null;
+//     }
 
-    if (p < root.val && q < root.val) {
-      return findLCAUtil(root.left, p, q);
-    } else if (p > root.val && q > root.val) {
-      return findLCAUtil(root.right, p, q);
-    } else {
-      // root is the LCA
-      return root;
-    }
-  }
-}
+//     if (p < root.val && q < root.val) {
+//       return findLCAUtil(root.left, p, q);
+//     } else if (p > root.val && q > root.val) {
+//       return findLCAUtil(root.right, p, q);
+//     } else {
+//       // root is the LCA
+//       return root;
+//     }
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+
+//     // Input integer array separated by space
+//     System.out.println("Enter integers separated by space:");
+//     String[] values = scanner.nextLine().split(" ");
+//     BinaryTree bst = new BinaryTree();
+
+//     for (String value : values) {
+//       bst.insert(Integer.parseInt(value));
+//     }
+
+//     // Input values of p and q
+//     System.out.println("Enter value of p:");
+//     int p = scanner.nextInt();
+
+//     System.out.println("Enter value of q:");
+//     int q = scanner.nextInt();
+
+//     // Find and print the LCA
+//     int lca = bst.findLCA(p, q);
+//     System.out.println("Lowest Common Ancestor (LCA): " + lca);
+//   }
+// }
+
+// Q 7.  Crack the Passcode
+
+// Problem Statement
+// Rahul, Raj and their temporary buddies suffix and prefix found the harmony temple. Its doors are temporarily locked and no one was able to open the door.
+// Later they found a string S written on the rock and spoke the string aloud but nothing happened. Then Raj thought the password might be substring t of the string S.
+// Prefix supposed that the substring t is the beginning of the string S, Suffix supposed that the substring t should be the end of the string S and Raj supposed that t should be located somewhere inside the string S, that is, t is neither its beginning nor its end.
+// Rahul chose the substring t so as to please all his companions. Besides, from all the acceptable variants, Rahul chose the longest one(as he loves long strings). When Rahul spoke aloud, doors suddenly opened.
+// You are given the string S. Find the substring t or determine that such substring does not exist.
+
+// Input format
+// The first line contains the non-empty string S
+
+// Output format
+// Print the string t. If a suitable t string does not exist, then print "Not so Cool" without the quotes.
+
+// Constraints
+// 1 <=S <= 10^6
+
+// Time Limit
+// 1 second
+
+// Example
+// Sample Input
+// qwertyqwertyqwerty
+
+// Sample Output
+// qwerty
+
+// Sample Test Case Explanation
+// qwerty is the longest substring present in the qwertyqwertyqwerty satisfying the conditions.
+
+// import java.util.Scanner;
+
+// public class AdiEndTerm {
+
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+
+//     // Read input
+//     String s = scanner.nextLine().trim();
+
+//     // Find and print the substring
+//     String result = findSubstring(s);
+//     System.out.println(result);
+//   }
+
+//   static String findSubstring(String s) {
+//     int n = s.length();
+
+//     // Iterate from the middle to find the longest substring
+//     for (int i = n / 2; i > 0; i--) {
+//       String prefix = s.substring(0, i);
+//       String suffix = s.substring(n - i);
+
+//       if (prefix.equals(suffix)) {
+//         return prefix;
+//       }
+//     }
+
+//     return "Not so Cool";
+//   }
+// }
+
+// Que 8.  Hearing Challenge
+
+// Problem Statement
+// You talked to Prepbuddy and asked him a question. You know that when he wants to answer "Yes", he repeats “Yes” many times in a row.
+// Because of the noise, you only heard part of the answer — some substring of it. That is, if he answered YesYes, then you could hear esY, YesYes, sYes, e, but you couldn't Yess, YES or se.
+// Determine if it is true that the given string S is a substring of YesYesYes... (Yes repeated many times in a row)
+
+// Input format
+// The first line of input data contains the singular T — the number of test cases.
+// Each test case is described by a single string of letters S — the part of the Prepbuddy answer that you heard.
+
+// Output format
+// Print "YES" if the specified string s is a substring of the string YesYesYes...Yes (the number of words Yes is arbitrary)  and "NO" otherwise(without quotes).
+
+// Constraints
+// 1 <= T <= 100
+// 1 <= S <= 50
+
+// Time Limit
+// 1 second
+
+// Example
+// Sample Input
+// 5
+// YES
+// esYes
+// prepbytes
+// es
+// se
+
+// Sample Output
+// NO
+// YES
+// NO
+// YES
+// NO
+
+// Sample Test Case Explanation
+// In the given examples , esYes and es are the given substring of  YesYesYes(Yes repeated many times in a row)
+
+import java.util.Scanner;
 
 public class AdiEndTerm {
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    // Input integer array separated by space
-    System.out.println("Enter integers separated by space:");
-    String[] values = scanner.nextLine().split(" ");
-    BinaryTree bst = new BinaryTree();
+    // Read the number of test cases
+    int t = scanner.nextInt();
+    scanner.nextLine(); // consume the newline character
 
-    for (String value : values) {
-      bst.insert(Integer.parseInt(value));
+    // Process each test case
+    for (int i = 0; i < t; i++) {
+      // Read the substring for each test case
+      String s = scanner.nextLine().trim();
+
+      // Check if the substring is part of the repeated "Yes" sequence
+      String result = isSubstringOfYes(s);
+
+      // Print the result for each test case
+      System.out.println(result);
+    }
+  }
+
+  static String isSubstringOfYes(String s) {
+    int n = s.length();
+
+    // Check if s is a substring of "YesYesYes..."
+    for (int len = 3; len <= n * 2; len += 3) {
+      String repeatedYes = "Yes".repeat(len / 3);
+      if (repeatedYes.contains(s)) {
+        return "YES";
+      }
     }
 
-    // Input values of p and q
-    System.out.println("Enter value of p:");
-    int p = scanner.nextInt();
-
-    System.out.println("Enter value of q:");
-    int q = scanner.nextInt();
-
-    // Find and print the LCA
-    int lca = bst.findLCA(p, q);
-    System.out.println("Lowest Common Ancestor (LCA): " + lca);
+    return "NO";
   }
 }
