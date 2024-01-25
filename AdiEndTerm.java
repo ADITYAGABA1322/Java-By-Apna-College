@@ -81,13 +81,119 @@
 //     }
 // }
 
+// Question 2: Password of the treasure box
+
+// Problem Statement
+
+// In a whimsical forest, a special tree called the AVL Tree was home to magical creatures like a wise owl, a swift squirrel, a graceful deer, a playful rabbit, and a majestic unicorn. Picture yourself strolling through this enchanted place and observing these creatures joining the tree. Now, I'd like you to share the order in which you encounter them, mentioning their unique energies, just like the magic they bring. Let me know the sequence you witness as you explore the forest – specifically, I'm interested in the output of the AVL Tree in preorder traversal after all the magical creatures have become a part of it.
+// Input Format
+// The input begins with an integer N denoting the number of nodes to be inserted into the AVL tree. This is followed by N integers representing the values of the nodes to be inserted.
+// Output Format
+// Print the preorder traversal of the created AVL Tree.
+// Constraints :
+//      1 ≤ N ≤ 1000
+//     Nodes' values are integers
+
+// Example
+// Input:
+// 5                                  // number of nodes
+// 30 20 40 10 50          // values of nodes to be inserted
+
+// Output: 
+// 30 20 10 40 50
+
+// Explanation:
+// For the given input, nodes 30 20 40 10 50 are inserted into the AVL tree, and the preorder traversal of the created AVL tree is 30 20 10 40 50.
+
+import java.util.*;
+
 public class AdiEndTerm {
-    public static void main(String[] args) {
-        System.out.println(calculate(3, 9)); // Output: 1009
-        System.out.println(calculate(4, 1)); // Output: 10001
+  static class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+      this.data = data;
+      left = right = null;
+    }
+  }
+
+  static class AVLTree {
+    Node root;
+
+    AVLTree() {
+      root = null;
     }
 
-    public static String calculate(int n, int x) {
-        return String.valueOf((int) Math.pow(10, n) + x);
+    int height(Node node) {
+      if (node == null)
+        return 0;
+      return 1 + Math.max(height(node.left), height(node.right));
     }
+
+    int getBalance(Node node) {
+      if (node == null)
+        return 0;
+      return height(node.left) - height(node.right);
+    }
+
+    Node rightRotate(Node node) {
+      Node temp = node.left;
+      Node temp2 = temp.right;
+      temp.right = node;
+      node.left = temp2;
+      return temp;
+    }
+
+    Node leftRotate(Node node) {
+      Node temp = node.right;
+      Node temp2 = temp.left;
+      temp.left = node;
+      node.right = temp2;
+      return temp;
+    }
+
+    Node insert(Node node, int data) {
+      if (node == null)
+        return new Node(data);
+      if (data < node.data)
+        node.left = insert(node.left, data);
+      else if (data > node.data)
+        node.right = insert(node.right, data);
+      else
+        return node;
+      int balance = getBalance(node);
+      if (balance > 1 && data < node.left.data)
+        return rightRotate(node);
+      if (balance < -1 && data > node.right.data)
+        return leftRotate(node);
+      if (balance > 1 && data > node.left.data) {
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
+      }
+      if (balance < -1 && data < node.right.data) {
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
+      }
+      return node;
+    }
+
+    void preOrder(Node node) {
+      if (node != null) {
+        System.out.print(node.data + " ");
+        preOrder(node.left);
+        preOrder(node.right);
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    AVLTree tree = new AVLTree();
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+      tree.root = tree.insert(tree.root, sc.nextInt());
+    }
+    tree.preOrder(tree.root);
+  }
 }
