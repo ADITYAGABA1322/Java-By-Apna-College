@@ -274,3 +274,114 @@
 
 //   }
 // }
+
+// 3. Problem Statement
+// Write a Java code to perform the Node Deletion of the Leaf Nodes form the BST. User enters the value of the nodes. 
+// Your task is to find the Left-Most Leaf Child & Right-Most Leaf child in the BST, delete them, and then print the POST Order traversal of that given Tree.
+
+// Input Format
+// An array of integers (7 values)
+// Output Format
+// Post-order traversal of tree after applying deletion operation 
+// Note: Integer array length must be equal to 7.
+// Example
+// Sample Input 1
+// 10 5 3 7 20 18 25
+// Sample Output 1
+// 5 20 10
+
+// we need to find the left most and right most leaf node and delete them and print the post order traversal of the tree
+
+import java.util.Scanner;
+
+class Node {
+  int data;
+  Node left, right;
+
+  public Node(int item) {
+    data = item;
+    left = right = null;
+  }
+}
+
+class BST {
+  Node root;
+
+  BST() {
+    root = null;
+  }
+
+  void insert(int data) {
+    root = insertRec(root, data);
+  }
+
+  Node insertRec(Node root, int data) {
+    if (root == null) {
+      root = new Node(data);
+      return root;
+    }
+
+    if (data < root.data) {
+      root.left = insertRec(root.left, data);
+    } else if (data > root.data) {
+      root.right = insertRec(root.right, data);
+    }
+
+    return root;
+  }
+
+  void deleteLeafNodes() {
+    root = deleteLeafNodesUtil(root);
+  }
+
+  Node deleteLeafNodesUtil(Node root) {
+    if (root == null) {
+      return null;
+    }
+
+    if (root.left == null && root.right == null) {
+      // This is a leaf node, delete it
+      return null;
+    }
+
+    // Recursively delete leaf nodes in left and right subtrees
+    root.left = deleteLeafNodesUtil(root.left);
+    root.right = deleteLeafNodesUtil(root.right);
+
+    return root;
+  }
+
+  void postOrderTraversal(Node root) {
+    if (root != null) {
+      postOrderTraversal(root.left);
+      postOrderTraversal(root.right);
+      System.out.print(root.data + " ");
+    }
+  }
+}
+
+class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    // Input array of integers
+    int[] values = new int[7];
+    System.out.println("Enter 7 integers:");
+    for (int i = 0; i < 7; i++) {
+      values[i] = scanner.nextInt();
+    }
+
+    // Create BST and insert values
+    BST bst = new BST();
+    for (int value : values) {
+      bst.insert(value);
+    }
+
+    // Delete leaf nodes
+    bst.deleteLeafNodes();
+
+    // Print post-order traversal after deletion
+    System.out.println("Post-order traversal after deletion:");
+    bst.postOrderTraversal(bst.root);
+  }
+}
