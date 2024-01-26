@@ -2889,7 +2889,6 @@
 //   }
 // }
 
-
 // Question 36: Climbing Stairs
 
 // Problem Statement :You are climbing a staircase. It takes n steps to reach the top.Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -2914,3 +2913,26 @@
 // Sample Output 2
 // 377
 
+import java.util.*;
+
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    System.out.println(climbStairs(n));
+  }
+
+  public static int climbStairs(int n) {
+    int[] dp = new int[n + 1];
+    dp[0] = 1;
+    for (int i = 1; i <= n; i++) {
+      if (i - 1 >= 0) {
+        dp[i] += dp[i - 1];
+      }
+      if (i - 2 >= 0) {
+        dp[i] += dp[i - 2];
+      }
+    }
+    return dp[n];
+  }
+}
