@@ -2986,28 +2986,100 @@
 //   }
 // }
 
-Question 38: Pattern Matching
-Problem Statement
-Input a pattern P and String S. Program must return “True” if S (String) follows the same pattern P, otherwise return “False”. Here follows means a full match, such that there is a one to one correspondence between a character/letter in pattern and a non-empty word in the String S.
-Input Format
-Pattern: String, can be a combination of alphabets or numbers.
-String: String, a non-empty word that can be a combination of alphabets or numbers. Include space among each non-empty word.
-First input Pattern and then String in the next line and they must not be same.
-Output Format
-Character: For each test case, return true or false.
-Constraints
-A string of length between 1 to 1000.
-Example
-Sample Input 1
-abba
-dog cat cat dog
-Sample Output 1
-true
-Sample Input 2
-abba
-dog cat cat fish
-Sample Output 2
-false
-Sample test case Explanation
-In the first test case, dog is following a, cat is following b, so there is a full match. Output “true”
-In the second test case dog is following a, cat is following b but fish is a mismatch. Not a full match, so output “false”
+// Question 38: Pattern Matching
+// Problem Statement
+// Input a pattern P and String S. Program must return “True” if S (String) follows the same pattern P, otherwise return “False”. Here follows means a full match, such that there is a one to one correspondence between a character/letter in pattern and a non-empty word in the String S.
+// Input Format
+// Pattern: String, can be a combination of alphabets or numbers.
+// String: String, a non-empty word that can be a combination of alphabets or numbers. Include space among each non-empty word.
+// First input Pattern and then String in the next line and they must not be same.
+// Output Format
+// Character: For each test case, return true or false.
+// Constraints
+// A string of length between 1 to 1000.
+// Example
+// Sample Input 1
+// abba
+// dog cat cat dog
+// Sample Output 1
+// true
+// Sample Input 2
+// abba
+// dog cat cat fish
+// Sample Output 2
+// false
+// Sample test case Explanation
+// In the first test case, dog is following a, cat is following b, so there is a full match. Output “true”
+// In the second test case dog is following a, cat is following b but fish is a mismatch. Not a full match, so output “false”
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String pattern = sc.nextLine();
+//     String s = sc.nextLine();
+//     System.out.println(patternMatch(pattern, s));
+//   }
+
+//   public static boolean patternMatch(String pattern, String s) {
+//     String[] words = s.split(" ");
+//     if (pattern.length() != words.length) {
+//       return false;
+//     }
+//     Map<Character, String> map = new HashMap<>();
+//     Set<String> set = new HashSet<>();
+//     for (int i = 0; i < pattern.length(); i++) {
+//       char ch = pattern.charAt(i);
+//       String word = words[i];
+//       if (map.containsKey(ch)) {
+//         if (!map.get(ch).equals(word)) {
+//           return false;
+//         }
+//       } else {
+//         if (set.contains(word)) {
+//           return false;
+//         }
+//         map.put(ch, word);
+//         set.add(word);
+//       }
+//     }
+//     return true;
+//   }
+// }
+
+// or
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     String pattern = scanner.nextLine();
+//     String str = scanner.nextLine();
+//     scanner.close();
+
+//     System.out.println(wordPattern(pattern, str));
+//   }
+
+//   public static boolean wordPattern(String pattern, String str) {
+//     String[] words = str.split(" ");
+//     if (words.length != pattern.length())
+//       return false;
+
+//     Map<Character, String> map = new HashMap<>();
+//     for (int i = 0; i < words.length; i++) {
+//       char c = pattern.charAt(i);
+//       if (map.containsKey(c)) {
+//         if (!map.get(c).equals(words[i]))
+//           return false;
+//       } else {
+//         if (map.containsValue(words[i]))
+//           return false;
+//         map.put(c, words[i]);
+//       }
+//     }
+
+//     return true;
+//   }
+// }
