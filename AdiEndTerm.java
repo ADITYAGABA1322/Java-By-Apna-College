@@ -2962,4 +2962,26 @@
 
 import java.util.*;
 
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    System.out.println(maxFreq(s));
+  }
 
+  public static char maxFreq(String s) {
+    int[] freq = new int[26];
+    for (char ch : s.toCharArray()) {
+      freq[ch - 'a']++;
+    }
+    int max = 0;
+    char res = 'a';
+    for (int i = 0; i < 26; i++) {
+      if (freq[i] > max) {
+        max = freq[i];
+        res = (char) (i + 'a');
+      }
+    }
+    return res;
+  }
+}
