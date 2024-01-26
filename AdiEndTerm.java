@@ -2846,8 +2846,6 @@
 //   }
 // }
 
-
-
 // Question 35: Counting Bits
 
 // Problem Statement : Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
@@ -2873,3 +2871,20 @@
 // [0,1,1,2,1,2]
 
 import java.util.*;
+import java.util.Arrays;
+
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    System.out.println(Arrays.toString(countBits(n)));
+  }
+
+  public static int[] countBits(int n) {
+    int[] dp = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+      dp[i] = dp[i / 2] + i % 2;
+    }
+    return dp;
+  }
+}
