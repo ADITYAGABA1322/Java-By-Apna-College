@@ -3138,3 +3138,49 @@
 //     return pq.peek();
 //   }
 // }
+
+// Question 40:  Prime Factors
+// Problem Statement: Input a number N. Find its prime factors in increasing order.
+// Input Format 
+// A single Integer value ‘N’ whose prime factors are to be found.
+
+// Output Format
+// Print all prime factors in increasing order, The prime factors will all be integers.
+// Constraints
+// 1 <= N <= 1000
+// Example
+// Sample Input 1
+// 100
+// Sample Output 1
+// 2 2 5 5
+// Sample Input 2
+// 10
+// Sample Output 2
+// 2 5
+// Sample Test Case Explanation
+// In the first test case, 100 represents the number for which prime factors are to be found.
+// Output is 2 x 2 x 5 x 5 = 100, making them the prime factors of 100.
+// In the second test case, 10 represents the number for which prime factors are to be found.
+// Output is 2 x 5 = 10, making them the prime factors of 10.
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     primeFactors(n);
+//   }
+
+//   public static void primeFactors(int n) {
+//     for (int i = 2; i * i <= n; i++) {
+//       while (n % i == 0) {
+//         System.out.print(i + " ");
+//         n /= i;
+//       }
+//     }
+//     if (n > 1) {
+//       System.out.print(n);
+//     }
+//   }
+// }
