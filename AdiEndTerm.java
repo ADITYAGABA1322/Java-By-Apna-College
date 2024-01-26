@@ -2845,3 +2845,29 @@
 //     return dp[n][k];
 //   }
 // }
+
+
+
+Question 35: Counting Bits
+
+Problem Statement : Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+
+Input Format
+Integer: Only Integers
+
+Output Format
+Print the required answer
+Constraints
+0 <= n <= 10^5
+Example
+Sample Input 1
+2
+
+Sample Output 1
+[0,1,1]
+
+Sample Input 2
+5
+
+Sample Output 2
+[0,1,1,2,1,2]
