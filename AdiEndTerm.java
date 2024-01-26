@@ -3272,45 +3272,287 @@
 // Sample Output 2 
 // 5 23 10 100 34 89
 
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     heapify(arr);
+//     for (int i = 0; i < n; i++) {
+//       System.out.print(arr[i] + " ");
+//     }
+//   }
+
+//   public static void heapify(int[] arr) {
+//     int n = arr.length;
+//     for (int i = n / 2 - 1; i >= 0; i--) {
+//       heapifyUtil(arr, n, i);
+//     }
+//   }
+
+//   public static void heapifyUtil(int[] arr, int n, int i) {
+//     int smallest = i;
+//     int left = 2 * i + 1;
+//     int right = 2 * i + 2;
+//     if (left < n && arr[left] < arr[smallest]) {
+//       smallest = left;
+//     }
+//     if (right < n && arr[right] < arr[smallest]) {
+//       smallest = right;
+//     }
+//     if (smallest != i) {
+//       int temp = arr[i];
+//       arr[i] = arr[smallest];
+//       arr[smallest] = temp;
+//       heapifyUtil(arr, n, smallest);
+//     }
+//   }
+// }
+
+// Question 43: Sort array indices
+// Problem Statement: Input an array of integers of size N. The task is to print the index of the largest number first and then the index of the 2nd largest number and so on till the last one. If two or more numbers are the same then print the index of the number which comes first in the array.
+// Input Format
+// First Line consists of Integer value (N) representing the size of Array.
+// Second line consists of N space-separated integers representing the values of the array.
+// Output Format
+// Print space separated Index of array elements as mentioned in question.
+// Sample Input 1
+// 6
+// 2 6 4 8 2 6
+// Sample Output 1
+// 3 1 5 2 0 4
+
+// Sample Input 2
+// 4
+// 1 3 7 5
+// Sample Output 2
+// 2 3 1 0
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     sortIndices(arr);
+//   }
+
+//   public static void sortIndices(int[] arr) {
+//     int n = arr.length;
+//     int[] indices = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       indices[i] = i;
+//     }
+//     for (int i = 0; i < n; i++) {
+//       int max = i;
+//       for (int j = i + 1; j < n; j++) {
+//         if (arr[j] > arr[max]) {
+//           max = j;
+//         }
+//       }
+//       int temp = arr[max];
+//       arr[max] = arr[i];
+//       arr[i] = temp;
+//       int temp2 = indices[max];
+//       indices[max] = indices[i];
+//       indices[i] = temp2;
+//     }
+//     for (int i = 0; i < n; i++) {
+//       System.out.print(indices[i] + " ");
+//     }
+//   }
+// }
+
+// Question 44:  Isomorphic Keyboard Layout Checker
+// Problem Statement: A company is designing a new keyboard layout, and they want to ensure that the layout is isomorphic. In this context, a keyboard layout is considered isomorphic if, when you press a key on the keyboard, it produces the same result regardless of whether the keyboard layout is QWERTY or AZERTY. The company has developed a program that checks whether two given strings represent isomorphic keyboard layouts.
+// Input Format
+// String: Two-line separated inputs will be given in String format.
+// Output Format
+// Check if layout is isomorphic or not, if isomorphic print “YES”, if not print “NO”.
+// Constraints
+// Do not Input special characters.
+// Do not start the input string with a number.
+// Sample Input 1
+// egg
+// add
+// Sample Output 1
+// YES
+// Sample Input 2 
+// egg12
+// add11
+// Sample Output 2 
+// NO
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s1 = sc.nextLine();
+//     String s2 = sc.nextLine();
+//     System.out.println(isIsomorphic(s1, s2));
+//   }
+
+//   public static boolean isIsomorphic(String s1, String s2) {
+//     if (s1.length() != s2.length()) {
+//       return false;
+//     }
+//     Map<Character, Character> map = new HashMap<>();
+//     for (int i = 0; i < s1.length(); i++) {
+//       char ch1 = s1.charAt(i);
+//       char ch2 = s2.charAt(i);
+//       if (map.containsKey(ch1)) {
+//         if (map.get(ch1) != ch2) {
+//           return false;
+//         }
+//       } else {
+//         map.put(ch1, ch2);
+//       }
+//     }
+//     return true;
+//   }
+// }
+
+// Question 45:  Find a single element appearing once in a sorted array
+//  Problem Statement: Input a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once. Print the single element that appears only once.
+//  Input Format
+// Input space-separated integers representing the values of the sorted array. Repeat only a single element in the sorted array.
+// Output Format
+// Print the element appearing once in the sorted array.
+// Constraints
+// Your solution must run in O(log n) time and O(1) space.
+// 1 <= array.length <= 10^5
+// 0 <= array[i] <= 10^5
+
+//  Sample Input 1
+// 1 1 2 2 3 4 4
+// Sample Output 1
+// 3
+// Sample Input 2 
+// 1 1 2 3 3 4 4 8 8
+// Sample Output 2 
+// 2
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] s = sc.nextLine().split(" ");
+//     int[] arr = new int[s.length];
+//     for (int i = 0; i < s.length; i++) {
+//       arr[i] = Integer.parseInt(s[i]);
+//     }
+//     System.out.println(singleNonDuplicate(arr));
+//   }
+
+//   public static int singleNonDuplicate(int[] nums) {
+//     int low = 0;
+//     int high = nums.length - 1;
+//     while (low < high) {
+//       int mid = low + (high - low) / 2;
+//       if (mid % 2 == 0) {
+//         if (nums[mid] == nums[mid + 1]) {
+//           low = mid + 2;
+//         } else {
+//           high = mid;
+//         }
+//       } else {
+//         if (nums[mid] == nums[mid - 1]) {
+//           low = mid + 1;
+//         } else {
+//           high = mid - 1;
+//         }
+//       }
+//     }
+//     return nums[low];
+//   }
+// }
+
+// Question 46: Starting Index of the Pattern matched in the String
+// Imagine you are developing a text processing application in Java. Users can input a large text document, and your application needs to perform pattern searching to find occurrences of specific words or phrases within the text. Write a function that returns the starting index of the pattern matched in the string first time.
+// Input Format
+// Line1: Text in which you want to search for a pattern. Each word must be separated by space in the text.
+// Line2: Pattern you want to search in text. Take care of case sensitivity during input of pattern. 
+// Output Format
+// Print Index where pattern found, if no pattern found print -1.
+// Constraints
+// Implement KMP algorithm in code, complexity should not exceed O(m+n).
+// Sample Input 1 
+// This is a simple example.
+// simple
+// Sample Output 1
+// 10
+// Sample Input 2 
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+// Ipsum
+// Sample Output 2
+// 6
+
 import java.util.*;
 
 public class AdiEndTerm {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    int[] arr = new int[n];
-
-    for (int i = 0; i < n; i++) {
-      arr[i] = sc.nextInt();
-    }
-    heapify(arr);
-    for (int i = 0; i < n; i++) {
-      System.out.print(arr[i] + " ");
-    }
+    String s = sc.nextLine();
+    String pattern = sc.nextLine();
+    System.out.println(kmp(s, pattern));
   }
 
-  public static void heapify(int[] arr) {
-    int n = arr.length;
-    for (int i = n / 2 - 1; i >= 0; i--) {
-      heapifyUtil(arr, n, i);
+  public static int kmp(String s, String pattern) {
+    int n = s.length();
+    int m = pattern.length();
+    int[] lps = new int[m];
+    computeLPS(pattern, lps);
+    int i = 0;
+    int j = 0;
+    while (i < n) {
+      if (s.charAt(i) == pattern.charAt(j)) {
+        i++;
+        j++;
+      }
+      if (j == m) {
+        return i - j;
+      } else if (i < n && s.charAt(i) != pattern.charAt(j)) {
+        if (j != 0) {
+          j = lps[j - 1];
+        } else {
+          i++;
+        }
+      }
     }
+    return -1;
   }
 
-  public static void heapifyUtil(int[] arr, int n, int i) {
-    int smallest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-    if (left < n && arr[left] < arr[smallest]) {
-      smallest = left;
-    }
-    if (right < n && arr[right] < arr[smallest]) {
-      smallest = right;
-    }
-    if (smallest != i) {
-      int temp = arr[i];
-      arr[i] = arr[smallest];
-      arr[smallest] = temp;
-      heapifyUtil(arr, n, smallest);
+  public static void computeLPS(String pattern, int[] lps) {
+    int m = pattern.length();
+    int len = 0;
+    int i = 1;
+    lps[0] = 0;
+    while (i < m) {
+      if (pattern.charAt(i) == pattern.charAt(len)) {
+        len++;
+        lps[i] = len;
+        i++;
+      } else {
+        if (len != 0) {
+          len = lps[len - 1];
+        } else {
+          lps[i] = len;
+          i++;
+        }
+      }
     }
   }
 }
