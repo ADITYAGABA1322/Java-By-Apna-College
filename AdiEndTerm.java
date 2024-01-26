@@ -2139,3 +2139,375 @@
 //     return dp[n];
 //   }
 // }
+
+// Question 26: Postorder Traversal of Binary Search Tree
+// Problem Statement : Given a Binary Search Tree (BST), the task is to perform a postorder traversal of the tree and print the nodes' values. Also implement a method for performing the insertion operation into the BST 
+
+// Input Format
+// The input begins with an integer N denoting the number of nodes in the BST. This is followed by N integers representing the values to be inserted into the BST.
+
+// Output Format
+// Print the nodes' values in postorder traversal separated by spaces.
+
+// Constraints : 
+//     1 ≤ N ≤ 1000
+//     Nodes' values are integers
+
+// Example
+// Sample Input 1
+// 7
+// 50 30 70 20 40 60 80
+
+// Sample Output 1
+// 20 40 30 60 80 70 50
+// Sample Input 2
+// 4
+// 8 4 12 6
+// Sample Output 2
+// 6 4 12 8
+
+// import java.util.*;
+
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
+
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     postorder(root);
+//   }
+
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
+
+//   public static void postorder(TreeNode root) {
+//     if (root == null) {
+//       return;
+//     }
+//     postorder(root.left);
+//     postorder(root.right);
+//     System.out.print(root.val + " ");
+//   }
+// }
+
+// Question 27:  Abhishek and Prefix
+
+// Problem Statement
+// Abhishek loves the string algorithms very much and his teacher gave him a task in which he was provided with two strings S and T and he had to find the maximum length of some prefix of the string S which occurs in string T as a subsequence.
+// As Abhishek is having an exam tomorrow and he isn't having time, he wants your help with the solution.
+
+// Input format
+// The first line represents the string S.
+// The second line contains the string T.
+
+// Output format
+// Print the required answer.
+
+// Constraints
+// 1 <= S, T <= 10^6
+// Note: Both strings consist of lowercase Latin letters.
+
+// Example
+// Sample Input 1
+// digger
+// biggerdiagram
+
+// Sample Output 2
+// 3
+// Sample Input 2
+// absolute
+// Itisabsentinthedrive
+
+// Sample Output 2
+// 3
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     String t = sc.nextLine();
+//     System.out.println(prefix(s, t));
+//   }
+
+//   public static int prefix(String s, String t) {
+//     int n = s.length();
+//     int m = t.length();
+//     int i = 0;
+//     int j = 0;
+//     while (i < n && j < m) {
+//       if (s.charAt(i) == t.charAt(j)) {
+//         i++;
+//       }
+//       j++;
+//     }
+//     return i;
+//   }
+// }
+
+// Question 28: Maximizing Jewelry Value
+
+// Problem Statement: In a small village renowned for its skilled artisans, Arjun stands out as a master jeweler. His exquisite collections of necklaces, bracelets, and earrings have always been the talk of the town. As the village fair approaches, Arjun plans to exhibit his three most prized collections: a collection of elegant necklaces valued at 60 gold coins and weighing 10 kilograms in total, a set of exquisite bracelets worth 100 gold coins with a collective weight of 20 kilograms, and a range of delicate earrings priced at 120 gold coins, weighing a total of 30 kilograms.
+
+// However, Arjun faces a unique challenge. His carriage, pulled by his trusty horse, has a variable weight limit, which  is equal to input weight. Arjun knew he had to choose wisely to maximize the value of the jewelry he could transport. He pondered over how he could maximize the profit while adhering to the weight constraint.
+// Your task is to help Arjun decide how to carry the jewelry. You can suggest taking a full item or a fraction of it, keeping in mind the weight limit. The objective is to maximize the total value of the jewelry that Arjun can carry to the fair.
+
+// Input format
+// Integer: Only integer. DO NOT INPUT string, floating point numbers or any other data type. 
+
+// Output format
+// Double: Print the required answer
+
+// Example
+// Sample Input 1
+// 50
+
+// Sample Output 2
+// 240.0
+
+// Sample Input 2
+// 75
+
+// Sample Output 2
+// 280.0
+
+// import java.util.*;
+// import java.util.Arrays;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int weight = sc.nextInt();
+//     System.out.println(maxValue(weight));
+//   }
+
+//   public static double maxValue(int weight) {
+//     double[][] items = { { 60, 10 }, { 100, 20 }, { 120, 30 } };
+//     Arrays.sort(items, (a, b) -> (int) (b[0] / b[1] - a[0] / a[1]));
+//     double value = 0;
+//     for (double[] item : items) {
+//       if (weight >= item[1]) {
+//         value += item[0];
+//         weight -= item[1];
+//       } else {
+//         value += item[0] * weight / item[1];
+//         break;
+//       }
+//     }
+//     return value;
+//   }
+// }
+
+// Question 29: Path Sum of Binary Search Tree
+
+// Problem Statement : Given a pre-constructed BST and a target sum, determine if there exists a path from the root to any leaf whose values sum up to the target. You need to only implement the hasPathSum(node, int) method.
+
+// Input Format 
+// Integer: Array size, array elements, target sum.  Only the hasPathSum() method is to be implemented
+
+// Output Format
+// Boolean: Return a boolean value:
+// true, if there exists a path with the given sum
+// false, otherwise
+
+// Constraints 
+// Values of nodes are integers.
+// The array is not sorted.
+// Tree nodes are not null.
+
+// Example
+
+// Sample Input 1  
+// 5
+// 1 2 3 4 5 
+// 15
+
+// Sample Output 1 
+// true 
+
+// Sample Input 2  
+// 7
+// 3 6 1 4 7 2 9
+// 11
+
+// Sample Output 2 
+// false
+
+// import java.util.*;
+
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
+
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     int target = sc.nextInt();
+//     System.out.println(hasPathSum(root, target));
+//   }
+
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
+
+//   public static boolean hasPathSum(TreeNode root, int target) {
+//     if (root == null) {
+//       return false;
+//     }
+//     if (root.left == null && root.right == null && root.val == target) {
+//       return true;
+//     }
+//     return hasPathSum(root.left, target - root.val) || hasPathSum(root.right, target - root.val);
+//   }
+// }
+
+// Question 30: Inorder Successor in a BST
+
+// Problem Statement : Given a Binary Search Tree (BST) and a reference to a Node x in the BST, write a Java program to find the Inorder Successor of the given node in the BST.
+
+// Input Format
+// The input begins with an integer n representing the number of nodes in the BST. This is followed by n integers denoting the values of the nodes in the BST. Then, an integer ref is provided as the value of the reference node x.
+
+// Output Format
+// Print the value of the Inorder Successor node's data or "No inorder successor found" if there's no successor.
+
+// Constraints
+// 1 ≤ Number of nodes ≤ 10^5
+// Values of nodes are unique integers within the range [-10^5, 10^5].
+
+// Example
+// Sample Input 1
+// 5
+// 50 30 70 20 40
+// 30
+
+// Sample Output 1
+// 40
+
+// Sample Input 2
+// 6
+// 40 20 60 10 30 50
+// 30
+
+// Sample Output 2
+// 40
+
+// import java.util.*;
+
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
+
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     int ref = sc.nextInt();
+//     TreeNode node = find(root, ref);
+//     TreeNode successor = inorderSuccessor(root, node);
+//     if (successor == null) {
+//       System.out.println("No inorder successor found");
+//     } else {
+//       System.out.println(successor.val);
+//     }
+//   }
+
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
+
+//   public static TreeNode find(TreeNode root, int ref) {
+//     if (root == null) {
+//       return null;
+//     }
+//     if (root.val == ref) {
+//       return root;
+//     }
+//     if (ref < root.val) {
+//       return find(root.left, ref);
+//     } else {
+//       return find(root.right, ref);
+//     }
+//   }
+
+//   public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
+//     if (node.right != null) {
+//       TreeNode curr = node.right;
+//       while (curr.left != null) {
+//         curr = curr.left;
+//       }
+//       return curr;
+//     }
+//     TreeNode succ = null;
+//     while (root != null) {
+//       if (node.val < root.val) {
+//         succ = root;
+//         root = root.left;
+//       } else if (node.val > root.val) {
+//         root = root.right;
+//       } else {
+//         break;
+//       }
+//     }
+//     return succ;
+//   }
+// }
