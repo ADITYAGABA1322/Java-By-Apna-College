@@ -2986,7 +2986,7 @@
 //   }
 // }
 
-Question 2: Pattern Matching
+Question 38: Pattern Matching
 Problem Statement
 Input a pattern P and String S. Program must return “True” if S (String) follows the same pattern P, otherwise return “False”. Here follows means a full match, such that there is a one to one correspondence between a character/letter in pattern and a non-empty word in the String S.
 Input Format
