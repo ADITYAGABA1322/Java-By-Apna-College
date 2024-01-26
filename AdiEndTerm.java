@@ -2815,33 +2815,33 @@
 // Explanation:
 // For the sample input 1, with 2 eggs and 6 floors, the minimum number of attempts needed to find the critical floor is 3. One approach to solve this is by dropping the eggs from the 3rd floor, then the 2nd floor if it doesn't break, and finally the 1st floor if needed.
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    int k = sc.nextInt();
-    System.out.println(eggDrop(n, k));
-  }
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int k = sc.nextInt();
+//     System.out.println(eggDrop(n, k));
+//   }
 
-  public static int eggDrop(int n, int k) {
-    int[][] dp = new int[n + 1][k + 1];
-    for (int i = 1; i <= n; i++) {
-      dp[i][1] = i;
-    }
-    for (int i = 1; i <= k; i++) {
-      dp[1][i] = 1;
-    }
-    for (int i = 2; i <= n; i++) {
-      for (int j = 2; j <= k; j++) {
-        dp[i][j] = Integer.MAX_VALUE;
-        for (int x = 1; x <= i; x++) {
-          int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
-          dp[i][j] = Math.min(dp[i][j], res);
-        }
-      }
-    }
-    return dp[n][k];
-  }
-}
+//   public static int eggDrop(int n, int k) {
+//     int[][] dp = new int[n + 1][k + 1];
+//     for (int i = 1; i <= n; i++) {
+//       dp[i][1] = i;
+//     }
+//     for (int i = 1; i <= k; i++) {
+//       dp[1][i] = 1;
+//     }
+//     for (int i = 2; i <= n; i++) {
+//       for (int j = 2; j <= k; j++) {
+//         dp[i][j] = Integer.MAX_VALUE;
+//         for (int x = 1; x <= i; x++) {
+//           int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
+//           dp[i][j] = Math.min(dp[i][j], res);
+//         }
+//       }
+//     }
+//     return dp[n][k];
+//   }
+// }
