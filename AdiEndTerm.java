@@ -2960,28 +2960,28 @@
 // In the first test case, b is the character with maximum frequency 2. b is returned and printed as output.
 // In the second test case a, b, c all three are of same frequency i.e 2 so first character a is encountered, returned and printed.
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    String s = sc.nextLine();
-    System.out.println(maxFreq(s));
-  }
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     System.out.println(maxFreq(s));
+//   }
 
-  public static char maxFreq(String s) {
-    int[] freq = new int[26];
-    for (char ch : s.toCharArray()) {
-      freq[ch - 'a']++;
-    }
-    int max = 0;
-    char res = 'a';
-    for (int i = 0; i < 26; i++) {
-      if (freq[i] > max) {
-        max = freq[i];
-        res = (char) (i + 'a');
-      }
-    }
-    return res;
-  }
-}
+//   public static char maxFreq(String s) {
+//     int[] freq = new int[26];
+//     for (char ch : s.toCharArray()) {
+//       freq[ch - 'a']++;
+//     }
+//     int max = 0;
+//     char res = 'a';
+//     for (int i = 0; i < 26; i++) {
+//       if (freq[i] > max) {
+//         max = freq[i];
+//         res = (char) (i + 'a');
+//       }
+//     }
+//     return res;
+//   }
+// }
