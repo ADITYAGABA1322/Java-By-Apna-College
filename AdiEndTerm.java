@@ -1057,3 +1057,161 @@
 //     System.out.println(sb.toString());
 //   }
 // }
+
+// 13. Making students list by their roll numbers and names and search particular student by roll no.
+
+// Problem Statement
+// Amrit is teaching the ADI subject in the class. He said to all students to come one by one and tell their names. Amrit is making the list of students in a sheet and adding roll no by default from 1,2,3 … and so on. After that, he also wants to search for the student, by giving the roll number and checking whether present or not. 
+
+// Create a code for Amrit to input the names of the students, and their roll numbers should be added by default from 1 2 3 ….so on. After that input a roll number for searching, whether it is present or not. Print the complete list of the students with their roll numbers into descending order according to roll numbers, and check whether the searching roll no is present or not.
+
+// Input Format
+// First Line: Space Separated Words consists of input strings containing the names of students.
+// Second Line: Input the Roll no. of the student that needs to be checked present or not.
+// Output Format
+// Print the list of students with names and Roll numbers (in descending order)
+// Next Line returns the status of the student based on the roll number input (Present or not present)
+// Note: You can use “Hashtable” in java for making the students list with their roll numbers.
+// Example
+// Sample Input 1
+// Amit Sumit Anil    // First Line list of student names separated by space
+// 4                             // Roll number of the student that needs to be checked (present or not)
+// Sample Output 1
+// 3 Anil
+// 2 Sumit 
+// 1 Amit
+// not present
+// Sample Input 2
+// Sumit Seema Gauri                   // First Line list of student names separated by space
+// 1                                      // Roll number of the student that needs to be checked (present or not)
+
+// Sample Output 2
+// 3 Gauri
+// 2 Seema
+// 1 Sumit
+// present
+
+// Sample test case Explanation
+// In the first test case, there are 3 student names taking the first word and assigning the roll number 1 to that student, similarly taking the next word and assigning the roll number 2 to that student and repeating the same process till the end of the input list. The second input is the roll number which is 4 which checks in the student list if the roll number is present, it prints present otherwise it prints not present, 4 is not present so it prints not present.
+// In the second test case, there are 3 student names taking the first word and assigning the roll number 1 to that student, similarly taking the next word and assigning the roll number 2 to that student and repeating the same process till the end of the input list. The second input is the roll number which is 1 which checks in the student list if the roll number is present, it prints present otherwise it prints not present, 1 is present in the list so it prints present.
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     Hashtable<Integer, String> ht = new Hashtable<>();
+//     for (int i = 0; i < names.length; i++) {
+//       ht.put(i + 1, names[i]);
+//     }
+//     List<Map.Entry<Integer, String>> list = new LinkedList<Map.Entry<Integer, String>>(ht.entrySet());
+//     Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
+//       public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+//         return (o2.getKey()).compareTo(o1.getKey());
+//       }
+//     });
+//     for (Map.Entry<Integer, String> aa : list) {
+//       System.out.println(aa.getKey() + " " + aa.getValue());
+//     }
+//     if (ht.containsKey(roll)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
+// }
+
+// 2nd method using TreeMap
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     TreeMap<Integer, String> tm = new TreeMap<>();
+//     for (int i = 0; i < names.length; i++) {
+//       tm.put(i + 1, names[i]);
+//     }
+//     for (Map.Entry<Integer, String> entry : tm.entrySet()) {
+//       System.out.println(entry.getKey() + " " + entry.getValue());
+//     }
+//     if (tm.containsKey(roll)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
+// }
+
+// 3rd method using LinkedHashMap
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
+//     for (int i = 0; i < names.length; i++) {
+//       lhm.put(i + 1, names[i]);
+//     }
+//     for (Map.Entry<Integer, String> entry : lhm.entrySet()) {
+//       System.out.println(entry.getKey() + " " + entry.getValue());
+//     }
+//     if (lhm.containsKey(roll)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
+// }
+
+// 4th method using HashMap
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     String[] names = scanner.nextLine().split(" ");
+//     int rollToSearch = scanner.nextInt();
+
+//     Map<Integer, String> students = new HashMap<>();
+//     for (int i = 0; i < names.length; i++) {
+//       students.put(i + 1, names[i]);
+//     }
+
+//     for (int i = names.length; i > 0; i--) {
+//       System.out.println(i + " " + students.get(i));
+//     }
+
+//     if (students.containsKey(rollToSearch)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
+// }
+
+// or 
+
+// import java.util.*;
+// class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     HashMap<Integer, String> students = new HashMap<>();
+//     for (int i = 0; i < names.length; i++)
+//       students.put(i + 1, names[i]);
+//     for (int i = names.length; i > 0; i--)
+//       System.out.println(i + " " + students.get(i));
+//     System.out.println(students.containsKey(roll) ? "present" : "not present");
+
+//   }
+// }
