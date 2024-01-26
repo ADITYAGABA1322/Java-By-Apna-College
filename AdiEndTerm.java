@@ -2815,7 +2815,6 @@
 // Explanation:
 // For the sample input 1, with 2 eggs and 6 floors, the minimum number of attempts needed to find the critical floor is 3. One approach to solve this is by dropping the eggs from the 3rd floor, then the 2nd floor if it doesn't break, and finally the 1st floor if needed.
 
-
 import java.util.*;
 
 public class AdiEndTerm {
