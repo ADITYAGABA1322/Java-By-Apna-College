@@ -3184,3 +3184,68 @@
 //     }
 //   }
 // }
+
+// Question 41: Selection Sort 
+// Problem Statement: Given an unsorted array of size N, use selection sort to sort arr[] in increasing order. You are also required to print the array after every pass (After every swap) using Arrays.toString().
+// Input Format 
+// First Integer input (N), represents the size of the array.
+// Next line consist of N-space separated integers representing the values in the array
+// Output Format
+// (N-1) lines of array representation after each swap. The arrays must be printed using Arrays.toString().
+
+// Constraints
+// 1 ≤ N ≤ 10^3
+
+// Example
+
+// Sample Input 1 
+// 5
+// 12 23 54 67 17
+
+// Sample Output 1
+
+// [12, 23, 54, 67, 17]
+// [12, 17, 54, 67, 23]
+// [12, 17, 23, 67, 54]
+// [12, 17, 23, 54, 67]
+
+// Sample Input 2 
+// 4
+// 45 12 90 65
+
+// Sample Output 2
+// [12, 45, 90, 65]
+// [12, 45, 90, 65]
+// [12, 45, 65, 90]
+
+// import java.util.*;
+// import java.util.Arrays;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     selectionSort(arr);
+//   }
+
+//   public static void selectionSort(int[] arr) {
+//     int n = arr.length;
+//     for (int i = 0; i < n - 1; i++) {
+//       int min = i;
+//       for (int j = i + 1; j < n; j++) {
+//         if (arr[j] < arr[min]) {
+//           min = j;
+//         }
+//       }
+//       int temp = arr[min];
+//       arr[min] = arr[i];
+//       arr[i] = temp;
+//       System.out.println(Arrays.toString(arr));
+//     }
+//   }
+// }
