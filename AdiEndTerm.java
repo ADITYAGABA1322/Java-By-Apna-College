@@ -2511,3 +2511,309 @@
 //     return succ;
 //   }
 // }
+
+// Question 31: Find Diameter of a Binary Search Tree
+
+// Problem Statement : Given a Binary Search Tree (BST), determine its diameter - the length of the longest path between any two nodes in the tree. The path may or may not pass through the root.
+
+// Input Format
+// The input begins with an integer N denoting the number of nodes in the BST. This is followed by N integers representing the values to be inserted into the BST.
+
+// Output Format
+// Print an integer representing the diameter of the BST.
+
+// Constraints
+// 1 ≤ N ≤ 1000
+// Nodes' values are integers
+
+// Example
+// Sample Input 1
+// 7
+// 50 30 70 20 40 60 80
+
+// Sample Output 1
+// 5
+
+// Sample Input 2
+// 3
+// 50 40 30
+
+// Sample Output 2
+// 3
+
+// Explanation:
+// For the given  sample input 1, nodes 50 30 70 20 40 60 80 are inserted into the BST. The diameter of the BST is 6, representing the longest path between nodes in the tree.
+
+// import java.util.*;
+
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
+
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     System.out.println(diameter(root));
+//   }
+
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
+
+//   public static int diameter(TreeNode root) {
+//     if (root == null) {
+//       return 0;
+//     }
+//     int left = diameter(root.left);
+//     int right = diameter(root.right);
+//     int height = height(root.left) + height(root.right) + 1;
+//     return Math.max(height, Math.max(left, right));
+//   }
+
+//   public static int height(TreeNode root) {
+//     if (root == null) {
+//       return 0;
+//     }
+//     return Math.max(height(root.left), height(root.right)) + 1;
+//   }
+// }
+
+// Question 32: Coin Change Problem
+
+// Problem Statement : Given a set of coins with certain denominations and a target amount, determine the number of ways to make the target amount using any combination of coins.
+
+// Input Format
+// The input begins with an integer N denoting the number of denominations. This is followed by N integers representing the denominations of coins. Then an integer target denoting the target amount.
+
+// Output Format
+// Print an integer representing the number of ways to make the target amount using the given coins.
+
+// Constraints
+//     1 ≤ N ≤ 100
+//     1 ≤ Denomination values ≤ 1000
+//     1 ≤ Target amount ≤ 10000
+// Example
+// Sample Input 1
+// 4
+// 1 2 5 10
+// 12
+
+// Sample Output 1 
+// 15
+
+// Sample Input 2
+// 6
+// 1 2 5 10 2 7
+// 12
+// Sample Output  2
+// 51
+
+// Explanation
+// For the given sample input 1, the denominations are 1, 2, 5, 10, and the target amount is 12. There are 15 different ways to make the amount 12 using these denominations.
+
+// import java.util.*;
+
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] coins = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       coins[i] = sc.nextInt();
+//     }
+//     int target = sc.nextInt();
+//     System.out.println(coinChange(coins, target));
+//   }
+
+//   public static int coinChange(int[] coins, int target) {
+//     int[] dp = new int[target + 1];
+//     dp[0] = 1;
+//     for (int coin : coins) {
+//       for (int i = coin; i <= target; i++) {
+//         dp[i] += dp[i - coin];
+//       }
+//     }
+//     return dp[target];
+//   }
+// }
+
+// Question 33: Top View of BST
+
+// Problem Statement : Given a Binary Search Tree (BST), find and print the top view(Left to right) of the BST.
+
+// Input Format
+// The input begins with an integer N denoting the number of nodes in the BST. This is followed by N pairs of integers representing the values and their respective depths of the nodes in the BST.
+
+// Output Format
+// Print the values of the nodes in the top view of the BST in a space-separated manner.
+
+// Constraints
+// 1 ≤ N ≤ 1000
+// -10^3 ≤ Node values ≤ 10^3
+
+// Example
+// Sample Input 1
+// 7
+// 50 0
+// 30 1
+// 70 1
+// 20 2
+// 40 2
+// 60 2
+// 80 2
+
+// Sample Output 1 
+// 20 30 50 70 80
+
+// Sample Input 2
+// 3
+// 50 0
+// 30 1
+// 70 1
+// Sample Output 2
+// 30 50 70
+
+// import java.util.*;
+
+// class Node {
+//   int data;
+//   int depth;
+//   Node left, right;
+
+//   Node(int value, int d) {
+//     data = value;
+//     depth = d;
+//     left = right = null;
+//   }
+// }
+
+// class Main {
+//   Node root;
+
+//   Main() {
+//     root = null;
+//   }
+
+//   void insert(int value, int depth) {
+//     root = insertRec(root, value, depth);
+//   }
+
+//   Node insertRec(Node root, int value, int depth) {
+//     if (root == null)
+//       return new Node(value, depth);
+
+//     if (value < root.data)
+//       root.left = insertRec(root.left, value, depth + 1);
+//     else if (value > root.data)
+//       root.right = insertRec(root.right, value, depth + 1);
+
+//     return root;
+//   }
+
+//   void topView() {
+//     class QueueObj {
+//       Node node;
+//       int hd;
+
+//       QueueObj(Node node, int hd) {
+//         this.node = node;
+//         this.hd = hd;
+//       }
+//     }
+//     Queue<QueueObj> q = new LinkedList<QueueObj>();
+//     Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+
+//     if (root == null) {
+//       return;
+//     } else {
+//       q.add(new QueueObj(root, 0));
+//     }
+
+//     while (!q.isEmpty()) {
+//       QueueObj tmpNode = q.poll();
+//       if (!topViewMap.containsKey(tmpNode.hd)) {
+//         topViewMap.put(tmpNode.hd, tmpNode.node);
+//       }
+
+//       if (tmpNode.node.left != null) {
+//         q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+//       }
+//       if (tmpNode.node.right != null) {
+//         q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+//       }
+
+//     }
+//     for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
+//       System.out.print(entry.getValue().data + " ");
+//     }
+//   }
+// }
+
+// public class AdiEndTerm {
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+
+//     int n = scanner.nextInt();
+
+//     Main tree = new Main();
+//     for (int i = 0; i < n; i++) {
+//       int value = scanner.nextInt();
+//       int depth = scanner.nextInt();
+//       tree.insert(value, depth);
+//     }
+
+//     tree.topView();
+
+//     scanner.close();
+//   }
+// }
+
+// Question 34:  Egg Dropping Puzzle
+
+// Problem Statement : Given a certain number of floors and eggs, find the minimum number of attempts needed to determine the critical floor from which an egg breaks when dropped. You are allowed to break at most k eggs.
+
+// Input Format
+// The input contains two integers separated by space: N denoting the number of floors and K denoting the number of eggs.
+
+// Output Format
+// Print an integer representing the minimum number of attempts required to find the critical floor.
+
+// Constraints :  1 ≤ N, K ≤ 100
+
+// Example
+// Sample Input 1
+// 6 2
+
+// Sample Output 1
+// 3
+
+// Sample Input 2
+// 5 5
+
+// Sample Output 2
+// 3
+
+// Explanation:
+// For the sample input 1, with 2 eggs and 6 floors, the minimum number of attempts needed to find the critical floor is 3. One approach to solve this is by dropping the eggs from the 3rd floor, then the 2nd floor if it doesn't break, and finally the 1st floor if needed.
+
+
+import java.util.*;
