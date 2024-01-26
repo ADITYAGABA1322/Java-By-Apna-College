@@ -2888,3 +2888,29 @@
 //     return dp;
 //   }
 // }
+
+
+// Question 36: Climbing Stairs
+
+// Problem Statement :You are climbing a staircase. It takes n steps to reach the top.Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+// Input Format
+// Integer: Only Integers
+
+// Output Format
+// Print the required answer
+// Constraints
+// 1 <= n <= 45
+// Example
+// Sample Input 1
+// 5
+
+// Sample Output 1
+// 8
+
+// Sample Input 2
+// 13
+
+// Sample Output 2
+// 377
+
