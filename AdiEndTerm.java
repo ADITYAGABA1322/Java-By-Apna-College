@@ -3249,3 +3249,68 @@
 //     }
 //   }
 // }
+
+// Question 42: Heapify
+// Problem Statement: Given an Array ‘arr’ of size ‘N’, implement the Heapify Algorithm so as to convert the sequence of elements into a Min Heap.   
+// Input Format 
+// First Line consists of Integer value (N) representing the size of Array.
+// Second line consists of N space-separated integers representing the values of the array.
+// Output Format
+// Print N space-separated integers representing the values of the Min Heap.
+// Constraints
+// 1 ≤ N ≤ 106
+// 1 ≤ arr[i] ≤ 106
+// Example
+// Sample Input 1
+// 5
+// 12 534 32 2 123
+// Sample Output 1 
+// 2 12 32 534 123
+// Sample Input 2
+// 6
+// 34 23 89 100 5 10
+// Sample Output 2 
+// 5 23 10 100 34 89
+
+import java.util.*;
+
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] arr = new int[n];
+
+    for (int i = 0; i < n; i++) {
+      arr[i] = sc.nextInt();
+    }
+    heapify(arr);
+    for (int i = 0; i < n; i++) {
+      System.out.print(arr[i] + " ");
+    }
+  }
+
+  public static void heapify(int[] arr) {
+    int n = arr.length;
+    for (int i = n / 2 - 1; i >= 0; i--) {
+      heapifyUtil(arr, n, i);
+    }
+  }
+
+  public static void heapifyUtil(int[] arr, int n, int i) {
+    int smallest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+    if (left < n && arr[left] < arr[smallest]) {
+      smallest = left;
+    }
+    if (right < n && arr[right] < arr[smallest]) {
+      smallest = right;
+    }
+    if (smallest != i) {
+      int temp = arr[i];
+      arr[i] = arr[smallest];
+      arr[smallest] = temp;
+      heapifyUtil(arr, n, smallest);
+    }
+  }
+}
