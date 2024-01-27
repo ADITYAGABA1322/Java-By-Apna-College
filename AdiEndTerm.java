@@ -953,29 +953,29 @@
 
 // import java.util.*;
 
-class AdiEndTerm {
-  public static int longestSubsequence(int size, int arr[]) {
-    // code here
-    int[] dp = new int[size];
-    dp[0] = 1;
-    int res = 1;
-    for (int i = 1; i < size; i++) {
-      dp[i] = 1;
-      for (int j = 0; j < i; j++) {
-        if (arr[i] > arr[j]) {
-          dp[i] = Math.max(dp[i], dp[j] + 1);
-        }
-      }
-      res = Math.max(res, dp[i]);
-    }
-    return res;
-  }
+// class AdiEndTerm {
+//   public static int longestSubsequence(int size, int arr[]) {
+//     // code here
+//     int[] dp = new int[size];
+//     dp[0] = 1;
+//     int res = 1;
+//     for (int i = 1; i < size; i++) {
+//       dp[i] = 1;
+//       for (int j = 0; j < i; j++) {
+//         if (arr[i] > arr[j]) {
+//           dp[i] = Math.max(dp[i], dp[j] + 1);
+//         }
+//       }
+//       res = Math.max(res, dp[i]);
+//     }
+//     return res;
+//   }
 
-  public static void main(String[] args) {
-    int[] arr = { 3, 4, 2, 8, 10 };
-    System.out.println(longestSubsequence(arr.length, arr));
-  }
-}
+//   public static void main(String[] args) {
+//     int[] arr = { 3, 4, 2, 8, 10 };
+//     System.out.println(longestSubsequence(arr.length, arr));
+//   }
+// }
 
 // Question 11:
 
