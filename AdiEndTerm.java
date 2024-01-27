@@ -716,32 +716,32 @@
 
 // public class AdiEndTerm {
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Read input
-// String s = scanner.nextLine().trim();
+//     // Read input
+//     String s = scanner.nextLine().trim();
 
-// // Find and print the substring
-// String result = findSubstring(s);
-// System.out.println(result);
-// }
+//     // Find and print the substring
+//     String result = findSubstring(s);
+//     System.out.println(result);
+//   }
 
-// static String findSubstring(String s) {
-// int n = s.length();
+//   static String findSubstring(String s) {
+//     int n = s.length();
 
-// // Iterate from the middle to find the longest substring
-// for (int i = n / 2; i > 0; i--) {
-// String prefix = s.substring(0, i);
-// String suffix = s.substring(n - i);
+//     // Iterate from the middle to find the longest substring
+//     for (int i = n / 2; i > 0; i--) {
+//       String prefix = s.substring(0, i);
+//       String suffix = s.substring(n - i);
 
-// if (prefix.equals(suffix)) {
-// return prefix;
-// }
-// }
+//       if (prefix.equals(suffix)) {
+//         return prefix;
+//       }
+//     }
 
-// return "Not so Cool";
-// }
+//     return "Not so Cool";
+//   }
 // }
 
 // Que 8. Hearing Challenge
@@ -797,39 +797,39 @@
 
 // public class AdiEndTerm {
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Read the number of test cases
-// int t = scanner.nextInt();
-// scanner.nextLine(); // consume the newline character
+//     // Read the number of test cases
+//     int t = scanner.nextInt();
+//     scanner.nextLine(); // consume the newline character
 
-// // Process each test case
-// for (int i = 0; i < t; i++) {
-// // Read the substring for each test case
-// String s = scanner.nextLine().trim();
+//     // Process each test case
+//     for (int i = 0; i < t; i++) {
+//       // Read the substring for each test case
+//       String s = scanner.nextLine().trim();
 
-// // Check if the substring is part of the repeated "Yes" sequence
-// String result = isSubstringOfYes(s);
+//       // Check if the substring is part of the repeated "Yes" sequence
+//       String result = isSubstringOfYes(s);
 
-// // Print the result for each test case
-// System.out.println(result);
-// }
-// }
+//       // Print the result for each test case
+//       System.out.println(result);
+//     }
+//   }
 
-// static String isSubstringOfYes(String s) {
-// int n = s.length();
+//   static String isSubstringOfYes(String s) {
+//     int n = s.length();
 
-// // Check if s is a substring of "YesYesYes..."
-// for (int len = 3; len <= n * 2; len += 3) {
-// String repeatedYes = "Yes".repeat(len / 3);
-// if (repeatedYes.contains(s)) {
-// return "YES";
-// }
-// }
+//     // Check if s is a substring of "YesYesYes..."
+//     for (int len = 3; len <= n * 2; len += 3) {
+//       String repeatedYes = "Yes".repeat(len / 3);
+//       if (repeatedYes.contains(s)) {
+//         return "YES";
+//       }
+//     }
 
-// return "NO";
-// }
+//     return "NO";
+//   }
 // }
 
 // Que 9 :- Given an array and a positive integer k, find the first negative
@@ -919,35 +919,35 @@
 // For the given input array [10, 22, 9, 33, 21, 50, 41, 60], the longest
 // increasing subsequence is [10, 22, 33, 50, 60] with a length of 5.
 
-// import java.util.*;
+import java.util.*;
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] arr = new int[n];
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] arr = new int[n];
 
-// for (int i = 0; i < n; i++) {
-// arr[i] = sc.nextInt();
-// }
+    for (int i = 0; i < n; i++) {
+      arr[i] = sc.nextInt();
+    }
 
-// int[] dp = new int[n];
-// dp[0] = 1;
-// int ans = 1;
+    int[] dp = new int[n];
+    dp[0] = 1;
+    int ans = 1;
 
-// for (int i = 1; i < n; i++) {
-// int max = 0;
-// for (int j = 0; j < i; j++) {
-// if (arr[i] > arr[j]) {
-// max = Math.max(max, dp[j]);
-// }
-// }
-// dp[i] = max + 1;
-// ans = Math.max(ans, dp[i]);
-// }
-// System.out.println(ans);
-// }
-// }
+    for (int i = 1; i < n; i++) {
+      int max = 0;
+      for (int j = 0; j < i; j++) {
+        if (arr[i] > arr[j]) {
+          max = Math.max(max, dp[j]);
+        }
+      }
+      dp[i] = max + 1;
+      ans = Math.max(ans, dp[i]);
+    }
+    System.out.println(ans);
+  }
+}
 
 // OR
 
