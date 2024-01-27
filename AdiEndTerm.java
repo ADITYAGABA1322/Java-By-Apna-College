@@ -585,89 +585,89 @@
 // Sample Output 1
 // 6
 
-// import java.util.*;
+import java.util.*;
 
-// class TreeNode {
-// int val;
-// TreeNode left, right;
+class TreeNode {
+  int val;
+  TreeNode left, right;
 
-// public TreeNode(int value) {
-// val = value;
-// left = right = null;
-// }
-// }
+  public TreeNode(int value) {
+    val = value;
+    left = right = null;
+  }
+}
 
-// class BinaryTree {
-// TreeNode root;
+class BinaryTree {
+  TreeNode root;
 
-// public BinaryTree() {
-// root = null;
-// }
+  public BinaryTree() {
+    root = null;
+  }
 
-// public void insert(int value) {
-// root = insertRec(root, value);
-// }
+  public void insert(int value) {
+    root = insertRec(root, value);
+  }
 
-// private TreeNode insertRec(TreeNode root, int value) {
-// if (root == null) {
-// root = new TreeNode(value);
-// return root;
-// }
+  private TreeNode insertRec(TreeNode root, int value) {
+    if (root == null) {
+      root = new TreeNode(value);
+      return root;
+    }
 
-// if (value < root.val) {
-// root.left = insertRec(root.left, value);
-// } else if (value > root.val) {
-// root.right = insertRec(root.right, value);
-// }
+    if (value < root.val) {
+      root.left = insertRec(root.left, value);
+    } else if (value > root.val) {
+      root.right = insertRec(root.right, value);
+    }
 
-// return root;
-// }
+    return root;
+  }
 
-// public int findLCA(int p, int q) {
-// return findLCAUtil(root, p, q).val;
-// }
+  public int findLCA(int p, int q) {
+    return findLCAUtil(root, p, q).val;
+  }
 
-// private TreeNode findLCAUtil(TreeNode root, int p, int q) {
-// if (root == null) {
-// return null;
-// }
+  private TreeNode findLCAUtil(TreeNode root, int p, int q) {
+    if (root == null) {
+      return null;
+    }
 
-// if (p < root.val && q < root.val) {
-// return findLCAUtil(root.left, p, q);
-// } else if (p > root.val && q > root.val) {
-// return findLCAUtil(root.right, p, q);
-// } else {
-// // root is the LCA
-// return root;
-// }
-// }
-// }
+    if (p < root.val && q < root.val) {
+      return findLCAUtil(root.left, p, q);
+    } else if (p > root.val && q > root.val) {
+      return findLCAUtil(root.right, p, q);
+    } else {
+      // root is the LCA
+      return root;
+    }
+  }
+}
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
 
-// // Input integer array separated by space
-// System.out.println("Enter integers separated by space:");
-// String[] values = scanner.nextLine().split(" ");
-// BinaryTree bst = new BinaryTree();
+    // Input integer array separated by space
+    System.out.println("Enter integers separated by space:");
+    String[] values = scanner.nextLine().split(" ");
+    BinaryTree bst = new BinaryTree();
 
-// for (String value : values) {
-// bst.insert(Integer.parseInt(value));
-// }
+    for (String value : values) {
+      bst.insert(Integer.parseInt(value));
+    }
 
-// // Input values of p and q
-// System.out.println("Enter value of p:");
-// int p = scanner.nextInt();
+    // Input values of p and q
+    System.out.println("Enter value of p:");
+    int p = scanner.nextInt();
 
-// System.out.println("Enter value of q:");
-// int q = scanner.nextInt();
+    System.out.println("Enter value of q:");
+    int q = scanner.nextInt();
 
-// // Find and print the LCA
-// int lca = bst.findLCA(p, q);
-// System.out.println("Lowest Common Ancestor (LCA): " + lca);
-// }
-// }
+    // Find and print the LCA
+    int lca = bst.findLCA(p, q);
+    System.out.println("Lowest Common Ancestor (LCA): " + lca);
+  }
+}
 
 // Q 7. Crack the Passcode
 
