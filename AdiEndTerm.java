@@ -315,99 +315,99 @@
 // we need to find the left most and right most leaf node and delete them and
 // print the post order traversal of the tree
 
-import java.util.Scanner;
+// import java.util.Scanner;
 
-class Node {
-  int data;
-  Node left, right;
+// class Node {
+//   int data;
+//   Node left, right;
 
-  public Node(int item) {
-    data = item;
-    left = right = null;
-  }
-}
+//   public Node(int item) {
+//     data = item;
+//     left = right = null;
+//   }
+// }
 
-class BST {
-  Node root;
+// class BST {
+//   Node root;
 
-  BST() {
-    root = null;
-  }
+//   BST() {
+//     root = null;
+//   }
 
-  void insert(int data) {
-    root = insertRec(root, data);
-  }
+//   void insert(int data) {
+//     root = insertRec(root, data);
+//   }
 
-  Node insertRec(Node root, int data) {
-    if (root == null) {
-      root = new Node(data);
-      return root;
-    }
+//   Node insertRec(Node root, int data) {
+//     if (root == null) {
+//       root = new Node(data);
+//       return root;
+//     }
 
-    if (data < root.data) {
-      root.left = insertRec(root.left, data);
-    } else if (data > root.data) {
-      root.right = insertRec(root.right, data);
-    }
+//     if (data < root.data) {
+//       root.left = insertRec(root.left, data);
+//     } else if (data > root.data) {
+//       root.right = insertRec(root.right, data);
+//     }
 
-    return root;
-  }
+//     return root;
+//   }
 
-  void deleteLeafNodes() {
-    root = deleteLeafNodesUtil(root);
-  }
+//   void deleteLeafNodes() {
+//     root = deleteLeafNodesUtil(root);
+//   }
 
-  Node deleteLeafNodesUtil(Node root) {
-    if (root == null) {
-      return null;
-    }
+//   Node deleteLeafNodesUtil(Node root) {
+//     if (root == null) {
+//       return null;
+//     }
 
-    if (root.left == null && root.right == null) {
-      // This is a leaf node, delete it
-      return null;
-    }
+//     if (root.left == null && root.right == null) {
+//       // This is a leaf node, delete it
+//       return null;
+//     }
 
-    // Recursively delete leaf nodes in left and right subtrees
-    root.left = deleteLeafNodesUtil(root.left);
-    root.right = deleteLeafNodesUtil(root.right);
+//     // Recursively delete leaf nodes in left and right subtrees
+//     root.left = deleteLeafNodesUtil(root.left);
+//     root.right = deleteLeafNodesUtil(root.right);
 
-    return root;
-  }
+//     return root;
+//   }
 
-  void postOrderTraversal(Node root) {
-    if (root != null) {
-      postOrderTraversal(root.left);
-      postOrderTraversal(root.right);
-      System.out.print(root.data + " ");
-    }
-  }
-}
+//   void postOrderTraversal(Node root) {
+//     if (root != null) {
+//       postOrderTraversal(root.left);
+//       postOrderTraversal(root.right);
+//       System.out.print(root.data + " ");
+//     }
+//   }
+// }
 
-class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+// class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-    // Input array of integers
-    int[] values = new int[7];
-    System.out.println("Enter 7 integers:");
-    for (int i = 0; i < 7; i++) {
-      values[i] = scanner.nextInt();
-    }
+//     // Input array of integers
+//     int[] values = new int[7];
+//     System.out.println("Enter 7 integers:");
+//     for (int i = 0; i < 7; i++) {
+//       values[i] = scanner.nextInt();
+//     }
 
-    // Create BST and insert values
-    BST bst = new BST();
-    for (int value : values) {
-      bst.insert(value);
-    }
+//     // Create BST and insert values
+//     BST bst = new BST();
+//     for (int value : values) {
+//       bst.insert(value);
+//     }
 
-    // Delete leaf nodes
-    bst.deleteLeafNodes();
+//     // Delete leaf nodes
+//     bst.deleteLeafNodes();
 
-    // Print post-order traversal after deletion
-    System.out.println("Post-order traversal after deletion:");
-    bst.postOrderTraversal(bst.root);
-  }
-}
+//     // Print post-order traversal after deletion
+//     System.out.println("Post-order traversal after deletion:");
+//     bst.postOrderTraversal(bst.root);
+//   }
+// }
 
 // 4. Robot Task Scheduling
 // Problem Statement
