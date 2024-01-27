@@ -919,63 +919,63 @@
 // For the given input array [10, 22, 9, 33, 21, 50, 41, 60], the longest
 // increasing subsequence is [10, 22, 33, 50, 60] with a length of 5.
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    int[] arr = new int[n];
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
 
-    for (int i = 0; i < n; i++) {
-      arr[i] = sc.nextInt();
-    }
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
 
-    int[] dp = new int[n];
-    dp[0] = 1;
-    int ans = 1;
+//     int[] dp = new int[n];
+//     dp[0] = 1;
+//     int ans = 1;
 
-    for (int i = 1; i < n; i++) {
-      int max = 0;
-      for (int j = 0; j < i; j++) {
-        if (arr[i] > arr[j]) {
-          max = Math.max(max, dp[j]);
-        }
-      }
-      dp[i] = max + 1;
-      ans = Math.max(ans, dp[i]);
-    }
-    System.out.println(ans);
-  }
-}
+//     for (int i = 1; i < n; i++) {
+//       int max = 0;
+//       for (int j = 0; j < i; j++) {
+//         if (arr[i] > arr[j]) {
+//           max = Math.max(max, dp[j]);
+//         }
+//       }
+//       dp[i] = max + 1;
+//       ans = Math.max(ans, dp[i]);
+//     }
+//     System.out.println(ans);
+//   }
+// }
 
 // OR
 
 // import java.util.*;
 
-// class AdiEndTerm {
-// public static int longestSubsequence(int size, int arr[]) {
-// // code here
-// int[] dp = new int[size];
-// dp[0] = 1;
-// int res = 1;
-// for (int i = 1; i < size; i++) {
-// dp[i] = 1;
-// for (int j = 0; j < i; j++) {
-// if (arr[i] > arr[j]) {
-// dp[i] = Math.max(dp[i], dp[j] + 1);
-// }
-// }
-// res = Math.max(res, dp[i]);
-// }
-// return res;
-// }
+class AdiEndTerm {
+  public static int longestSubsequence(int size, int arr[]) {
+    // code here
+    int[] dp = new int[size];
+    dp[0] = 1;
+    int res = 1;
+    for (int i = 1; i < size; i++) {
+      dp[i] = 1;
+      for (int j = 0; j < i; j++) {
+        if (arr[i] > arr[j]) {
+          dp[i] = Math.max(dp[i], dp[j] + 1);
+        }
+      }
+      res = Math.max(res, dp[i]);
+    }
+    return res;
+  }
 
-// public static void main(String[] args) {
-// int[] arr = { 3, 4, 2, 8, 10 };
-// System.out.println(longestSubsequence(arr.length, arr));
-// }
-// }
+  public static void main(String[] args) {
+    int[] arr = { 3, 4, 2, 8, 10 };
+    System.out.println(longestSubsequence(arr.length, arr));
+  }
+}
 
 // Question 11:
 
