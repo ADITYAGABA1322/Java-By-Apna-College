@@ -590,7 +590,7 @@ public class BinarySearchTree {
       topViewMap.putIfAbsent(current.hd, current.key);
 
       // For bottomc view, overwrite the node in the map
-      bottomViewMap.put(current.hd, current.key);
+      bottomViewMap.putIfAbsent(current.hd, current.key);
 
       if (current.left != null) {
         current.left.hd = current.hd - 1;

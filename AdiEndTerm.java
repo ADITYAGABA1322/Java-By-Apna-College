@@ -3500,59 +3500,59 @@
 // Sample Output 2
 // 6
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    String s = sc.nextLine();
-    String pattern = sc.nextLine();
-    System.out.println(kmp(s, pattern));
-  }
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     String pattern = sc.nextLine();
+//     System.out.println(kmp(s, pattern));
+//   }
 
-  public static int kmp(String s, String pattern) {
-    int n = s.length();
-    int m = pattern.length();
-    int[] lps = new int[m];
-    computeLPS(pattern, lps);
-    int i = 0;
-    int j = 0;
-    while (i < n) {
-      if (s.charAt(i) == pattern.charAt(j)) {
-        i++;
-        j++;
-      }
-      if (j == m) {
-        return i - j;
-      } else if (i < n && s.charAt(i) != pattern.charAt(j)) {
-        if (j != 0) {
-          j = lps[j - 1];
-        } else {
-          i++;
-        }
-      }
-    }
-    return -1;
-  }
+//   public static int kmp(String s, String pattern) {
+//     int n = s.length();
+//     int m = pattern.length();
+//     int[] lps = new int[m];
+//     computeLPS(pattern, lps);
+//     int i = 0;
+//     int j = 0;
+//     while (i < n) {
+//       if (s.charAt(i) == pattern.charAt(j)) {
+//         i++;
+//         j++;
+//       }
+//       if (j == m) {
+//         return i - j;
+//       } else if (i < n && s.charAt(i) != pattern.charAt(j)) {
+//         if (j != 0) {
+//           j = lps[j - 1];
+//         } else {
+//           i++;
+//         }
+//       }
+//     }
+//     return -1;
+//   }
 
-  public static void computeLPS(String pattern, int[] lps) {
-    int m = pattern.length();
-    int len = 0;
-    int i = 1;
-    lps[0] = 0;
-    while (i < m) {
-      if (pattern.charAt(i) == pattern.charAt(len)) {
-        len++;
-        lps[i] = len;
-        i++;
-      } else {
-        if (len != 0) {
-          len = lps[len - 1];
-        } else {
-          lps[i] = len;
-          i++;
-        }
-      }
-    }
-  }
-}
+//   public static void computeLPS(String pattern, int[] lps) {
+//     int m = pattern.length();
+//     int len = 0;
+//     int i = 1;
+//     lps[0] = 0;
+//     while (i < m) {
+//       if (pattern.charAt(i) == pattern.charAt(len)) {
+//         len++;
+//         lps[i] = len;
+//         i++;
+//       } else {
+//         if (len != 0) {
+//           len = lps[len - 1];
+//         } else {
+//           lps[i] = len;
+//           i++;
+//         }
+//       }
+//     }
+//   }
+// }
