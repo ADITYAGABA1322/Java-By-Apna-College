@@ -1653,42 +1653,42 @@
 
 // or
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    String s = scanner.nextLine();
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     String s = scanner.nextLine();
 
-    List<String> palindromes = new ArrayList<>();
-    for (int length = 3; length <= s.length(); length++) {
-      for (int i = 0; i <= s.length() - length; i++) {
-        String substring = s.substring(i, i + length);
-        if (isPalindrome(substring)) {
-          palindromes.add(substring + " " + i + "-" + (i + length - 1));
-        }
-      }
-    }
+//     List<String> palindromes = new ArrayList<>();
+//     for (int length = 3; length <= s.length(); length++) {
+//       for (int i = 0; i <= s.length() - length; i++) {
+//         String substring = s.substring(i, i + length);
+//         if (isPalindrome(substring)) {
+//           palindromes.add(substring + " " + i + "-" + (i + length - 1));
+//         }
+//       }
+//     }
 
-    if (palindromes.isEmpty()) {
-      System.out.println("No Palindrome string found");
-    } else {
-      for (String palindrome : palindromes) {
-        System.out.println(palindrome);
-      }
-    }
-  }
+//     if (palindromes.isEmpty()) {
+//       System.out.println("No Palindrome string found");
+//     } else {
+//       for (String palindrome : palindromes) {
+//         System.out.println(palindrome);
+//       }
+//     }
+//   }
 
-  private static boolean isPalindrome(String s) {
-    int i = 0, j = s.length() - 1;
-    while (i < j) {
-      if (s.charAt(i++) != s.charAt(j--)) {
-        return false;
-      }
-    }
-    return true;
-  }
-}
+//   private static boolean isPalindrome(String s) {
+//     int i = 0, j = s.length() - 1;
+//     while (i < j) {
+//       if (s.charAt(i++) != s.charAt(j--)) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+// }
 
 // Question 17: Difference in Ascii Codes
 // Problem Statement
