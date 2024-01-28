@@ -856,38 +856,95 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] arr = new int[n];
-// for (int i = 0; i < n; i++) {
-// arr[i] = sc.nextInt();
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     int k = sc.nextInt();
+//     int[] ans = new int[n - k + 1];
+//     int j = 0;
+//     Deque<Integer> dq = new LinkedList<>();
+//     for (int i = 0; i < n; i++) {
+//       if (arr[i] < 0) {
+//         dq.add(i);
+//       }
+//       if (i - j + 1 == k) {
+//         if (dq.isEmpty()) {
+//           ans[j] = 0;
+//         } else {
+//           ans[j] = arr[dq.peek()];
+//         }
+//         j++;
+//         if (!dq.isEmpty() && dq.peek() < j) {
+//           dq.remove();
+//         }
+//       }
+//     }
+//     for (int i = 0; i < n - k + 1; i++) {
+//       System.out.print(ans[i] + " ");
+//     }
+//   }
 // }
-// int k = sc.nextInt();
-// int[] ans = new int[n - k + 1];
-// int j = 0;
-// Deque<Integer> dq = new LinkedList<>();
-// for (int i = 0; i < n; i++) {
-// if (arr[i] < 0) {
-// dq.add(i);
-// }
-// if (i - j + 1 == k) {
-// if (dq.isEmpty()) {
-// ans[j] = 0;
-// } else {
-// ans[j] = arr[dq.peek()];
-// }
-// j++;
-// if (!dq.isEmpty() && dq.peek() < j) {
-// dq.remove();
-// }
-// }
-// }
-// for (int i = 0; i < n - k + 1; i++) {
-// System.out.print(ans[i] + " ");
-// }
-// }
-// }
+
+
+// or 
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class FirstNegativeInWindow {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    // Input: Size of the array
+    int n = scanner.nextInt();
+
+    // Input: Array elements
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = scanner.nextInt();
+    }
+
+    // Input: Size of the window
+    int k = scanner.nextInt();
+
+    // Process each window and print the first negative integer
+    printFirstNegativeInWindow(arr, n, k);
+  }
+
+  static void printFirstNegativeInWindow(int[] arr, int n, int k) {
+    LinkedList<Integer> queue = new LinkedList<>();
+
+    // Process the first window
+    for (int i = 0; i < k; i++) {
+      if (arr[i] < 0) {
+        queue.offer(i);
+      }
+    }
+
+    // Print the first negative integer or 0 for the first window
+    System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+
+    // Process the remaining windows
+    for (int i = k; i < n; i++) {
+      // Remove elements that are out of the current window
+      while (!queue.isEmpty() && queue.peek() <= i - k) {
+        queue.poll();
+      }
+
+      // Add the current element to the window
+      if (arr[i] < 0) {
+        queue.offer(i);
+      }
+
+      // Print the first negative integer or 0 for the current window
+      System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+    }
+  }
+}
 
 // Que 10. Longest Increasing Subsequence
 
@@ -922,31 +979,31 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int[] arr = new int[n];
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int[] arr = new int[n];
 
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = sc.nextInt();
-//     }
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
 
-//     int[] dp = new int[n];
-//     dp[0] = 1;
-//     int ans = 1;
+// int[] dp = new int[n];
+// dp[0] = 1;
+// int ans = 1;
 
-//     for (int i = 1; i < n; i++) {
-//       int max = 0;
-//       for (int j = 0; j < i; j++) {
-//         if (arr[i] > arr[j]) {
-//           max = Math.max(max, dp[j]);
-//         }
-//       }
-//       dp[i] = max + 1;
-//       ans = Math.max(ans, dp[i]);
-//     }
-//     System.out.println(ans);
-//   }
+// for (int i = 1; i < n; i++) {
+// int max = 0;
+// for (int j = 0; j < i; j++) {
+// if (arr[i] > arr[j]) {
+// max = Math.max(max, dp[j]);
+// }
+// }
+// dp[i] = max + 1;
+// ans = Math.max(ans, dp[i]);
+// }
+// System.out.println(ans);
+// }
 // }
 
 // OR
@@ -954,27 +1011,27 @@
 // import java.util.*;
 
 // class AdiEndTerm {
-//   public static int longestSubsequence(int size, int arr[]) {
-//     // code here
-//     int[] dp = new int[size];
-//     dp[0] = 1;
-//     int res = 1;
-//     for (int i = 1; i < size; i++) {
-//       dp[i] = 1;
-//       for (int j = 0; j < i; j++) {
-//         if (arr[i] > arr[j]) {
-//           dp[i] = Math.max(dp[i], dp[j] + 1);
-//         }
-//       }
-//       res = Math.max(res, dp[i]);
-//     }
-//     return res;
-//   }
+// public static int longestSubsequence(int size, int arr[]) {
+// // code here
+// int[] dp = new int[size];
+// dp[0] = 1;
+// int res = 1;
+// for (int i = 1; i < size; i++) {
+// dp[i] = 1;
+// for (int j = 0; j < i; j++) {
+// if (arr[i] > arr[j]) {
+// dp[i] = Math.max(dp[i], dp[j] + 1);
+// }
+// }
+// res = Math.max(res, dp[i]);
+// }
+// return res;
+// }
 
-//   public static void main(String[] args) {
-//     int[] arr = { 3, 4, 2, 8, 10 };
-//     System.out.println(longestSubsequence(arr.length, arr));
-//   }
+// public static void main(String[] args) {
+// int[] arr = { 3, 4, 2, 8, 10 };
+// System.out.println(longestSubsequence(arr.length, arr));
+// }
 // }
 
 // Question 11:
