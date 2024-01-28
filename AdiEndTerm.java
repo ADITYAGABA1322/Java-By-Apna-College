@@ -1439,68 +1439,68 @@
 
 // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
-// import java.util.Scanner;
+import java.util.Scanner;
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
 
-// // Input the array
-// String[] inputArray = scanner.nextLine().split(" ");
-// int[] A = new int[inputArray.length];
+    // Input the array
+    String[] inputArray = scanner.nextLine().split(" ");
+    int[] A = new int[inputArray.length];
 
-// for (int i = 0; i < inputArray.length; i++) {
-// A[i] = Integer.parseInt(inputArray[i]);
-// }
+    for (int i = 0; i < inputArray.length; i++) {
+      A[i] = Integer.parseInt(inputArray[i]);
+    }
 
-// // Count the number of special elements
-// int specialCount = 0;
+    // Count the number of special elements
+    int specialCount = 0;
 
-// for (int i = 0; i < A.length; i++) {
-// // Remove the current element and check if the array becomes balanced
-// int[] newArray = removeElement(A, i);
+    for (int i = 0; i < A.length; i++) {
+      // Remove the current element and check if the array becomes balanced
+      int[] newArray = removeElement(A, i);
 
-// if (isBalanced(newArray)) {
-// specialCount++;
-// }
-// }
+      if (isBalanced(newArray)) {
+        specialCount++;
+      }
+    }
 
-// // Output the count of special elements
-// System.out.println(specialCount);
+    // Output the count of special elements
+    System.out.println(specialCount);
 
-// scanner.close();
-// }
+    scanner.close();
+  }
 
-// // Method to remove an element from the array
-// private static int[] removeElement(int[] array, int index) {
-// int[] newArray = new int[array.length - 1];
-// int newArrayIndex = 0;
+  // Method to remove an element from the array
+  private static int[] removeElement(int[] array, int index) {
+    int[] newArray = new int[array.length - 1];
+    int newArrayIndex = 0;
 
-// for (int i = 0; i < array.length; i++) {
-// if (i != index) {
-// newArray[newArrayIndex++] = array[i];
-// }
-// }
+    for (int i = 0; i < array.length; i++) {
+      if (i != index) {
+        newArray[newArrayIndex++] = array[i];
+      }
+    }
 
-// return newArray;
-// }
+    return newArray;
+  }
 
-// // Method to check if the array is balanced
-// private static boolean isBalanced(int[] array) {
-// int sumEven = 0;
-// int sumOdd = 0;
+  // Method to check if the array is balanced
+  private static boolean isBalanced(int[] array) {
+    int sumEven = 0;
+    int sumOdd = 0;
 
-// for (int i = 0; i < array.length; i++) {
-// if (i % 2 == 0) {
-// sumEven += array[i];
-// } else {
-// sumOdd += array[i];
-// }
-// }
+    for (int i = 0; i < array.length; i++) {
+      if (i % 2 == 0) {
+        sumEven += array[i];
+      } else {
+        sumOdd += array[i];
+      }
+    }
 
-// return sumEven == sumOdd;
-// }
-// }
+    return sumEven == sumOdd;
+  }
+}
 
 // 15. Detecting Plagiarism in Academic Papers
 
