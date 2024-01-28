@@ -889,62 +889,61 @@
 //   }
 // }
 
-
 // or 
 
-import java.util.LinkedList;
-import java.util.Scanner;
+// import java.util.LinkedList;
+// import java.util.Scanner;
 
-public class FirstNegativeInWindow {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-    // Input: Size of the array
-    int n = scanner.nextInt();
+//     // Input: Size of the array
+//     int n = scanner.nextInt();
 
-    // Input: Array elements
-    int[] arr = new int[n];
-    for (int i = 0; i < n; i++) {
-      arr[i] = scanner.nextInt();
-    }
+//     // Input: Array elements
+//     int[] arr = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = scanner.nextInt();
+//     }
 
-    // Input: Size of the window
-    int k = scanner.nextInt();
+//     // Input: Size of the window
+//     int k = scanner.nextInt();
 
-    // Process each window and print the first negative integer
-    printFirstNegativeInWindow(arr, n, k);
-  }
+//     // Process each window and print the first negative integer
+//     printFirstNegativeInWindow(arr, n, k);
+//   }
 
-  static void printFirstNegativeInWindow(int[] arr, int n, int k) {
-    LinkedList<Integer> queue = new LinkedList<>();
+//   static void printFirstNegativeInWindow(int[] arr, int n, int k) {
+//     LinkedList<Integer> queue = new LinkedList<>();
 
-    // Process the first window
-    for (int i = 0; i < k; i++) {
-      if (arr[i] < 0) {
-        queue.offer(i);
-      }
-    }
+//     // Process the first window
+//     for (int i = 0; i < k; i++) {
+//       if (arr[i] < 0) {
+//         queue.offer(i);
+//       }
+//     }
 
-    // Print the first negative integer or 0 for the first window
-    System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+//     // Print the first negative integer or 0 for the first window
+//     System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
 
-    // Process the remaining windows
-    for (int i = k; i < n; i++) {
-      // Remove elements that are out of the current window
-      while (!queue.isEmpty() && queue.peek() <= i - k) {
-        queue.poll();
-      }
+//     // Process the remaining windows
+//     for (int i = k; i < n; i++) {
+//       // Remove elements that are out of the current window
+//       while (!queue.isEmpty() && queue.peek() <= i - k) {
+//         queue.poll();
+//       }
 
-      // Add the current element to the window
-      if (arr[i] < 0) {
-        queue.offer(i);
-      }
+//       // Add the current element to the window
+//       if (arr[i] < 0) {
+//         queue.offer(i);
+//       }
 
-      // Print the first negative integer or 0 for the current window
-      System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
-    }
-  }
-}
+//       // Print the first negative integer or 0 for the current window
+//       System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+//     }
+//   }
+// }
 
 // Que 10. Longest Increasing Subsequence
 
@@ -1092,39 +1091,39 @@ public class FirstNegativeInWindow {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// // int n = sc.nextInt();
-// // int[] heights = new int[n];
-// // for (int i = 0; i < n; i++) {
-// // heights[i] = sc.nextInt();
-// // }
-// String[] heights = sc.nextLine().split(" ");
-// int bricks = sc.nextInt();
-// int ladders = sc.nextInt();
-// int[] arr = new int[heights.length];
-// for (int i = 0; i < heights.length; i++) {
-// arr[i] = Integer.parseInt(heights[i]);
-// }
-// System.out.println(furthestBuilding(arr, bricks, ladders));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     // int n = sc.nextInt();
+//     // int[] heights = new int[n];
+//     // for (int i = 0; i < n; i++) {
+//     // heights[i] = sc.nextInt();
+//     // }
+//     String[] heights = sc.nextLine().split(" ");
+//     int bricks = sc.nextInt();
+//     int ladders = sc.nextInt();
+//     int[] arr = new int[heights.length];
+//     for (int i = 0; i < heights.length; i++) {
+//       arr[i] = Integer.parseInt(heights[i]);
+//     }
+//     System.out.println(furthestBuilding(arr, bricks, ladders));
+//   }
 
-// public static int furthestBuilding(int[] heights, int bricks, int ladders) {
-// PriorityQueue<Integer> pq = new PriorityQueue<>();
-// for (int i = 0; i < heights.length - 1; i++) {
-// int diff = heights[i + 1] - heights[i];
-// if (diff > 0) {
-// pq.add(diff);
-// }
-// if (pq.size() > ladders) {
-// bricks -= pq.poll();
-// }
-// if (bricks < 0) {
-// return i;
-// }
-// }
-// return heights.length - 1;
-// }
+//   public static int furthestBuilding(int[] heights, int bricks, int ladders) {
+//     PriorityQueue<Integer> pq = new PriorityQueue<>();
+//     for (int i = 0; i < heights.length - 1; i++) {
+//       int diff = heights[i + 1] - heights[i];
+//       if (diff > 0) {
+//         pq.add(diff);
+//       }
+//       if (pq.size() > ladders) {
+//         bricks -= pq.poll();
+//       }
+//       if (bricks < 0) {
+//         return i;
+//       }
+//     }
+//     return heights.length - 1;
+//   }
 // }
 
 // Question 12: Password of the treasure box
@@ -1182,33 +1181,33 @@ public class FirstNegativeInWindow {
 // to 0)
 // As if the number is less than 0 (zero) then the code is equal to 0
 
-// import java.util.*;
+import java.util.*;
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] words = sc.nextLine().split(" ");
-// StringBuilder sb = new StringBuilder();
-// for (String word : words) {
-// int sum = 0;
-// for (int i = 0; i < word.length(); i++) {
-// char ch = word.charAt(i);
-// if (Character.isUpperCase(ch)) {
-// sum += ch - 'A' + 1;
-// } else {
-// sum -= ch - 'a' + 1;
-// }
-// }
-// if (sum > 9) {
-// sum = 9;
-// } else if (sum < 0) {
-// sum = 0;
-// }
-// sb.append(sum);
-// }
-// System.out.println(sb.toString());
-// }
-// }
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] words = sc.nextLine().split(" ");
+    StringBuilder sb = new StringBuilder();
+    for (String word : words) {
+      int sum = 0;
+      for (int i = 0; i < word.length(); i++) {
+        char ch = word.charAt(i);
+        if (Character.isUpperCase(ch)) {
+          sum += ch - 'A' + 1;
+        } else {
+          sum -= ch - 'a' + 1;
+        }
+      }
+      if (sum > 9) {
+        sum = 9;
+      } else if (sum < 0) {
+        sum = 0;
+      }
+      sb.append(sum);
+    }
+    System.out.println(sb.toString());
+  }
+}
 
 // 13. Making students list by their roll numbers and names and search
 // particular student by roll no.
