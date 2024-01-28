@@ -1181,33 +1181,33 @@
 // to 0)
 // As if the number is less than 0 (zero) then the code is equal to 0
 
-import java.util.*;
+// import java.util.*;
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    String[] words = sc.nextLine().split(" ");
-    StringBuilder sb = new StringBuilder();
-    for (String word : words) {
-      int sum = 0;
-      for (int i = 0; i < word.length(); i++) {
-        char ch = word.charAt(i);
-        if (Character.isUpperCase(ch)) {
-          sum += ch - 'A' + 1;
-        } else {
-          sum -= ch - 'a' + 1;
-        }
-      }
-      if (sum > 9) {
-        sum = 9;
-      } else if (sum < 0) {
-        sum = 0;
-      }
-      sb.append(sum);
-    }
-    System.out.println(sb.toString());
-  }
-}
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] words = sc.nextLine().split(" ");
+//     StringBuilder sb = new StringBuilder();
+//     for (String word : words) {
+//       int sum = 0;
+//       for (int i = 0; i < word.length(); i++) {
+//         char ch = word.charAt(i);
+//         if (Character.isUpperCase(ch)) {
+//           sum += ch - 'A' + 1;
+//         } else {
+//           sum -= ch - 'a' + 1;
+//         }
+//       }
+//       if (sum > 9) {
+//         sum = 9;
+//       } else if (sum < 0) {
+//         sum = 0;
+//       }
+//       sb.append(sum);
+//     }
+//     System.out.println(sb.toString());
+//   }
+// }
 
 // 13. Making students list by their roll numbers and names and search
 // particular student by roll no.
