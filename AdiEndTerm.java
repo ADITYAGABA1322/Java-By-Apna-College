@@ -1543,18 +1543,18 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] text = sc.nextLine().split(" ");
-// String pattern = sc.nextLine();
-// int count = 0;
-// for (String word : text) {
-// if (word.equals(pattern)) {
-// count++;
-// }
-// }
-// System.out.println(count);
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] text = sc.nextLine().split(" ");
+//     String pattern = sc.nextLine();
+//     int count = 0;
+//     for (String word : text) {
+//       if (word.equals(pattern)) {
+//         count++;
+//       }
+//     }
+//     System.out.println(count);
+//   }
 // }
 
 // 16. The Lost Palindrome Stones
