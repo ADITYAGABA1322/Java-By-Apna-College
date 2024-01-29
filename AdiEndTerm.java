@@ -3145,54 +3145,54 @@
 // import java.util.*;
 
 // class TreeNode {
-// int val;
-// TreeNode left;
-// TreeNode right;
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
 
-// TreeNode(int val) {
-// this.val = val;
-// }
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
 // }
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// TreeNode root = null;
-// for (int i = 0; i < n; i++) {
-// root = insert(root, sc.nextInt());
-// }
-// System.out.println(diameter(root));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     System.out.println(diameter(root));
+//   }
 
-// public static TreeNode insert(TreeNode root, int val) {
-// if (root == null) {
-// return new TreeNode(val);
-// }
-// if (val < root.val) {
-// root.left = insert(root.left, val);
-// } else {
-// root.right = insert(root.right, val);
-// }
-// return root;
-// }
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
 
-// public static int diameter(TreeNode root) {
-// if (root == null) {
-// return 0;
-// }
-// int left = diameter(root.left);
-// int right = diameter(root.right);
-// int height = height(root.left) + height(root.right) + 1;
-// return Math.max(height, Math.max(left, right));
-// }
+//   public static int diameter(TreeNode root) {
+//     if (root == null) {
+//       return 0;
+//     }
+//     int left = diameter(root.left);
+//     int right = diameter(root.right);
+//     int height = height(root.left) + height(root.right) + 1;
+//     return Math.max(height, Math.max(left, right));
+//   }
 
-// public static int height(TreeNode root) {
-// if (root == null) {
-// return 0;
-// }
-// return Math.max(height(root.left), height(root.right)) + 1;
-// }
+//   public static int height(TreeNode root) {
+//     if (root == null) {
+//       return 0;
+//     }
+//     return Math.max(height(root.left), height(root.right)) + 1;
+//   }
 // }
 
 // Question 32: Coin Change Problem
