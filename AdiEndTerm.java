@@ -2468,53 +2468,53 @@
 // Sample Output 2
 // false
 
-// import java.util.*;
+import java.util.*;
 
-// class TreeNode {
-// int val;
-// TreeNode left;
-// TreeNode right;
+class TreeNode {
+  int val;
+  TreeNode left;
+  TreeNode right;
 
-// TreeNode(int val) {
-// this.val = val;
-// }
-// }
+  TreeNode(int val) {
+    this.val = val;
+  }
+}
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// TreeNode root = null;
-// for (int i = 0; i < n; i++) {
-// root = insert(root, sc.nextInt());
-// }
-// int target = sc.nextInt();
-// System.out.println(hasPathSum(root, target));
-// }
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    TreeNode root = null;
+    for (int i = 0; i < n; i++) {
+      root = insert(root, sc.nextInt());
+    }
+    int target = sc.nextInt();
+    System.out.println(hasPathSum(root, target));
+  }
 
-// public static TreeNode insert(TreeNode root, int val) {
-// if (root == null) {
-// return new TreeNode(val);
-// }
-// if (val < root.val) {
-// root.left = insert(root.left, val);
-// } else {
-// root.right = insert(root.right, val);
-// }
-// return root;
-// }
+  public static TreeNode insert(TreeNode root, int val) {
+    if (root == null) {
+      return new TreeNode(val);
+    }
+    if (val < root.val) {
+      root.left = insert(root.left, val);
+    } else {
+      root.right = insert(root.right, val);
+    }
+    return root;
+  }
 
-// public static boolean hasPathSum(TreeNode root, int target) {
-// if (root == null) {
-// return false;
-// }
-// if (root.left == null && root.right == null && root.val == target) {
-// return true;
-// }
-// return hasPathSum(root.left, target - root.val) || hasPathSum(root.right,
-// target - root.val);
-// }
-// }
+  public static boolean hasPathSum(TreeNode root, int target) {
+    if (root == null) {
+      return false;
+    }
+    if (root.left == null && root.right == null && root.val == target) {
+      return true;
+    }
+    return hasPathSum(root.left, target - root.val) || hasPathSum(root.right,
+        target - root.val);
+  }
+}
 
 // Question 30: Inorder Successor in a BST
 
