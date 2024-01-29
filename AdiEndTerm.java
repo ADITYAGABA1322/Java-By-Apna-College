@@ -2552,84 +2552,84 @@
 // Sample Output 2
 // 40
 
-// import java.util.*;
+import java.util.*;
 
-// class TreeNode {
-// int val;
-// TreeNode left;
-// TreeNode right;
+class TreeNode {
+  int val;
+  TreeNode left;
+  TreeNode right;
 
-// TreeNode(int val) {
-// this.val = val;
-// }
-// }
+  TreeNode(int val) {
+    this.val = val;
+  }
+}
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// TreeNode root = null;
-// for (int i = 0; i < n; i++) {
-// root = insert(root, sc.nextInt());
-// }
-// int ref = sc.nextInt();
-// TreeNode node = find(root, ref);
-// TreeNode successor = inorderSuccessor(root, node);
-// if (successor == null) {
-// System.out.println("No inorder successor found");
-// } else {
-// System.out.println(successor.val);
-// }
-// }
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    TreeNode root = null;
+    for (int i = 0; i < n; i++) {
+      root = insert(root, sc.nextInt());
+    }
+    int ref = sc.nextInt();
+    TreeNode node = find(root, ref);
+    TreeNode successor = inorderSuccessor(root, node);
+    if (successor == null) {
+      System.out.println("No inorder successor found");
+    } else {
+      System.out.println(successor.val);
+    }
+  }
 
-// public static TreeNode insert(TreeNode root, int val) {
-// if (root == null) {
-// return new TreeNode(val);
-// }
-// if (val < root.val) {
-// root.left = insert(root.left, val);
-// } else {
-// root.right = insert(root.right, val);
-// }
-// return root;
-// }
+  public static TreeNode insert(TreeNode root, int val) {
+    if (root == null) {
+      return new TreeNode(val);
+    }
+    if (val < root.val) {
+      root.left = insert(root.left, val);
+    } else {
+      root.right = insert(root.right, val);
+    }
+    return root;
+  }
 
-// public static TreeNode find(TreeNode root, int ref) {
-// if (root == null) {
-// return null;
-// }
-// if (root.val == ref) {
-// return root;
-// }
-// if (ref < root.val) {
-// return find(root.left, ref);
-// } else {
-// return find(root.right, ref);
-// }
-// }
+  public static TreeNode find(TreeNode root, int ref) {
+    if (root == null) {
+      return null;
+    }
+    if (root.val == ref) {
+      return root;
+    }
+    if (ref < root.val) {
+      return find(root.left, ref);
+    } else {
+      return find(root.right, ref);
+    }
+  }
 
-// public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
-// if (node.right != null) {
-// TreeNode curr = node.right;
-// while (curr.left != null) {
-// curr = curr.left;
-// }
-// return curr;
-// }
-// TreeNode succ = null;
-// while (root != null) {
-// if (node.val < root.val) {
-// succ = root;
-// root = root.left;
-// } else if (node.val > root.val) {
-// root = root.right;
-// } else {
-// break;
-// }
-// }
-// return succ;
-// }
-// }
+  public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+}
 
 // Question 31: Find Diameter of a Binary Search Tree
 
