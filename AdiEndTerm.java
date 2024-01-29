@@ -3235,31 +3235,31 @@
 // target amount is 12. There are 15 different ways to make the amount 12 using
 // these denominations.
 
-// import java.util.*;
+import java.util.*;
 
-// public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] coins = new int[n];
-// for (int i = 0; i < n; i++) {
-// coins[i] = sc.nextInt();
-// }
-// int target = sc.nextInt();
-// System.out.println(coinChange(coins, target));
-// }
+public class AdiEndTerm {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] coins = new int[n];
+    for (int i = 0; i < n; i++) {
+      coins[i] = sc.nextInt();
+    }
+    int target = sc.nextInt();
+    System.out.println(coinChange(coins, target));
+  }
 
-// public static int coinChange(int[] coins, int target) {
-// int[] dp = new int[target + 1];
-// dp[0] = 1;
-// for (int coin : coins) {
-// for (int i = coin; i <= target; i++) {
-// dp[i] += dp[i - coin];
-// }
-// }
-// return dp[target];
-// }
-// }
+  public static int coinChange(int[] coins, int target) {
+    int[] dp = new int[target + 1];
+    dp[0] = 1;
+    for (int coin : coins) {
+      for (int i = coin; i <= target; i++) {
+        dp[i] += dp[i - coin];
+      }
+    }
+    return dp[target];
+  }
+}
 
 // Question 33: Top View of BST
 
