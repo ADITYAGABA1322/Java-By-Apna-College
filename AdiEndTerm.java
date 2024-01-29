@@ -1872,20 +1872,20 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String s = sc.nextLine();
-// StringBuilder sb = new StringBuilder();
-// for (int i = 0; i < s.length(); i++) {
-// char ch = s.charAt(i);
-// if (i % 2 == 0) {
-// sb.append((char) (ch + 1));
-// } else {
-// sb.append((char) (ch - 1));
-// }
-// }
-// System.out.println(sb.toString());
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     StringBuilder sb = new StringBuilder();
+//     for (int i = 0; i < s.length(); i++) {
+//       char ch = s.charAt(i);
+//       if (i % 2 == 0) {
+//         sb.append((char) (ch + 1));
+//       } else {
+//         sb.append((char) (ch - 1));
+//       }
+//     }
+//     System.out.println(sb.toString());
+//   }
 // }
 
 // Question 21: Symmetric Numbers
@@ -2204,7 +2204,7 @@
 // for (int i = 0; i < n; i++) {
 // set.add(sc.next());
 // }
-// if (wordBreak(s, set)) 
+// if (wordBreak(s, set))
 // System.out.println("Yes");
 // } else {
 // System.out.println("No");
