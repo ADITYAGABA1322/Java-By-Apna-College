@@ -2610,7 +2610,7 @@ public class AdiEndTerm {
 
   public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
     if (node.right != null) {
-      TreeNode curr = node.right;
+      TreeNode curr = node.rig
       while (curr.left != null) {
         curr = curr.left;
       }
