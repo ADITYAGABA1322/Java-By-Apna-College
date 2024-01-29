@@ -2892,9 +2892,172 @@ public class AdiEndTerm {
       }
     }
     return pred;
+  } 
+}
+
+// or 
+
+import java.util.Scanner;
+
+class TreeNode {
+  int val;
+  TreeNode left;
+  TreeNode right;
+
+  TreeNode(int val) {
+    this.val = val;
+  }
+}
+
+public class BSTPrePostInOrder {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    TreeNode root = null;
+    for (int i = 0; i < n; i++) {
+      root = insert(root, sc.nextInt());
+    }
+    int ref = sc.nextInt();
+
+    TreeNode node = find(root, ref);
+
+    // Inorder Predecessor
+    TreeNode inOrderPredecessor = inOrderPredecessor(root, node);
+    System.out
+        .println("Inorder Predecessor: " + (inOrderPredecessor != null ? inOrderPredecessor.val : "No predecessor"));
+
+    // Inorder Successor
+    TreeNode inOrderSuccessor = inOrderSuccessor(root, node);
+    System.out.println("Inorder Successor: " + (inOrderSuccessor != null ? inOrderSuccessor.val : "No successor"));
+
+    // Preorder Predecessor
+    TreeNode preOrderPredecessor = preOrderPredecessor(root, node);
+    System.out
+        .println("Preorder Predecessor: " + (preOrderPredecessor != null ? preOrderPredecessor.val : "No predecessor"));
+
+    // Postorder Predecessor
+    TreeNode postOrderPredecessor = postOrderPredecessor(root, node);
+    System.out.println(
+        "Postorder Predecessor: " + (postOrderPredecessor != null ? postOrderPredecessor.val : "No predecessor"));
   }
 
-  
+  public static TreeNode insert(TreeNode root, int val) {
+    if (root == null) {
+      return new TreeNode(val);
+    }
+    if (val < root.val) {
+      root.left = insert(root.left, val);
+    } else {
+      root.right = insert(root.right, val);
+    }
+    return root;
+  }
+
+  public static TreeNode find(TreeNode root, int ref) {
+    if (root == null) {
+      return null;
+    }
+    if (root.val == ref) {
+      return root;
+    }
+    if (ref < root.val) {
+      return find(root.left, ref);
+    } else {
+      return find(root.right, ref);
+    }
+  }
+
+  public static TreeNode inOrderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else if (node.val < root.val) {
+        root = root.left;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  public static TreeNode inOrderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+
+  public static TreeNode preOrderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else if (node.val < root.val) {
+        root = root.left;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  public static TreeNode postOrderPredecessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null || curr.right != null) {
+        if (curr.left != null) {
+          curr = curr.left;
+        } else {
+          curr = curr.right;
+        }
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else if (node.val < root.val) {
+        root = root.left;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
 }
 
 // Question 31: Find Diameter of a Binary Search Tree
