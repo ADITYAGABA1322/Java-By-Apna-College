@@ -2607,6 +2607,14 @@ public class AdiEndTerm {
       return find(root.right, ref);
     }
   }
+  // 1.) Inorder Successor of a node is the node with the smallest key greater
+  // than the key of the input node.
+  // 2.) Inorder Successor of a node is the next node in Inorder traversal of the
+  // Binary Tree. Inorder Successor is NULL for the last node in Inoorder
+  // traversal.
+  // 3.) In Binary Search Tree, Inorder Successor of an input node can also be
+  // defined as the node with the smallest key greater than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
 
   public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
     if (node.right != null) {
@@ -2629,6 +2637,264 @@ public class AdiEndTerm {
     }
     return succ;
   }
+
+  // 1.) Inordre Predecessor of a node is the node with the largest key smaller
+  // than the key of the input node.
+  // 2.) In Binary Search Tree, Inorder Predecessor of an input node can also be
+  // defined as the node with the largest key smaller than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+
+  public static TreeNode inorderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        root = root.left;
+      } else if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  // 1.) PreOrder Successor of a node is the node with the smallest key greater
+  // than the key of the input node.
+  // 2.) PreOrder Successor of a node is the next node in PreOrder traversal of
+  // the Binary Tree. PreOrder Successor is NULL for the last node in PreOrder
+  // traversal.
+  // 3.) In Binary Search Tree, PreOrder Successor of an input node can also be
+  // defined as the node with the smallest key greater than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode preorderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+
+  // 1.) PreOrder Predecessor of a node is the node with the largest key smaller
+  // than the key of the input node.
+  // 2.) In Binary Search Tree, PreOrder Predecessor of an input node can also be
+  // defined as the node with the largest key smaller than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode preorderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        root = root.left;
+      } else if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  // 1.) PostOrder Successor of a node is the node with the smallest key greater
+  // than the key of the input node.
+  // 2.) PostOrder Successor of a node is the next node in PostOrder traversal of
+  // the Binary Tree. PostOrder Successor is NULL for the last node in PostOrder
+  // traversal.
+  // 3.) In Binary Search Tree, PostOrder Successor of an input node can also be
+  // defined as the node with the smallest key greater than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode postorderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+
+  // 1.) PostOrder Predecessor of a node is the node with the largest key smaller
+  // than the key of the input node.
+  // 2.) In Binary Search Tree, PostOrder Predecessor of an input node can also be
+  // defined as the node with the largest key smaller than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode postorderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        root = root.left;
+      } else if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  // 1.) LevelOrder Successor of a node is the node with the smallest key greater
+  // than the key of the input node.
+  // 2.) LevelOrder Successor of a node is the next node in LevelOrder traversal
+  // of the Binary Tree. LevelOrder Successor is NULL for the last node in
+  // LevelOrder traversal.
+  // 3.) In Binary Search Tree, LevelOrder Successor of an input node can also be
+  // defined as the node with the smallest key greater than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode levelorderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+
+  // 1.) LevelOrder Predecessor of a node is the node with the largest key smaller
+  // than the key of the input node.
+  // 2.) In Binary Search Tree, LevelOrder Predecessor of an input node can also be
+  // defined as the node with the largest key smaller than the key of input node.
+  // So, it is sometimes important to find next node in sorted order.
+  public static TreeNode levelorderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        root = root.left;
+      } else if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  // 1.) Morris Inorder Successor of a node is the node with the smallest key
+  // greater than the key of the input node.
+  // 2.) Morris Inorder Successor of a node is the next node in Morris Inorder
+  // traversal of the Binary Tree. Morris Inorder Successor is NULL for the last
+  // node in Morris Inorder traversal.
+  // 3.) In Binary Search Tree, Morris Inorder Successor of an input node can also
+  // be defined as the node with the smallest key greater than the key of input
+  // node. So, it is sometimes important to find next node in sorted order.
+  public static TreeNode morrisInorderSuccessor(TreeNode root, TreeNode node) {
+    if (node.right != null) {
+      TreeNode curr = node.right;
+      while (curr.left != null) {
+        curr = curr.left;
+      }
+      return curr;
+    }
+    TreeNode succ = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        succ = root;
+        root = root.left;
+      } else if (node.val > root.val) {
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return succ;
+  }
+
+  // 1.) Morris Inorder Predecessor of a node is the node with the largest key
+  // smaller than the key of the input node.
+  // 2.) In Binary Search Tree, Morris Inorder Predecessor of an input node can
+  // also be defined as the node with the largest key smaller than the key of
+  // input node. So, it is sometimes important to find next node in sorted order.
+  public static TreeNode morrisInorderPredecessor(TreeNode root, TreeNode node) {
+    if (node.left != null) {
+      TreeNode curr = node.left;
+      while (curr.right != null) {
+        curr = curr.right;
+      }
+      return curr;
+    }
+    TreeNode pred = null;
+    while (root != null) {
+      if (node.val < root.val) {
+        root = root.left;
+      } else if (node.val > root.val) {
+        pred = root;
+        root = root.right;
+      } else {
+        break;
+      }
+    }
+    return pred;
+  }
+
+  
 }
 
 // Question 31: Find Diameter of a Binary Search Tree
