@@ -157,11 +157,10 @@ public class Graph {
     adjacencyList = new HashMap<>();
   }
 
-public void addEdge(int from, int to) {
-adjacencyList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
-adjacencyList.computeIfAbsent(to, k -> new ArrayList<>()).add(from); // for
-undirected graph
-}
+  public void addEdge(int from, int to) {
+    adjacencyList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
+    adjacencyList.computeIfAbsent(to, k -> new ArrayList<>()).add(from); // for undirected graph
+  }
 
   public void dfs(int start) {
     Set<Integer> visited = new HashSet<>();
