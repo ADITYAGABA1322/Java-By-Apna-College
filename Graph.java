@@ -225,86 +225,86 @@
 
 // or
 
-import java.util.*;
+// import java.util.*;
 
-class Graph {
-  private int numVertices;
-  private LinkedList<Integer> adjLists[];
+// class Graph {
+//   private int numVertices;
+//   private LinkedList<Integer> adjLists[];
 
-  Graph(int vertices) {
-    numVertices = vertices;
-    adjLists = new LinkedList[vertices];
-    for (int i = 0; i < vertices; i++) {
-      adjLists[i] = new LinkedList<>();
-    }
-  }
+//   Graph(int vertices) {
+//     numVertices = vertices;
+//     adjLists = new LinkedList[vertices];
+//     for (int i = 0; i < vertices; i++) {
+//       adjLists[i] = new LinkedList<>();
+//     }
+//   }
 
-  void addEdge(int src, int dest) {
-    adjLists[src].add(dest);
-  }
+//   void addEdge(int src, int dest) {
+//     adjLists[src].add(dest);
+//   }
 
-  void DFS(int vertex) {
-    boolean visited[] = new boolean[numVertices];
-    DFSUtil(vertex, visited);
-  }
+//   void DFS(int vertex) {
+//     boolean visited[] = new boolean[numVertices];
+//     DFSUtil(vertex, visited);
+//   }
 
-  void DFSUtil(int vertex, boolean visited[]) {
-    visited[vertex] = true;
-    System.out.print(vertex + " ");
+//   void DFSUtil(int vertex, boolean visited[]) {
+//     visited[vertex] = true;
+//     System.out.print(vertex + " ");
 
-    Iterator<Integer> it = adjLists[vertex].listIterator();
-    while (it.hasNext()) {
-      int adj = it.next();
-      if (!visited[adj])
-        DFSUtil(adj, visited);
-    }
-  }
+//     Iterator<Integer> it = adjLists[vertex].listIterator();
+//     while (it.hasNext()) {
+//       int adj = it.next();
+//       if (!visited[adj])
+//         DFSUtil(adj, visited);
+//     }
+//   }
 
-  void BFS(int s) { // s = source
-    boolean visited[] = new boolean[numVertices];
-    LinkedList<Integer> queue = new LinkedList<>();
+//   void BFS(int s) { // s = source
+//     boolean visited[] = new boolean[numVertices];
+//     LinkedList<Integer> queue = new LinkedList<>();
 
-    visited[s] = true;
-    queue.add(s);
+//     visited[s] = true;
+//     queue.add(s);
 
-    while (queue.size() != 0) {
-      s = queue.poll();
-      System.out.print(s + " ");
+//     while (queue.size() != 0) {
+//       s = queue.poll();
+//       System.out.print(s + " ");
 
-      Iterator<Integer> i = adjLists[s].listIterator(); // i = iterator -> use i for iteration of adjLists of s (source) vertex and add it to queue if not visited and mark it as visited if not visited and repeat the process until queue is empty and print the queue at last to get the BFS traversal of the graph (i.e. the order in which the vertices are visited in BFS traversal of the graph) and we can also use a stack instead of queue to get the DFS traversal of the graph (i.e. the order in which the vertices are visited in DFS traversal of the graph) 
-      while (i.hasNext()) {
-        int n = i.next();
-        if (!visited[n]) {
-          queue.add(n);
-          visited[n] = true;
-        }
-      }
-    }
-  }
+//       Iterator<Integer> i = adjLists[s].listIterator(); // i = iterator -> use i for iteration of adjLists of s (source) vertex and add it to queue if not visited and mark it as visited if not visited and repeat the process until queue is empty and print the queue at last to get the BFS traversal of the graph (i.e. the order in which the vertices are visited in BFS traversal of the graph) and we can also use a stack instead of queue to get the DFS traversal of the graph (i.e. the order in which the vertices are visited in DFS traversal of the graph) 
+//       while (i.hasNext()) {
+//         int n = i.next();
+//         if (!visited[n]) {
+//           queue.add(n);
+//           visited[n] = true;
+//         }
+//       }
+//     }
+//   }
 
-  public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Enter the number of vertices:");
-    int v = scanner.nextInt();
-    System.out.println("Enter the number of edges:");
-    int e = scanner.nextInt();
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int v = scanner.nextInt();
+//     System.out.println("Enter the number of edges:");
+//     int e = scanner.nextInt();
 
-    Graph g = new Graph(v);
+//     Graph g = new Graph(v);
 
-    System.out.println("Enter the edges:");
-    for (int i = 0; i < e; i++) {
-      int src = scanner.nextInt();
-      int dest = scanner.nextInt();
-      g.addEdge(src, dest);
-    }
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < e; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       g.addEdge(src, dest);
+//     }
 
-    System.out.println("Following is Depth First Traversal:");
-    g.DFS(0);
+//     System.out.println("Following is Depth First Traversal:");
+//     g.DFS(0);
 
-    System.out.println("\nFollowing is Breadth First Traversal:");
-    g.BFS(0);
-  }
-}
+//     System.out.println("\nFollowing is Breadth First Traversal:");
+//     g.BFS(0);
+//   }
+// }
 
 // 2.) DFS (Depth First Search) - Iterative Approach
 
