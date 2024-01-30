@@ -144,84 +144,84 @@
 
 // or
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+// import java.util.*;
+// import java.util.stream.Collectors;
+// import java.util.stream.IntStream;
+// import java.util.stream.Stream;
 
-public class Graph {
+// public class Graph {
 
-  private Map<Integer, List<Integer>> adjacencyList;
+//   private Map<Integer, List<Integer>> adjacencyList;
 
-  public Graph() {
-    adjacencyList = new HashMap<>();
-  }
+//   public Graph() {
+//     adjacencyList = new HashMap<>();
+//   }
 
-  public void addEdge(int from, int to) {
-    adjacencyList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
-    adjacencyList.computeIfAbsent(to, k -> new ArrayList<>()).add(from); // for undirected graph
-  }
+//   public void addEdge(int from, int to) {
+//     adjacencyList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
+//     adjacencyList.computeIfAbsent(to, k -> new ArrayList<>()).add(from); // for undirected graph
+//   }
 
-  public void dfs(int start) {
-    Set<Integer> visited = new HashSet<>();
-    System.out.println("Depth-First Search:");
-    dfsRecursive(start, visited);
-  }
+//   public void dfs(int start) {
+//     Set<Integer> visited = new HashSet<>();
+//     System.out.println("Depth-First Search:");
+//     dfsRecursive(start, visited);
+//   }
 
-  private void dfsRecursive(int current, Set<Integer> visited) {
-    if (!visited.contains(current)) {
-      System.out.print(current + " ");
-      visited.add(current);
-      for (int neighbor : adjacencyList.getOrDefault(current,
-          Collections.emptyList())) {
-        dfsRecursive(neighbor, visited);
-      }
-    }
-  }
+//   private void dfsRecursive(int current, Set<Integer> visited) {
+//     if (!visited.contains(current)) {
+//       System.out.print(current + " ");
+//       visited.add(current);
+//       for (int neighbor : adjacencyList.getOrDefault(current,
+//           Collections.emptyList())) {
+//         dfsRecursive(neighbor, visited);
+//       }
+//     }
+//   }
 
-  public void bfs(int start) {
-    Set<Integer> visited = new HashSet<>();
-    Queue<Integer> queue = new LinkedList<>();
-    System.out.println("\nBreadth-First Search:");
-    queue.add(start);
+//   public void bfs(int start) {
+//     Set<Integer> visited = new HashSet<>();
+//     Queue<Integer> queue = new LinkedList<>();
+//     System.out.println("\nBreadth-First Search:");
+//     queue.add(start);
 
-    while (!queue.isEmpty()) {
-      int current = queue.poll();
-      if (!visited.contains(current)) {
-        System.out.print(current + " ");
-        visited.add(current);
-        for (int neighbor : adjacencyList.getOrDefault(current,
-            Collections.emptyList())) {
-          queue.add(neighbor);
-        }
-      }
-    }
-  }
+//     while (!queue.isEmpty()) {
+//       int current = queue.poll();
+//       if (!visited.contains(current)) {
+//         System.out.print(current + " ");
+//         visited.add(current);
+//         for (int neighbor : adjacencyList.getOrDefault(current,
+//             Collections.emptyList())) {
+//           queue.add(neighbor);
+//         }
+//       }
+//     }
+//   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-    System.out.print("Enter the number of vertices: ");
-    int vertices = scanner.nextInt();
+//     System.out.print("Enter the number of vertices: ");
+//     int vertices = scanner.nextInt();
 
-    Graph graph = new Graph();
+//     Graph graph = new Graph();
 
-    System.out.println("Enter the edges (format: from to):");
-    for (int i = 0; i < vertices - 1; i++) {
-      int from = scanner.nextInt();
-      int to = scanner.nextInt();
-      graph.addEdge(from, to);
-    }
+//     System.out.println("Enter the edges (format: from to):");
+//     for (int i = 0; i < vertices - 1; i++) {
+//       int from = scanner.nextInt();
+//       int to = scanner.nextInt();
+//       graph.addEdge(from, to);
+//     }
 
-    System.out.print("Enter the starting vertex for traversal: ");
-    int startVertex = scanner.nextInt();
+//     System.out.print("Enter the starting vertex for traversal: ");
+//     int startVertex = scanner.nextInt();
 
-    graph.dfs(startVertex);
-    graph.bfs(startVertex);
+//     graph.dfs(startVertex);
+//     graph.bfs(startVertex);
 
-    scanner.close();
-  }
-}
+//     scanner.close();
+//   }
+// }
 
 // or
 
