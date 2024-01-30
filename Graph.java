@@ -47,6 +47,28 @@ class Graph {
     }
   }
 
+  public void BFS(int s) { // s = source
+    boolean visited[] = new boolean[V];
+    LinkedList<Integer> queue = new LinkedList<>();
+
+    visited[s] = true;
+    queue.add(s);
+
+    while (queue.size() != 0) {
+      s = queue.poll();
+      System.out.print(s + " ");
+
+      Iterator<Integer> i = adj[s].listIterator(); // i = iterator -> use i for iteration of adjLists of s (source) vertex and add it to queue if not visited and mark it as visited if not visited and repeat the process until queue is empty and print the queue at last to get the BFS traversal of the graph (i.e. the order in which the vertices are visited in BFS traversal of the graph) and we can also use a stack instead of queue to get the DFS traversal of the graph (i.e. the order in which the vertices are visited in DFS traversal of the graph) 
+      while (i.hasNext()) {
+        int n = i.next();
+        if (!visited[n]) {
+          queue.add(n);
+          visited[n] = true;
+        }
+      }
+    }
+  }
+
   public static void main(String args[]) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Enter the number of vertices: ");
@@ -64,6 +86,9 @@ class Graph {
 
     System.out.println("Following is Depth First Traversal:");
     graph.DFS(0);
+
+    System.out.println("\nFollowing is Breadth First Traversal:");
+    graph.BFS(0);
 
   }
 }
