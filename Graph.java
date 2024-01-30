@@ -70,77 +70,77 @@
 
 // for dfs and bfs both code below
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+// import java.util.LinkedList;
+// import java.util.Queue;
+// import java.util.Scanner;
 
-public class Graph {
+// public class Graph {
 
-  static void print(int[][] edges, int n, int sv, boolean[] visited) {
-    System.out.println(sv);
-    visited[sv] = true;
-    for (int i = 0; i < n; i++) {
-      if (i == sv) {
-        continue;
-      }
-      if (edges[sv][i] == 1 && !visited[i]) {
-        print(edges, n, i, visited);
-      }
-    }
-  }
+//   static void print(int[][] edges, int n, int sv, boolean[] visited) {
+//     System.out.println(sv);
+//     visited[sv] = true;
+//     for (int i = 0; i < n; i++) {
+//       if (i == sv) {
+//         continue;
+//       }
+//       if (edges[sv][i] == 1 && !visited[i]) {
+//         print(edges, n, i, visited);
+//       }
+//     }
+//   }
 
-  static void printBFS(int[][] edges, int n, int sv) {
-    Queue<Integer> pendingVertices = new LinkedList<>();
-    boolean[] visited = new boolean[n];
-    for (int i = 0; i < n; i++) {
-      visited[i] = false;
-    }
-    pendingVertices.add(sv);
-    visited[sv] = true;
-    while (!pendingVertices.isEmpty()) {
-      int currentVertex = pendingVertices.poll();
-      System.out.println(currentVertex);
-      for (int i = 0; i < n; i++) {
-        if (i == currentVertex) {
-          continue;
-        }
-        if (edges[currentVertex][i] == 1 && !visited[i]) {
-          pendingVertices.add(i);
-          visited[i] = true;
-        }
-      }
-    }
-  }
+//   static void printBFS(int[][] edges, int n, int sv) {
+//     Queue<Integer> pendingVertices = new LinkedList<>();
+//     boolean[] visited = new boolean[n];
+//     for (int i = 0; i < n; i++) {
+//       visited[i] = false;
+//     }
+//     pendingVertices.add(sv);
+//     visited[sv] = true;
+//     while (!pendingVertices.isEmpty()) {
+//       int currentVertex = pendingVertices.poll();
+//       System.out.println(currentVertex);
+//       for (int i = 0; i < n; i++) {
+//         if (i == currentVertex) {
+//           continue;
+//         }
+//         if (edges[currentVertex][i] == 1 && !visited[i]) {
+//           pendingVertices.add(i);
+//           visited[i] = true;
+//         }
+//       }
+//     }
+//   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-    int n = scanner.nextInt();
-    int e = scanner.nextInt();
+//     int n = scanner.nextInt();
+//     int e = scanner.nextInt();
 
-    int[][] edges = new int[n][n];
-    for (int i = 0; i < e; i++) {
-      int f = scanner.nextInt();
-      int s = scanner.nextInt();
-      edges[f][s] = 1;
-      edges[s][f] = 1;
-    }
+//     int[][] edges = new int[n][n];
+//     for (int i = 0; i < e; i++) {
+//       int f = scanner.nextInt();
+//       int s = scanner.nextInt();
+//       edges[f][s] = 1;
+//       edges[s][f] = 1;
+//     }
 
-    boolean[] visited = new boolean[n];
-    for (int i = 0; i < n; i++) {
-      visited[i] = false;
-    }
+//     boolean[] visited = new boolean[n];
+//     for (int i = 0; i < n; i++) {
+//       visited[i] = false;
+//     }
 
-    System.out.println("DFS");
-    print(edges, n, 0, visited);
+//     System.out.println("DFS");
+//     print(edges, n, 0, visited);
 
-    System.out.println("BFS");
-    printBFS(edges, n, 0);
+//     System.out.println("BFS");
+//     printBFS(edges, n, 0);
 
-    // Delete all the memory
-    scanner.close();
-  }
-}
+//     // Delete all the memory
+//     scanner.close();
+//   }
+// }
 
 // or
 
