@@ -260,7 +260,7 @@ class Graph {
     }
   }
 
-  void BFS(int s) {
+  void BFS(int s) { // s = source
     boolean visited[] = new boolean[numVertices];
     LinkedList<Integer> queue = new LinkedList<>();
 
