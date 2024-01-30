@@ -4227,3 +4227,66 @@
 // }
 // }
 // }
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+// User function Template for Java
+
+class AdiEndTerm {
+  boolean isPossible(int[] arr, int n, int k, long mid) {
+    int painters = 1;
+    long total = 0;
+    for (int i = 0; i < n; i++) {
+      total += arr[i];
+      if (total > mid) {
+        total = arr[i];
+        painters++;
+        if (painters > k) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  long minTime(int[] arr, int n, int k) {
+    long low = Arrays.stream(arr).max().getAsInt();
+    long high = Arrays.stream(arr).sum();
+    while (low <= high) {
+      long mid = low + (high - low) / 2;
+      if (isPossible(arr, n, k, mid)) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return low;
+  }
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.println("Enter the number of elements:");
+    int n = scanner.nextInt();
+
+    System.out.println("Enter the number of painters:");
+    int k = scanner.nextInt();
+
+    int[] arr = new int[n];
+    System.out.println("Enter the elements:");
+
+    for (int i = 0; i < n; i++) {
+      arr[i] = scanner.nextInt();
+    }
+
+    AdiEndTerm ob = new AdiEndTerm();
+    long result = ob.minTime(arr, n, k);
+    System.out.println("Minimum time required: " + result);
+
+    scanner.close();
+  }
+}
