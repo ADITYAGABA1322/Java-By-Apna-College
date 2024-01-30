@@ -47,18 +47,23 @@ class Graph {
   }
 
   public static void main(String args[]) {
-    Graph g = new Graph(4);
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter the number of vertices: ");
+    int V = scanner.nextInt();
+    System.out.print("Enter the number of edges: ");
+    int E = scanner.nextInt();
+    Graph graph = new Graph(V);
 
-    g.addEdge(0, 1); // 0 -> 1
-    g.addEdge(0, 2); // 0 -> 2
-    g.addEdge(1, 2); // 1 -> 2
-    g.addEdge(2, 0); // 2 -> 0
-    g.addEdge(2, 3); // 2 -> 3
-    g.addEdge(3, 3); // 3 -> 3
+    System.out.println("Enter the edges:");
+    for (int i = 0; i < E; i++) {
+      int src = scanner.nextInt();
+      int dest = scanner.nextInt();
+      graph.addEdge(src, dest);
+    }
 
-    System.out.println("Following is Depth First Traversal (starting from vertex 2)");
+    System.out.println("Following is Depth First Traversal:");
+    graph.DFS(0);
 
-    g.DFS(2);
   }
 }
 
