@@ -783,138 +783,138 @@
 // Lets do important algorithms in Graphs
 // 1.) Dijkstra's Algorithm
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+// import java.util.*;
+// import java.lang.*;
+// import java.io.*;
 
-class Node implements Comparator<Node> {
-  public int node;
-  public int weight;
+// class Node implements Comparator<Node> {
+//   public int node;
+//   public int weight;
 
-  public Node() {
-  }
+//   public Node() {
+//   }
 
-  public Node(int node, int weight) {
-    this.node = node;
-    this.weight = weight;
-  }
+//   public Node(int node, int weight) {
+//     this.node = node;
+//     this.weight = weight;
+//   }
 
-  @Override
-  public int compare(Node node1, Node node2) {
-    if (node1.weight < node2.weight) {
-      return -1;
-    }
-    if (node1.weight > node2.weight) {
-      return 1;
-    }
-    return 0;
-  }
-}
+//   @Override
+//   public int compare(Node node1, Node node2) {
+//     if (node1.weight < node2.weight) {
+//       return -1;
+//     }
+//     if (node1.weight > node2.weight) {
+//       return 1;
+//     }
+//     return 0;
+//   }
+// }
 
-class Graph {
-  private int V;
-  private LinkedList<Node> adj[];
+// class Graph {
+//   private int V;
+//   private LinkedList<Node> adj[];
 
-  public Graph(int v) {
-    V = v;
-    adj = new LinkedList[v];
+//   public Graph(int v) {
+//     V = v;
+//     adj = new LinkedList[v];
 
-    for (int i = 0; i < v; i++) {
-      adj[i] = new LinkedList<Node>();
-    }
-  }
+//     for (int i = 0; i < v; i++) {
+//       adj[i] = new LinkedList<Node>();
+//     }
+//   }
 
-  // Add an edge into the graph
-  public void addEdge(int v, int w, int weight) {
-    adj[v].add(new Node(w, weight));
-  }
+//   // Add an edge into the graph
+//   public void addEdge(int v, int w, int weight) {
+//     adj[v].add(new Node(w, weight));
+//   }
 
-  // Dijkstra's Algorithm
-  public void dijkstra(int src) {
-    // Create a priority queue to store vertices that are being preprocessed
-    PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
+//   // Dijkstra's Algorithm
+//   public void dijkstra(int src) {
+//     // Create a priority queue to store vertices that are being preprocessed
+//     PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
 
-    // Create a vector for distances and initialize all distances as infinite
-    int dist[] = new int[V];
+//     // Create a vector for distances and initialize all distances as infinite
+//     int dist[] = new int[V];
 
-    // Create a vector to store parent pointers of all vertices
-    int parent[] = new int[V];
+//     // Create a vector to store parent pointers of all vertices
+//     int parent[] = new int[V];
 
-    // Create a vector to store vertices included in shortest path tree
-    // or shortest distance from src to i is finalized
-    boolean sptSet[] = new boolean[V];
+//     // Create a vector to store vertices included in shortest path tree
+//     // or shortest distance from src to i is finalized
+//     boolean sptSet[] = new boolean[V];
 
-    // Initialize all distances as INFINITE and stpSet[] as false
-    for (int i = 0; i < V; i++) {
-      dist[i] = Integer.MAX_VALUE;
-      sptSet[i] = false;
-    }
+//     // Initialize all distances as INFINITE and stpSet[] as false
+//     for (int i = 0; i < V; i++) {
+//       dist[i] = Integer.MAX_VALUE;
+//       sptSet[i] = false;
+//     }
 
-    // Distance of source vertex from itself is always 0
-    dist[src] = 0;
+//     // Distance of source vertex from itself is always 0
+//     dist[src] = 0;
 
-    // Insert source vertex into the priority queue and initialize its parent as -1
-    pq.add(new Node(src, 0));
-    parent[src] = -1;
+//     // Insert source vertex into the priority queue and initialize its parent as -1
+//     pq.add(new Node(src, 0));
+//     parent[src] = -1;
 
-    // Looping till priority queue becomes empty (or all distances are not
-    // finalized)
-    while (!pq.isEmpty()) {
-      // The first vertex in pair is the minimum distance vertex, extract it from
-      // priority queue.
-      // vertex label is stored in second of pair (it has to be done this way to keep
-      // the vertices
-      // sorted distance (distance must be first item in pair)
-      int u = pq.poll().node;
+//     // Looping till priority queue becomes empty (or all distances are not
+//     // finalized)
+//     while (!pq.isEmpty()) {
+//       // The first vertex in pair is the minimum distance vertex, extract it from
+//       // priority queue.
+//       // vertex label is stored in second of pair (it has to be done this way to keep
+//       // the vertices
+//       // sorted distance (distance must be first item in pair)
+//       int u = pq.poll().node;
 
-      // Mark the extracted vertex as processed
-      sptSet[u] = true;
+//       // Mark the extracted vertex as processed
+//       sptSet[u] = true;
 
-      // 'i' is used to get all adjacent vertices of a vertex
-      Iterator<Node> i = adj[u].listIterator();
+//       // 'i' is used to get all adjacent vertices of a vertex
+//       Iterator<Node> i = adj[u].listIterator();
 
-      while (i.hasNext()) {
-        Node node = i.next();
-        int v = node.node;
-        int weight = node.weight;
+//       while (i.hasNext()) {
+//         Node node = i.next();
+//         int v = node.node;
+//         int weight = node.weight;
 
-        // If there is shorted path to v through u.
-        if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
-          // Updating distance of v
-          dist[v] = dist[u] + weight;
-          pq.add(new Node(v, dist[v]));
-          parent[v] = u;
-        }
-      }
-    }
+//         // If there is shorted path to v through u.
+//         if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+//           // Updating distance of v
+//           dist[v] = dist[u] + weight;
+//           pq.add(new Node(v, dist[v]));
+//           parent[v] = u;
+//         }
+//       }
+//     }
 
-    // Print shortest distances stored in dist[]
-    System.out.println("Vertex Distance from Source");
-    for (int i = 0; i < V; i++) {
-      System.out.println(i + " " + dist[i]);
-    }
-  }
+//     // Print shortest distances stored in dist[]
+//     System.out.println("Vertex Distance from Source");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println(i + " " + dist[i]);
+//     }
+//   }
 
-  public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Enter the number of vertices: ");
-    int V = scanner.nextInt();
-    System.out.print("Enter the number of edges: ");
-    int E = scanner.nextInt();
-    Graph graph = new Graph(V);
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.print("Enter the number of vertices: ");
+//     int V = scanner.nextInt();
+//     System.out.print("Enter the number of edges: ");
+//     int E = scanner.nextInt();
+//     Graph graph = new Graph(V);
 
-    System.out.println("Enter the edges:");
-    for (int i = 0; i < E; i++) {
-      int src = scanner.nextInt();
-      int dest = scanner.nextInt();
-      int weight = scanner.nextInt();
-      graph.addEdge(src, dest, weight);
-    }
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < E; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       int weight = scanner.nextInt();
+//       graph.addEdge(src, dest, weight);
+//     }
 
-    graph.dijkstra(0);
+//     graph.dijkstra(0);
 
-  }
-}
+//   }
+// }
 
 // 2nd method without using iterator
 
@@ -1660,59 +1660,59 @@ class Graph {
 // import java.util.Scanner;
 
 // public class Graph {
-// final static int INF = 99999;
+//   final static int INF = 99999;
 
-// void floydWarshall(int graph[][]) {
-// int V = graph.length;
-// int dist[][] = new int[V][V];
-// int i, j, k;
+//   void floydWarshall(int graph[][]) {
+//     int V = graph.length;
+//     int dist[][] = new int[V][V];
+//     int i, j, k;
 
-// for (i = 0; i < V; i++)
-// for (j = 0; j < V; j++)
-// dist[i][j] = (i == j) ? 0 : (graph[i][j] == 0 ? INF : graph[i][j]);
+//     for (i = 0; i < V; i++)
+//       for (j = 0; j < V; j++)
+//         dist[i][j] = (i == j) ? 0 : (graph[i][j] == 0 ? INF : graph[i][j]);
 
-// for (k = 0; k < V; k++) {
-// for (i = 0; i < V; i++) {
-// for (j = 0; j < V; j++) {
-// if (dist[i][k] + dist[k][j] < dist[i][j])
-// dist[i][j] = dist[i][k] + dist[k][j];
-// }
-// }
-// }
+//     for (k = 0; k < V; k++) {
+//       for (i = 0; i < V; i++) {
+//         for (j = 0; j < V; j++) {
+//           if (dist[i][k] + dist[k][j] < dist[i][j])
+//             dist[i][j] = dist[i][k] + dist[k][j];
+//         }
+//       }
+//     }
 
-// printSolution(dist);
-// }
+//     printSolution(dist);
+//   }
 
-// void printSolution(int dist[][]) {
-// System.out.println("Following matrix shows the shortest " +
-// "distances between every pair of vertices");
-// for (int i = 0; i < dist.length; ++i) {
-// for (int j = 0; j < dist.length; ++j) {
-// if (dist[i][j] == INF)
-// System.out.print("INF ");
-// else
-// System.out.print(dist[i][j] + " ");
-// }
-// System.out.println();
-// }
-// }
+//   void printSolution(int dist[][]) {
+//     System.out.println("Following matrix shows the shortest " +
+//         "distances between every pair of vertices");
+//     for (int i = 0; i < dist.length; ++i) {
+//       for (int j = 0; j < dist.length; ++j) {
+//         if (dist[i][j] == INF)
+//           System.out.print("INF ");
+//         else
+//           System.out.print(dist[i][j] + " ");
+//       }
+//       System.out.println();
+//     }
+//   }
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
-// System.out.println("Enter the number of vertices:");
-// int V = scanner.nextInt();
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int V = scanner.nextInt();
 
-// int graph[][] = new int[V][V];
-// System.out.println("Enter the graph matrix:");
-// for (int i = 0; i < V; ++i) {
-// for (int j = 0; j < V; ++j) {
-// graph[i][j] = scanner.nextInt();
-// }
-// }
+//     int graph[][] = new int[V][V];
+//     System.out.println("Enter the graph matrix:");
+//     for (int i = 0; i < V; ++i) {
+//       for (int j = 0; j < V; ++j) {
+//         graph[i][j] = scanner.nextInt();
+//       }
+//     }
 
-// Graph a = new Graph();
-// a.floydWarshall(graph);
-// }
+//     Graph a = new Graph();
+//     a.floydWarshall(graph);
+//   }
 // }
 
 // Input Format:
