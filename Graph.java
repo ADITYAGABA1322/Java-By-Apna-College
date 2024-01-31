@@ -783,138 +783,269 @@
 // Lets do important algorithms in Graphs
 // 1.) Dijkstra's Algorithm
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+// import java.util.*;
+// import java.lang.*;
+// import java.io.*;
 
-class Node implements Comparator<Node> {
-  public int node;
-  public int weight;
+// class Node implements Comparator<Node> {
+//   public int node;
+//   public int weight;
 
-  public Node() {
-  }
+//   public Node() {
+//   }
 
-  public Node(int node, int weight) {
-    this.node = node;
-    this.weight = weight;
-  }
+//   public Node(int node, int weight) {
+//     this.node = node;
+//     this.weight = weight;
+//   }
 
-  @Override
-  public int compare(Node node1, Node node2) {
-    if (node1.weight < node2.weight) {
-      return -1;
-    }
-    if (node1.weight > node2.weight) {
-      return 1;
-    }
-    return 0;
-  }
-}
+//   @Override
+//   public int compare(Node node1, Node node2) {
+//     if (node1.weight < node2.weight) {
+//       return -1;
+//     }
+//     if (node1.weight > node2.weight) {
+//       return 1;
+//     }
+//     return 0;
+//   }
+// }
 
-class Graph {
-  private int V;
-  private LinkedList<Node> adj[];
+// class Graph {
+//   private int V;
+//   private LinkedList<Node> adj[];
 
-  public Graph(int v) {
-    V = v;
-    adj = new LinkedList[v];
+//   public Graph(int v) {
+//     V = v;
+//     adj = new LinkedList[v];
 
-    for (int i = 0; i < v; i++) {
-      adj[i] = new LinkedList<Node>();
-    }
-  }
+//     for (int i = 0; i < v; i++) {
+//       adj[i] = new LinkedList<Node>();
+//     }
+//   }
 
-  // Add an edge into the graph
-  public void addEdge(int v, int w, int weight) {
-    adj[v].add(new Node(w, weight));
-  }
+//   // Add an edge into the graph
+//   public void addEdge(int v, int w, int weight) {
+//     adj[v].add(new Node(w, weight));
+//   }
 
-  // Dijkstra's Algorithm
-  public void dijkstra(int src) {
-    // Create a priority queue to store vertices that are being preprocessed
-    PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
+//   // Dijkstra's Algorithm
+//   public void dijkstra(int src) {
+//     // Create a priority queue to store vertices that are being preprocessed
+//     PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
 
-    // Create a vector for distances and initialize all distances as infinite
-    int dist[] = new int[V];
+//     // Create a vector for distances and initialize all distances as infinite
+//     int dist[] = new int[V];
 
-    // Create a vector to store parent pointers of all vertices
-    int parent[] = new int[V];
+//     // Create a vector to store parent pointers of all vertices
+//     int parent[] = new int[V];
 
-    // Create a vector to store vertices included in shortest path tree
-    // or shortest distance from src to i is finalized
-    boolean sptSet[] = new boolean[V];
+//     // Create a vector to store vertices included in shortest path tree
+//     // or shortest distance from src to i is finalized
+//     boolean sptSet[] = new boolean[V];
 
-    // Initialize all distances as INFINITE and stpSet[] as false
-    for (int i = 0; i < V; i++) {
-      dist[i] = Integer.MAX_VALUE;
-      sptSet[i] = false;
-    }
+//     // Initialize all distances as INFINITE and stpSet[] as false
+//     for (int i = 0; i < V; i++) {
+//       dist[i] = Integer.MAX_VALUE;
+//       sptSet[i] = false;
+//     }
 
-    // Distance of source vertex from itself is always 0
-    dist[src] = 0;
+//     // Distance of source vertex from itself is always 0
+//     dist[src] = 0;
 
-    // Insert source vertex into the priority queue and initialize its parent as -1
-    pq.add(new Node(src, 0));
-    parent[src] = -1;
+//     // Insert source vertex into the priority queue and initialize its parent as -1
+//     pq.add(new Node(src, 0));
+//     parent[src] = -1;
 
-    // Looping till priority queue becomes empty (or all distances are not
-    // finalized)
-    while (!pq.isEmpty()) {
-      // The first vertex in pair is the minimum distance vertex, extract it from
-      // priority queue.
-      // vertex label is stored in second of pair (it has to be done this way to keep
-      // the vertices
-      // sorted distance (distance must be first item in pair)
-      int u = pq.poll().node;
+//     // Looping till priority queue becomes empty (or all distances are not
+//     // finalized)
+//     while (!pq.isEmpty()) {
+//       // The first vertex in pair is the minimum distance vertex, extract it from
+//       // priority queue.
+//       // vertex label is stored in second of pair (it has to be done this way to keep
+//       // the vertices
+//       // sorted distance (distance must be first item in pair)
+//       int u = pq.poll().node;
 
-      // Mark the extracted vertex as processed
-      sptSet[u] = true;
+//       // Mark the extracted vertex as processed
+//       sptSet[u] = true;
 
-      // 'i' is used to get all adjacent vertices of a vertex
-      Iterator<Node> i = adj[u].listIterator();
+//       // 'i' is used to get all adjacent vertices of a vertex
+//       Iterator<Node> i = adj[u].listIterator();
 
-      while (i.hasNext()) {
-        Node node = i.next();
-        int v = node.node;
-        int weight = node.weight;
+//       while (i.hasNext()) {
+//         Node node = i.next();
+//         int v = node.node;
+//         int weight = node.weight;
 
-        // If there is shorted path to v through u.
-        if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
-          // Updating distance of v
-          dist[v] = dist[u] + weight;
-          pq.add(new Node(v, dist[v]));
-          parent[v] = u;
-        }
-      }
-    }
+//         // If there is shorted path to v through u.
+//         if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+//           // Updating distance of v
+//           dist[v] = dist[u] + weight;
+//           pq.add(new Node(v, dist[v]));
+//           parent[v] = u;
+//         }
+//       }
+//     }
 
-    // Print shortest distances stored in dist[]
-    System.out.println("Vertex Distance from Source");
-    for (int i = 0; i < V; i++) {
-      System.out.println(i + " " + dist[i]);
-    }
-  }
+//     // Print shortest distances stored in dist[]
+//     System.out.println("Vertex Distance from Source");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println(i + " " + dist[i]);
+//     }
+//   }
 
-  public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Enter the number of vertices: ");
-    int V = scanner.nextInt();
-    System.out.print("Enter the number of edges: ");
-    int E = scanner.nextInt();
-    Graph graph = new Graph(V);
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.print("Enter the number of vertices: ");
+//     int V = scanner.nextInt();
+//     System.out.print("Enter the number of edges: ");
+//     int E = scanner.nextInt();
+//     Graph graph = new Graph(V);
 
-    System.out.println("Enter the edges:");
-    for (int i = 0; i < E; i++) {
-      int src = scanner.nextInt();
-      int dest = scanner.nextInt();
-      int weight = scanner.nextInt();
-      graph.addEdge(src, dest, weight);
-    }
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < E; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       int weight = scanner.nextInt();
+//       graph.addEdge(src, dest, weight);
+//     }
 
-    graph.dijkstra(0);
+//     graph.dijkstra(0);
 
-  }
-}
+//   }
+// }
+
+// 2nd method without using iterator
+
+// import java.util.*;
+
+// class Graph {
+//   class Node implements Comparator<Node> {
+//     public int node;
+//     public int weight;
+
+//     public Node() {
+//     }
+
+//     public Node(int node, int weight) {
+//       this.node = node;
+//       this.weight = weight;
+//     }
+
+//     @Override
+//     public int compare(Node node1, Node node2) {
+//       if (node1.weight < node2.weight) {
+//         return -1;
+//       }
+//       if (node1.weight > node2.weight) {
+//         return 1;
+//       }
+//       return 0;
+//     }
+//   }
+
+//   private int V;
+//   private LinkedList<Node> adj[];
+
+//   public Graph(int v) {
+//     V = v;
+//     adj = new LinkedList[v];
+
+//     for (int i = 0; i < v; i++) {
+//       adj[i] = new LinkedList<Node>();
+//     }
+//   }
+
+//   // Add an edge into the graph
+//   public void addEdge(int v, int w, int weight) {
+//     adj[v].add(new Node(w, weight));
+//   }
+
+//   // Dijkstra's Algorithm
+//   public void dijkstra(int src) {
+//     // Create a priority queue to store vertices that are being preprocessed
+//     PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
+
+//     // Create a vector for distances and initialize all distances as infinite
+//     int dist[] = new int[V];
+
+//     // Create a vector to store parent pointers of all vertices
+//     int parent[] = new int[V];
+
+//     // Create a vector to store vertices included in shortest path tree
+//     // or shortest distance from src to i is finalized
+//     boolean sptSet[] = new boolean[V];
+
+//     // Initialize all distances as INFINITE and stpSet[] as false
+//     for (int i = 0; i < V; i++) {
+//       dist[i] = Integer.MAX_VALUE;
+//       sptSet[i] = false;
+//     }
+
+//     // Distance of source vertex from itself is always 0
+//     dist[src] = 0;
+
+//     // Insert source vertex into the priority queue and initialize its parent as -1
+//     pq.add(new Node(src, 0));
+//     parent[src] = -1;
+
+//     // Looping till priority queue becomes empty (or all distances are not
+//     // finalized)
+//     while (!pq.isEmpty()) {
+//       // The first vertex in pair is the minimum distance vertex, extract it from
+//       // priority queue.
+//       // vertex label is stored in second of pair (it has to be done this way to keep
+//       // the vertices
+//       // sorted distance (distance must be first item in pair)
+//       int u = pq.poll().node;
+
+//       // Mark the extracted vertex as processed
+//       sptSet[u] = true;
+
+//       // 'i' is used to get all adjacent vertices of a vertex
+//       for (Node node : adj[u]) {
+//         int v = node.node;
+//         int weight = node.weight;
+
+//         // If there is shorted path
+//         // to v through u.
+//         if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+//           // Updating distance of v
+//           dist[v] = dist[u] + weight;
+//           pq.add(new Node(v, dist[v]));
+//           parent[v] = u;
+//         }
+//       }
+//     }
+
+//     // Print shortest distances stored in dist[]
+//     System.out.println("Vertex Distance from Source");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println(i + " " + dist[i]);
+//     }
+//   }
+
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.print("Enter the number of vertices: ");
+//     int V = scanner.nextInt();
+//     System.out.print("Enter the number of edges: ");
+//     int E = scanner.nextInt();
+//     Graph graph = new Graph(V);
+
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < E; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       int weight = scanner.nextInt();
+//       graph.addEdge(src, dest, weight);
+//     }
+
+//     graph.dijkstra(0);
+
+//   }
+// }
 
 // input format
 // Enter the number of vertices: 9
@@ -947,12 +1078,102 @@ class Graph {
 // 7 8
 // 8 14
 
+// or 
 
+import java.util.*;
+import java.util.Arrays;
 
+class Graph {
+  private int V;
+  private List<Edge>[] adj;
 
+  class Edge {
+    int destination;
+    int weight;
 
+    Edge(int destination, int weight) {
+      this.destination = destination;
+      this.weight = weight;
+    }
+  }
 
+  public Graph(int v) {
+    V = v;
+    adj = new ArrayList[V];
+    for (int i = 0; i < V; i++) {
+      adj[i] = new ArrayList<>();
+    }
+  }
 
+  public void addEdge(int source, int destination, int weight) {
+    adj[source].add(new Edge(destination, weight));
+    adj[destination].add(new Edge(source, weight)); // For undirected graph
+  }
+
+  public void dijkstra(int source) {
+    PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
+    int[] distance = new int[V];
+    Arrays.fill(distance, Integer.MAX_VALUE);
+    distance[source] = 0;
+
+    minHeap.add(new Node(source, 0));
+
+    while (!minHeap.isEmpty()) {
+      Node current = minHeap.poll();
+
+      for (Edge neighbor : adj[current.vertex]) {
+        int newDistance = distance[current.vertex] + neighbor.weight;
+
+        if (newDistance < distance[neighbor.destination]) {
+          distance[neighbor.destination] = newDistance;
+          minHeap.add(new Node(neighbor.destination, newDistance));
+        }
+      }
+    }
+
+    printShortestPaths(distance);
+  }
+
+  private void printShortestPaths(int[] distance) {
+    System.out.println("Shortest Distances from Source:");
+    for (int i = 0; i < V; i++) {
+      System.out.println("Vertex " + i + ": " + distance[i]);
+    }
+  }
+
+  class Node {
+    int vertex;
+    int distance;
+
+    Node(int vertex, int distance) {
+      this.vertex = vertex;
+      this.distance = distance;
+    }
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("Enter No of vertices");
+    int V = sc.nextInt();
+
+    System.out.println("Enter No of Edges");
+    int E = sc.nextInt();
+
+    Graph graph = new Graph(V);
+    for (int i = 0; i < E; i++) {
+      int src = sc.nextInt();
+      int des = sc.nextInt();
+      int weight = sc.nextInt();
+      graph.addEdge(src, des, weight);
+    }
+
+    System.out.println("Enter Source Vertex:");
+    int source = sc.nextInt();
+
+    graph.dijkstra(source);
+  }
+}
 
 // 2.) Bellman Ford Algorithm
 // 3.) Floyd Warshall Algorithm
