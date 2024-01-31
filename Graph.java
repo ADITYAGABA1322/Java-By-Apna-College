@@ -1269,85 +1269,86 @@
 // 3 9
 
 // or 
-import java.util.*;
-import java.util.Arrays;
 
-class Graph {
-  private int V;
-  private int[][] graph;
+// import java.util.*;
+// import java.util.Arrays;
 
-  public Graph(int v) {
-    V = v;
-    graph = new int[V][V];
-  }
+// class Graph {
+//   private int V;
+//   private int[][] graph;
 
-  public void readGraphMatrix(Scanner scanner) {
-    System.out.println("Enter the graph matrix:");
-    for (int i = 0; i < V; i++) {
-      for (int j = 0; j < V; j++) {
-        graph[i][j] = scanner.nextInt();
-      }
-    }
-  }
+//   public Graph(int v) {
+//     V = v;
+//     graph = new int[V][V];
+//   }
 
-  public void dijkstra(int source) {
-    int[] distance = new int[V];
-    boolean[] visited = new boolean[V];
+//   public void readGraphMatrix(Scanner scanner) {
+//     System.out.println("Enter the graph matrix:");
+//     for (int i = 0; i < V; i++) {
+//       for (int j = 0; j < V; j++) {
+//         graph[i][j] = scanner.nextInt();
+//       }
+//     }
+//   }
 
-    Arrays.fill(distance, Integer.MAX_VALUE);
-    distance[source] = 0;
+//   public void dijkstra(int source) {
+//     int[] distance = new int[V];
+//     boolean[] visited = new boolean[V];
 
-    for (int count = 0; count < V - 1; count++) {
-      int u = minDistance(distance, visited);
-      visited[u] = true;
+//     Arrays.fill(distance, Integer.MAX_VALUE);
+//     distance[source] = 0;
 
-      for (int v = 0; v < V; v++) {
-        if (!visited[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE
-            && distance[u] + graph[u][v] < distance[v]) {
-          distance[v] = distance[u] + graph[u][v];
-        }
-      }
-    }
+//     for (int count = 0; count < V - 1; count++) {
+//       int u = minDistance(distance, visited);
+//       visited[u] = true;
 
-    printShortestPaths(distance);
-  }
+//       for (int v = 0; v < V; v++) {
+//         if (!visited[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE
+//             && distance[u] + graph[u][v] < distance[v]) {
+//           distance[v] = distance[u] + graph[u][v];
+//         }
+//       }
+//     }
 
-  private int minDistance(int[] distance, boolean[] visited) {
-    int min = Integer.MAX_VALUE;
-    int minIndex = -1;
+//     printShortestPaths(distance);
+//   }
 
-    for (int v = 0; v < V; v++) {
-      if (!visited[v] && distance[v] <= min) {
-        min = distance[v];
-        minIndex = v;
-      }
-    }
+//   private int minDistance(int[] distance, boolean[] visited) {
+//     int min = Integer.MAX_VALUE;
+//     int minIndex = -1;
 
-    return minIndex;
-  }
+//     for (int v = 0; v < V; v++) {
+//       if (!visited[v] && distance[v] <= min) {
+//         min = distance[v];
+//         minIndex = v;
+//       }
+//     }
 
-  private void printShortestPaths(int[] distance) {
-    System.out.println("Shortest Distances from Source:");
-    for (int i = 0; i < V; i++) {
-      System.out.println("Vertex " + i + ": " + distance[i]);
-    }
-  }
+//     return minIndex;
+//   }
 
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+//   private void printShortestPaths(int[] distance) {
+//     System.out.println("Shortest Distances from Source:");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println("Vertex " + i + ": " + distance[i]);
+//     }
+//   }
 
-    System.out.println("Enter the number of vertices:");
-    int V = sc.nextInt();
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
 
-    Graph dijkstraAlgorithm = new Graph(V);
-    dijkstraAlgorithm.readGraphMatrix(sc);
+//     System.out.println("Enter the number of vertices:");
+//     int V = sc.nextInt();
 
-    System.out.println("Enter the source vertex:");
-    int source = sc.nextInt();
+//     Graph dijkstraAlgorithm = new Graph(V);
+//     dijkstraAlgorithm.readGraphMatrix(sc);
 
-    dijkstraAlgorithm.dijkstra(source);
-  }
-}
+//     System.out.println("Enter the source vertex:");
+//     int source = sc.nextInt();
+
+//     dijkstraAlgorithm.dijkstra(source);
+//   }
+// }
 
 // 2.) Bellman Ford Algorithm
 // 3.) Floyd Warshall Algorithm
