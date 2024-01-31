@@ -124,176 +124,183 @@
 // For the given input, nodes 30 20 40 10 50 are inserted into the AVL tree, and
 // the preorder traversal of the created AVL tree is 30 20 10 40 50.
 
-// import java.util.*;
+import java.util.*;
 
-// class Node {
-//   int data;
-//   Node left, right;
+class Node {
+  int data;
+  Node left, right;
 
-//   Node(int data) {
-//     this.data = data;
-//     left = right = null;
-//   }
-// }
+  Node(int data) {
+    this.data = data;
+    left = right = null;
+  }
+}
 
-// class AVLTree {
-//   Node root;
+class AVLTree {
+  Node root;
 
-//   AVLTree() {
-//     root = null;
-//   }
+  AVLTree() {
+    root = null;
+  }
 
-//   int height(Node node) {
-//     if (node == null)
-//       return 0;
-//     return 1 + Math.max(height(node.left), height(node.right));
-//   }
+  int height(Node node) {
+    if (node == null)
+      return 0;
+    return 1 + Math.max(height(node.left), height(node.right));
+  }
 
-//   int getBalance(Node node) {
-//     if (node == null)
-//       return 0;
-//     return height(node.left) - height(node.right);
-//   }
+  int getBalance(Node node) {
+    if (node == null)
+      return 0;
+    return height(node.left) - height(node.right);
+  }
 
-//   Node rightRotate(Node node) {
-//     Node temp = node.left;
-//     Node temp2 = temp.right;
-//     temp.right = node;
-//     node.left = temp2;
-//     return temp;
-//   }
+  Node rightRotate(Node node) {
+    Node temp = node.left;
+    Node temp2 = temp.right;
+    temp.right = node;
+    node.left = temp2;
+    return temp;
+  }
 
-//   Node leftRotate(Node node) {
-//     Node temp = node.right;
-//     Node temp2 = temp.left;
-//     temp.left = node;
-//     node.right = temp2;
-//     return temp;
-//   }
+  Node leftRotate(Node node) {
+    Node temp = node.right;
+    Node temp2 = temp.left;
+    temp.left = node;
+    node.right = temp2;
+    return temp;
+  }
 
-//   Node insert(Node node, int data) {
-//     if (node == null)
-//       return new Node(data);
-//     if (data < node.data)
-//       node.left = insert(node.left, data);
-//     else if (data > node.data)
-//       node.right = insert(node.right, data);
-//     else
-//       return node;
-//     int balance = getBalance(node);
-//     if (balance > 1 && data < node.left.data)
-//       return rightRotate(node);
-//     if (balance < -1 && data > node.right.data)
-//       return leftRotate(node);
-//     if (balance > 1 && data > node.left.data) {
-//       node.left = leftRotate(node.left);
-//       return rightRotate(node);
-//     }
-//     if (balance < -1 && data < node.right.data) {
-//       node.right = rightRotate(node.right);
-//       return leftRotate(node);
-//     }
-//     return node;
-//   }
+  Node insert(Node node, int data) {
+    if (node == null)
+      return new Node(data);
+    if (data < node.data)
+      node.left = insert(node.left, data);
+    else if (data > node.data)
+      node.right = insert(node.right, data);
+    else
+      return node;
+    int balance = getBalance(node);
+    if (balance > 1 && data < node.left.data)
+      return rightRotate(node);
+    if (balance < -1 && data > node.right.data)
+      return leftRotate(node);
+    if (balance > 1 && data > node.left.data) {
+      node.left = leftRotate(node.left);
+      return rightRotate(node);
+    }
+    if (balance < -1 && data < node.right.data) {
+      node.right = rightRotate(node.right);
+      return leftRotate(node);
+    }
+    return node;
+  }
 
-//   Node minValueNode(Node node) {
-//     Node current = node;
-//     while (current.left != null)
-//       current = current.left;
-//     return current;
-//   }
+  Node minValueNode(Node node) {
+    Node current = node;
+    while (current.left != null)
+      current = current.left;
+    return current;
+  }
 
-//   Node deleteNode(Node root, int data) {
-//     if (root == null)
-//       return root;
-//     if (data < root.data)
-//       root.left = deleteNode(root.left, data);
-//     else if (data > root.data)
-//       root.right = deleteNode(root.right, data);
-//     else {
-//       if ((root.left == null) || (root.right == null)) {
-//         Node temp = null;
-//         if (temp == root.left)
-//           temp = root.right;
-//         else
-//           temp = root.left;
-//         if (temp == null) {
-//           temp = root;
-//           root = null;
-//         } else
-//           root = temp;
-//       } else {
-//         Node temp = minValueNode(root.right);
-//         root.data = temp.data;
-//         root.right = deleteNode(root.right, temp.data);
-//       }
-//     }
-//     if (root == null)
-//       return root;
-//     int balance = getBalance(root);
-//     if (balance > 1 && getBalance(root.left) >= 0)
-//       return rightRotate(root);
-//     if (balance > 1 && getBalance(root.left) < 0) {
-//       root.left = leftRotate(root.left);
-//       return rightRotate(root);
-//     }
-//     if (balance < -1 && getBalance(root.right) <= 0)
-//       return leftRotate(root);
-//     if (balance < -1 && getBalance(root.right) > 0) {
-//       root.right = rightRotate(root.right);
-//       return leftRotate(root);
-//     }
-//     return root;
-//   }
+  Node deleteNode(Node root, int data) {
+    if (root == null)
+      return root;
+    if (data < root.data)
+      root.left = deleteNode(root.left, data);
+    else if (data > root.data)
+      root.right = deleteNode(root.right, data);
+    else {
+      if ((root.left == null) || (root.right == null)) {
+        Node temp = null;
+        if (temp == root.left)
+          temp = root.right;
+        else
+          temp = root.left;
+        if (temp == null) {
+          temp = root;
+          root = null;
+        } else
+          root = temp;
+      } else {
+        // 1st Method
+        Node temp = root.right;
+        while (temp.left != null)
+          temp = temp.left;
+        root.data = temp.data;
+        root.right = deleteNode(root.right, temp.data);
+        // 2nd Method
+        // Node temp = minValueNode(root.right);
+        // root.data = temp.data;
+        // root.right = deleteNode(root.right, temp.data);
+      }
+    }
+    if (root == null)
+      return root;
+    int balance = getBalance(root);
+    if (balance > 1 && getBalance(root.left) >= 0)
+      return rightRotate(root);
+    if (balance > 1 && getBalance(root.left) < 0) {
+      root.left = leftRotate(root.left);
+      return rightRotate(root);
+    }
+    if (balance < -1 && getBalance(root.right) <= 0)
+      return leftRotate(root);
+    if (balance < -1 && getBalance(root.right) > 0) {
+      root.right = rightRotate(root.right);
+      return leftRotate(root);
+    }
+    return root;
+  }
 
-//   void preOrder(Node node) {
-//     if (node != null) {
-//       System.out.print(node.data + " ");
-//       preOrder(node.left);
-//       preOrder(node.right);
-//     }
-//   }
+  void preOrder(Node node) {
+    if (node != null) {
+      System.out.print(node.data + " ");
+      preOrder(node.left);
+      preOrder(node.right);
+    }
+  }
 
-//   void printTree(Node node) {
-//     if (node != null) {
-//       System.out.println(node.data);
-//       if (node.left != null)
-//         System.out.println("Left: " + node.left.data);
-//       if (node.right != null)
-//         System.out.println("Right: " + node.right.data);
+  void printTree(Node node) {
+    if (node != null) {
+      System.out.println(node.data);
+      if (node.left != null)
+        System.out.println("Left: " + node.left.data);
+      if (node.right != null)
+        System.out.println("Right: " + node.right.data);
 
-//       printTree(node.left);
-//       printTree(node.right);
-//     }
+      printTree(node.left);
+      printTree(node.right);
+    }
 
-//   }
-// }
+  }
+}
 
-// class AdiEndTerm {
+class AdiEndTerm {
 
-//   public static void main(String[] args) {
-//     AVLTree tree = new AVLTree();
-//     Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) {
+    AVLTree tree = new AVLTree();
+    Scanner scanner = new Scanner(System.in);
 
-//     System.out.print("Enter the number of nodes: ");
-//     int n = scanner.nextInt();
+    System.out.print("Enter the number of nodes: ");
+    int n = scanner.nextInt();
 
-//     System.out.println("Enter the keys for the nodes:");
-//     for (int i = 0; i < n; i++) {
-//       int key = scanner.nextInt();
-//       tree.root = tree.insert(tree.root, key);
-//     }
-//     tree.printTree(tree.root);
+    System.out.println("Enter the keys for the nodes:");
+    for (int i = 0; i < n; i++) {
+      int key = scanner.nextInt();
+      tree.root = tree.insert(tree.root, key);
+    }
+    tree.printTree(tree.root);
 
-//     int deleteKey = 0;
-//     System.out.print("Enter the key to delete: ");
-//     deleteKey = scanner.nextInt();
-//     tree.root = tree.deleteNode(tree.root, deleteKey);
-//     tree.printTree(tree.root);
-//     tree.preOrder(tree.root);
+    int deleteKey = 0;
+    System.out.print("Enter the key to delete: ");
+    deleteKey = scanner.nextInt();
+    tree.root = tree.deleteNode(tree.root, deleteKey);
+    tree.printTree(tree.root);
+    tree.preOrder(tree.root);
 
-//   }
-// }
+  }
+}
 
 // 3. Problem Statement
 // Write a Java code to perform the Node Deletion of the Leaf Nodes form the
@@ -318,95 +325,95 @@
 // import java.util.Scanner;
 
 // class Node {
-//   int data;
-//   Node left, right;
+// int data;
+// Node left, right;
 
-//   public Node(int item) {
-//     data = item;
-//     left = right = null;
-//   }
+// public Node(int item) {
+// data = item;
+// left = right = null;
+// }
 // }
 
 // class BST {
-//   Node root;
+// Node root;
 
-//   BST() {
-//     root = null;
-//   }
+// BST() {
+// root = null;
+// }
 
-//   void insert(int data) {
-//     root = insertRec(root, data);
-//   }
+// void insert(int data) {
+// root = insertRec(root, data);
+// }
 
-//   Node insertRec(Node root, int data) {
-//     if (root == null) {
-//       root = new Node(data);
-//       return root;
-//     }
+// Node insertRec(Node root, int data) {
+// if (root == null) {
+// root = new Node(data);
+// return root;
+// }
 
-//     if (data < root.data) {
-//       root.left = insertRec(root.left, data);
-//     } else if (data > root.data) {
-//       root.right = insertRec(root.right, data);
-//     }
+// if (data < root.data) {
+// root.left = insertRec(root.left, data);
+// } else if (data > root.data) {
+// root.right = insertRec(root.right, data);
+// }
 
-//     return root;
-//   }
+// return root;
+// }
 
-//   void deleteLeafNodes() {
-//     root = deleteLeafNodesUtil(root);
-//   }
+// void deleteLeafNodes() {
+// root = deleteLeafNodesUtil(root);
+// }
 
-//   Node deleteLeafNodesUtil(Node root) {
-//     if (root == null) {
-//       return null;
-//     }
+// Node deleteLeafNodesUtil(Node root) {
+// if (root == null) {
+// return null;
+// }
 
-//     if (root.left == null && root.right == null) {
-//       // This is a leaf node, delete it
-//       return null;
-//     }
+// if (root.left == null && root.right == null) {
+// // This is a leaf node, delete it
+// return null;
+// }
 
-//     // Recursively delete leaf nodes in left and right subtrees
-//     root.left = deleteLeafNodesUtil(root.left);
-//     root.right = deleteLeafNodesUtil(root.right);
+// // Recursively delete leaf nodes in left and right subtrees
+// root.left = deleteLeafNodesUtil(root.left);
+// root.right = deleteLeafNodesUtil(root.right);
 
-//     return root;
-//   }
+// return root;
+// }
 
-//   void postOrderTraversal(Node root) {
-//     if (root != null) {
-//       postOrderTraversal(root.left);
-//       postOrderTraversal(root.right);
-//       System.out.print(root.data + " ");
-//     }
-//   }
+// void postOrderTraversal(Node root) {
+// if (root != null) {
+// postOrderTraversal(root.left);
+// postOrderTraversal(root.right);
+// System.out.print(root.data + " ");
+// }
+// }
 // }
 
 // class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Input array of integers
-//     int[] values = new int[7];
-//     System.out.println("Enter 7 integers:");
-//     for (int i = 0; i < 7; i++) {
-//       values[i] = scanner.nextInt();
-//     }
+// // Input array of integers
+// int[] values = new int[7];
+// System.out.println("Enter 7 integers:");
+// for (int i = 0; i < 7; i++) {
+// values[i] = scanner.nextInt();
+// }
 
-//     // Create BST and insert values
-//     BST bst = new BST();
-//     for (int value : values) {
-//       bst.insert(value);
-//     }
+// // Create BST and insert values
+// BST bst = new BST();
+// for (int value : values) {
+// bst.insert(value);
+// }
 
-//     // Delete leaf nodes
-//     bst.deleteLeafNodes();
+// // Delete leaf nodes
+// bst.deleteLeafNodes();
 
-//     // Print post-order traversal after deletion
-//     System.out.println("Post-order traversal after deletion:");
-//     bst.postOrderTraversal(bst.root);
-//   }
+// // Print post-order traversal after deletion
+// System.out.println("Post-order traversal after deletion:");
+// bst.postOrderTraversal(bst.root);
+// }
 // }
 
 // 4. Robot Task Scheduling
@@ -588,85 +595,85 @@
 // import java.util.*;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left, right;
+// int val;
+// TreeNode left, right;
 
-//   public TreeNode(int value) {
-//     val = value;
-//     left = right = null;
-//   }
+// public TreeNode(int value) {
+// val = value;
+// left = right = null;
+// }
 // }
 
 // class BinaryTree {
-//   TreeNode root;
+// TreeNode root;
 
-//   public BinaryTree() {
-//     root = null;
-//   }
+// public BinaryTree() {
+// root = null;
+// }
 
-//   public void insert(int value) {
-//     root = insertRec(root, value);
-//   }
+// public void insert(int value) {
+// root = insertRec(root, value);
+// }
 
-//   private TreeNode insertRec(TreeNode root, int value) {
-//     if (root == null) {
-//       root = new TreeNode(value);
-//       return root;
-//     }
+// private TreeNode insertRec(TreeNode root, int value) {
+// if (root == null) {
+// root = new TreeNode(value);
+// return root;
+// }
 
-//     if (value < root.val) {
-//       root.left = insertRec(root.left, value);
-//     } else if (value > root.val) {
-//       root.right = insertRec(root.right, value);
-//     }
+// if (value < root.val) {
+// root.left = insertRec(root.left, value);
+// } else if (value > root.val) {
+// root.right = insertRec(root.right, value);
+// }
 
-//     return root;
-//   }
+// return root;
+// }
 
-//   public int findLCA(int p, int q) {
-//     return findLCAUtil(root, p, q).val;
-//   }
+// public int findLCA(int p, int q) {
+// return findLCAUtil(root, p, q).val;
+// }
 
-//   private TreeNode findLCAUtil(TreeNode root, int p, int q) {
-//     if (root == null) {
-//       return null;
-//     }
+// private TreeNode findLCAUtil(TreeNode root, int p, int q) {
+// if (root == null) {
+// return null;
+// }
 
-//     if (p < root.val && q < root.val) {
-//       return findLCAUtil(root.left, p, q);
-//     } else if (p > root.val && q > root.val) {
-//       return findLCAUtil(root.right, p, q);
-//     } else {
-//       // root is the LCA
-//       return root;
-//     }
-//   }
+// if (p < root.val && q < root.val) {
+// return findLCAUtil(root.left, p, q);
+// } else if (p > root.val && q > root.val) {
+// return findLCAUtil(root.right, p, q);
+// } else {
+// // root is the LCA
+// return root;
+// }
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Input integer array separated by space
-//     System.out.println("Enter integers separated by space:");
-//     String[] values = scanner.nextLine().split(" ");
-//     BinaryTree bst = new BinaryTree();
+// // Input integer array separated by space
+// System.out.println("Enter integers separated by space:");
+// String[] values = scanner.nextLine().split(" ");
+// BinaryTree bst = new BinaryTree();
 
-//     for (String value : values) {
-//       bst.insert(Integer.parseInt(value));
-//     }
+// for (String value : values) {
+// bst.insert(Integer.parseInt(value));
+// }
 
-//     // Input values of p and q
-//     System.out.println("Enter value of p:");
-//     int p = scanner.nextInt();
+// // Input values of p and q
+// System.out.println("Enter value of p:");
+// int p = scanner.nextInt();
 
-//     System.out.println("Enter value of q:");
-//     int q = scanner.nextInt();
+// System.out.println("Enter value of q:");
+// int q = scanner.nextInt();
 
-//     // Find and print the LCA
-//     int lca = bst.findLCA(p, q);
-//     System.out.println("Lowest Common Ancestor (LCA): " + lca);
-//   }
+// // Find and print the LCA
+// int lca = bst.findLCA(p, q);
+// System.out.println("Lowest Common Ancestor (LCA): " + lca);
+// }
 // }
 
 // Q 7. Crack the Passcode
@@ -716,32 +723,32 @@
 
 // public class AdiEndTerm {
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Read input
-//     String s = scanner.nextLine().trim();
+// // Read input
+// String s = scanner.nextLine().trim();
 
-//     // Find and print the substring
-//     String result = findSubstring(s);
-//     System.out.println(result);
-//   }
+// // Find and print the substring
+// String result = findSubstring(s);
+// System.out.println(result);
+// }
 
-//   static String findSubstring(String s) {
-//     int n = s.length();
+// static String findSubstring(String s) {
+// int n = s.length();
 
-//     // Iterate from the middle to find the longest substring
-//     for (int i = n / 2; i > 0; i--) {
-//       String prefix = s.substring(0, i);
-//       String suffix = s.substring(n - i);
+// // Iterate from the middle to find the longest substring
+// for (int i = n / 2; i > 0; i--) {
+// String prefix = s.substring(0, i);
+// String suffix = s.substring(n - i);
 
-//       if (prefix.equals(suffix)) {
-//         return prefix;
-//       }
-//     }
+// if (prefix.equals(suffix)) {
+// return prefix;
+// }
+// }
 
-//     return "Not so Cool";
-//   }
+// return "Not so Cool";
+// }
 // }
 
 // Que 8. Hearing Challenge
@@ -797,39 +804,39 @@
 
 // public class AdiEndTerm {
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Read the number of test cases
-//     int t = scanner.nextInt();
-//     scanner.nextLine(); // consume the newline character
+// // Read the number of test cases
+// int t = scanner.nextInt();
+// scanner.nextLine(); // consume the newline character
 
-//     // Process each test case
-//     for (int i = 0; i < t; i++) {
-//       // Read the substring for each test case
-//       String s = scanner.nextLine().trim();
+// // Process each test case
+// for (int i = 0; i < t; i++) {
+// // Read the substring for each test case
+// String s = scanner.nextLine().trim();
 
-//       // Check if the substring is part of the repeated "Yes" sequence
-//       String result = isSubstringOfYes(s);
+// // Check if the substring is part of the repeated "Yes" sequence
+// String result = isSubstringOfYes(s);
 
-//       // Print the result for each test case
-//       System.out.println(result);
-//     }
-//   }
+// // Print the result for each test case
+// System.out.println(result);
+// }
+// }
 
-//   static String isSubstringOfYes(String s) {
-//     int n = s.length();
+// static String isSubstringOfYes(String s) {
+// int n = s.length();
 
-//     // Check if s is a substring of "YesYesYes..."
-//     for (int len = 3; len <= n * 2; len += 3) {
-//       String repeatedYes = "Yes".repeat(len / 3);
-//       if (repeatedYes.contains(s)) {
-//         return "YES";
-//       }
-//     }
+// // Check if s is a substring of "YesYesYes..."
+// for (int len = 3; len <= n * 2; len += 3) {
+// String repeatedYes = "Yes".repeat(len / 3);
+// if (repeatedYes.contains(s)) {
+// return "YES";
+// }
+// }
 
-//     return "NO";
-//   }
+// return "NO";
+// }
 // }
 
 // Que 9 :- Given an array and a positive integer k, find the first negative
@@ -856,93 +863,93 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int[] arr = new int[n];
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = sc.nextInt();
-//     }
-//     int k = sc.nextInt();
-//     int[] ans = new int[n - k + 1];
-//     int j = 0;
-//     Deque<Integer> dq = new LinkedList<>();
-//     for (int i = 0; i < n; i++) {
-//       if (arr[i] < 0) {
-//         dq.add(i);
-//       }
-//       if (i - j + 1 == k) {
-//         if (dq.isEmpty()) {
-//           ans[j] = 0;
-//         } else {
-//           ans[j] = arr[dq.peek()];
-//         }
-//         j++;
-//         if (!dq.isEmpty() && dq.peek() < j) {
-//           dq.remove();
-//         }
-//       }
-//     }
-//     for (int i = 0; i < n - k + 1; i++) {
-//       System.out.print(ans[i] + " ");
-//     }
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int[] arr = new int[n];
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
+// int k = sc.nextInt();
+// int[] ans = new int[n - k + 1];
+// int j = 0;
+// Deque<Integer> dq = new LinkedList<>();
+// for (int i = 0; i < n; i++) {
+// if (arr[i] < 0) {
+// dq.add(i);
+// }
+// if (i - j + 1 == k) {
+// if (dq.isEmpty()) {
+// ans[j] = 0;
+// } else {
+// ans[j] = arr[dq.peek()];
+// }
+// j++;
+// if (!dq.isEmpty() && dq.peek() < j) {
+// dq.remove();
+// }
+// }
+// }
+// for (int i = 0; i < n - k + 1; i++) {
+// System.out.print(ans[i] + " ");
+// }
+// }
 // }
 
-// or 
+// or
 
 // import java.util.LinkedList;
 // import java.util.Scanner;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Input: Size of the array
-//     int n = scanner.nextInt();
+// // Input: Size of the array
+// int n = scanner.nextInt();
 
-//     // Input: Array elements
-//     int[] arr = new int[n];
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = scanner.nextInt();
-//     }
+// // Input: Array elements
+// int[] arr = new int[n];
+// for (int i = 0; i < n; i++) {
+// arr[i] = scanner.nextInt();
+// }
 
-//     // Input: Size of the window
-//     int k = scanner.nextInt();
+// // Input: Size of the window
+// int k = scanner.nextInt();
 
-//     // Process each window and print the first negative integer
-//     printFirstNegativeInWindow(arr, n, k);
-//   }
+// // Process each window and print the first negative integer
+// printFirstNegativeInWindow(arr, n, k);
+// }
 
-//   static void printFirstNegativeInWindow(int[] arr, int n, int k) {
-//     LinkedList<Integer> queue = new LinkedList<>();
+// static void printFirstNegativeInWindow(int[] arr, int n, int k) {
+// LinkedList<Integer> queue = new LinkedList<>();
 
-//     // Process the first window
-//     for (int i = 0; i < k; i++) {
-//       if (arr[i] < 0) {
-//         queue.offer(i);
-//       }
-//     }
+// // Process the first window
+// for (int i = 0; i < k; i++) {
+// if (arr[i] < 0) {
+// queue.offer(i);
+// }
+// }
 
-//     // Print the first negative integer or 0 for the first window
-//     System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+// // Print the first negative integer or 0 for the first window
+// System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
 
-//     // Process the remaining windows
-//     for (int i = k; i < n; i++) {
-//       // Remove elements that are out of the current window
-//       while (!queue.isEmpty() && queue.peek() <= i - k) {
-//         queue.poll();
-//       }
+// // Process the remaining windows
+// for (int i = k; i < n; i++) {
+// // Remove elements that are out of the current window
+// while (!queue.isEmpty() && queue.peek() <= i - k) {
+// queue.poll();
+// }
 
-//       // Add the current element to the window
-//       if (arr[i] < 0) {
-//         queue.offer(i);
-//       }
+// // Add the current element to the window
+// if (arr[i] < 0) {
+// queue.offer(i);
+// }
 
-//       // Print the first negative integer or 0 for the current window
-//       System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
-//     }
-//   }
+// // Print the first negative integer or 0 for the current window
+// System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+// }
+// }
 // }
 
 // Que 10. Longest Increasing Subsequence
@@ -1091,39 +1098,39 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     // int n = sc.nextInt();
-//     // int[] heights = new int[n];
-//     // for (int i = 0; i < n; i++) {
-//     // heights[i] = sc.nextInt();
-//     // }
-//     String[] heights = sc.nextLine().split(" ");
-//     int bricks = sc.nextInt();
-//     int ladders = sc.nextInt();
-//     int[] arr = new int[heights.length];
-//     for (int i = 0; i < heights.length; i++) {
-//       arr[i] = Integer.parseInt(heights[i]);
-//     }
-//     System.out.println(furthestBuilding(arr, bricks, ladders));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// // int n = sc.nextInt();
+// // int[] heights = new int[n];
+// // for (int i = 0; i < n; i++) {
+// // heights[i] = sc.nextInt();
+// // }
+// String[] heights = sc.nextLine().split(" ");
+// int bricks = sc.nextInt();
+// int ladders = sc.nextInt();
+// int[] arr = new int[heights.length];
+// for (int i = 0; i < heights.length; i++) {
+// arr[i] = Integer.parseInt(heights[i]);
+// }
+// System.out.println(furthestBuilding(arr, bricks, ladders));
+// }
 
-//   public static int furthestBuilding(int[] heights, int bricks, int ladders) {
-//     PriorityQueue<Integer> pq = new PriorityQueue<>();
-//     for (int i = 0; i < heights.length - 1; i++) {
-//       int diff = heights[i + 1] - heights[i];
-//       if (diff > 0) {
-//         pq.add(diff);
-//       }
-//       if (pq.size() > ladders) {
-//         bricks -= pq.poll();
-//       }
-//       if (bricks < 0) {
-//         return i;
-//       }
-//     }
-//     return heights.length - 1;
-//   }
+// public static int furthestBuilding(int[] heights, int bricks, int ladders) {
+// PriorityQueue<Integer> pq = new PriorityQueue<>();
+// for (int i = 0; i < heights.length - 1; i++) {
+// int diff = heights[i + 1] - heights[i];
+// if (diff > 0) {
+// pq.add(diff);
+// }
+// if (pq.size() > ladders) {
+// bricks -= pq.poll();
+// }
+// if (bricks < 0) {
+// return i;
+// }
+// }
+// return heights.length - 1;
+// }
 // }
 
 // Question 12: Password of the treasure box
@@ -1184,29 +1191,29 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String[] words = sc.nextLine().split(" ");
-//     StringBuilder sb = new StringBuilder();
-//     for (String word : words) {
-//       int sum = 0;
-//       for (int i = 0; i < word.length(); i++) {
-//         char ch = word.charAt(i);
-//         if (Character.isUpperCase(ch)) {
-//           sum += ch - 'A' + 1;
-//         } else {
-//           sum -= ch - 'a' + 1;
-//         }
-//       }
-//       if (sum > 9) {
-//         sum = 9;
-//       } else if (sum < 0) {
-//         sum = 0;
-//       }
-//       sb.append(sum);
-//     }
-//     System.out.println(sb.toString());
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String[] words = sc.nextLine().split(" ");
+// StringBuilder sb = new StringBuilder();
+// for (String word : words) {
+// int sum = 0;
+// for (int i = 0; i < word.length(); i++) {
+// char ch = word.charAt(i);
+// if (Character.isUpperCase(ch)) {
+// sum += ch - 'A' + 1;
+// } else {
+// sum -= ch - 'a' + 1;
+// }
+// }
+// if (sum > 9) {
+// sum = 9;
+// } else if (sum < 0) {
+// sum = 0;
+// }
+// sb.append(sum);
+// }
+// System.out.println(sb.toString());
+// }
 // }
 
 // 13. Making students list by their roll numbers and names and search
@@ -1442,64 +1449,64 @@
 // import java.util.Scanner;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     // Input the array
-//     String[] inputArray = scanner.nextLine().split(" ");
-//     int[] A = new int[inputArray.length];
+// // Input the array
+// String[] inputArray = scanner.nextLine().split(" ");
+// int[] A = new int[inputArray.length];
 
-//     for (int i = 0; i < inputArray.length; i++) {
-//       A[i] = Integer.parseInt(inputArray[i]);
-//     }
+// for (int i = 0; i < inputArray.length; i++) {
+// A[i] = Integer.parseInt(inputArray[i]);
+// }
 
-//     // Count the number of special elements
-//     int specialCount = 0;
+// // Count the number of special elements
+// int specialCount = 0;
 
-//     for (int i = 0; i < A.length; i++) {
-//       // Remove the current element and check if the array becomes balanced
-//       int[] newArray = removeElement(A, i);
+// for (int i = 0; i < A.length; i++) {
+// // Remove the current element and check if the array becomes balanced
+// int[] newArray = removeElement(A, i);
 
-//       if (isBalanced(newArray)) {
-//         specialCount++;
-//       }
-//     }
+// if (isBalanced(newArray)) {
+// specialCount++;
+// }
+// }
 
-//     // Output the count of special elements
-//     System.out.println(specialCount);
+// // Output the count of special elements
+// System.out.println(specialCount);
 
-//     scanner.close();
-//   }
+// scanner.close();
+// }
 
-//   // Method to remove an element from the array
-//   private static int[] removeElement(int[] array, int index) {
-//     int[] newArray = new int[array.length - 1];
-//     int newArrayIndex = 0;
+// // Method to remove an element from the array
+// private static int[] removeElement(int[] array, int index) {
+// int[] newArray = new int[array.length - 1];
+// int newArrayIndex = 0;
 
-//     for (int i = 0; i < array.length; i++) {
-//       if (i != index) {
-//         newArray[newArrayIndex++] = array[i];
-//       }
-//     }
+// for (int i = 0; i < array.length; i++) {
+// if (i != index) {
+// newArray[newArrayIndex++] = array[i];
+// }
+// }
 
-//     return newArray;
-//   }
+// return newArray;
+// }
 
-//   // Method to check if the array is balanced
-//   private static boolean isBalanced(int[] array) {
-//     int sumEven = 0;
-//     int sumOdd = 0;
+// // Method to check if the array is balanced
+// private static boolean isBalanced(int[] array) {
+// int sumEven = 0;
+// int sumOdd = 0;
 
-//     for (int i = 0; i < array.length; i++) {
-//       if (i % 2 == 0) {
-//         sumEven += array[i];
-//       } else {
-//         sumOdd += array[i];
-//       }
-//     }
+// for (int i = 0; i < array.length; i++) {
+// if (i % 2 == 0) {
+// sumEven += array[i];
+// } else {
+// sumOdd += array[i];
+// }
+// }
 
-//     return sumEven == sumOdd;
-//   }
+// return sumEven == sumOdd;
+// }
 // }
 
 // 15. Detecting Plagiarism in Academic Papers
@@ -1543,18 +1550,18 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String[] text = sc.nextLine().split(" ");
-//     String pattern = sc.nextLine();
-//     int count = 0;
-//     for (String word : text) {
-//       if (word.equals(pattern)) {
-//         count++;
-//       }
-//     }
-//     System.out.println(count);
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String[] text = sc.nextLine().split(" ");
+// String pattern = sc.nextLine();
+// int count = 0;
+// for (String word : text) {
+// if (word.equals(pattern)) {
+// count++;
+// }
+// }
+// System.out.println(count);
+// }
 // }
 
 // 16. The Lost Palindrome Stones
@@ -1656,38 +1663,38 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
-//     String s = scanner.nextLine();
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// String s = scanner.nextLine();
 
-//     List<String> palindromes = new ArrayList<>();
-//     for (int length = 3; length <= s.length(); length++) {
-//       for (int i = 0; i <= s.length() - length; i++) {
-//         String substring = s.substring(i, i + length);
-//         if (isPalindrome(substring)) {
-//           palindromes.add(substring + " " + i + "-" + (i + length - 1));
-//         }
-//       }
-//     }
+// List<String> palindromes = new ArrayList<>();
+// for (int length = 3; length <= s.length(); length++) {
+// for (int i = 0; i <= s.length() - length; i++) {
+// String substring = s.substring(i, i + length);
+// if (isPalindrome(substring)) {
+// palindromes.add(substring + " " + i + "-" + (i + length - 1));
+// }
+// }
+// }
 
-//     if (palindromes.isEmpty()) {
-//       System.out.println("No Palindrome string found");
-//     } else {
-//       for (String palindrome : palindromes) {
-//         System.out.println(palindrome);
-//       }
-//     }
-//   }
+// if (palindromes.isEmpty()) {
+// System.out.println("No Palindrome string found");
+// } else {
+// for (String palindrome : palindromes) {
+// System.out.println(palindrome);
+// }
+// }
+// }
 
-//   private static boolean isPalindrome(String s) {
-//     int i = 0, j = s.length() - 1;
-//     while (i < j) {
-//       if (s.charAt(i++) != s.charAt(j--)) {
-//         return false;
-//       }
-//     }
-//     return true;
-//   }
+// private static boolean isPalindrome(String s) {
+// int i = 0, j = s.length() - 1;
+// while (i < j) {
+// if (s.charAt(i++) != s.charAt(j--)) {
+// return false;
+// }
+// }
+// return true;
+// }
 // }
 
 // Question 17: Difference in Ascii Codes
@@ -1712,18 +1719,18 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String s = sc.nextLine();
-//     StringBuilder sb = new StringBuilder();
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String s = sc.nextLine();
+// StringBuilder sb = new StringBuilder();
 
-//     for (int i = 0; i < s.length() - 1; i++) {
-//       sb.append(s.charAt(i));
-//       sb.append(s.charAt(i + 1) - s.charAt(i));
-//     }
-//     sb.append(s.charAt(s.length() - 1));
-//     System.out.println(sb.toString());
-//   }
+// for (int i = 0; i < s.length() - 1; i++) {
+// sb.append(s.charAt(i));
+// sb.append(s.charAt(i + 1) - s.charAt(i));
+// }
+// sb.append(s.charAt(s.length() - 1));
+// System.out.println(sb.toString());
+// }
 // }
 
 // Question 18: Ugly Number
@@ -1872,20 +1879,20 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String s = sc.nextLine();
-//     StringBuilder sb = new StringBuilder();
-//     for (int i = 0; i < s.length(); i++) {
-//       char ch = s.charAt(i);
-//       if (i % 2 == 0) {
-//         sb.append((char) (ch + 1));
-//       } else {
-//         sb.append((char) (ch - 1));
-//       }
-//     }
-//     System.out.println(sb.toString());
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String s = sc.nextLine();
+// StringBuilder sb = new StringBuilder();
+// for (int i = 0; i < s.length(); i++) {
+// char ch = s.charAt(i);
+// if (i % 2 == 0) {
+// sb.append((char) (ch + 1));
+// } else {
+// sb.append((char) (ch - 1));
+// }
+// }
+// System.out.println(sb.toString());
+// }
 // }
 
 // Question 21: Symmetric Numbers
@@ -2471,49 +2478,49 @@
 // import java.util.*;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left;
-//   TreeNode right;
+// int val;
+// TreeNode left;
+// TreeNode right;
 
-//   TreeNode(int val) {
-//     this.val = val;
-//   }
+// TreeNode(int val) {
+// this.val = val;
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     TreeNode root = null;
-//     for (int i = 0; i < n; i++) {
-//       root = insert(root, sc.nextInt());
-//     }
-//     int target = sc.nextInt();
-//     System.out.println(hasPathSum(root, target));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// TreeNode root = null;
+// for (int i = 0; i < n; i++) {
+// root = insert(root, sc.nextInt());
+// }
+// int target = sc.nextInt();
+// System.out.println(hasPathSum(root, target));
+// }
 
-//   public static TreeNode insert(TreeNode root, int val) {
-//     if (root == null) {
-//       return new TreeNode(val);
-//     }
-//     if (val < root.val) {
-//       root.left = insert(root.left, val);
-//     } else {
-//       root.right = insert(root.right, val);
-//     }
-//     return root;
-//   }
+// public static TreeNode insert(TreeNode root, int val) {
+// if (root == null) {
+// return new TreeNode(val);
+// }
+// if (val < root.val) {
+// root.left = insert(root.left, val);
+// } else {
+// root.right = insert(root.right, val);
+// }
+// return root;
+// }
 
-//   public static boolean hasPathSum(TreeNode root, int target) {
-//     if (root == null) {
-//       return false;
-//     }
-//     if (root.left == null && root.right == null && root.val == target) {
-//       return true;
-//     }
-//     return hasPathSum(root.left, target - root.val) || hasPathSum(root.right,
-//         target - root.val);
-//   }
+// public static boolean hasPathSum(TreeNode root, int target) {
+// if (root == null) {
+// return false;
+// }
+// if (root.left == null && root.right == null && root.val == target) {
+// return true;
+// }
+// return hasPathSum(root.left, target - root.val) || hasPathSum(root.right,
+// target - root.val);
+// }
 // }
 
 // Question 30: Inorder Successor in a BST
@@ -2555,388 +2562,415 @@
 // import java.util.*;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left;
-//   TreeNode right;
+// int val;
+// TreeNode left;
+// TreeNode right;
 
-//   TreeNode(int val) {
-//     this.val = val;
-//   }
+// TreeNode(int val) {
+// this.val = val;
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     TreeNode root = null;
-//     for (int i = 0; i < n; i++) {
-//       root = insert(root, sc.nextInt());
-//     }
-//     int ref = sc.nextInt();
-//     TreeNode node = find(root, ref);
-//     TreeNode successor = inorderSuccessor(root, node);
-//     if (successor == null) {
-//       System.out.println("No inorder successor found");
-//     } else {
-//       System.out.println(successor.val);
-//     }
-//     TreeNode predecessor = inorderPredecessor(root, node);
-//     if (predecessor == null) {
-//       System.out.println("No inorder predecessor found");
-//     } else {
-//       System.out.println(predecessor.val);
-//     }
-//     TreeNode succ = preorderSuccessor(root, node);
-//     if (succ == null) {
-//       System.out.println("No preorder successor found");
-//     } else {
-//       System.out.println(succ.val);
-//     }
-//     TreeNode pred = preorderPredecessor(root, node);
-//     if (pred == null) {
-//       System.out.println("No preorder predecessor found");
-//     } else {
-//       System.out.println(pred.val);
-//     }
-//     TreeNode s = postorderSuccessor(root, node);
-//     if (s == null) {
-//       System.out.println("No postorder successor found");
-//     } else {
-//       System.out.println(s.val);
-//     }
-//     TreeNode p = postorderPredecessor(root, node);
-//     if (p == null) {
-//       System.out.println("No postorder predecessor found");
-//     } else {
-//       System.out.println(p.val);
-//     }
-//     TreeNode s1 = levelorderSuccessor(root, node);
-//     if (s1 == null) {
-//       System.out.println("No levelorder successor found");
-//     } else {
-//       System.out.println(s1.val);
-//     }
-//     TreeNode p1 = levelorderPredecessor(root, node);
-//     if (p1 == null) {
-//       System.out.println("No levelorder predecessor found");
-//     } else {
-//       System.out.println(p1.val);
-//     }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// TreeNode root = null;
+// for (int i = 0; i < n; i++) {
+// root = insert(root, sc.nextInt());
+// }
+// int ref = sc.nextInt();
+// TreeNode node = find(root, ref);
+// TreeNode successor = inorderSuccessor(root, node);
+// if (successor == null) {
+// System.out.println("No inorder successor found");
+// } else {
+// System.out.println(successor.val);
+// }
+// TreeNode predecessor = inorderPredecessor(root, node);
+// if (predecessor == null) {
+// System.out.println("No inorder predecessor found");
+// } else {
+// System.out.println(predecessor.val);
+// }
+// TreeNode succ = preorderSuccessor(root, node);
+// if (succ == null) {
+// System.out.println("No preorder successor found");
+// } else {
+// System.out.println(succ.val);
+// }
+// TreeNode pred = preorderPredecessor(root, node);
+// if (pred == null) {
+// System.out.println("No preorder predecessor found");
+// } else {
+// System.out.println(pred.val);
+// }
+// TreeNode s = postorderSuccessor(root, node);
+// if (s == null) {
+// System.out.println("No postorder successor found");
+// } else {
+// System.out.println(s.val);
+// }
+// TreeNode p = postorderPredecessor(root, node);
+// if (p == null) {
+// System.out.println("No postorder predecessor found");
+// } else {
+// System.out.println(p.val);
+// }
+// TreeNode s1 = levelorderSuccessor(root, node);
+// if (s1 == null) {
+// System.out.println("No levelorder successor found");
+// } else {
+// System.out.println(s1.val);
+// }
+// TreeNode p1 = levelorderPredecessor(root, node);
+// if (p1 == null) {
+// System.out.println("No levelorder predecessor found");
+// } else {
+// System.out.println(p1.val);
+// }
 
-//   }
+// }
 
-//   public static TreeNode insert(TreeNode root, int val) {
-//     if (root == null) {
-//       return new TreeNode(val);
-//     }
-//     if (val < root.val) {
-//       root.left = insert(root.left, val);
-//     } else {
-//       root.right = insert(root.right, val);
-//     }
-//     return root;
-//   }
+// public static TreeNode insert(TreeNode root, int val) {
+// if (root == null) {
+// return new TreeNode(val);
+// }
+// if (val < root.val) {
+// root.left = insert(root.left, val);
+// } else {
+// root.right = insert(root.right, val);
+// }
+// return root;
+// }
 
-//   public static TreeNode find(TreeNode root, int ref) {
-//     if (root == null) {
-//       return null;
-//     }
-//     if (root.val == ref) {
-//       return root;
-//     }
-//     if (ref < root.val) {
-//       return find(root.left, ref);
-//     } else {
-//       return find(root.right, ref);
-//     }
-//   }
-//   // 1.) Inorder Successor of a node is the node with the smallest key greater
-//   // than the key of the input node.
-//   // 2.) Inorder Successor of a node is the next node in Inorder traversal of the
-//   // Binary Tree. Inorder Successor is NULL for the last node in Inoorder
-//   // traversal.
-//   // 3.) In Binary Search Tree, Inorder Successor of an input node can also be
-//   // defined as the node with the smallest key greater than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode find(TreeNode root, int ref) {
+// if (root == null) {
+// return null;
+// }
+// if (root.val == ref) {
+// return root;
+// }
+// if (ref < root.val) {
+// return find(root.left, ref);
+// } else {
+// return find(root.right, ref);
+// }
+// }
+// // 1.) Inorder Successor of a node is the node with the smallest key greater
+// // than the key of the input node.
+// // 2.) Inorder Successor of a node is the next node in Inorder traversal of
+// the
+// // Binary Tree. Inorder Successor is NULL for the last node in Inoorder
+// // traversal.
+// // 3.) In Binary Search Tree, Inorder Successor of an input node can also be
+// // defined as the node with the smallest key greater than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
 
-//   public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   // 1.) Inordre Predecessor of a node is the node with the largest key smaller
-//   // than the key of the input node.
-//   // 2.) In Binary Search Tree, Inorder Predecessor of an input node can also be
-//   // defined as the node with the largest key smaller than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
+// // 1.) Inordre Predecessor of a node is the node with the largest key smaller
+// // than the key of the input node.
+// // 2.) In Binary Search Tree, Inorder Predecessor of an input node can also
+// be
+// // defined as the node with the largest key smaller than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
 
-//   public static TreeNode inorderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// public static TreeNode inorderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// root = root.left;
+// } else if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   // 1.) PreOrder Successor of a node is the node with the smallest key greater
-//   // than the key of the input node.
-//   // 2.) PreOrder Successor of a node is the next node in PreOrder traversal of
-//   // the Binary Tree. PreOrder Successor is NULL for the last node in PreOrder
-//   // traversal.
-//   // 3.) In Binary Search Tree, PreOrder Successor of an input node can also be
-//   // defined as the node with the smallest key greater than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode preorderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// // 1.) PreOrder Successor of a node is the node with the smallest key greater
+// // than the key of the input node.
+// // 2.) PreOrder Successor of a node is the next node in PreOrder traversal of
+// // the Binary Tree. PreOrder Successor is NULL for the last node in PreOrder
+// // traversal.
+// // 3.) In Binary Search Tree, PreOrder Successor of an input node can also be
+// // defined as the node with the smallest key greater than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode preorderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   // 1.) PreOrder Predecessor of a node is the node with the largest key smaller
-//   // than the key of the input node.
-//   // 2.) In Binary Search Tree, PreOrder Predecessor of an input node can also be
-//   // defined as the node with the largest key smaller than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode preorderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// // 1.) PreOrder Predecessor of a node is the node with the largest key
+// smaller
+// // than the key of the input node.
+// // 2.) In Binary Search Tree, PreOrder Predecessor of an input node can also
+// be
+// // defined as the node with the largest key smaller than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode preorderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// root = root.left;
+// } else if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   // 1.) PostOrder Successor of a node is the node with the smallest key greater
-//   // than the key of the input node.
-//   // 2.) PostOrder Successor of a node is the next node in PostOrder traversal of
-//   // the Binary Tree. PostOrder Successor is NULL for the last node in PostOrder
-//   // traversal.
-//   // 3.) In Binary Search Tree, PostOrder Successor of an input node can also be
-//   // defined as the node with the smallest key greater than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode postorderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// // 1.) PostOrder Successor of a node is the node with the smallest key
+// greater
+// // than the key of the input node.
+// // 2.) PostOrder Successor of a node is the next node in PostOrder traversal
+// of
+// // the Binary Tree. PostOrder Successor is NULL for the last node in
+// PostOrder
+// // traversal.
+// // 3.) In Binary Search Tree, PostOrder Successor of an input node can also
+// be
+// // defined as the node with the smallest key greater than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode postorderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   // 1.) PostOrder Predecessor of a node is the node with the largest key smaller
-//   // than the key of the input node.
-//   // 2.) In Binary Search Tree, PostOrder Predecessor of an input node can also be
-//   // defined as the node with the largest key smaller than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode postorderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// // 1.) PostOrder Predecessor of a node is the node with the largest key
+// smaller
+// // than the key of the input node.
+// // 2.) In Binary Search Tree, PostOrder Predecessor of an input node can also
+// be
+// // defined as the node with the largest key smaller than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode postorderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// root = root.left;
+// } else if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   // 1.) LevelOrder Successor of a node is the node with the smallest key greater
-//   // than the key of the input node.
-//   // 2.) LevelOrder Successor of a node is the next node in LevelOrder traversal
-//   // of the Binary Tree. LevelOrder Successor is NULL for the last node in
-//   // LevelOrder traversal.
-//   // 3.) In Binary Search Tree, LevelOrder Successor of an input node can also be
-//   // defined as the node with the smallest key greater than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode levelorderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// // 1.) LevelOrder Successor of a node is the node with the smallest key
+// greater
+// // than the key of the input node.
+// // 2.) LevelOrder Successor of a node is the next node in LevelOrder
+// traversal
+// // of the Binary Tree. LevelOrder Successor is NULL for the last node in
+// // LevelOrder traversal.
+// // 3.) In Binary Search Tree, LevelOrder Successor of an input node can also
+// be
+// // defined as the node with the smallest key greater than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode levelorderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   // 1.) LevelOrder Predecessor of a node is the node with the largest key smaller
-//   // than the key of the input node.
-//   // 2.) In Binary Search Tree, LevelOrder Predecessor of an input node can also
-//   // be
-//   // defined as the node with the largest key smaller than the key of input node.
-//   // So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode levelorderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// // 1.) LevelOrder Predecessor of a node is the node with the largest key
+// smaller
+// // than the key of the input node.
+// // 2.) In Binary Search Tree, LevelOrder Predecessor of an input node can
+// also
+// // be
+// // defined as the node with the largest key smaller than the key of input
+// node.
+// // So, it is sometimes important to find next node in sorted order.
+// public static TreeNode levelorderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// root = root.left;
+// } else if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   // 1.) Morris Inorder Successor of a node is the node with the smallest key
-//   // greater than the key of the input node.
-//   // 2.) Morris Inorder Successor of a node is the next node in Morris Inorder
-//   // traversal of the Binary Tree. Morris Inorder Successor is NULL for the last
-//   // node in Morris Inorder traversal.
-//   // 3.) In Binary Search Tree, Morris Inorder Successor of an input node can also
-//   // be defined as the node with the smallest key greater than the key of input
-//   // node. So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode morrisInorderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// // 1.) Morris Inorder Successor of a node is the node with the smallest key
+// // greater than the key of the input node.
+// // 2.) Morris Inorder Successor of a node is the next node in Morris Inorder
+// // traversal of the Binary Tree. Morris Inorder Successor is NULL for the
+// last
+// // node in Morris Inorder traversal.
+// // 3.) In Binary Search Tree, Morris Inorder Successor of an input node can
+// also
+// // be defined as the node with the smallest key greater than the key of input
+// // node. So, it is sometimes important to find next node in sorted order.
+// public static TreeNode morrisInorderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   // 1.) Morris Inorder Predecessor of a node is the node with the largest key
-//   // smaller than the key of the input node.
-//   // 2.) In Binary Search Tree, Morris Inorder Predecessor of an input node can
-//   // also be defined as the node with the largest key smaller than the key of
-//   // input node. So, it is sometimes important to find next node in sorted order.
-//   public static TreeNode morrisInorderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// // 1.) Morris Inorder Predecessor of a node is the node with the largest key
+// // smaller than the key of the input node.
+// // 2.) In Binary Search Tree, Morris Inorder Predecessor of an input node can
+// // also be defined as the node with the largest key smaller than the key of
+// // input node. So, it is sometimes important to find next node in sorted
+// order.
+// public static TreeNode morrisInorderPredecessor(TreeNode root, TreeNode node)
+// {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// root = root.left;
+// } else if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 // }
 
 // // or
@@ -2944,164 +2978,168 @@
 // import java.util.Scanner;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left;
-//   TreeNode right;
+// int val;
+// TreeNode left;
+// TreeNode right;
 
-//   TreeNode(int val) {
-//     this.val = val;
-//   }
+// TreeNode(int val) {
+// this.val = val;
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     TreeNode root = null;
-//     for (int i = 0; i < n; i++) {
-//       root = insert(root, sc.nextInt());
-//     }
-//     int ref = sc.nextInt();
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// TreeNode root = null;
+// for (int i = 0; i < n; i++) {
+// root = insert(root, sc.nextInt());
+// }
+// int ref = sc.nextInt();
 
-//     TreeNode node = find(root, ref);
+// TreeNode node = find(root, ref);
 
-//     // Inorder Predecessor
-//     TreeNode inOrderPredecessor = inOrderPredecessor(root, node);
-//     System.out
-//         .println("Inorder Predecessor: " + (inOrderPredecessor != null ? inOrderPredecessor.val : "No predecessor"));
+// // Inorder Predecessor
+// TreeNode inOrderPredecessor = inOrderPredecessor(root, node);
+// System.out
+// .println("Inorder Predecessor: " + (inOrderPredecessor != null ?
+// inOrderPredecessor.val : "No predecessor"));
 
-//     // Inorder Successor
-//     TreeNode inOrderSuccessor = inOrderSuccessor(root, node);
-//     System.out.println("Inorder Successor: " + (inOrderSuccessor != null ? inOrderSuccessor.val : "No successor"));
+// // Inorder Successor
+// TreeNode inOrderSuccessor = inOrderSuccessor(root, node);
+// System.out.println("Inorder Successor: " + (inOrderSuccessor != null ?
+// inOrderSuccessor.val : "No successor"));
 
-//     // Preorder Predecessor
-//     TreeNode preOrderPredecessor = preOrderPredecessor(root, node);
-//     System.out
-//         .println("Preorder Predecessor: " + (preOrderPredecessor != null ? preOrderPredecessor.val : "No predecessor"));
+// // Preorder Predecessor
+// TreeNode preOrderPredecessor = preOrderPredecessor(root, node);
+// System.out
+// .println("Preorder Predecessor: " + (preOrderPredecessor != null ?
+// preOrderPredecessor.val : "No predecessor"));
 
-//     // Postorder Predecessor
-//     TreeNode postOrderPredecessor = postOrderPredecessor(root, node);
-//     System.out.println(
-//         "Postorder Predecessor: " + (postOrderPredecessor != null ? postOrderPredecessor.val : "No predecessor"));
-//   }
+// // Postorder Predecessor
+// TreeNode postOrderPredecessor = postOrderPredecessor(root, node);
+// System.out.println(
+// "Postorder Predecessor: " + (postOrderPredecessor != null ?
+// postOrderPredecessor.val : "No predecessor"));
+// }
 
-//   public static TreeNode insert(TreeNode root, int val) {
-//     if (root == null) {
-//       return new TreeNode(val);
-//     }
-//     if (val < root.val) {
-//       root.left = insert(root.left, val);
-//     } else {
-//       root.right = insert(root.right, val);
-//     }
-//     return root;
-//   }
+// public static TreeNode insert(TreeNode root, int val) {
+// if (root == null) {
+// return new TreeNode(val);
+// }
+// if (val < root.val) {
+// root.left = insert(root.left, val);
+// } else {
+// root.right = insert(root.right, val);
+// }
+// return root;
+// }
 
-//   public static TreeNode find(TreeNode root, int ref) {
-//     if (root == null) {
-//       return null;
-//     }
-//     if (root.val == ref) {
-//       return root;
-//     }
-//     if (ref < root.val) {
-//       return find(root.left, ref);
-//     } else {
-//       return find(root.right, ref);
-//     }
-//   }
+// public static TreeNode find(TreeNode root, int ref) {
+// if (root == null) {
+// return null;
+// }
+// if (root.val == ref) {
+// return root;
+// }
+// if (ref < root.val) {
+// return find(root.left, ref);
+// } else {
+// return find(root.right, ref);
+// }
+// }
 
-//   public static TreeNode inOrderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else if (node.val < root.val) {
-//         root = root.left;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// public static TreeNode inOrderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else if (node.val < root.val) {
+// root = root.left;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   public static TreeNode inOrderSuccessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null) {
-//         curr = curr.left;
-//       }
-//       return curr;
-//     }
-//     TreeNode succ = null;
-//     while (root != null) {
-//       if (node.val < root.val) {
-//         succ = root;
-//         root = root.left;
-//       } else if (node.val > root.val) {
-//         root = root.right;
-//       } else {
-//         break;
-//       }
-//     }
-//     return succ;
-//   }
+// public static TreeNode inOrderSuccessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null) {
+// curr = curr.left;
+// }
+// return curr;
+// }
+// TreeNode succ = null;
+// while (root != null) {
+// if (node.val < root.val) {
+// succ = root;
+// root = root.left;
+// } else if (node.val > root.val) {
+// root = root.right;
+// } else {
+// break;
+// }
+// }
+// return succ;
+// }
 
-//   public static TreeNode preOrderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.left != null) {
-//       TreeNode curr = node.left;
-//       while (curr.right != null) {
-//         curr = curr.right;
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else if (node.val < root.val) {
-//         root = root.left;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// public static TreeNode preOrderPredecessor(TreeNode root, TreeNode node) {
+// if (node.left != null) {
+// TreeNode curr = node.left;
+// while (curr.right != null) {
+// curr = curr.right;
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else if (node.val < root.val) {
+// root = root.left;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 
-//   public static TreeNode postOrderPredecessor(TreeNode root, TreeNode node) {
-//     if (node.right != null) {
-//       TreeNode curr = node.right;
-//       while (curr.left != null || curr.right != null) {
-//         if (curr.left != null) {
-//           curr = curr.left;
-//         } else {
-//           curr = curr.right;
-//         }
-//       }
-//       return curr;
-//     }
-//     TreeNode pred = null;
-//     while (root != null) {
-//       if (node.val > root.val) {
-//         pred = root;
-//         root = root.right;
-//       } else if (node.val < root.val) {
-//         root = root.left;
-//       } else {
-//         break;
-//       }
-//     }
-//     return pred;
-//   }
+// public static TreeNode postOrderPredecessor(TreeNode root, TreeNode node) {
+// if (node.right != null) {
+// TreeNode curr = node.right;
+// while (curr.left != null || curr.right != null) {
+// if (curr.left != null) {
+// curr = curr.left;
+// } else {
+// curr = curr.right;
+// }
+// }
+// return curr;
+// }
+// TreeNode pred = null;
+// while (root != null) {
+// if (node.val > root.val) {
+// pred = root;
+// root = root.right;
+// } else if (node.val < root.val) {
+// root = root.left;
+// } else {
+// break;
+// }
+// }
+// return pred;
+// }
 // }
 
 // Question 31: Find Diameter of a Binary Search Tree
@@ -3145,54 +3183,54 @@
 // import java.util.*;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left;
-//   TreeNode right;
+// int val;
+// TreeNode left;
+// TreeNode right;
 
-//   TreeNode(int val) {
-//     this.val = val;
-//   }
+// TreeNode(int val) {
+// this.val = val;
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     TreeNode root = null;
-//     for (int i = 0; i < n; i++) {
-//       root = insert(root, sc.nextInt());
-//     }
-//     System.out.println(diameter(root));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// TreeNode root = null;
+// for (int i = 0; i < n; i++) {
+// root = insert(root, sc.nextInt());
+// }
+// System.out.println(diameter(root));
+// }
 
-//   public static TreeNode insert(TreeNode root, int val) {
-//     if (root == null) {
-//       return new TreeNode(val);
-//     }
-//     if (val < root.val) {
-//       root.left = insert(root.left, val);
-//     } else {
-//       root.right = insert(root.right, val);
-//     }
-//     return root;
-//   }
+// public static TreeNode insert(TreeNode root, int val) {
+// if (root == null) {
+// return new TreeNode(val);
+// }
+// if (val < root.val) {
+// root.left = insert(root.left, val);
+// } else {
+// root.right = insert(root.right, val);
+// }
+// return root;
+// }
 
-//   public static int diameter(TreeNode root) {
-//     if (root == null) {
-//       return 0;
-//     }
-//     int left = diameter(root.left);
-//     int right = diameter(root.right);
-//     int height = height(root.left) + height(root.right) + 1;
-//     return Math.max(height, Math.max(left, right));
-//   }
+// public static int diameter(TreeNode root) {
+// if (root == null) {
+// return 0;
+// }
+// int left = diameter(root.left);
+// int right = diameter(root.right);
+// int height = height(root.left) + height(root.right) + 1;
+// return Math.max(height, Math.max(left, right));
+// }
 
-//   public static int height(TreeNode root) {
-//     if (root == null) {
-//       return 0;
-//     }
-//     return Math.max(height(root.left), height(root.right)) + 1;
-//   }
+// public static int height(TreeNode root) {
+// if (root == null) {
+// return 0;
+// }
+// return Math.max(height(root.left), height(root.right)) + 1;
+// }
 // }
 
 // Question 32: Coin Change Problem
@@ -3238,27 +3276,27 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int[] coins = new int[n];
-//     for (int i = 0; i < n; i++) {
-//       coins[i] = sc.nextInt();
-//     }
-//     int target = sc.nextInt();
-//     System.out.println(coinChange(coins, target));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int[] coins = new int[n];
+// for (int i = 0; i < n; i++) {
+// coins[i] = sc.nextInt();
+// }
+// int target = sc.nextInt();
+// System.out.println(coinChange(coins, target));
+// }
 
-//   public static int coinChange(int[] coins, int target) {
-//     int[] dp = new int[target + 1];
-//     dp[0] = 1;
-//     for (int coin : coins) {
-//       for (int i = coin; i <= target; i++) {
-//         dp[i] += dp[i - coin];
-//       }
-//     }
-//     return dp[target];
-//   }
+// public static int coinChange(int[] coins, int target) {
+// int[] dp = new int[target + 1];
+// dp[0] = 1;
+// for (int coin : coins) {
+// for (int i = coin; i <= target; i++) {
+// dp[i] += dp[i - coin];
+// }
+// }
+// return dp[target];
+// }
 // }
 
 // Question 33: Top View of BST
@@ -4228,65 +4266,65 @@
 // }
 // }
 
-//{ Driver Code Starts
-//Initial Template for Java
+// { Driver Code Starts
+// Initial Template for Java
 
-import java.io.*;
-import java.util.*;
-import java.util.Arrays;
-// User function Template for Java
+// import java.io.*;
+// import java.util.*;
+// import java.util.Arrays;
+// // User function Template for Java
 
-class AdiEndTerm {
-  boolean isPossible(int[] arr, int n, int k, long mid) {
-    int painters = 1;
-    long total = 0;
-    for (int i = 0; i < n; i++) {
-      total += arr[i];
-      if (total > mid) {
-        total = arr[i];
-        painters++;
-        if (painters > k) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
+// class AdiEndTerm {
+// boolean isPossible(int[] arr, int n, int k, long mid) {
+// int painters = 1;
+// long total = 0;
+// for (int i = 0; i < n; i++) {
+// total += arr[i];
+// if (total > mid) {
+// total = arr[i];
+// painters++;
+// if (painters > k) {
+// return false;
+// }
+// }
+// }
+// return true;
+// }
 
-  long minTime(int[] arr, int n, int k) {
-    long low = Arrays.stream(arr).max().getAsInt();
-    long high = Arrays.stream(arr).sum();
-    while (low <= high) {
-      long mid = low + (high - low) / 2;
-      if (isPossible(arr, n, k, mid)) {
-        high = mid - 1;
-      } else {
-        low = mid + 1;
-      }
-    }
-    return low;
-  }
+// long minTime(int[] arr, int n, int k) {
+// long low = Arrays.stream(arr).max().getAsInt();
+// long high = Arrays.stream(arr).sum();
+// while (low <= high) {
+// long mid = low + (high - low) / 2;
+// if (isPossible(arr, n, k, mid)) {
+// high = mid - 1;
+// } else {
+// low = mid + 1;
+// }
+// }
+// return low;
+// }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-    System.out.println("Enter the number of elements:");
-    int n = scanner.nextInt();
+// System.out.println("Enter the number of elements:");
+// int n = scanner.nextInt();
 
-    System.out.println("Enter the number of painters:");
-    int k = scanner.nextInt();
+// System.out.println("Enter the number of painters:");
+// int k = scanner.nextInt();
 
-    int[] arr = new int[n];
-    System.out.println("Enter the elements:");
+// int[] arr = new int[n];
+// System.out.println("Enter the elements:");
 
-    for (int i = 0; i < n; i++) {
-      arr[i] = scanner.nextInt();
-    }
+// for (int i = 0; i < n; i++) {
+// arr[i] = scanner.nextInt();
+// }
 
-    AdiEndTerm ob = new AdiEndTerm();
-    long result = ob.minTime(arr, n, k);
-    System.out.println("Minimum time required: " + result);
+// AdiEndTerm ob = new AdiEndTerm();
+// long result = ob.minTime(arr, n, k);
+// System.out.println("Minimum time required: " + result);
 
-    scanner.close();
-  }
-}
+// scanner.close();
+// }
+// }
