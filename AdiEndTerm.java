@@ -2176,6 +2176,7 @@ public class AdiEndTerm {
       }
     }
   }
+
   // right view
   public static void rightView(TreeNode root) {
     if (root == null) {
