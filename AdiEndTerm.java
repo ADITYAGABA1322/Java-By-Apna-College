@@ -2119,90 +2119,90 @@
 // Sample Output 2
 // 40 20 10
 
-import java.util.*;
+// import java.util.*;
 
-class TreeNode {
-  int val;
-  TreeNode left;
-  TreeNode right;
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
 
-  TreeNode(int val) {
-    this.val = val;
-  }
-}
+//   TreeNode(int val) {
+//     this.val = val;
+//   }
+// }
 
-public class AdiEndTerm {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    TreeNode root = null;
-    for (int i = 0; i < n; i++) {
-      root = insert(root, sc.nextInt());
-    }
-    leftView(root);
-    System.out.println();
-    rightView(root);
-  }
+// public class AdiEndTerm {
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     TreeNode root = null;
+//     for (int i = 0; i < n; i++) {
+//       root = insert(root, sc.nextInt());
+//     }
+//     leftView(root);
+//     System.out.println();
+//     rightView(root);
+//   }
 
-  public static TreeNode insert(TreeNode root, int val) {
-    if (root == null) {
-      return new TreeNode(val);
-    }
-    if (val < root.val) {
-      root.left = insert(root.left, val);
-    } else {
-      root.right = insert(root.right, val);
-    }
-    return root;
-  }
+//   public static TreeNode insert(TreeNode root, int val) {
+//     if (root == null) {
+//       return new TreeNode(val);
+//     }
+//     if (val < root.val) {
+//       root.left = insert(root.left, val);
+//     } else {
+//       root.right = insert(root.right, val);
+//     }
+//     return root;
+//   }
 
-  public static void leftView(TreeNode root) {
-    if (root == null) {
-      return;
-    }
-    Queue<TreeNode> queue = new LinkedList<>();
-    queue.add(root);
-    while (!queue.isEmpty()) {
-      int size = queue.size();
-      for (int i = 0; i < size; i++) {
-        TreeNode curr = queue.poll();
-        if (i == 0) {
-          System.out.print(curr.val + " ");
-        }
-        if (curr.left != null) {
-          queue.add(curr.left);
-        }
-        if (curr.right != null) {
-          queue.add(curr.right);
-        }
-      }
-    }
-  }
+//   public static void leftView(TreeNode root) {
+//     if (root == null) {
+//       return;
+//     }
+//     Queue<TreeNode> queue = new LinkedList<>();
+//     queue.add(root);
+//     while (!queue.isEmpty()) {
+//       int size = queue.size();
+//       for (int i = 0; i < size; i++) {
+//         TreeNode curr = queue.poll();
+//         if (i == 0) {
+//           System.out.print(curr.val + " ");
+//         }
+//         if (curr.left != null) {
+//           queue.add(curr.left);
+//         }
+//         if (curr.right != null) {
+//           queue.add(curr.right);
+//         }
+//       }
+//     }
+//   }
 
-  // right view
-  public static void rightView(TreeNode root) {
-    if (root == null) {
-      return;
-    }
-    Queue<TreeNode> queue = new LinkedList<>();
-    queue.add(root);
-    while (!queue.isEmpty()) {
-      int size = queue.size();
-      for (int i = 0; i < size; i++) {
-        TreeNode curr = queue.poll();
-        if (i == size - 1) {
-          System.out.print(curr.val + " ");
-        }
-        if (curr.left != null) {
-          queue.add(curr.left);
-        }
-        if (curr.right != null) {
-          queue.add(curr.right);
-        }
-      }
-    }
-  }
-}
+//   // right view
+//   public static void rightView(TreeNode root) {
+//     if (root == null) {
+//       return;
+//     }
+//     Queue<TreeNode> queue = new LinkedList<>();
+//     queue.add(root);
+//     while (!queue.isEmpty()) {
+//       int size = queue.size();
+//       for (int i = 0; i < size; i++) {
+//         TreeNode curr = queue.poll();
+//         if (i == size - 1) {
+//           System.out.print(curr.val + " ");
+//         }
+//         if (curr.left != null) {
+//           queue.add(curr.left);
+//         }
+//         if (curr.right != null) {
+//           queue.add(curr.right);
+//         }
+//       }
+//     }
+//   }
+// }
 
 // Question 25: Word Segmentation using Dictionary
 // Problem Statement : Given an input string and a dictionary of words,
