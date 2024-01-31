@@ -1270,12 +1270,13 @@
 
 // or 
 import java.util.*;
+import java.util.Arrays;
 
-class DijkstraAlgorithm {
+class Graph {
   private int V;
   private int[][] graph;
 
-  public DijkstraAlgorithm(int v) {
+  public Graph(int v) {
     V = v;
     graph = new int[V][V];
   }
@@ -1338,7 +1339,7 @@ class DijkstraAlgorithm {
     System.out.println("Enter the number of vertices:");
     int V = sc.nextInt();
 
-    DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(V);
+    Graph dijkstraAlgorithm = new Graph(V);
     dijkstraAlgorithm.readGraphMatrix(sc);
 
     System.out.println("Enter the source vertex:");
