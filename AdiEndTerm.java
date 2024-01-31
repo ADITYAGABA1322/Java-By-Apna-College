@@ -3373,6 +3373,7 @@
 
 // Sample Output 1
 // 20 30 50 70 80
+// 20 30 60 70 80
 
 // Sample Input 2
 // 3
@@ -3381,142 +3382,141 @@
 // 70 1
 // Sample Output 2
 // 30 50 70
+// 30 50 70
 
-import java.util.*;
+// import java.util.*;
 
-class Node {
-  int data;
-  int depth;
-  Node left, right;
+// class Node {
+//   int data;
+//   int depth;
+//   Node left, right;
 
-  Node(int value, int d) {
-    data = value;
-    depth = d;
-    left = right = null;
-  }
-}
+//   Node(int value, int d) {
+//     data = value;
+//     depth = d;
+//     left = right = null;
+//   }
+// }
 
-class Main {
-  Node root;
+// class Main {
+//   Node root;
 
-  Main() {
-    root = null;
-  }
+//   Main() {
+//     root = null;
+//   }
 
-  void insert(int value, int depth) {
-    root = insertRec(root, value, depth);
-  }
+//   void insert(int value, int depth) {
+//     root = insertRec(root, value, depth);
+//   }
 
-  Node insertRec(Node root, int value, int depth) {
-    if (root == null)
-      return new Node(value, depth);
+//   Node insertRec(Node root, int value, int depth) {
+//     if (root == null)
+//       return new Node(value, depth);
 
-    if (value < root.data)
-      root.left = insertRec(root.left, value, depth + 1);
-    else if (value > root.data)
-      root.right = insertRec(root.right, value, depth + 1);
+//     if (value < root.data)
+//       root.left = insertRec(root.left, value, depth + 1);
+//     else if (value > root.data)
+//       root.right = insertRec(root.right, value, depth + 1);
 
-    return root;
-  }
+//     return root;
+//   }
 
-  void topView() {
-    class QueueObj {
-      Node node;
-      int hd;
+//   void topView() {
+//     class QueueObj {
+//       Node node;
+//       int hd;
 
-      QueueObj(Node node, int hd) {
-        this.node = node;
-        this.hd = hd;
-      }
-    }
-    Queue<QueueObj> q = new LinkedList<QueueObj>();
-    Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+//       QueueObj(Node node, int hd) {
+//         this.node = node;
+//         this.hd = hd;
+//       }
+//     }
+//     Queue<QueueObj> q = new LinkedList<QueueObj>();
+//     Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
 
-    if (root == null) {
-      return;
-    } else {
-      q.add(new QueueObj(root, 0));
-    }
+//     if (root == null) {
+//       return;
+//     } else {
+//       q.add(new QueueObj(root, 0));
+//     }
 
-    while (!q.isEmpty()) {
-      QueueObj tmpNode = q.poll();
-      if (!topViewMap.containsKey(tmpNode.hd)) {
-        topViewMap.put(tmpNode.hd, tmpNode.node);
-      }
+//     while (!q.isEmpty()) {
+//       QueueObj tmpNode = q.poll();
+//       if (!topViewMap.containsKey(tmpNode.hd)) {
+//         topViewMap.put(tmpNode.hd, tmpNode.node);
+//       }
 
-      if (tmpNode.node.left != null) {
-        q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
-      }
-      if (tmpNode.node.right != null) {
-        q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
-      }
+//       if (tmpNode.node.left != null) {
+//         q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+//       }
+//       if (tmpNode.node.right != null) {
+//         q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+//       }
 
-    }
-    for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
-      System.out.print(entry.getValue().data + " ");
-    }
-  }
+//     }
+//     for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
+//       System.out.print(entry.getValue().data + " ");
+//     }
+//   }
 
-  void BottomView() {
-    class QueueObj {
-      Node node;
-      int hd;
+//   void BottomView() {
+//     class QueueObj {
+//       Node node;
+//       int hd;
 
-      QueueObj(Node node, int hd) {
-        this.node = node;
-        this.hd = hd;
-      }
-    }
-    Queue<QueueObj> q = new LinkedList<QueueObj>();
-    Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+//       QueueObj(Node node, int hd) {
+//         this.node = node;
+//         this.hd = hd;
+//       }
+//     }
+//     Queue<QueueObj> q = new LinkedList<QueueObj>();
+//     Map<Integer, Node> BottomViewMap = new TreeMap<Integer, Node>();
 
-    if (root == null) {
-      return;
-    } else {
-      q.add(new QueueObj(root, 0));
-    }
+//     if (root == null) {
+//       return;
+//     } else {
+//       q.add(new QueueObj(root, 0));
+//     }
 
-    while (!q.isEmpty()) {
-      QueueObj tmpNode = q.poll();
-      topViewMap.put(tmpNode.hd, tmpNode.node);
+//     while (!q.isEmpty()) {
+//       QueueObj tmpNode = q.poll();
+//       BottomViewMap.put(tmpNode.hd, tmpNode.node);
 
-      if (tmpNode.node.left != null) {
-        q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
-      }
-      if (tmpNode.node.right != null) {
-        q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
-      }
+//       if (tmpNode.node.left != null) {
+//         q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+//       }
+//       if (tmpNode.node.right != null) {
+//         q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+//       }
 
-    }
-    for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
-      System.out.print(entry.getValue().data + " ");
-    }
-      
-      
-  }
-}
+//     }
+//     for (Map.Entry<Integer, Node> entry : BottomViewMap.entrySet()) {
+//       System.out.print(entry.getValue().data + " ");
+//     }
+//   }
+// }
 
-public class AdiEndTerm {
-  public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
+// public class AdiEndTerm {
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
 
-    int n = scanner.nextInt();
+//     int n = scanner.nextInt();
 
-    Main tree = new Main();
-    for (int i = 0; i < n; i++) {
-      int value = scanner.nextInt();
-      int depth = scanner.nextInt();
-      tree.insert(value, depth);
-    }
+//     Main tree = new Main();
+//     for (int i = 0; i < n; i++) {
+//       int value = scanner.nextInt();
+//       int depth = scanner.nextInt();
+//       tree.insert(value, depth);
+//     }
 
-    tree.topView();
-    System.out.println();
-    tree.BottomView();
+//     tree.topView();
+//     System.out.println();
+//     tree.BottomView();
 
-    scanner.close();
-  }
+//     scanner.close();
+//   }
 
-}
+// }
 
 // Question 34: Egg Dropping Puzzle
 
@@ -3556,32 +3556,44 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int k = sc.nextInt();
-// System.out.println(eggDrop(n, k));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int k = sc.nextInt();
+//     System.out.println(eggDrop(n, k));
+//   }
 
-// public static int eggDrop(int n, int k) {
-// int[][] dp = new int[n + 1][k + 1];
-// for (int i = 1; i <= n; i++) {
-// dp[i][1] = i;
-// }
-// for (int i = 1; i <= k; i++) {
-// dp[1][i] = 1;
-// }
-// for (int i = 2; i <= n; i++) {
-// for (int j = 2; j <= k; j++) {
-// dp[i][j] = Integer.MAX_VALUE;
-// for (int x = 1; x <= i; x++) {
-// int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
-// dp[i][j] = Math.min(dp[i][j], res);
-// }
-// }
-// }
-// return dp[n][k];
-// }
+//   public static int eggDrop(int n, int k) {
+//     // int[][] dp = new int[n + 1][k + 1];
+//     // for (int i = 1; i <= n; i++) {
+//     // dp[i][1] = i;
+//     // }
+//     // for (int i = 1; i <= k; i++) {
+//     // dp[1][i] = 1;
+//     // }
+//     // for (int i = 2; i <= n; i++) {
+//     // for (int j = 2; j <= k; j++) {
+//     // dp[i][j] = Integer.MAX_VALUE;
+//     // for (int x = 1; x <= i; x++) {
+//     // int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
+//     // dp[i][j] = Math.min(dp[i][j], res);
+//     // }
+//     // }
+//     // }
+//     // return dp[n][k];
+//     // or
+//     int[][] dp = new int[n + 1][k + 1];
+//     for (int i = 1; i <= n; i++) {
+//       for (int j = 1; j <= k; j++) {
+//         dp[i][j] = Integer.MAX_VALUE;
+//         for (int x = 1; x <= i; x++) {
+//           int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
+//           dp[i][j] = Math.min(dp[i][j], res);
+//         }
+//       }
+//     }
+//     return dp[n][k];
+//   }
 // }
 
 // Question 35: Counting Bits
@@ -3809,35 +3821,35 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
-// String pattern = scanner.nextLine();
-// String str = scanner.nextLine();
-// scanner.close();
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     String pattern = scanner.nextLine();
+//     String str = scanner.nextLine();
+//     scanner.close();
 
-// System.out.println(wordPattern(pattern, str));
-// }
+//     System.out.println(wordPattern(pattern, str));
+//   }
 
-// public static boolean wordPattern(String pattern, String str) {
-// String[] words = str.split(" ");
-// if (words.length != pattern.length())
-// return false;
+//   public static boolean wordPattern(String pattern, String str) {
+//     String[] words = str.split(" ");
+//     if (words.length != pattern.length())
+//       return false;
 
-// Map<Character, String> map = new HashMap<>();
-// for (int i = 0; i < words.length; i++) {
-// char c = pattern.charAt(i);
-// if (map.containsKey(c)) {
-// if (!map.get(c).equals(words[i]))
-// return false;
-// } else {
-// if (map.containsValue(words[i]))
-// return false;
-// map.put(c, words[i]);
-// }
-// }
+//     Map<Character, String> map = new HashMap<>();
+//     for (int i = 0; i < words.length; i++) {
+//       char c = pattern.charAt(i);
+//       if (map.containsKey(c)) {
+//         if (!map.get(c).equals(words[i]))
+//           return false;
+//       } else {
+//         if (map.containsValue(words[i]))
+//           return false;
+//         map.put(c, words[i]);
+//       }
+//     }
 
-// return true;
-// }
+//     return true;
+//   }
 // }
 
 // Question 39: Finding the Kth Largest Element in Array
@@ -4049,44 +4061,44 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] arr = new int[n];
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
 
-// for (int i = 0; i < n; i++) {
-// arr[i] = sc.nextInt();
-// }
-// heapify(arr);
-// for (int i = 0; i < n; i++) {
-// System.out.print(arr[i] + " ");
-// }
-// }
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     heapify(arr);
+//     for (int i = 0; i < n; i++) {
+//       System.out.print(arr[i] + " ");
+//     }
+//   }
 
-// public static void heapify(int[] arr) {
-// int n = arr.length;
-// for (int i = n / 2 - 1; i >= 0; i--) {
-// heapifyUtil(arr, n, i);
-// }
-// }
+//   public static void heapify(int[] arr) {
+//     int n = arr.length;
+//     for (int i = n / 2 - 1; i >= 0; i--) {
+//       heapifyUtil(arr, n, i);
+//     }
+//   }
 
-// public static void heapifyUtil(int[] arr, int n, int i) {
-// int smallest = i;
-// int left = 2 * i + 1;
-// int right = 2 * i + 2;
-// if (left < n && arr[left] < arr[smallest]) {
-// smallest = left;
-// }
-// if (right < n && arr[right] < arr[smallest]) {
-// smallest = right;
-// }
-// if (smallest != i) {
-// int temp = arr[i];
-// arr[i] = arr[smallest];
-// arr[smallest] = temp;
-// heapifyUtil(arr, n, smallest);
-// }
-// }
+//   public static void heapifyUtil(int[] arr, int n, int i) {
+//     int smallest = i;
+//     int left = 2 * i + 1;
+//     int right = 2 * i + 2;
+//     if (left < n && arr[left] < arr[smallest]) {
+//       smallest = left;
+//     }
+//     if (right < n && arr[right] < arr[smallest]) {
+//       smallest = right;
+//     }
+//     if (smallest != i) {
+//       int temp = arr[i];
+//       arr[i] = arr[smallest];
+//       arr[smallest] = temp;
+//       heapifyUtil(arr, n, smallest);
+//     }
+//   }
 // }
 
 // Question 43: Sort array indices
@@ -4115,41 +4127,41 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] arr = new int[n];
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
 
-// for (int i = 0; i < n; i++) {
-// arr[i] = sc.nextInt();
-// }
-// sortIndices(arr);
-// }
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     sortIndices(arr);
+//   }
 
-// public static void sortIndices(int[] arr) {
-// int n = arr.length;
-// int[] indices = new int[n];
-// for (int i = 0; i < n; i++) {
-// indices[i] = i;
-// }
-// for (int i = 0; i < n; i++) {
-// int max = i;
-// for (int j = i + 1; j < n; j++) {
-// if (arr[j] > arr[max]) {
-// max = j;
-// }
-// }
-// int temp = arr[max];
-// arr[max] = arr[i];
-// arr[i] = temp;
-// int temp2 = indices[max];
-// indices[max] = indices[i];
-// indices[i] = temp2;
-// }
-// for (int i = 0; i < n; i++) {
-// System.out.print(indices[i] + " ");
-// }
-// }
+//   public static void sortIndices(int[] arr) {
+//     int n = arr.length;
+//     int[] indices = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       indices[i] = i;
+//     }
+//     for (int i = 0; i < n; i++) {
+//       int max = i;
+//       for (int j = i + 1; j < n; j++) {
+//         if (arr[j] > arr[max]) {
+//           max = j;
+//         }
+//       }
+//       int temp = arr[max];
+//       arr[max] = arr[i];
+//       arr[i] = temp;
+//       int temp2 = indices[max];
+//       indices[max] = indices[i];
+//       indices[i] = temp2;
+//     }
+//     for (int i = 0; i < n; i++) {
+//       System.out.print(indices[i] + " ");
+//     }
+//   }
 // }
 
 // Question 44: Isomorphic Keyboard Layout Checker
@@ -4181,31 +4193,31 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String s1 = sc.nextLine();
-// String s2 = sc.nextLine();
-// System.out.println(isIsomorphic(s1, s2));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s1 = sc.nextLine();
+//     String s2 = sc.nextLine();
+//     System.out.println(isIsomorphic(s1, s2));
+//   }
 
-// public static boolean isIsomorphic(String s1, String s2) {
-// if (s1.length() != s2.length()) {
-// return false;
-// }
-// Map<Character, Character> map = new HashMap<>();
-// for (int i = 0; i < s1.length(); i++) {
-// char ch1 = s1.charAt(i);
-// char ch2 = s2.charAt(i);
-// if (map.containsKey(ch1)) {
-// if (map.get(ch1) != ch2) {
-// return false;
-// }
-// } else {
-// map.put(ch1, ch2);
-// }
-// }
-// return true;
-// }
+//   public static boolean isIsomorphic(String s1, String s2) {
+//     if (s1.length() != s2.length()) {
+//       return false;
+//     }
+//     Map<Character, Character> map = new HashMap<>();
+//     for (int i = 0; i < s1.length(); i++) {
+//       char ch1 = s1.charAt(i);
+//       char ch2 = s2.charAt(i);
+//       if (map.containsKey(ch1)) {
+//         if (map.get(ch1) != ch2) {
+//           return false;
+//         }
+//       } else {
+//         map.put(ch1, ch2);
+//       }
+//     }
+//     return true;
+//   }
 // }
 
 // Question 45: Find a single element appearing once in a sorted array
@@ -4234,37 +4246,37 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] s = sc.nextLine().split(" ");
-// int[] arr = new int[s.length];
-// for (int i = 0; i < s.length; i++) {
-// arr[i] = Integer.parseInt(s[i]);
-// }
-// System.out.println(singleNonDuplicate(arr));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] s = sc.nextLine().split(" ");
+//     int[] arr = new int[s.length];
+//     for (int i = 0; i < s.length; i++) {
+//       arr[i] = Integer.parseInt(s[i]);
+//     }
+//     System.out.println(singleNonDuplicate(arr));
+//   }
 
-// public static int singleNonDuplicate(int[] nums) {
-// int low = 0;
-// int high = nums.length - 1;
-// while (low < high) {
-// int mid = low + (high - low) / 2;
-// if (mid % 2 == 0) {
-// if (nums[mid] == nums[mid + 1]) {
-// low = mid + 2;
-// } else {
-// high = mid;
-// }
-// } else {
-// if (nums[mid] == nums[mid - 1]) {
-// low = mid + 1;
-// } else {
-// high = mid - 1;
-// }
-// }
-// }
-// return nums[low];
-// }
+//   public static int singleNonDuplicate(int[] nums) {
+//     int low = 0;
+//     int high = nums.length - 1;
+//     while (low < high) {
+//       int mid = low + (high - low) / 2;
+//       if (mid % 2 == 0) {
+//         if (nums[mid] == nums[mid + 1]) {
+//           low = mid + 2;
+//         } else {
+//           high = mid;
+//         }
+//       } else {
+//         if (nums[mid] == nums[mid - 1]) {
+//           low = mid + 1;
+//         } else {
+//           high = mid - 1;
+//         }
+//       }
+//     }
+//     return nums[low];
+//   }
 // }
 
 // Question 46: Starting Index of the Pattern matched in the String
@@ -4296,119 +4308,117 @@ public class AdiEndTerm {
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String s = sc.nextLine();
-// String pattern = sc.nextLine();
-// System.out.println(kmp(s, pattern));
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     String pattern = sc.nextLine();
+//     System.out.println(kmp(s, pattern));
+//   }
+
+//   public static int kmp(String s, String pattern) {
+//     int n = s.length();
+//     int m = pattern.length();
+//     int[] lps = new int[m];
+//     computeLPS(pattern, lps);
+//     int i = 0;
+//     int j = 0;
+//     while (i < n) {
+//       if (s.charAt(i) == pattern.charAt(j)) {
+//         i++;
+//         j++;
+//       }
+//       if (j == m) {
+//         return i - j;
+//       } else if (i < n && s.charAt() != pattern.charAt(j)) {
+//         if (j != 0) {
+//           j = lps[j - 1];
+//         } else {
+//           i++;
+//         }
+//       }
+//     }
+//     return -1;
+//   }
+
+//   public static void computeLPS(String pattern, int[] lps) {
+//     int m = pattern.length();
+//     int len = 0;
+//     int i = 1;
+//     lps[0] = 0;
+//     while (i < m) {
+//       if (pattern.charAt(i) == pattern.charAt(len)) {
+//         len++;
+//         lps[i] = len;
+//         i++;
+//       } else {
+//         if (len != 0) {
+//           len = lps[len - 1];
+//         } else {
+//           lps[i] = len;
+//           i++;
+//         }
+//       }
+//     }
+//   }
 // }
 
-// public static int kmp(String s, String pattern) {
-// int n = s.length();
-// int m = pattern.length();
-// int[] lps = new int[m];
-// computeLPS(pattern, lps);
-// int i = 0;
-// int j = 0;
-// while (i < n) {
-// if (s.charAt(i) == pattern.charAt(j)) {
-// i++;
-// j++;
-// }
-// if (j == m) {
-// return i - j;
-// } else if (i < n && s.charAt(i) != pattern.charAt(j)) {
-// if (j != 0) {
-// j = lps[j - 1];
-// } else {
-// i++;
-// }
-// }
-// }
-// return -1;
-// }
+// Painters Partition Problem II
 
-// public static void computeLPS(String pattern, int[] lps) {
-// int m = pattern.length();
-// int len = 0;
-// int i = 1;
-// lps[0] = 0;
-// while (i < m) {
-// if (pattern.charAt(i) == pattern.charAt(len)) {
-// len++;
-// lps[i] = len;
-// i++;
-// } else {
-// if (len != 0) {
-// len = lps[len - 1];
-// } else {
-// lps[i] = len;
-// i++;
-// }
-// }
-// }
-// }
-// }
+// Problem Statement : Given an array of size n, which represents the length of
+// n boards and an integer k, the task is to paint all the boards of length n
+// using k painters such that the time taken to paint all the boards is
+// minimized. Note: The length of each board will be a positive integer and not
+// exceed 1000000000.
 
-// { Driver Code Starts
-// Initial Template for Java
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+// User function Template for Java
 
-// import java.io.*;
-// import java.util.*;
-// import java.util.Arrays;
-// // User function Template for Java
+class AdiEndTerm {
+  boolean isPossible(int[] arr, int n, int k, long mid) {
+    int painters = 1;
+    long total = 0;
+    for (int i = 0; i < n; i++) {
+      total += arr[i];
+      if (total > mid) {
+        total = arr[i];
+        painters++;
+        if (painters > k) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
-// class AdiEndTerm {
-// boolean isPossible(int[] arr, int n, int k, long mid) {
-// int painters = 1;
-// long total = 0;
-// for (int i = 0; i < n; i++) {
-// total += arr[i];
-// if (total > mid) {
-// total = arr[i];
-// painters++;
-// if (painters > k) {
-// return false;
-// }
-// }
-// }
-// return true;
-// }
+  long minTime(int[] arr, int n, int k) {
+    // long low = Arrays.stream(arr).max().getAsInt();
+    // long high = Arrays.stream(arr).sum();
+    long[] longArr = Arrays.stream(arr).asLongStream().toArray();
+    long low = Arrays.stream(longArr).max().getAsLong();
+    long high = Arrays.stream(longArr).sum();
+    while (low <= high) {
+      long mid = low + (high - low) / 2;
+      if (isPossible(arr, n, k, mid)) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return low;
+  }
 
-// long minTime(int[] arr, int n, int k) {
-// long low = Arrays.stream(arr).max().getAsInt();
-// long high = Arrays.stream(arr).sum();
-// while (low <= high) {
-// long mid = low + (high - low) / 2;
-// if (isPossible(arr, n, k, mid)) {
-// high = mid - 1;
-// } else {
-// low = mid + 1;
-// }
-// }
-// return low;
-// }
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = sc.nextInt();
+    }
 
-// System.out.println("Enter the number of elements:");
-// int n = scanner.nextInt();
-
-// System.out.println("Enter the number of painters:");
-// int k = scanner.nextInt();
-
-// int[] arr = new int[n];
-// System.out.println("Enter the elements:");
-
-// for (int i = 0; i < n; i++) {
-// arr[i] = scanner.nextInt();
-// }
-
-// AdiEndTerm ob = new AdiEndTerm();
-// long result = ob.minTime(arr, n, k);
-// System.out.println("Minimum time required: " + result);
-
-// scanner.close();
-// }
-// }
+    System.out.println(new AdiEndTerm().minTime(arr, n, k));
+  }
+}
