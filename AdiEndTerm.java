@@ -3382,100 +3382,100 @@
 // Sample Output 2
 // 30 50 70
 
-// import java.util.*;
+import java.util.*;
 
-// class Node {
-// int data;
-// int depth;
-// Node left, right;
+class Node {
+  int data;
+  int depth;
+  Node left, right;
 
-// Node(int value, int d) {
-// data = value;
-// depth = d;
-// left = right = null;
-// }
-// }
+  Node(int value, int d) {
+    data = value;
+    depth = d;
+    left = right = null;
+  }
+}
 
-// class Main {
-// Node root;
+class Main {
+  Node root;
 
-// Main() {
-// root = null;
-// }
+  Main() {
+    root = null;
+  }
 
-// void insert(int value, int depth) {
-// root = insertRec(root, value, depth);
-// }
+  void insert(int value, int depth) {
+    root = insertRec(root, value, depth);
+  }
 
-// Node insertRec(Node root, int value, int depth) {
-// if (root == null)
-// return new Node(value, depth);
+  Node insertRec(Node root, int value, int depth) {
+    if (root == null)
+      return new Node(value, depth);
 
-// if (value < root.data)
-// root.left = insertRec(root.left, value, depth + 1);
-// else if (value > root.data)
-// root.right = insertRec(root.right, value, depth + 1);
+    if (value < root.data)
+      root.left = insertRec(root.left, value, depth + 1);
+    else if (value > root.data)
+      root.right = insertRec(root.right, value, depth + 1);
 
-// return root;
-// }
+    return root;
+  }
 
-// void topView() {
-// class QueueObj {
-// Node node;
-// int hd;
+  void topView() {
+    class QueueObj {
+      Node node;
+      int hd;
 
-// QueueObj(Node node, int hd) {
-// this.node = node;
-// this.hd = hd;
-// }
-// }
-// Queue<QueueObj> q = new LinkedList<QueueObj>();
-// Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+      QueueObj(Node node, int hd) {
+        this.node = node;
+        this.hd = hd;
+      }
+    }
+    Queue<QueueObj> q = new LinkedList<QueueObj>();
+    Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
 
-// if (root == null) {
-// return;
-// } else {
-// q.add(new QueueObj(root, 0));
-// }
+    if (root == null) {
+      return;
+    } else {
+      q.add(new QueueObj(root, 0));
+    }
 
-// while (!q.isEmpty()) {
-// QueueObj tmpNode = q.poll();
-// if (!topViewMap.containsKey(tmpNode.hd)) {
-// topViewMap.put(tmpNode.hd, tmpNode.node);
-// }
+    while (!q.isEmpty()) {
+      QueueObj tmpNode = q.poll();
+      if (!topViewMap.containsKey(tmpNode.hd)) {
+        topViewMap.put(tmpNode.hd, tmpNode.node);
+      }
 
-// if (tmpNode.node.left != null) {
-// q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
-// }
-// if (tmpNode.node.right != null) {
-// q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
-// }
+      if (tmpNode.node.left != null) {
+        q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+      }
+      if (tmpNode.node.right != null) {
+        q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+      }
 
-// }
-// for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
-// System.out.print(entry.getValue().data + " ");
-// }
-// }
-// }
+    }
+    for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
+      System.out.print(entry.getValue().data + " ");
+    }
+  }
+}
 
-// public class AdiEndTerm {
-// public static void main(String args[]) {
-// Scanner scanner = new Scanner(System.in);
+public class AdiEndTerm {
+  public static void main(String args[]) {
+    Scanner scanner = new Scanner(System.in);
 
-// int n = scanner.nextInt();
+    int n = scanner.nextInt();
 
-// Main tree = new Main();
-// for (int i = 0; i < n; i++) {
-// int value = scanner.nextInt();
-// int depth = scanner.nextInt();
-// tree.insert(value, depth);
-// }
+    Main tree = new Main();
+    for (int i = 0; i < n; i++) {
+      int value = scanner.nextInt();
+      int depth = scanner.nextInt();
+      tree.insert(value, depth);
+    }
 
-// tree.topView();
+    tree.topView();
 
-// scanner.close();
-// }
-// }
+    scanner.close();
+  }
+}
 
 // Question 34: Egg Dropping Puzzle
 
