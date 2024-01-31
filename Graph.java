@@ -1177,76 +1177,174 @@
 
 // or 
 
+// import java.util.*;
+
+// class Graph {
+//   int V;
+//   int graph[][];
+
+//   Graph(int v) {
+//     V = v;
+//     graph = new int[V][V];
+//   }
+
+//   int minDistance(int dist[], Boolean sptSet[]) {
+//     int min = Integer.MAX_VALUE, min_index = -1;
+
+//     for (int v = 0; v < V; v++)
+//       if (sptSet[v] == false && dist[v] <= min) {
+//         min = dist[v];
+//         min_index = v;
+//       }
+
+//     return min_index;
+//   }
+
+//   void printSolution(int dist[]) {
+//     System.out.println("Vertex \t\t Distance from Source");
+//     for (int i = 0; i < V; i++)
+//       System.out.println(i + " \t\t " + dist[i]);
+//   }
+
+//   void dijkstra(int src) {
+//     int dist[] = new int[V];
+//     Boolean sptSet[] = new Boolean[V];
+
+//     for (int i = 0; i < V; i++) {
+//       dist[i] = Integer.MAX_VALUE;
+//       sptSet[i] = false;
+//     }
+
+//     dist[src] = 0;
+
+//     for (int count = 0; count < V - 1; count++) {
+//       int u = minDistance(dist, sptSet);
+//       sptSet[u] = true;
+
+//       for (int v = 0; v < V; v++)
+//         if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
+//           dist[v] = dist[u] + graph[u][v];
+//     }
+
+//     printSolution(dist);
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int v = scanner.nextInt();
+
+//     Graph t = new Graph(v);
+
+//     System.out.println("Enter the graph matrix:");
+//     for (int i = 0; i < v; i++) {
+//       for (int j = 0; j < v; j++) {
+//         t.graph[i][j] = scanner.nextInt();
+//       }
+//     }
+
+//     System.out.println("Enter the source vertex:");
+//     int src = scanner.nextInt();
+
+//     t.dijkstra(src);
+//   }
+// }
+
+// Input Format:
+// Enter the number of vertices:
+// 4
+// Enter the graph matrix:
+// 0 5 0 10
+// 0 0 3 0
+// 0 0 0 1
+// 0 0 0 0
+// Enter the source vertex:
+// 0
+
+// Output Format:
+// Vertex Distance from Source
+// 0 0
+// 1 5
+// 2 8
+// 3 9
+
+// or 
 import java.util.*;
 
-class Graph {
-  int V;
-  int graph[][];
+class DijkstraAlgorithm {
+  private int V;
+  private int[][] graph;
 
-  Graph(int v) {
+  public DijkstraAlgorithm(int v) {
     V = v;
     graph = new int[V][V];
   }
 
-  int minDistance(int dist[], Boolean sptSet[]) {
-    int min = Integer.MAX_VALUE, min_index = -1;
-
-    for (int v = 0; v < V; v++)
-      if (sptSet[v] == false && dist[v] <= min) {
-        min = dist[v];
-        min_index = v;
-      }
-
-    return min_index;
-  }
-
-  void printSolution(int dist[]) {
-    System.out.println("Vertex \t\t Distance from Source");
-    for (int i = 0; i < V; i++)
-      System.out.println(i + " \t\t " + dist[i]);
-  }
-
-  void dijkstra(int src) {
-    int dist[] = new int[V];
-    Boolean sptSet[] = new Boolean[V];
-
+  public void readGraphMatrix(Scanner scanner) {
+    System.out.println("Enter the graph matrix:");
     for (int i = 0; i < V; i++) {
-      dist[i] = Integer.MAX_VALUE;
-      sptSet[i] = false;
+      for (int j = 0; j < V; j++) {
+        graph[i][j] = scanner.nextInt();
+      }
     }
+  }
 
-    dist[src] = 0;
+  public void dijkstra(int source) {
+    int[] distance = new int[V];
+    boolean[] visited = new boolean[V];
+
+    Arrays.fill(distance, Integer.MAX_VALUE);
+    distance[source] = 0;
 
     for (int count = 0; count < V - 1; count++) {
-      int u = minDistance(dist, sptSet);
-      sptSet[u] = true;
+      int u = minDistance(distance, visited);
+      visited[u] = true;
 
-      for (int v = 0; v < V; v++)
-        if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
-          dist[v] = dist[u] + graph[u][v];
+      for (int v = 0; v < V; v++) {
+        if (!visited[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE
+            && distance[u] + graph[u][v] < distance[v]) {
+          distance[v] = distance[u] + graph[u][v];
+        }
+      }
     }
 
-    printSolution(dist);
+    printShortestPaths(distance);
+  }
+
+  private int minDistance(int[] distance, boolean[] visited) {
+    int min = Integer.MAX_VALUE;
+    int minIndex = -1;
+
+    for (int v = 0; v < V; v++) {
+      if (!visited[v] && distance[v] <= min) {
+        min = distance[v];
+        minIndex = v;
+      }
+    }
+
+    return minIndex;
+  }
+
+  private void printShortestPaths(int[] distance) {
+    System.out.println("Shortest Distances from Source:");
+    for (int i = 0; i < V; i++) {
+      System.out.println("Vertex " + i + ": " + distance[i]);
+    }
   }
 
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
+
     System.out.println("Enter the number of vertices:");
-    int v = scanner.nextInt();
+    int V = sc.nextInt();
 
-    Graph t = new Graph(v);
-
-    System.out.println("Enter the graph matrix:");
-    for (int i = 0; i < v; i++) {
-      for (int j = 0; j < v; j++) {
-        t.graph[i][j] = scanner.nextInt();
-      }
-    }
+    DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(V);
+    dijkstraAlgorithm.readGraphMatrix(sc);
 
     System.out.println("Enter the source vertex:");
-    int src = scanner.nextInt();
+    int source = sc.nextInt();
 
-    t.dijkstra(src);
+    dijkstraAlgorithm.dijkstra(source);
   }
 }
 
