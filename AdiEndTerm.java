@@ -1637,42 +1637,42 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String pattern = sc.nextLine();
-// int n = pattern.length();
-// // for (int i = 0; i < n; i++) {
-// // for (int j = i + 2; j <= n; j++) {
-// // String sub = pattern.substring(i, j);
-// // if (isPalindrome(sub)) {
-// // System.out.println(sub + " " + i + "-" + (j - 1));
-// for (int len = 3; len <= n; len++) {
-// for (int i = 0; i <= n - len; i++) {
-// String sub = pattern.substring(i, i + len);
-// if (isPalindrome(sub)) {
-// System.out.println(sub + " " + i + "-" + (i + len - 1));
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String pattern = sc.nextLine();
+//     int n = pattern.length();
+//     // for (int i = 0; i < n; i++) {
+//     // for (int j = i + 2; j <= n; j++) {
+//     // String sub = pattern.substring(i, j);
+//     // if (isPalindrome(sub)) {
+//     // System.out.println(sub + " " + i + "-" + (j - 1));
+//     for (int len = 3; len <= n; len++) {
+//       for (int i = 0; i <= n - len; i++) {
+//         String sub = pattern.substring(i, i + len);
+//         if (isPalindrome(sub)) {
+//           System.out.println(sub + " " + i + "-" + (i + len - 1));
 
-// }
-// }
-// }
-// }
+//         }
+//       }
+//     }
+//   }
 
-// public static boolean isPalindrome(String s) {
-// // int n = s.length();
-// // for (int i = 0; i < n / 2; i++) {
-// // if (s.charAt(i) != s.charAt(n - i - 1)) {
-// // return false;
-// // }
-// // }
-// // return true;
-// int i = 0, j = s.length() - 1;
-// while (i < j) {
-// if (s.charAt(i++) != s.charAt(j--)) {
-// return false;
-// }
-// }
-// return true;
-// }
+//   public static boolean isPalindrome(String s) {
+//     // int n = s.length();
+//     // for (int i = 0; i < n / 2; i++) {
+//     // if (s.charAt(i) != s.charAt(n - i - 1)) {
+//     // return false;
+//     // }
+//     // }
+//     // return true;
+//     int i = 0, j = s.length() - 1;
+//     while (i < j) {
+//       if (s.charAt(i++) != s.charAt(j--)) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
 // }
 
 // or
