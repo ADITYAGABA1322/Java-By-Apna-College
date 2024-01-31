@@ -1080,98 +1080,173 @@
 
 // or 
 
+// import java.util.*;
+// import java.util.Arrays;
+
+// class Graph {
+//   private int V;
+//   private List<Edge>[] adj;
+
+//   class Edge {
+//     int destination;
+//     int weight;
+
+//     Edge(int destination, int weight) {
+//       this.destination = destination;
+//       this.weight = weight;
+//     }
+//   }
+
+//   public Graph(int v) {
+//     V = v;
+//     adj = new ArrayList[V];
+//     for (int i = 0; i < V; i++) {
+//       adj[i] = new ArrayList<>();
+//     }
+//   }
+
+//   public void addEdge(int source, int destination, int weight) {
+//     adj[source].add(new Edge(destination, weight));
+//     adj[destination].add(new Edge(source, weight)); // For undirected graph
+//   }
+
+//   public void dijkstra(int source) {
+//     PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
+//     int[] distance = new int[V];
+//     Arrays.fill(distance, Integer.MAX_VALUE);
+//     distance[source] = 0;
+
+//     minHeap.add(new Node(source, 0));
+
+//     while (!minHeap.isEmpty()) {
+//       Node current = minHeap.poll();
+
+//       for (Edge neighbor : adj[current.vertex]) {
+//         int newDistance = distance[current.vertex] + neighbor.weight;
+
+//         if (newDistance < distance[neighbor.destination]) {
+//           distance[neighbor.destination] = newDistance;
+//           minHeap.add(new Node(neighbor.destination, newDistance));
+//         }
+//       }
+//     }
+
+//     printShortestPaths(distance);
+//   }
+
+//   private void printShortestPaths(int[] distance) {
+//     System.out.println("Shortest Distances from Source:");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println("Vertex " + i + ": " + distance[i]);
+//     }
+//   }
+
+//   class Node {
+//     int vertex;
+//     int distance;
+
+//     Node(int vertex, int distance) {
+//       this.vertex = vertex;
+//       this.distance = distance;
+//     }
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+
+//     System.out.println("Enter No of vertices");
+//     int V = sc.nextInt();
+
+//     System.out.println("Enter No of Edges");
+//     int E = sc.nextInt();
+
+//     Graph graph = new Graph(V);
+//     for (int i = 0; i < E; i++) {
+//       int src = sc.nextInt();
+//       int des = sc.nextInt();
+//       int weight = sc.nextInt();
+//       graph.addEdge(src, des, weight);
+//     }
+
+//     System.out.println("Enter Source Vertex:");
+//     int source = sc.nextInt();
+
+//     graph.dijkstra(source);
+//   }
+// }
+
+// or 
+
 import java.util.*;
-import java.util.Arrays;
 
 class Graph {
-  private int V;
-  private List<Edge>[] adj;
+  int V;
+  int graph[][];
 
-  class Edge {
-    int destination;
-    int weight;
-
-    Edge(int destination, int weight) {
-      this.destination = destination;
-      this.weight = weight;
-    }
-  }
-
-  public Graph(int v) {
+  Graph(int v) {
     V = v;
-    adj = new ArrayList[V];
-    for (int i = 0; i < V; i++) {
-      adj[i] = new ArrayList<>();
-    }
+    graph = new int[V][V];
   }
 
-  public void addEdge(int source, int destination, int weight) {
-    adj[source].add(new Edge(destination, weight));
-    adj[destination].add(new Edge(source, weight)); // For undirected graph
-  }
+  int minDistance(int dist[], Boolean sptSet[]) {
+    int min = Integer.MAX_VALUE, min_index = -1;
 
-  public void dijkstra(int source) {
-    PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
-    int[] distance = new int[V];
-    Arrays.fill(distance, Integer.MAX_VALUE);
-    distance[source] = 0;
-
-    minHeap.add(new Node(source, 0));
-
-    while (!minHeap.isEmpty()) {
-      Node current = minHeap.poll();
-
-      for (Edge neighbor : adj[current.vertex]) {
-        int newDistance = distance[current.vertex] + neighbor.weight;
-
-        if (newDistance < distance[neighbor.destination]) {
-          distance[neighbor.destination] = newDistance;
-          minHeap.add(new Node(neighbor.destination, newDistance));
-        }
+    for (int v = 0; v < V; v++)
+      if (sptSet[v] == false && dist[v] <= min) {
+        min = dist[v];
+        min_index = v;
       }
-    }
 
-    printShortestPaths(distance);
+    return min_index;
   }
 
-  private void printShortestPaths(int[] distance) {
-    System.out.println("Shortest Distances from Source:");
+  void printSolution(int dist[]) {
+    System.out.println("Vertex \t\t Distance from Source");
+    for (int i = 0; i < V; i++)
+      System.out.println(i + " \t\t " + dist[i]);
+  }
+
+  void dijkstra(int src) {
+    int dist[] = new int[V];
+    Boolean sptSet[] = new Boolean[V];
+
     for (int i = 0; i < V; i++) {
-      System.out.println("Vertex " + i + ": " + distance[i]);
+      dist[i] = Integer.MAX_VALUE;
+      sptSet[i] = false;
     }
-  }
 
-  class Node {
-    int vertex;
-    int distance;
+    dist[src] = 0;
 
-    Node(int vertex, int distance) {
-      this.vertex = vertex;
-      this.distance = distance;
+    for (int count = 0; count < V - 1; count++) {
+      int u = minDistance(dist, sptSet);
+      sptSet[u] = true;
+
+      for (int v = 0; v < V; v++)
+        if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
+          dist[v] = dist[u] + graph[u][v];
     }
+
+    printSolution(dist);
   }
 
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter the number of vertices:");
+    int v = scanner.nextInt();
 
-    System.out.println("Enter No of vertices");
-    int V = sc.nextInt();
+    Graph t = new Graph(v);
 
-    System.out.println("Enter No of Edges");
-    int E = sc.nextInt();
-
-    Graph graph = new Graph(V);
-    for (int i = 0; i < E; i++) {
-      int src = sc.nextInt();
-      int des = sc.nextInt();
-      int weight = sc.nextInt();
-      graph.addEdge(src, des, weight);
+    System.out.println("Enter the graph matrix:");
+    for (int i = 0; i < v; i++) {
+      for (int j = 0; j < v; j++) {
+        t.graph[i][j] = scanner.nextInt();
+      }
     }
 
-    System.out.println("Enter Source Vertex:");
-    int source = sc.nextInt();
+    System.out.println("Enter the source vertex:");
+    int src = scanner.nextInt();
 
-    graph.dijkstra(source);
+    t.dijkstra(src);
   }
 }
 
