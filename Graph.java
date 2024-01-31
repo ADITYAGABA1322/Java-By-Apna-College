@@ -1714,64 +1714,83 @@
 //   }
 // }
 
-// or
-// import java.util.Scanner;
 
-// public class Graph {
-// final static int INF = 99999;
+// Input Format:
+// Enter the number of vertices:
+// 4
+// Enter the graph matrix:
+// 0 5 0 10
+// 0 0 3 0
+// 0 0 0 1
+// 0 0 0 0
 
-// void floydWarshall(int graph[][]) {
-// int V = graph.length;
-// int dist[][] = new int[V][V];
-// int i, j, k;
+// output format
+// Following matrix shows the shortest distances between every pair of vertices
+// 0   5   8   9
+// INF 0   3   4
+// INF INF 0   1
+// INF INF INF 0
 
-// for (i = 0; i < V; i++)
-// for (j = 0; j < V; j++)
-// dist[i][j] = graph[i][j];
+// or 
 
-// for (k = 0; k < V; k++) {
-// for (i = 0; i < V; i++) {
-// for (j = 0; j < V; j++) {
-// if (dist[i][k] + dist[k][j] < dist[i][j])
-// dist[i][j] = dist[i][k] + dist[k][j];
-// }
-// }
-// }
+import java.util.Scanner;
 
-// printSolution(dist);
-// }
+public class Graph {
+  final static int INF = 99999;
 
-// void printSolution(int dist[][]) {
-// System.out.println("Following matrix shows the shortest " +
-// "distances between every pair of vertices");
-// for (int i = 0; i < dist.length; ++i) {
-// for (int j = 0; j < dist.length; ++j) {
-// if (dist[i][j] == INF)
-// System.out.print("INF ");
-// else
-// System.out.print(dist[i][j] + " ");
-// }
-// System.out.println();
-// }
-// }
+  void floydWarshall(int graph[][]) {
+    int V = graph.length;
+    int dist[][] = new int[V][V];
+    int i, j, k;
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
-// System.out.println("Enter the number of vertices:");
-// int V = scanner.nextInt();
+    for (i = 0; i < V; i++)
+      for (j = 0; j < V; j++)
+        dist[i][j] = (i == j) ? 0 : graph[i][j];
 
-// int graph[][] = new int[V][V];
-// System.out.println("Enter the graph matrix:");
-// for (int i = 0; i < V; ++i) {
-// for (int j = 0; j < V; ++j) {
-// graph[i][j] = scanner.nextInt();
-// }
-// }
+    for (k = 0; k < V; k++) {
+      for (i = 0; i < V; i++) {
+        for (j = 0; j < V; j++) {
+          if (dist[i][k] + dist[k][j] < dist[i][j])
+            dist[i][j] = dist[i][k] + dist[k][j];
+        }
+      }
+    }
 
-// Graph a = new Graph();
-// a.floydWarshall(graph);
-// }
-// }
+    printSolution(dist);
+  }
+
+  void printSolution(int dist[][]) {
+    System.out.println("Following matrix shows the shortest " +
+        "distances between every pair of vertices");
+    for (int i = 0; i < dist.length; ++i) {
+      for (int j = 0; j < dist.length; ++j) {
+        if (dist[i][j] == INF)
+          System.out.print("INF ");
+        else
+          System.out.print(dist[i][j] + "   ");
+      }
+      System.out.println();
+    }
+  }
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter the number of vertices:");
+    int V = scanner.nextInt();
+
+    int graph[][] = new int[V][V];
+    System.out.println("Enter the graph matrix (use 'INF' for infinity):");
+    for (int i = 0; i < V; ++i) {
+      for (int j = 0; j < V; ++j) {
+        String input = scanner.next();
+        graph[i][j] = input.equals("INF") ? INF : Integer.parseInt(input);
+      }
+    }
+
+    Graph a = new Graph();
+    a.floydWarshall(graph);
+  }
+}
 
 // Input Format:
 // Enter the number of vertices:
@@ -1782,12 +1801,14 @@
 // INF INF 0 1
 // INF INF INF 0
 
-// Output Format:
+// output format
 // Following matrix shows the shortest distances between every pair of vertices
-// 0 5 8 9
-// INF 0 3 4
-// INF INF 0 1
+// 0   5   8   9
+// INF 0   3   4
+// INF INF 0   1
 // INF INF INF 0
+
+
 
 // 4.) Johnson's Algorithm
 // 5.) Travelling Salesman Problem (TSP)
