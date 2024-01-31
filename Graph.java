@@ -1351,7 +1351,444 @@
 // }
 
 // 2.) Bellman Ford Algorithm
+
+// import java.util.*;
+
+// class Graph {
+//   class Edge {
+//     int source;
+//     int destination;
+//     int weight;
+
+//     Edge() {
+//       source = 0;
+//       destination = 0;
+//       weight = 0;
+//     }
+
+//     Edge(int source, int destination, int weight) {
+//       this.source = source;
+//       this.destination = destination;
+//       this.weight = weight;
+//     }
+//   }
+
+//   int V;
+//   int E;
+//   Edge edge[];
+
+//   Graph(int v, int e) {
+//     V = v;
+//     E = e;
+//     edge = new Edge[E];
+
+//     for (int i = 0; i < E; i++) {
+//       edge[i] = new Edge();
+//     }
+//   }
+
+//   void BellmanFord(Graph graph, int source) {
+//     int V = graph.V;
+//     int E = graph.E;
+//     int dist[] = new int[V];
+
+//     // Step 1: Initialize distances from src to all other vertices as INFINITE
+//     for (int i = 0; i < V; ++i)
+//       dist[i] = Integer.MAX_VALUE;
+//     dist[source] = 0;
+
+//     // Step 2: Relax all edges |V| - 1 times. A simple shortest path from src to any
+//     // other vertex can have at-most |V| - 1 edges
+//     for (int i = 1; i < V; ++i) {
+//       for (int j = 0; j < E; ++j) {
+//         int u = graph.edge[j].source;
+//         int v = graph.edge[j].destination;
+//         int weight = graph.edge[j].weight;
+//         if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
+//           dist[v] = dist[u] + weight;
+//       }
+//     }
+
+//     // Step 3: check for negative-weight cycles. The above step guarantees shortest
+//     // distances if graph doesn't contain negative weight cycle. If we get a shorter
+//     // path, then there is a cycle.
+//     for (int j = 0; j < E; ++j) {
+//       int u = graph.edge[j].source;
+//       int v = graph.edge[j].destination;
+//       int weight = graph.edge[j].weight;
+//       if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+//         System.out.println("Graph contains negative weight cycle");
+//         return;
+//       }
+//     }
+//     printArr(dist, V);
+//   }
+
+//   // A utility function used to print the solution
+//   void printArr(int dist[], int V) {
+//     System.out.println("Vertex Distance from Source");
+//     for (int i = 0; i < V; ++i)
+//       System.out.println(i + "\t\t" + dist[i]);
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int v = scanner.nextInt();
+//     System.out.println("Enter the number of edges:");
+//     int e = scanner.nextInt();
+
+//     Graph graph = new Graph(v, e);
+
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < e; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       int weight = scanner.nextInt();
+//       graph.edge[i].source = src;
+//       graph.edge[i].destination = dest;
+//       graph.edge[i].weight = weight;
+//     }
+
+//     graph.BellmanFord(graph, 0);
+//   }
+// }
+
+// or 
+
+// import java.util.*;
+// import java.util.Arrays;
+
+// class Graph {
+//   class Edge {
+//     int source, destination, weight;
+
+//     Edge(int source, int destination, int weight) {
+//       this.source = source;
+//       this.destination = destination;
+//       this.weight = weight;
+//     }
+//   }
+
+//   private int V, E;
+//   private List<Edge> edges;
+
+//   public Graph(int vertices, int edges) {
+//     V = vertices;
+//     E = edges;
+//     this.edges = new ArrayList<>();
+//   }
+
+//   public void addEdge(int source, int destination, int weight) {
+//     edges.add(new Edge(source, destination, weight));
+//   }
+
+//   public void bellmanFord(int source) {
+//     int[] distance = new int[V];
+//     Arrays.fill(distance, Integer.MAX_VALUE);
+//     distance[source] = 0;
+
+//     // Relax all edges V-1 times
+//     for (int i = 1; i < V; i++) {
+//       for (Edge edge : edges) {
+//         int u = edge.source;
+//         int v = edge.destination;
+//         int w = edge.weight;
+
+//         if (distance[u] != Integer.MAX_VALUE && distance[u] + w < distance[v]) {
+//           distance[v] = distance[u] + w;
+//         }
+//       }
+//     }
+
+//     // Check for negative weight cycles
+//     for (Edge edge : edges) {
+//       int u = edge.source;
+//       int v = edge.destination;
+//       int w = edge.weight;
+
+//       if (distance[u] != Integer.MAX_VALUE && distance[u] + w < distance[v]) {
+//         System.out.println("Graph contains negative weight cycle.");
+//         return;
+//       }
+//     }
+
+//     printShortestPaths(distance);
+//   }
+
+//   private void printShortestPaths(int[] distance) {
+//     System.out.println("Shortest Distances from Source:");
+//     for (int i = 0; i < V; i++) {
+//       System.out.println("Vertex " + i + ": " + distance[i]);
+//     }
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+
+//     System.out.println("Enter the number of vertices:");
+//     int V = sc.nextInt();
+
+//     System.out.println("Enter the number of edges:");
+//     int E = sc.nextInt();
+
+//     Graph bellmanFordAlgorithm = new Graph(V, E);
+
+//     System.out.println("Enter the edges (source destination weight):");
+//     for (int i = 0; i < E; i++) {
+//       int source = sc.nextInt();
+//       int destination = sc.nextInt();
+//       int weight = sc.nextInt();
+//       bellmanFordAlgorithm.addEdge(source, destination, weight);
+//     }
+
+//     System.out.println("Enter the source vertex:");
+//     int source = sc.nextInt();
+
+//     bellmanFordAlgorithm.bellmanFord(source);
+//   }
+// }
+
+// or 
+
+// import java.util.*;
+
+// class Edge {
+//   int src, dest, weight;
+
+//   Edge() {
+//     src = dest = weight = 0;
+//   }
+// };
+
+// class Graph {
+//   int V, E;
+//   Edge edge[];
+
+//   Graph(int v, int e) {
+//     V = v;
+//     E = e;
+//     edge = new Edge[e];
+//     for (int i = 0; i < e; ++i)
+//       edge[i] = new Edge();
+//   }
+
+//   void BellmanFord(Graph graph, int src) {
+//     int V = graph.V, E = graph.E;
+//     int dist[] = new int[V];
+
+//     for (int i = 0; i < V; ++i)
+//       dist[i] = Integer.MAX_VALUE;
+//     dist[src] = 0;
+
+//     for (int i = 1; i < V; ++i) {
+//       for (int j = 0; j < E; ++j) {
+//         int u = graph.edge[j].src;
+//         int v = graph.edge[j].dest;
+//         int weight = graph.edge[j].weight;
+//         if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
+//           dist[v] = dist[u] + weight;
+//       }
+//     }
+
+//     for (int j = 0; j < E; ++j) {
+//       int u = graph.edge[j].src;
+//       int v = graph.edge[j].dest;
+//       int weight = graph.edge[j].weight;
+//       if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+//         System.out.println("Graph contains negative weight cycle");
+//         return;
+//       }
+//     }
+//     printArr(dist, V);
+//   }
+
+//   void printArr(int dist[], int V) {
+//     System.out.println("Vertex Distance from Source");
+//     for (int i = 0; i < V; ++i)
+//       System.out.println(i + "\t\t" + dist[i]);
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int V = scanner.nextInt();
+//     System.out.println("Enter the number of edges:");
+//     int E = scanner.nextInt();
+
+//     Graph graph = new Graph(V, E);
+
+//     System.out.println("Enter the edges (source vertex, destination vertex, weight):");
+//     for (int i = 0; i < E; ++i) {
+//       graph.edge[i].src = scanner.nextInt();
+//       graph.edge[i].dest = scanner.nextInt();
+//       graph.edge[i].weight = scanner.nextInt();
+//     }
+
+//     System.out.println("Enter the source vertex:");
+//     int src = scanner.nextInt();
+
+//     graph.BellmanFord(graph, src);
+//   }
+// }
+// Input Format:
+// Enter the number of vertices:
+// 5
+// Enter the number of edges:
+// 8
+// Enter the edges:
+// 0 1 -1
+// 0 2 4
+// 1 2 3
+// 1 3 2
+// 1 4 2
+// 3 2 5
+// 3 1 1
+// 4 3 -3
+
+// Output Format:
+// Vertex Distance from Source
+// 0 0
+// 1 -1
+// 2 2
+// 3 -2
+// 4 1
+
 // 3.) Floyd Warshall Algorithm
+
+// import java.util.Scanner;
+
+// public class Graph {
+//   final static int INF = 99999;
+
+//   void floydWarshall(int graph[][]) {
+//     int V = graph.length;
+//     int dist[][] = new int[V][V];
+//     int i, j, k;
+
+//     for (i = 0; i < V; i++)
+//       for (j = 0; j < V; j++)
+//         dist[i][j] = (i == j) ? 0 : (graph[i][j] == 0 ? INF : graph[i][j]);
+
+//     for (k = 0; k < V; k++) {
+//       for (i = 0; i < V; i++) {
+//         for (j = 0; j < V; j++) {
+//           if (dist[i][k] + dist[k][j] < dist[i][j])
+//             dist[i][j] = dist[i][k] + dist[k][j];
+//         }
+//       }
+//     }
+
+//     printSolution(dist);
+//   }
+
+//   void printSolution(int dist[][]) {
+//     System.out.println("Following matrix shows the shortest " +
+//         "distances between every pair of vertices");
+//     for (int i = 0; i < dist.length; ++i) {
+//       for (int j = 0; j < dist.length; ++j) {
+//         if (dist[i][j] == INF)
+//           System.out.print("INF ");
+//         else
+//           System.out.print(dist[i][j] + "   ");
+//       }
+//       System.out.println();
+//     }
+//   }
+
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.println("Enter the number of vertices:");
+//     int V = scanner.nextInt();
+
+//     int graph[][] = new int[V][V];
+//     System.out.println("Enter the graph matrix:");
+//     for (int i = 0; i < V; ++i) {
+//       for (int j = 0; j < V; ++j) {
+//         graph[i][j] = scanner.nextInt();
+//       }
+//     }
+
+//     Graph a = new Graph();
+//     a.floydWarshall(graph);
+//   }
+// }
+
+// or
+// import java.util.Scanner;
+
+// public class Graph {
+// final static int INF = 99999;
+
+// void floydWarshall(int graph[][]) {
+// int V = graph.length;
+// int dist[][] = new int[V][V];
+// int i, j, k;
+
+// for (i = 0; i < V; i++)
+// for (j = 0; j < V; j++)
+// dist[i][j] = graph[i][j];
+
+// for (k = 0; k < V; k++) {
+// for (i = 0; i < V; i++) {
+// for (j = 0; j < V; j++) {
+// if (dist[i][k] + dist[k][j] < dist[i][j])
+// dist[i][j] = dist[i][k] + dist[k][j];
+// }
+// }
+// }
+
+// printSolution(dist);
+// }
+
+// void printSolution(int dist[][]) {
+// System.out.println("Following matrix shows the shortest " +
+// "distances between every pair of vertices");
+// for (int i = 0; i < dist.length; ++i) {
+// for (int j = 0; j < dist.length; ++j) {
+// if (dist[i][j] == INF)
+// System.out.print("INF ");
+// else
+// System.out.print(dist[i][j] + " ");
+// }
+// System.out.println();
+// }
+// }
+
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.println("Enter the number of vertices:");
+// int V = scanner.nextInt();
+
+// int graph[][] = new int[V][V];
+// System.out.println("Enter the graph matrix:");
+// for (int i = 0; i < V; ++i) {
+// for (int j = 0; j < V; ++j) {
+// graph[i][j] = scanner.nextInt();
+// }
+// }
+
+// Graph a = new Graph();
+// a.floydWarshall(graph);
+// }
+// }
+
+// Input Format:
+// Enter the number of vertices:
+// 4
+// Enter the graph matrix:
+// 0 5 INF 10
+// INF 0 3 INF
+// INF INF 0 1
+// INF INF INF 0
+
+// Output Format:
+// Following matrix shows the shortest distances between every pair of vertices
+// 0 5 8 9
+// INF 0 3 4
+// INF INF 0 1
+// INF INF INF 0
+
 // 4.) Johnson's Algorithm
 // 5.) Travelling Salesman Problem (TSP)
 // 6.) Prim's Algorithm
