@@ -3491,6 +3491,8 @@ class Main {
     for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
       System.out.print(entry.getValue().data + " ");
     }
+      
+      
   }
 }
 
