@@ -2140,6 +2140,8 @@ public class AdiEndTerm {
       root = insert(root, sc.nextInt());
     }
     leftView(root);
+    System.out.println();
+    rightView(root);
   }
 
   public static TreeNode insert(TreeNode root, int val) {
