@@ -1,60 +1,60 @@
 // 1.) DFS (Depth First Search) - Recursive Approach
 
-import java.util.*;
+// import java.util.*;
 
-class Graph {
-  private int V;
-  private LinkedList<Integer> adj[];
+// class Graph {
+//   private int V;
+//   private LinkedList<Integer> adj[];
 
-  public Graph(int v) {
-    V = v;
-    adj = new LinkedList[v];
+//   public Graph(int v) {
+//     V = v;
+//     adj = new LinkedList[v];
 
-    for (int i = 0; i < v; i++) {
-      adj[i] = new LinkedList<Integer>();
-    }
-  }
+//     for (int i = 0; i < v; i++) {
+//       adj[i] = new LinkedList<Integer>();
+//     }
+//   }
 
-  // Add an edge into the graph
-  public void addEdge(int v, int w) {
-    adj[v].add(w);
-  }
+//   // Add an edge into the graph
+//   public void addEdge(int v, int w) {
+//     adj[v].add(w);
+//   }
 
-  // DFS traversal of the vertices reachable from v
-  public void DFS(int v) {
-    // Mark all the vertices as not visited (by default set as false)
-    boolean visited[] = new boolean[V];
+//   // DFS traversal of the vertices reachable from v
+//   public void DFS(int v) {
+//     // Mark all the vertices as not visited (by default set as false)
+//     boolean visited[] = new boolean[V];
 
-    // Call the recursive helper function to print DFS traversal
-    DFSUtil(v, visited);
-  }
+//     // Call the recursive helper function to print DFS traversal
+//     DFSUtil(v, visited);
+//   }
 
-  void DFSUtil(int v, boolean[] vis) {
-    vis[v] = true;
-    System.out.print(v + " ");
-    for (int n : adj[v]) {
-      if (!vis[n]) {
-        DFSUtil(n, vis);
-      }
-    }
-  }
+//   void DFSUtil(int v, boolean[] vis) {
+//     vis[v] = true;
+//     System.out.print(v + " ");
+//     for (int n : adj[v]) {
+//       if (!vis[n]) {
+//         DFSUtil(n, vis);
+//       }
+//     }
+//   }
 
-  void BFS(int v) {
-    boolean[] vis = new boolean[V];
-    Queue<Integer> q = new LinkedList<>();
-    vis[v] = true;
-    q.add(v);
-    while (!q.isEmpty()) {
-      v = q.poll();
-      System.out.print(v + " ");
-      for (int n : adj[v]) {
-        if (!vis[n]) {
-          q.add(n);
-          vis[n] = true;
-        }
-      }
-    }
-  }
+//   void BFS(int v) {
+//     boolean[] vis = new boolean[V];
+//     Queue<Integer> q = new LinkedList<>();
+//     vis[v] = true;
+//     q.add(v);
+//     while (!q.isEmpty()) {
+//       v = q.poll();
+//       System.out.print(v + " ");
+//       for (int n : adj[v]) {
+//         if (!vis[n]) {
+//           q.add(n);
+//           vis[n] = true;
+//         }
+//       }
+//     }
+//   }
 
   // A function used by DFS
   // private void DFSUtil(int v, boolean visited[]) {
@@ -103,29 +103,29 @@ class Graph {
   // }
   // }
 
-  public static void main(String args[]) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Enter the number of vertices: ");
-    int V = scanner.nextInt();
-    System.out.print("Enter the number of edges: ");
-    int E = scanner.nextInt();
-    Graph graph = new Graph(V);
+//   public static void main(String args[]) {
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.print("Enter the number of vertices: ");
+//     int V = scanner.nextInt();
+//     System.out.print("Enter the number of edges: ");
+//     int E = scanner.nextInt();
+//     Graph graph = new Graph(V);
 
-    System.out.println("Enter the edges:");
-    for (int i = 0; i < E; i++) {
-      int src = scanner.nextInt();
-      int dest = scanner.nextInt();
-      graph.addEdge(src, dest);
-    }
+//     System.out.println("Enter the edges:");
+//     for (int i = 0; i < E; i++) {
+//       int src = scanner.nextInt();
+//       int dest = scanner.nextInt();
+//       graph.addEdge(src, dest);
+//     }
 
-    System.out.println("Following is Depth First Traversal:");
-    graph.DFS(0);
+//     System.out.println("Following is Depth First Traversal:");
+//     graph.DFS(0);
 
-    System.out.println("\nFollowing is Breadth First Traversal:");
-    graph.BFS(0);
+//     System.out.println("\nFollowing is Breadth First Traversal:");
+//     graph.BFS(0);
 
-  }
-}
+//   }
+// }
 
 // for dfs and bfs both code below
 
