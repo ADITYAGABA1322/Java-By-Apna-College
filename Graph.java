@@ -118,11 +118,11 @@
 //       graph.addEdge(src, dest);
 //     }
 
-//     System.out.println("Following is Depth First Traversal:");
-//     graph.DFS(0);
+    // System.out.println("Following is Depth First Traversal:");
+    // graph.DFS(0);
 
-//     System.out.println("\nFollowing is Breadth First Traversal:");
-//     graph.BFS(0);
+    // System.out.println("\nFollowing is Breadth First Traversal:");
+    // graph.BFS(0);
 
 //   }
 // }
