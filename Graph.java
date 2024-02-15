@@ -3,128 +3,132 @@
 // import java.util.*;
 
 // class Graph {
-//   private int V;
-//   private LinkedList<Integer> adj[];
+//     private int V; // Graph contain vertices and edges and number of vertices is V and number of
+//                    // edges is E
+//     private ArrayList<Integer> adj[]; // create an array of adjacency lists for all the vertices
 
-//   public Graph(int v) {
-//     V = v;
-//     adj = new LinkedList[v];
+//     public Graph(int v) {
+//         V = v;
+//         adj = new ArrayList[v];
 
-//     for (int i = 0; i < v; i++) {
-//       adj[i] = new LinkedList<Integer>();
-//     }
-//   }
-
-//   // Add an edge into the graph
-//   public void addEdge(int v, int w) {
-//     adj[v].add(w);
-//   }
-
-//   // DFS traversal of the vertices reachable from v
-//   public void DFS(int v) {
-//     // Mark all the vertices as not visited (by default set as false)
-//     boolean visited[] = new boolean[V];
-
-//     // Call the recursive helper function to print DFS traversal
-//     DFSUtil(v, visited);
-//   }
-
-//   void DFSUtil(int v, boolean[] vis) {
-//     vis[v] = true;
-//     System.out.print(v + " ");
-//     for (int n : adj[v]) {
-//       if (!vis[n]) {
-//         DFSUtil(n, vis);
-//       }
-//     }
-//   }
-
-//   void BFS(int v) {
-//     boolean[] vis = new boolean[V];
-//     Queue<Integer> q = new LinkedList<>();
-//     vis[v] = true;
-//     q.add(v);
-//     while (!q.isEmpty()) {
-//       v = q.poll();
-//       System.out.print(v + " ");
-//       for (int n : adj[v]) {
-//         if (!vis[n]) {
-//           q.add(n);
-//           vis[n] = true;
+//         for (int i = 0; i < v; i++) {
+//             adj[i] = new ArrayList<Integer>();
 //         }
-//       }
-//     }
-//   }
-
-// A function used by DFS
-// private void DFSUtil(int v, boolean visited[]) {
-// // Mark the current node as visited and print it
-// visited[v] = true;
-// System.out.print(v + " ");
-
-// // Recur for all the vertices adjacent to this vertex
-// Iterator<Integer> i = adj[v].listIterator();
-
-// while (i.hasNext()) {
-// int n = i.next();
-
-// if (!visited[n]) {
-// DFSUtil(n, visited);
-// }
-// }
-// }
-
-// public void BFS(int s) { // s = source
-// boolean visited[] = new boolean[V];
-// LinkedList<Integer> queue = new LinkedList<>();
-
-// visited[s] = true;
-// queue.add(s);
-
-// while (queue.size() != 0) {
-// s = queue.poll();
-// System.out.print(s + " ");
-
-// Iterator<Integer> i = adj[s].listIterator(); // i = iterator -> use i for
-// iteration of adjLists of s (source) vertex and add it to queue if not visited
-// and mark it as visited if not visited and repeat the process until queue is
-// empty and print the queue at last to get the BFS traversal of the graph (i.e.
-// the order in which the vertices are visited in BFS traversal of the graph)
-// and we can also use a stack instead of queue to get the DFS traversal of the
-// graph (i.e. the order in which the vertices are visited in DFS traversal of
-// the graph)
-// while (i.hasNext()) {
-// int n = i.next();
-// if (!visited[n]) {
-// queue.add(n);
-// visited[n] = true;
-// }
-// }
-// }
-// }
-
-//   public static void main(String args[]) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.print("Enter the number of vertices: ");
-//     int V = scanner.nextInt();
-//     System.out.print("Enter the number of edges: ");
-//     int E = scanner.nextInt();
-//     Graph graph = new Graph(V);
-
-//     System.out.println("Enter the edges:");
-//     for (int i = 0; i < E; i++) {
-//       int src = scanner.nextInt();
-//       int dest = scanner.nextInt();
-//       graph.addEdge(src, dest);
 //     }
 
-    // System.out.println("Following is Depth First Traversal:");
-    // graph.DFS(0);
+//     // Add an edge into the graph
+//     public void addEdge(int v, int w) {
+//         adj[v].add(w); // Add w to v's list. (Add w to v's adjacency list) -> Add w to v's row in the
+//                        // adjacency matrix (i.e. add w to the list of vertices adjacent to v)
+//     }
 
-    // System.out.println("\nFollowing is Breadth First Traversal:");
-    // graph.BFS(0);
+//     // DFS traversal of the vertices reachable from v
+//     public void DFS(int v) {
+//         // Mark all the vertices as not visited (by default set as false)
+//         boolean visited[] = new boolean[V];
 
-//   }
+//         // Call the recursive helper function to print DFS traversal
+//         DFSUtil(v, visited);
+//     }
+
+//     void DFSUtil(int v, boolean[] vis) {
+//         vis[v] = true;
+//         System.out.print(v + " ");
+//         for (int n : adj[v]) {
+//             if (!vis[n]) {
+//                 DFSUtil(n, vis);
+//             }
+//         }
+//     }
+
+//     void BFS(int v) {
+//         boolean[] vis = new boolean[V];
+//         Queue<Integer> q = new LinkedList<>();
+//         vis[v] = true;
+//         q.add(v);
+//         while (!q.isEmpty()) {
+//             v = q.poll();
+//             System.out.print(v + " ");
+//             for (int n : adj[v]) {
+//                 if (!vis[n]) {
+//                     q.add(n);
+//                     vis[n] = true;
+//                 }
+//             }
+//         }
+//     }
+
+//     // A function
+//     // used by DFS
+
+//     // private void DFSUtil(int v, boolean visited[]) {
+//     // // Mark the current node as visited and print it
+//     // visited[v] = true;
+//     // System.out.print(v + " ");
+
+//     // // Recur for all the vertices adjacent to this vertex
+//     // Iterator<Integer> i = adj[v].listIterator();
+
+//     // while (i.hasNext()) {
+//     // int n = i.next();
+
+//     // if (!visited[n]) {
+//     // DFSUtil(n, visited);
+//     // }
+//     // }
+//     // }
+
+//     // public void BFS(int s) { // s = source
+//     // boolean visited[] = new boolean[V];
+//     // LinkedList<Integer> queue = new LinkedList<>();
+
+//     // visited[s] = true;
+//     // queue.add(s);
+
+//     // while (queue.size() != 0) {
+//     // s = queue.poll();
+//     // System.out.print(s + " ");
+
+//     // Iterator<Integer> i = adj[s].listIterator(); // i = iterator -> use i for
+//     // iteration of adjLists of s (source) vertex and add it to queue if not visited
+//     // and mark it as visited if not visited and repeat the process until queue is
+//     // empty and print the queue at last to get the BFS traversal of the graph (i.e.
+//     // the order in which the vertices are visited in BFS traversal of the graph)
+//     // and we can also use a stack instead of queue to get the DFS traversal of the
+//     // graph (i.e. the order in which the vertices are visited in DFS traversal of
+//     // the graph)
+//     // while (i.hasNext()) {
+//     // int n = i.next();
+//     // if (!visited[n]) {
+//     // queue.add(n);
+//     // visited[n] = true;
+//     // }
+//     // }
+//     // }
+//     // }
+
+//     public static void main(String args[]) {
+//         Scanner scanner = new Scanner(System.in);
+//         System.out.print("Enter the number of vertices: ");
+//         int V = scanner.nextInt();
+//         System.out.print("Enter the number of edges: ");
+//         int E = scanner.nextInt();
+//         Graph graph = new Graph(V);
+
+//         System.out.println("Enter the edges:");
+//         for (int i = 0; i < E; i++) {
+//             int src = scanner.nextInt();
+//             int dest = scanner.nextInt();
+//             graph.addEdge(src, dest);
+//         }
+
+//         System.out.println("Following is Depth First Traversal:");
+//         graph.DFS(0);
+
+//         System.out.println("\nFollowing is Breadth First Traversal:");
+//         graph.BFS(0);
+
+//     }
 // }
 
 // or
@@ -136,70 +140,70 @@
 
 // public class Graph {
 
-//   static void print(int[][] edges, int n, int sv, boolean[] visited) {
-//     System.out.println(sv);
-//     visited[sv] = true;
-//     for (int i = 0; i < n; i++) {
-//       if (i == sv) {
-//         continue;
-//       }
-//       if (edges[sv][i] == 1 && !visited[i]) {
-//         print(edges, n, i, visited);
-//       }
-//     }
-//   }
+// static void print(int[][] edges, int n, int sv, boolean[] visited) {
+// System.out.println(sv);
+// visited[sv] = true;
+// for (int i = 0; i < n; i++) {
+// if (i == sv) {
+// continue;
+// }
+// if (edges[sv][i] == 1 && !visited[i]) {
+// print(edges, n, i, visited);
+// }
+// }
+// }
 
-//   static void printBFS(int[][] edges, int n, int sv) {
-//     Queue<Integer> pendingVertices = new LinkedList<>();
-//     boolean[] visited = new boolean[n];
-//     for (int i = 0; i < n; i++) {
-//       visited[i] = false;
-//     }
-//     pendingVertices.add(sv);
-//     visited[sv] = true;
-//     while (!pendingVertices.isEmpty()) {
-//       int currentVertex = pendingVertices.poll();
-//       System.out.println(currentVertex);
-//       for (int i = 0; i < n; i++) {
-//         if (i == currentVertex) {
-//           continue;
-//         }
-//         if (edges[currentVertex][i] == 1 && !visited[i]) {
-//           pendingVertices.add(i);
-//           visited[i] = true;
-//         }
-//       }
-//     }
-//   }
+// static void printBFS(int[][] edges, int n, int sv) {
+// Queue<Integer> pendingVertices = new LinkedList<>();
+// boolean[] visited = new boolean[n];
+// for (int i = 0; i < n; i++) {
+// visited[i] = false;
+// }
+// pendingVertices.add(sv);
+// visited[sv] = true;
+// while (!pendingVertices.isEmpty()) {
+// int currentVertex = pendingVertices.poll();
+// System.out.println(currentVertex);
+// for (int i = 0; i < n; i++) {
+// if (i == currentVertex) {
+// continue;
+// }
+// if (edges[currentVertex][i] == 1 && !visited[i]) {
+// pendingVertices.add(i);
+// visited[i] = true;
+// }
+// }
+// }
+// }
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
 
-//     int n = scanner.nextInt();
-//     int e = scanner.nextInt();
+// int n = scanner.nextInt();
+// int e = scanner.nextInt();
 
-//     int[][] edges = new int[n][n];
-//     for (int i = 0; i < e; i++) {
-//       int f = scanner.nextInt();
-//       int s = scanner.nextInt();
-//       edges[f][s] = 1;
-//       edges[s][f] = 1;
-//     }
+// int[][] edges = new int[n][n];
+// for (int i = 0; i < e; i++) {
+// int f = scanner.nextInt();
+// int s = scanner.nextInt();
+// edges[f][s] = 1;
+// edges[s][f] = 1;
+// }
 
-//     boolean[] visited = new boolean[n];
-//     for (int i = 0; i < n; i++) {
-//       visited[i] = false;
-//     }
+// boolean[] visited = new boolean[n];
+// for (int i = 0; i < n; i++) {
+// visited[i] = false;
+// }
 
-//     System.out.println("DFS");
-//     print(edges, n, 0, visited);
+// System.out.println("DFS");
+// print(edges, n, 0, visited);
 
-//     System.out.println("BFS");
-//     printBFS(edges, n, 0);
+// System.out.println("BFS");
+// printBFS(edges, n, 0);
 
-//     // Delete all the memory
-//     scanner.close();
-//   }
+// // Delete all the memory
+// scanner.close();
+// }
 // }
 
 // or
@@ -379,162 +383,163 @@
 // import java.util.*;
 
 // class Graph {
-//   private int V;
-//   private LinkedList<Integer> adj[];
+// private int V;
+// private LinkedList<Integer> adj[];
 
-//   public Graph(int v) {
-//     V = v;
-//     adj = new LinkedList[v];
+// public Graph(int v) {
+// V = v;
+// adj = new LinkedList[v];
 
-//     for (int i = 0; i < v; i++) {
-//       adj[i] = new LinkedList<Integer>();
-//     }
-//   }
-
-//   // Add an edge into the graph
-//   public void addEdge(int v, int w) {
-//     adj[v].add(w);
-//   }
-
-//   // DFS traversal of the vertices reachable from v
-//   public void DFS(int v) {
-//     // Mark all the vertices as not visited (by default set as false)
-//     boolean visited[] = new boolean[V];
-
-//     // Create a stack for DFS
-//     Stack<Integer> stack = new Stack<Integer>();
-
-//     // Push the current source node
-//     stack.push(v);
-
-//     while (!stack.isEmpty()) {
-//       // Pop a vertex from stack and print it
-//       v = stack.peek();
-//       stack.pop();
-
-//       // Stack may contain same vertex twice. So we need to print the popped item
-//       // only if it is not visited.
-//       if (!visited[v]) {
-//         System.out.print(v + " ");
-//         visited[v] = true;
-//       }
-
-//       // Get all adjacent vertices of the popped vertex s. If a adjacent has not been
-//       // visited, then push it to the stack.
-//       Iterator<Integer> i = adj[v].listIterator();
-
-//       while (i.hasNext()) {
-//         int n = i.next();
-
-//         if (!visited[n]) {
-//           stack.push(n);
-//         }
-//       }
-//     }
-//   }
-
-//   public static void main(String args[]) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.print("Enter the number of vertices: ");
-//     int V = scanner.nextInt();
-//     System.out.print("Enter the number of edges: ");
-//     int E = scanner.nextInt();
-//     Graph graph = new Graph(V);
-
-//     System.out.println("Enter the edges:");
-//     for (int i = 0; i < E; i++) {
-//       int src = scanner.nextInt();
-//       int dest = scanner.nextInt();
-//       graph.addEdge(src, dest);
-//     }
-
-//     System.out.println("Following is Depth First Traversal:");
-//     graph.DFS(0);
-
-//   }
+// for (int i = 0; i < v; i++) {
+// adj[i] = new LinkedList<Integer>();
+// }
 // }
 
-// or  both recursive and iterative dfs
+// // Add an edge into the graph
+// public void addEdge(int v, int w) {
+// adj[v].add(w);
+// }
+
+// // DFS traversal of the vertices reachable from v
+// public void DFS(int v) {
+// // Mark all the vertices as not visited (by default set as false)
+// boolean visited[] = new boolean[V];
+
+// // Create a stack for DFS
+// Stack<Integer> stack = new Stack<Integer>();
+
+// // Push the current source node
+// stack.push(v);
+
+// while (!stack.isEmpty()) {
+// // Pop a vertex from stack and print it
+// v = stack.peek();
+// stack.pop();
+
+// // Stack may contain same vertex twice. So we need to print the popped item
+// // only if it is not visited.
+// if (!visited[v]) {
+// System.out.print(v + " ");
+// visited[v] = true;
+// }
+
+// // Get all adjacent vertices of the popped vertex s. If a adjacent has not
+// been
+// // visited, then push it to the stack.
+// Iterator<Integer> i = adj[v].listIterator();
+
+// while (i.hasNext()) {
+// int n = i.next();
+
+// if (!visited[n]) {
+// stack.push(n);
+// }
+// }
+// }
+// }
+
+// public static void main(String args[]) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.print("Enter the number of vertices: ");
+// int V = scanner.nextInt();
+// System.out.print("Enter the number of edges: ");
+// int E = scanner.nextInt();
+// Graph graph = new Graph(V);
+
+// System.out.println("Enter the edges:");
+// for (int i = 0; i < E; i++) {
+// int src = scanner.nextInt();
+// int dest = scanner.nextInt();
+// graph.addEdge(src, dest);
+// }
+
+// System.out.println("Following is Depth First Traversal:");
+// graph.DFS(0);
+
+// }
+// }
+
+// or both recursive and iterative dfs
 
 // import java.util.*;
 
 // class Graph {
-//   private int V;
-//   private List<Integer>[] adj;
+// private int V;
+// private List<Integer>[] adj;
 
-//   public Graph(int v) {
-//     V = v;
-//     adj = new ArrayList[v];
-//     for (int i = 0; i < v; i++) {
-//       adj[i] = new ArrayList<>();
-//     }
-//   }
+// public Graph(int v) {
+// V = v;
+// adj = new ArrayList[v];
+// for (int i = 0; i < v; i++) {
+// adj[i] = new ArrayList<>();
+// }
+// }
 
-//   public void addEdge(int v, int w) {
-//     adj[v].add(w);
-//   }
+// public void addEdge(int v, int w) {
+// adj[v].add(w);
+// }
 
-//   public void recursiveDFS(int start) {
-//     boolean[] visited = new boolean[V];
-//     System.out.print("Recursive DFS: ");
-//     recursiveDFSUtil(start, visited);
-//     System.out.println();
-//   }
+// public void recursiveDFS(int start) {
+// boolean[] visited = new boolean[V];
+// System.out.print("Recursive DFS: ");
+// recursiveDFSUtil(start, visited);
+// System.out.println();
+// }
 
-//   private void recursiveDFSUtil(int v, boolean[] visited) {
-//     visited[v] = true;
-//     System.out.print(v + " ");
-//     for (int neighbor : adj[v]) {
-//       if (!visited[neighbor]) {
-//         recursiveDFSUtil(neighbor, visited);
-//       }
-//     }
-//   }
+// private void recursiveDFSUtil(int v, boolean[] visited) {
+// visited[v] = true;
+// System.out.print(v + " ");
+// for (int neighbor : adj[v]) {
+// if (!visited[neighbor]) {
+// recursiveDFSUtil(neighbor, visited);
+// }
+// }
+// }
 
-//   public void iterativeDFS(int start) {
-//     boolean[] visited = new boolean[V];
-//     Stack<Integer> stack = new Stack<>();
-//     System.out.print("Iterative DFS: ");
+// public void iterativeDFS(int start) {
+// boolean[] visited = new boolean[V];
+// Stack<Integer> stack = new Stack<>();
+// System.out.print("Iterative DFS: ");
 
-//     stack.push(start);
+// stack.push(start);
 
-//     while (!stack.isEmpty()) {
-//       int current = stack.pop();
+// while (!stack.isEmpty()) {
+// int current = stack.pop();
 
-//       if (!visited[current]) {
-//         System.out.print(current + " ");
-//         visited[current] = true;
+// if (!visited[current]) {
+// System.out.print(current + " ");
+// visited[current] = true;
 
-//         for (int neighbor : adj[current]) {
-//           if (!visited[neighbor]) {
-//             stack.push(neighbor);
-//           }
-//         }
-//       }
-//     }
+// for (int neighbor : adj[current]) {
+// if (!visited[neighbor]) {
+// stack.push(neighbor);
+// }
+// }
+// }
+// }
 
-//     System.out.println();
-//   }
+// System.out.println();
+// }
 
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
 
-//     System.out.println("Enter No of vertices");
-//     int V = sc.nextInt();
+// System.out.println("Enter No of vertices");
+// int V = sc.nextInt();
 
-//     System.out.println("Enter No of Edges");
-//     int E = sc.nextInt();
+// System.out.println("Enter No of Edges");
+// int E = sc.nextInt();
 
-//     Graph graph = new Graph(V);
-//     for (int i = 0; i < E; i++) {
-//       int src = sc.nextInt();
-//       int des = sc.nextInt();
-//       graph.addEdge(src, des);
-//     }
+// Graph graph = new Graph(V);
+// for (int i = 0; i < E; i++) {
+// int src = sc.nextInt();
+// int des = sc.nextInt();
+// graph.addEdge(src, des);
+// }
 
-//     graph.recursiveDFS(0);
-//     graph.iterativeDFS(0);
-//   }
+// graph.recursiveDFS(0);
+// graph.iterativeDFS(0);
+// }
 // }
 
 // Input Format:
@@ -772,7 +777,8 @@
 // 38.) Find All Paths from Source to Destination with Minimum Number of Turns
 // in a Graph
 
-// Note:- Before doing any of the above questions, first do the following questions:- 
+// Note:- Before doing any of the above questions, first do the following
+// questions:-
 // Lets do all important algorithms in Graphs
 // 1.) DFS (Depth First Search) - Recursive Approach ->Done in the above code
 // 2.) DFS (Depth First Search) - Iterative Approach ->Done in the above code
@@ -788,264 +794,270 @@
 // import java.io.*;
 
 // class Node implements Comparator<Node> {
-//   public int node;
-//   public int weight;
+// public int node;
+// public int weight;
 
-//   public Node() {
-//   }
+// public Node() {
+// }
 
-//   public Node(int node, int weight) {
-//     this.node = node;
-//     this.weight = weight;
-//   }
+// public Node(int node, int weight) {
+// this.node = node;
+// this.weight = weight;
+// }
 
-//   @Override
-//   public int compare(Node node1, Node node2) {
-//     if (node1.weight < node2.weight) {
-//       return -1;
-//     }
-//     if (node1.weight > node2.weight) {
-//       return 1;
-//     }
-//     return 0;
-//   }
+// @Override
+// public int compare(Node node1, Node node2) {
+// if (node1.weight < node2.weight) {
+// return -1;
+// }
+// if (node1.weight > node2.weight) {
+// return 1;
+// }
+// return 0;
+// }
 // }
 
 // class Graph {
-//   private int V;
-//   private LinkedList<Node> adj[];
+// private int V;
+// private LinkedList<Node> adj[];
 
-//   public Graph(int v) {
-//     V = v;
-//     adj = new LinkedList[v];
+// public Graph(int v) {
+// V = v;
+// adj = new LinkedList[v];
 
-//     for (int i = 0; i < v; i++) {
-//       adj[i] = new LinkedList<Node>();
-//     }
-//   }
+// for (int i = 0; i < v; i++) {
+// adj[i] = new LinkedList<Node>();
+// }
+// }
 
-//   // Add an edge into the graph
-//   public void addEdge(int v, int w, int weight) {
-//     adj[v].add(new Node(w, weight));
-//   }
+// // Add an edge into the graph
+// public void addEdge(int v, int w, int weight) {
+// adj[v].add(new Node(w, weight));
+// }
 
-//   // Dijkstra's Algorithm
-//   public void dijkstra(int src) {
-//     // Create a priority queue to store vertices that are being preprocessed
-//     PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
+// // Dijkstra's Algorithm
+// public void dijkstra(int src) {
+// // Create a priority queue to store vertices that are being preprocessed
+// PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
 
-//     // Create a vector for distances and initialize all distances as infinite
-//     int dist[] = new int[V];
+// // Create a vector for distances and initialize all distances as infinite
+// int dist[] = new int[V];
 
-//     // Create a vector to store parent pointers of all vertices
-//     int parent[] = new int[V];
+// // Create a vector to store parent pointers of all vertices
+// int parent[] = new int[V];
 
-//     // Create a vector to store vertices included in shortest path tree
-//     // or shortest distance from src to i is finalized
-//     boolean sptSet[] = new boolean[V];
+// // Create a vector to store vertices included in shortest path tree
+// // or shortest distance from src to i is finalized
+// boolean sptSet[] = new boolean[V];
 
-//     // Initialize all distances as INFINITE and stpSet[] as false
-//     for (int i = 0; i < V; i++) {
-//       dist[i] = Integer.MAX_VALUE;
-//       sptSet[i] = false;
-//     }
+// // Initialize all distances as INFINITE and stpSet[] as false
+// for (int i = 0; i < V; i++) {
+// dist[i] = Integer.MAX_VALUE;
+// sptSet[i] = false;
+// }
 
-//     // Distance of source vertex from itself is always 0
-//     dist[src] = 0;
+// // Distance of source vertex from itself is always 0
+// dist[src] = 0;
 
-//     // Insert source vertex into the priority queue and initialize its parent as -1
-//     pq.add(new Node(src, 0));
-//     parent[src] = -1;
+// // Insert source vertex into the priority queue and initialize its parent as
+// -1
+// pq.add(new Node(src, 0));
+// parent[src] = -1;
 
-//     // Looping till priority queue becomes empty (or all distances are not
-//     // finalized)
-//     while (!pq.isEmpty()) {
-//       // The first vertex in pair is the minimum distance vertex, extract it from
-//       // priority queue.
-//       // vertex label is stored in second of pair (it has to be done this way to keep
-//       // the vertices
-//       // sorted distance (distance must be first item in pair)
-//       int u = pq.poll().node;
+// // Looping till priority queue becomes empty (or all distances are not
+// // finalized)
+// while (!pq.isEmpty()) {
+// // The first vertex in pair is the minimum distance vertex, extract it from
+// // priority queue.
+// // vertex label is stored in second of pair (it has to be done this way to
+// keep
+// // the vertices
+// // sorted distance (distance must be first item in pair)
+// int u = pq.poll().node;
 
-//       // Mark the extracted vertex as processed
-//       sptSet[u] = true;
+// // Mark the extracted vertex as processed
+// sptSet[u] = true;
 
-//       // 'i' is used to get all adjacent vertices of a vertex
-//       Iterator<Node> i = adj[u].listIterator();
+// // 'i' is used to get all adjacent vertices of a vertex
+// Iterator<Node> i = adj[u].listIterator();
 
-//       while (i.hasNext()) {
-//         Node node = i.next();
-//         int v = node.node;
-//         int weight = node.weight;
+// while (i.hasNext()) {
+// Node node = i.next();
+// int v = node.node;
+// int weight = node.weight;
 
-//         // If there is shorted path to v through u.
-//         if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
-//           // Updating distance of v
-//           dist[v] = dist[u] + weight;
-//           pq.add(new Node(v, dist[v]));
-//           parent[v] = u;
-//         }
-//       }
-//     }
+// // If there is shorted path to v through u.
+// if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
+// {
+// // Updating distance of v
+// dist[v] = dist[u] + weight;
+// pq.add(new Node(v, dist[v]));
+// parent[v] = u;
+// }
+// }
+// }
 
-//     // Print shortest distances stored in dist[]
-//     System.out.println("Vertex Distance from Source");
-//     for (int i = 0; i < V; i++) {
-//       System.out.println(i + " " + dist[i]);
-//     }
-//   }
+// // Print shortest distances stored in dist[]
+// System.out.println("Vertex Distance from Source");
+// for (int i = 0; i < V; i++) {
+// System.out.println(i + " " + dist[i]);
+// }
+// }
 
-//   public static void main(String args[]) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.print("Enter the number of vertices: ");
-//     int V = scanner.nextInt();
-//     System.out.print("Enter the number of edges: ");
-//     int E = scanner.nextInt();
-//     Graph graph = new Graph(V);
+// public static void main(String args[]) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.print("Enter the number of vertices: ");
+// int V = scanner.nextInt();
+// System.out.print("Enter the number of edges: ");
+// int E = scanner.nextInt();
+// Graph graph = new Graph(V);
 
-//     System.out.println("Enter the edges:");
-//     for (int i = 0; i < E; i++) {
-//       int src = scanner.nextInt();
-//       int dest = scanner.nextInt();
-//       int weight = scanner.nextInt();
-//       graph.addEdge(src, dest, weight);
-//     }
+// System.out.println("Enter the edges:");
+// for (int i = 0; i < E; i++) {
+// int src = scanner.nextInt();
+// int dest = scanner.nextInt();
+// int weight = scanner.nextInt();
+// graph.addEdge(src, dest, weight);
+// }
 
-//     graph.dijkstra(0);
+// graph.dijkstra(0);
 
-//   }
+// }
 // }
 
 // 2nd method without using iterator
 
-// import java.util.*;
+import java.util.*;
 
-// class Graph {
-//   class Node implements Comparator<Node> {
-//     public int node;
-//     public int weight;
+class Graph {
+    class Node implements Comparator<Node> {
+        public int node;
+        public int weight;
 
-//     public Node() {
-//     }
+        // public Node() { // default constructor to initialize the node and weight
+        // }
+        // why it gives the error if we don't use the default constructor here , ans -> because we are using the parameterized constructor below and if we don't use the default constructor then it will give the error 
 
-//     public Node(int node, int weight) {
-//       this.node = node;
-//       this.weight = weight;
-//     }
+        public Node(int node, int weight) { // parameterized constructor to initialize the node and weight
+            this.node = node;
+            this.weight = weight;
+        }
 
-//     @Override
-//     public int compare(Node node1, Node node2) {
-//       if (node1.weight < node2.weight) {
-//         return -1;
-//       }
-//       if (node1.weight > node2.weight) {
-//         return 1;
-//       }
-//       return 0;
-//     }
-//   }
+        @Override
+        public int compare(Node node1, Node node2) {
+            if (node1.weight < node2.weight) {
+                return -1;
+            }
+            if (node1.weight > node2.weight) {
+                return 1;
+            }
+            return 0;
+        }
+    }
 
-//   private int V;
-//   private LinkedList<Node> adj[];
+    private int V;
+    private LinkedList<Node> adj[];
 
-//   public Graph(int v) {
-//     V = v;
-//     adj = new LinkedList[v];
+    public Graph(int v) {
+        V = v;
+        adj = new LinkedList[v];
 
-//     for (int i = 0; i < v; i++) {
-//       adj[i] = new LinkedList<Node>();
-//     }
-//   }
+        for (int i = 0; i < v; i++) {
+            adj[i] = new LinkedList<Node>();
+        }
+    }
 
-//   // Add an edge into the graph
-//   public void addEdge(int v, int w, int weight) {
-//     adj[v].add(new Node(w, weight));
-//   }
+    // Add an edge into the graph
+    public void addEdge(int v, int w, int weight) {
+        adj[v].add(new Node(w, weight));
+    }
 
-//   // Dijkstra's Algorithm
-//   public void dijkstra(int src) {
-//     // Create a priority queue to store vertices that are being preprocessed
-//     PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node());
+    // Dijkstra's Algorithm
+    public void dijkstra(int src) {
+        // Create a priority queue to store vertices that are being preprocessed
+        PriorityQueue<Node> pq = new PriorityQueue<Node>(V, new Node(src , 0));
 
-//     // Create a vector for distances and initialize all distances as infinite
-//     int dist[] = new int[V];
+        // Create a vector for distances and initialize all distances as infinite
+        int dist[] = new int[V];
 
-//     // Create a vector to store parent pointers of all vertices
-//     int parent[] = new int[V];
+        // Create a vector to store parent pointers of all vertices
+        int parent[] = new int[V];
 
-//     // Create a vector to store vertices included in shortest path tree
-//     // or shortest distance from src to i is finalized
-//     boolean sptSet[] = new boolean[V];
+        // Create a vector to store vertices included in shortest path tree
+        // or shortest distance from src to i is finalized
+        boolean sptSet[] = new boolean[V];
 
-//     // Initialize all distances as INFINITE and stpSet[] as false
-//     for (int i = 0; i < V; i++) {
-//       dist[i] = Integer.MAX_VALUE;
-//       sptSet[i] = false;
-//     }
+        // Initialize all distances as INFINITE and stpSet[] as false
+        for (int i = 0; i < V; i++) {
+            dist[i] = Integer.MAX_VALUE;
+            sptSet[i] = false;
+        }
 
-//     // Distance of source vertex from itself is always 0
-//     dist[src] = 0;
+        // Distance of source vertex from itself is always 0
+        dist[src] = 0;
 
-//     // Insert source vertex into the priority queue and initialize its parent as -1
-//     pq.add(new Node(src, 0));
-//     parent[src] = -1;
+        // Insert source vertex into the priority queue and initialize its parent as
+        // -1
+        pq.add(new Node(src, 0));
+        parent[src] = -1;
 
-//     // Looping till priority queue becomes empty (or all distances are not
-//     // finalized)
-//     while (!pq.isEmpty()) {
-//       // The first vertex in pair is the minimum distance vertex, extract it from
-//       // priority queue.
-//       // vertex label is stored in second of pair (it has to be done this way to keep
-//       // the vertices
-//       // sorted distance (distance must be first item in pair)
-//       int u = pq.poll().node;
+        // Looping till priority queue becomes empty (or all distances are not
+        // finalized)
+        while (!pq.isEmpty()) {
+            // The first vertex in pair is the minimum distance vertex, extract it from
+            // priority queue.
+            // vertex label is stored in second of pair (it has to be done this way to
+            // keep
+            // the vertices
+            // sorted distance (distance must be first item in pair)
+            int u = pq.poll().node;
 
-//       // Mark the extracted vertex as processed
-//       sptSet[u] = true;
+            // Mark the extracted vertex as processed
+            sptSet[u] = true;
 
-//       // 'i' is used to get all adjacent vertices of a vertex
-//       for (Node node : adj[u]) {
-//         int v = node.node;
-//         int weight = node.weight;
+            // 'i' is used to get all adjacent vertices of a vertex
+            for (Node node : adj[u]) {
+                int v = node.node;
+                int weight = node.weight;
 
-//         // If there is shorted path
-//         // to v through u.
-//         if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
-//           // Updating distance of v
-//           dist[v] = dist[u] + weight;
-//           pq.add(new Node(v, dist[v]));
-//           parent[v] = u;
-//         }
-//       }
-//     }
+                // If there is shorted path
+                // to v through u.
+                if (!sptSet[v] && dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+                    // Updating distance of v
+                    dist[v] = dist[u] + weight;
+                    pq.add(new Node(v, dist[v]));
+                    parent[v] = u;
+                }
+            }
+        }
 
-//     // Print shortest distances stored in dist[]
-//     System.out.println("Vertex Distance from Source");
-    // for (int i = 0; i < V; i++) {
-    //   System.out.println(i + " " + dist[i]);
-    // }
-//   }
+        // Print shortest distances stored in dist[]
+        System.out.println("Vertex Distance from Source");
+        for (int i = 0; i < V; i++) {
+            System.out.println(i + " " + dist[i]);
+        }
+    }
 
-//   public static void main(String args[]) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.print("Enter the number of vertices: ");
-//     int V = scanner.nextInt();
-//     System.out.print("Enter the number of edges: ");
-//     int E = scanner.nextInt();
-//     Graph graph = new Graph(V);
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of vertices: ");
+        int V = scanner.nextInt();
+        System.out.print("Enter the number of edges: ");
+        int E = scanner.nextInt();
+        Graph graph = new Graph(V);
 
-//     System.out.println("Enter the edges:");
-//     for (int i = 0; i < E; i++) {
-//       int src = scanner.nextInt();
-//       int dest = scanner.nextInt();
-//       int weight = scanner.nextInt();
-//       graph.addEdge(src, dest, weight);
-//     }
+        System.out.println("Enter the edges:");
+        for (int i = 0; i < E; i++) {
+            int src = scanner.nextInt();
+            int dest = scanner.nextInt();
+            int weight = scanner.nextInt();
+            graph.addEdge(src, dest, weight);
+        }
 
-//     graph.dijkstra(0);
+        graph.dijkstra(0);
 
-//   }
-// }
+    }
+}
 
 // input format
 // Enter the number of vertices: 9
@@ -1078,176 +1090,178 @@
 // 7 8
 // 8 14
 
-// or 
+// or
 
 // import java.util.*;
 // import java.util.Arrays;
 
 // class Graph {
-//   private int V;
-//   private List<Edge>[] adj;
+// private int V;
+// private List<Edge>[] adj;
 
-//   class Edge {
-//     int destination;
-//     int weight;
+// class Edge {
+// int destination;
+// int weight;
 
-//     Edge(int destination, int weight) {
-//       this.destination = destination;
-//       this.weight = weight;
-//     }
-//   }
-
-//   public Graph(int v) {
-//     V = v;
-//     adj = new ArrayList[V];
-//     for (int i = 0; i < V; i++) {
-//       adj[i] = new ArrayList<>();
-//     }
-//   }
-
-//   public void addEdge(int source, int destination, int weight) {
-//     adj[source].add(new Edge(destination, weight));
-//     adj[destination].add(new Edge(source, weight)); // For undirected graph
-//   }
-
-//   public void dijkstra(int source) {
-//     PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
-//     int[] distance = new int[V];
-//     Arrays.fill(distance, Integer.MAX_VALUE);
-//     distance[source] = 0;
-
-//     minHeap.add(new Node(source, 0));
-
-//     while (!minHeap.isEmpty()) {
-//       Node current = minHeap.poll();
-
-//       for (Edge neighbor : adj[current.vertex]) {
-//         int newDistance = distance[current.vertex] + neighbor.weight;
-
-//         if (newDistance < distance[neighbor.destination]) {
-//           distance[neighbor.destination] = newDistance;
-//           minHeap.add(new Node(neighbor.destination, newDistance));
-//         }
-//       }
-//     }
-
-//     printShortestPaths(distance);
-//   }
-
-//   private void printShortestPaths(int[] distance) {
-//     System.out.println("Shortest Distances from Source:");
-//     for (int i = 0; i < V; i++) {
-//       System.out.println("Vertex " + i + ": " + distance[i]);
-//     }
-//   }
-
-//   class Node {
-//     int vertex;
-//     int distance;
-
-//     Node(int vertex, int distance) {
-//       this.vertex = vertex;
-//       this.distance = distance;
-//     }
-//   }
-
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-
-//     System.out.println("Enter No of vertices");
-//     int V = sc.nextInt();
-
-//     System.out.println("Enter No of Edges");
-//     int E = sc.nextInt();
-
-//     Graph graph = new Graph(V);
-//     for (int i = 0; i < E; i++) {
-//       int src = sc.nextInt();
-//       int des = sc.nextInt();
-//       int weight = sc.nextInt();
-//       graph.addEdge(src, des, weight);
-//     }
-
-//     System.out.println("Enter Source Vertex:");
-//     int source = sc.nextInt();
-
-//     graph.dijkstra(source);
-//   }
+// Edge(int destination, int weight) {
+// this.destination = destination;
+// this.weight = weight;
+// }
 // }
 
-// or 
+// public Graph(int v) {
+// V = v;
+// adj = new ArrayList[V];
+// for (int i = 0; i < V; i++) {
+// adj[i] = new ArrayList<>();
+// }
+// }
+
+// public void addEdge(int source, int destination, int weight) {
+// adj[source].add(new Edge(destination, weight));
+// adj[destination].add(new Edge(source, weight)); // For undirected graph
+// }
+
+// public void dijkstra(int source) {
+// PriorityQueue<Node> minHeap = new
+// PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
+// int[] distance = new int[V];
+// Arrays.fill(distance, Integer.MAX_VALUE);
+// distance[source] = 0;
+
+// minHeap.add(new Node(source, 0));
+
+// while (!minHeap.isEmpty()) {
+// Node current = minHeap.poll();
+
+// for (Edge neighbor : adj[current.vertex]) {
+// int newDistance = distance[current.vertex] + neighbor.weight;
+
+// if (newDistance < distance[neighbor.destination]) {
+// distance[neighbor.destination] = newDistance;
+// minHeap.add(new Node(neighbor.destination, newDistance));
+// }
+// }
+// }
+
+// printShortestPaths(distance);
+// }
+
+// private void printShortestPaths(int[] distance) {
+// System.out.println("Shortest Distances from Source:");
+// for (int i = 0; i < V; i++) {
+// System.out.println("Vertex " + i + ": " + distance[i]);
+// }
+// }
+
+// class Node {
+// int vertex;
+// int distance;
+
+// Node(int vertex, int distance) {
+// this.vertex = vertex;
+// this.distance = distance;
+// }
+// }
+
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+
+// System.out.println("Enter No of vertices");
+// int V = sc.nextInt();
+
+// System.out.println("Enter No of Edges");
+// int E = sc.nextInt();
+
+// Graph graph = new Graph(V);
+// for (int i = 0; i < E; i++) {
+// int src = sc.nextInt();
+// int des = sc.nextInt();
+// int weight = sc.nextInt();
+// graph.addEdge(src, des, weight);
+// }
+
+// System.out.println("Enter Source Vertex:");
+// int source = sc.nextInt();
+
+// graph.dijkstra(source);
+// }
+// }
+
+// or
 
 // import java.util.*;
 
 // class Graph {
-//   int V;
-//   int graph[][];
+// int V;
+// int graph[][];
 
-//   Graph(int v) {
-//     V = v;
-//     graph = new int[V][V];
-//   }
+// Graph(int v) {
+// V = v;
+// graph = new int[V][V];
+// }
 
-//   int minDistance(int dist[], Boolean sptSet[]) {
-//     int min = Integer.MAX_VALUE, min_index = -1;
+// int minDistance(int dist[], Boolean sptSet[]) {
+// int min = Integer.MAX_VALUE, min_index = -1;
 
-//     for (int v = 0; v < V; v++)
-//       if (sptSet[v] == false && dist[v] <= min) {
-//         min = dist[v];
-//         min_index = v;
-//       }
+// for (int v = 0; v < V; v++)
+// if (sptSet[v] == false && dist[v] <= min) {
+// min = dist[v];
+// min_index = v;
+// }
 
-//     return min_index;
-//   }
+// return min_index;
+// }
 
-//   void printSolution(int dist[]) {
-//     System.out.println("Vertex \t\t Distance from Source");
-//     for (int i = 0; i < V; i++)
-//       System.out.println(i + " \t\t " + dist[i]);
-//   }
+// void printSolution(int dist[]) {
+// System.out.println("Vertex \t\t Distance from Source");
+// for (int i = 0; i < V; i++)
+// System.out.println(i + " \t\t " + dist[i]);
+// }
 
-//   void dijkstra(int src) {
-//     int dist[] = new int[V];
-//     Boolean sptSet[] = new Boolean[V];
+// void dijkstra(int src) {
+// int dist[] = new int[V];
+// Boolean sptSet[] = new Boolean[V];
 
-//     for (int i = 0; i < V; i++) {
-//       dist[i] = Integer.MAX_VALUE;
-//       sptSet[i] = false;
-//     }
+// for (int i = 0; i < V; i++) {
+// dist[i] = Integer.MAX_VALUE;
+// sptSet[i] = false;
+// }
 
-//     dist[src] = 0;
+// dist[src] = 0;
 
-//     for (int count = 0; count < V - 1; count++) {
-//       int u = minDistance(dist, sptSet);
-//       sptSet[u] = true;
+// for (int count = 0; count < V - 1; count++) {
+// int u = minDistance(dist, sptSet);
+// sptSet[u] = true;
 
-//       for (int v = 0; v < V; v++)
-//         if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
-//           dist[v] = dist[u] + graph[u][v];
-//     }
+// for (int v = 0; v < V; v++)
+// if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u]
+// + graph[u][v] < dist[v])
+// dist[v] = dist[u] + graph[u][v];
+// }
 
-//     printSolution(dist);
-//   }
+// printSolution(dist);
+// }
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.println("Enter the number of vertices:");
-//     int v = scanner.nextInt();
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.println("Enter the number of vertices:");
+// int v = scanner.nextInt();
 
-//     Graph t = new Graph(v);
+// Graph t = new Graph(v);
 
-//     System.out.println("Enter the graph matrix:");
-//     for (int i = 0; i < v; i++) {
-//       for (int j = 0; j < v; j++) {
-//         t.graph[i][j] = scanner.nextInt();
-//       }
-//     }
+// System.out.println("Enter the graph matrix:");
+// for (int i = 0; i < v; i++) {
+// for (int j = 0; j < v; j++) {
+// t.graph[i][j] = scanner.nextInt();
+// }
+// }
 
-//     System.out.println("Enter the source vertex:");
-//     int src = scanner.nextInt();
+// System.out.println("Enter the source vertex:");
+// int src = scanner.nextInt();
 
-//     t.dijkstra(src);
-//   }
+// t.dijkstra(src);
+// }
 // }
 
 // Input Format:
@@ -1268,86 +1282,86 @@
 // 2 8
 // 3 9
 
-// or 
+// or
 
 // import java.util.*;
 // import java.util.Arrays;
 
 // class Graph {
-//   private int V;
-//   private int[][] graph;
+// private int V;
+// private int[][] graph;
 
-//   public Graph(int v) {
-//     V = v;
-//     graph = new int[V][V];
-//   }
+// public Graph(int v) {
+// V = v;
+// graph = new int[V][V];
+// }
 
-//   public void readGraphMatrix(Scanner scanner) {
-//     System.out.println("Enter the graph matrix:");
-//     for (int i = 0; i < V; i++) {
-//       for (int j = 0; j < V; j++) {
-//         graph[i][j] = scanner.nextInt();
-//       }
-//     }
-//   }
+// public void readGraphMatrix(Scanner scanner) {
+// System.out.println("Enter the graph matrix:");
+// for (int i = 0; i < V; i++) {
+// for (int j = 0; j < V; j++) {
+// graph[i][j] = scanner.nextInt();
+// }
+// }
+// }
 
-//   public void dijkstra(int source) {
-//     int[] distance = new int[V];
-//     boolean[] visited = new boolean[V];
+// public void dijkstra(int source) {
+// int[] distance = new int[V];
+// boolean[] visited = new boolean[V];
 
-//     Arrays.fill(distance, Integer.MAX_VALUE);
-//     distance[source] = 0;
+// Arrays.fill(distance, Integer.MAX_VALUE);
+// distance[source] = 0;
 
-//     for (int count = 0; count < V - 1; count++) {
-//       int u = minDistance(distance, visited);
-//       visited[u] = true;
+// for (int count = 0; count < V - 1; count++) {
+// int u = minDistance(distance, visited);
+// visited[u] = true;
 
-//       for (int v = 0; v < V; v++) {
-//         if (!visited[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE
-//             && distance[u] + graph[u][v] < distance[v]) {
-//           distance[v] = distance[u] + graph[u][v];
-//         }
-//       }
-//     }
+// for (int v = 0; v < V; v++) {
+// if (!visited[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE
+// && distance[u] + graph[u][v] < distance[v]) {
+// distance[v] = distance[u] + graph[u][v];
+// }
+// }
+// }
 
-//     printShortestPaths(distance);
-//   }
+// printShortestPaths(distance);
+// }
 
-//   private int minDistance(int[] distance, boolean[] visited) {
-//     int min = Integer.MAX_VALUE;
-//     int minIndex = -1;
+// private int minDistance(int[] distance, boolean[] visited) {
+// int min = Integer.MAX_VALUE;
+// int minIndex = -1;
 
-//     for (int v = 0; v < V; v++) {
-//       if (!visited[v] && distance[v] <= min) {
-//         min = distance[v];
-//         minIndex = v;
-//       }
-//     }
+// for (int v = 0; v < V; v++) {
+// if (!visited[v] && distance[v] <= min) {
+// min = distance[v];
+// minIndex = v;
+// }
+// }
 
-//     return minIndex;
-//   }
+// return minIndex;
+// }
 
-//   private void printShortestPaths(int[] distance) {
-//     System.out.println("Shortest Distances from Source:");
-//     for (int i = 0; i < V; i++) {
-//       System.out.println("Vertex " + i + ": " + distance[i]);
-//     }
-//   }
+// private void printShortestPaths(int[] distance) {
+// System.out.println("Shortest Distances from Source:");
+// for (int i = 0; i < V; i++) {
+// System.out.println("Vertex " + i + ": " + distance[i]);
+// }
+// }
 
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
 
-//     System.out.println("Enter the number of vertices:");
-//     int V = sc.nextInt();
+// System.out.println("Enter the number of vertices:");
+// int V = sc.nextInt();
 
-//     Graph dijkstraAlgorithm = new Graph(V);
-//     dijkstraAlgorithm.readGraphMatrix(sc);
+// Graph dijkstraAlgorithm = new Graph(V);
+// dijkstraAlgorithm.readGraphMatrix(sc);
 
-//     System.out.println("Enter the source vertex:");
-//     int source = sc.nextInt();
+// System.out.println("Enter the source vertex:");
+// int source = sc.nextInt();
 
-//     dijkstraAlgorithm.dijkstra(source);
-//   }
+// dijkstraAlgorithm.dijkstra(source);
+// }
 // }
 
 // 2.) Bellman Ford Algorithm
@@ -1355,103 +1369,106 @@
 // import java.util.*;
 
 // class Graph {
-//   class Edge {
-//     int source;
-//     int destination;
-//     int weight;
+// class Edge {
+// int source;
+// int destination;
+// int weight;
 
-//     Edge() {
-//       source = 0;
-//       destination = 0;
-//       weight = 0;
-//     }
+// Edge() {
+// source = 0;
+// destination = 0;
+// weight = 0;
+// }
 
-//     Edge(int source, int destination, int weight) {
-//       this.source = source;
-//       this.destination = destination;
-//       this.weight = weight;
-//     }
-//   }
+// Edge(int source, int destination, int weight) {
+// this.source = source;
+// this.destination = destination;
+// this.weight = weight;
+// }
+// }
 
-//   int V;
-//   int E;
-//   Edge edge[];
+// int V;
+// int E;
+// Edge edge[];
 
-//   Graph(int v, int e) {
-//     V = v;
-//     E = e;
-//     edge = new Edge[E];
+// Graph(int v, int e) {
+// V = v;
+// E = e;
+// edge = new Edge[E];
 
-//     for (int i = 0; i < E; i++) {
-//       edge[i] = new Edge();
-//     }
-//   }
+// for (int i = 0; i < E; i++) {
+// edge[i] = new Edge();
+// }
+// }
 
-//   void BellmanFord(Graph graph, int source) {
-//     int V = graph.V;
-//     int E = graph.E;
-//     int dist[] = new int[V];
+// void BellmanFord(Graph graph, int source) {
+// int V = graph.V;
+// int E = graph.E;
+// int dist[] = new int[V];
 
-//     // Step 1: Initialize distances from src to all other vertices as INFINITE
-//     for (int i = 0; i < V; ++i)
-//       dist[i] = Integer.MAX_VALUE;
-//     dist[source] = 0;
+// // Step 1: Initialize distances from src to all other vertices as INFINITE
+// for (int i = 0; i < V; ++i)
+// dist[i] = Integer.MAX_VALUE;
+// dist[source] = 0;
 
-//     // Step 2: Relax all edges |V| - 1 times. A simple shortest path from src to any
-//     // other vertex can have at-most |V| - 1 edges
-//     for (int i = 1; i < V; ++i) {
-//       for (int j = 0; j < E; ++j) {
-//         int u = graph.edge[j].source;
-//         int v = graph.edge[j].destination;
-//         int weight = graph.edge[j].weight;
-//         if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
-//           dist[v] = dist[u] + weight;
-//       }
-//     }
+// // Step 2: Relax all edges |V| - 1 times. A simple shortest path from src to
+// any
+// // other vertex can have at-most |V| - 1 edges
+// for (int i = 1; i < V; ++i) {
+// for (int j = 0; j < E; ++j) {
+// int u = graph.edge[j].source;
+// int v = graph.edge[j].destination;
+// int weight = graph.edge[j].weight;
+// if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v])
+// dist[v] = dist[u] + weight;
+// }
+// }
 
-//     // Step 3: check for negative-weight cycles. The above step guarantees shortest
-//     // distances if graph doesn't contain negative weight cycle. If we get a shorter
-//     // path, then there is a cycle.
-//     for (int j = 0; j < E; ++j) {
-//       int u = graph.edge[j].source;
-//       int v = graph.edge[j].destination;
-//       int weight = graph.edge[j].weight;
-//       if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
-//         System.out.println("Graph contains negative weight cycle");
-//         return;
-//       }
-//     }
-//     printArr(dist, V);
-//   }
+// // Step 3: check for negative-weight cycles. The above step guarantees
+// shortest
+// // distances if graph doesn't contain negative weight cycle. If we get a
+// shorter
+// // path, then there is a cycle.
+// for (int j = 0; j < E; ++j) {
+// int u = graph.edge[j].source;
+// int v = graph.edge[j].destination;
+// int weight = graph.edge[j].weight;
+// if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+// System.out.println("Graph contains negative weight cycle");
+// return;
+// }
+// }
+// printArr(dist, V);
+// }
 
-//   // A utility function used to print the solution
-//   void printArr(int dist[], int V) {
-//     System.out.println("Vertex Distance from Source");
-//     for (int i = 0; i < V; ++i)
-//       System.out.println(i + "\t\t" + dist[i]);
-//   }
+// // A utility function used to print the solution
+// void printArr(int dist[], int V) {
+// System.out.println("Vertex Distance from Source");
+// for (int i = 0; i < V; ++i)
+// System.out.println(i + "\t\t" + dist[i]);
+// }
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.println("Enter the number of vertices:");
-//     int v = scanner.nextInt();
-//     System.out.println("Enter the number of edges:");
-//     int e = scanner.nextInt();
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.println("Enter the number of vertices:");
+// int v = scanner.nextInt();
+// System.out.println("Enter the number of edges:");
+// int e = scanner.nextInt();
 
-//     Graph graph = new Graph(v, e);
+// Graph graph = new Graph(v, e);
 
-//     System.out.println("Enter the edges:");
-//     for (int i = 0; i < e; i++) {
-//       int src = scanner.nextInt();
-//       int dest = scanner.nextInt();
-//       int weight = scanner.nextInt();
-//       graph.edge[i].source = src;
-//       graph.edge[i].destination = dest;
-//       graph.edge[i].weight = weight;
-//     }
+// System.out.println("Enter the edges:");
+// for (int i = 0; i < e; i++) {
+// int src = scanner.nextInt();
+// int dest = scanner.nextInt();
+// int weight = scanner.nextInt();
+// graph.edge[i].source = src;
+// graph.edge[i].destination = dest;
+// graph.edge[i].weight = weight;
+// }
 
-//     graph.BellmanFord(graph, 0);
-//   }
+// graph.BellmanFord(graph, 0);
+// }
 // }
 
 // or
@@ -1660,59 +1677,59 @@
 // import java.util.Scanner;
 
 // public class Graph {
-//   final static int INF = 99999;
+// final static int INF = 99999;
 
-//   void floydWarshall(int graph[][]) {
-//     int V = graph.length;
-//     int dist[][] = new int[V][V];
-//     int i, j, k;
+// void floydWarshall(int graph[][]) {
+// int V = graph.length;
+// int dist[][] = new int[V][V];
+// int i, j, k;
 
-//     for (i = 0; i < V; i++)
-//       for (j = 0; j < V; j++)
-//         dist[i][j] = (i == j) ? 0 : (graph[i][j] == 0 ? INF : graph[i][j]);
+// for (i = 0; i < V; i++)
+// for (j = 0; j < V; j++)
+// dist[i][j] = (i == j) ? 0 : (graph[i][j] == 0 ? INF : graph[i][j]);
 
-//     for (k = 0; k < V; k++) {
-//       for (i = 0; i < V; i++) {
-//         for (j = 0; j < V; j++) {
-//           if (dist[i][k] + dist[k][j] < dist[i][j])
-//             dist[i][j] = dist[i][k] + dist[k][j];
-//         }
-//       }
-//     }
+// for (k = 0; k < V; k++) {
+// for (i = 0; i < V; i++) {
+// for (j = 0; j < V; j++) {
+// if (dist[i][k] + dist[k][j] < dist[i][j])
+// dist[i][j] = dist[i][k] + dist[k][j];
+// }
+// }
+// }
 
-//     printSolution(dist);
-//   }
+// printSolution(dist);
+// }
 
-//   void printSolution(int dist[][]) {
-//     System.out.println("Following matrix shows the shortest " +
-//         "distances between every pair of vertices");
-//     for (int i = 0; i < dist.length; ++i) {
-//       for (int j = 0; j < dist.length; ++j) {
-//         if (dist[i][j] == INF)
-//           System.out.print("INF ");
-//         else
-//           System.out.print(dist[i][j] + " ");
-//       }
-//       System.out.println();
-//     }
-//   }
+// void printSolution(int dist[][]) {
+// System.out.println("Following matrix shows the shortest " +
+// "distances between every pair of vertices");
+// for (int i = 0; i < dist.length; ++i) {
+// for (int j = 0; j < dist.length; ++j) {
+// if (dist[i][j] == INF)
+// System.out.print("INF ");
+// else
+// System.out.print(dist[i][j] + " ");
+// }
+// System.out.println();
+// }
+// }
 
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.println("Enter the number of vertices:");
-//     int V = scanner.nextInt();
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// System.out.println("Enter the number of vertices:");
+// int V = scanner.nextInt();
 
-//     int graph[][] = new int[V][V];
-//     System.out.println("Enter the graph matrix:");
-//     for (int i = 0; i < V; ++i) {
-//       for (int j = 0; j < V; ++j) {
-//         graph[i][j] = scanner.nextInt();
-//       }
-//     }
+// int graph[][] = new int[V][V];
+// System.out.println("Enter the graph matrix:");
+// for (int i = 0; i < V; ++i) {
+// for (int j = 0; j < V; ++j) {
+// graph[i][j] = scanner.nextInt();
+// }
+// }
 
-//     Graph a = new Graph();
-//     a.floydWarshall(graph);
-//   }
+// Graph a = new Graph();
+// a.floydWarshall(graph);
+// }
 // }
 
 // Input Format:
