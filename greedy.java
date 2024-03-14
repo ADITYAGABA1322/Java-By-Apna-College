@@ -86,39 +86,40 @@ class Item {
 }
 
 class greedy {
-public static double fractionalKnapsack(Item[] arr , int W){
-// Arrays.sort(arr, new Comparator<Item>(){
-// public int compare(Item a, Item b){
-// double r1 = (double)a.value/a.weight;
-// double r2 = (double)b.value/b.weight;
-// if(r1<r2){
-// return 1;
-// }else if(r1>r2){
-// return -1;
-// }else{
-// return 0;
-// }
-// }
-// });
-// 2nd one to sort
-//Arrays.sort(arr, (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
-// 3rd one to sort
-Arrays.sort(arr , Comparator.comparingDouble(i -> (double) i.value /
-i.weight));
-// int curWeight
-double maxValue = 0.0;
-for(int i=arr.length-1;i>=0;i--){
-if(arr[i].weight<=W){
-maxValue = maxValue + arr[i].value;
-W = W - arr[i].weight;
-}else{
-maxValue = maxValue + (double)arr[i].value*((double)W/arr[i].weight);
-break;
-}
-}
-return maxValue;
+  public static double fractionalKnapsack(Item[] arr, int W) {
+    // Arrays.sort(arr, new Comparator<Item>(){
+    // public int compare(Item a, Item b){
+    // double r1 = (double)a.value/a.weight;
+    // double r2 = (double)b.value/b.weight;
+    // if(r1<r2){
+    // return 1;
+    // }else if(r1>r2){
+    // return -1;
+    // }else{
+    // return 0;
+    // }
+    // }
+    // });
+    // 2nd one to sort
+    // Arrays.sort(arr,
+    // (a,b)->((double)b.value/b.weight)-((double)a.value/a.weight)>0?1:-1);
+    // 3rd one to sort
+    Arrays.sort(arr, Comparator.comparingDouble(i -> (double) i.value /
+        i.weight));
+    // int curWeight
+    double maxValue = 0.0;
+    for (int i = arr.length - 1; i >= 0; i--) {
+      if (arr[i].weight <= W) {
+        maxValue = maxValue + arr[i].value;
+        W = W - arr[i].weight;
+      } else {
+        maxValue = maxValue + (double) arr[i].value * ((double) W / arr[i].weight);
+        break;
+      }
+    }
+    return maxValue;
 
-}
+  }
 
   public static void main(String[] args) throws IOException {
     Scanner sc = new Scanner(System.in);
