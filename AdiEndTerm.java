@@ -78,7 +78,7 @@
 //         if (i == 0 || j == 0) {
 //           dp[i][j] = 0;
 //         } else if (weight[i - 1] <= j) {
-//           dp[i][j] = Math.max(profit[i - 1] + dp[i - 1][j - weight[i - 1]], dp[i - 1][j]);
+//           dp[i][j] = Math.max(dp[i - 1][j] , profit[i - 1] + dp[i - 1][j - weight[i - 1]]);
 //         } else {
 //           dp[i][j] = dp[i - 1][j];
 
@@ -342,95 +342,95 @@
 // import java.util.Scanner;
 
 // class Node {
-// int data;
-// Node left, right;
+//   int data;
+//   Node left, right;
 
-// public Node(int item) {
-// data = item;
-// left = right = null;
-// }
+//   public Node(int item) {
+//     data = item;
+//     left = right = null;
+//   }
 // }
 
 // class BST {
-// Node root;
+//   Node root;
 
-// BST() {
-// root = null;
-// }
+//   BST() {
+//     root = null;
+//   }
 
-// void insert(int data) {
-// root = insertRec(root, data);
-// }
+//   void insert(int data) {
+//     root = insertRec(root, data);
+//   }
 
-// Node insertRec(Node root, int data) {
-// if (root == null) {
-// root = new Node(data);
-// return root;
-// }
+//   Node insertRec(Node root, int data) {
+//     if (root == null) {
+//       root = new Node(data);
+//       return root;
+//     }
 
-// if (data < root.data) {
-// root.left = insertRec(root.left, data);
-// } else if (data > root.data) {
-// root.right = insertRec(root.right, data);
-// }
+//     if (data < root.data) {
+//       root.left = insertRec(root.left, data);
+//     } else if (data > root.data) {
+//       root.right = insertRec(root.right, data);
+//     }
 
-// return root;
-// }
+//     return root;
+//   }
 
-// void deleteLeafNodes() {
-// root = deleteLeafNodesUtil(root);
-// }
+//   void deleteLeafNodes() {
+//     root = deleteLeafNodesUtil(root);
+//   }
 
-// Node deleteLeafNodesUtil(Node root) {
-// if (root == null) {
-// return null;
-// }
+//   Node deleteLeafNodesUtil(Node root) {
+//     if (root == null) {
+//       return null;
+//     }
 
-// if (root.left == null && root.right == null) {
-// // This is a leaf node, delete it
-// return null;
-// }
+//     if (root.left == null && root.right == null) {
+//       // This is a leaf node, delete it
+//       return null;
+//     }
+// 3
+//     // Recursively delete leaf nodes in left and right subtrees
+//     root.left = deleteLeafNodesUtil(root.left);
+//     root.right = deleteLeafNodesUtil(root.right);
 
-// // Recursively delete leaf nodes in left and right subtrees
-// root.left = deleteLeafNodesUtil(root.left);
-// root.right = deleteLeafNodesUtil(root.right);
+//     return root;
+//   }
 
-// return root;
-// }
-
-// void postOrderTraversal(Node root) {
-// if (root != null) {
-// postOrderTraversal(root.left);
-// postOrderTraversal(root.right);
-// System.out.print(root.data + " ");
-// }
-// }
+//   void postOrderTraversal(Node root) {
+//     if (root != null) {
+//       postOrderTraversal(root.left);
+//       postOrderTraversal(root.right);
+//       System.out.print(root.data + " ");
+//     }
+//   }
 // }
 
 // class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Input array of integers
-// int[] values = new int[7];
-// System.out.println("Enter 7 integers:");
-// for (int i = 0; i < 7; i++) {
-// values[i] = scanner.nextInt();
-// }
+//     // Input array of integers
+//     int[] values = new int[7];
+//     System.out.println("Enter 7 integers:");
+//     for (int i = 0; i < 7; i++) {
+//       values[i] = scanner.nextInt();
+//     }
 
-// // Create BST and insert values
-// BST bst = new BST();
-// for (int value : values) {
-// bst.insert(value);
-// }
+//     // Create BST and insert values
+//     BST bst = new BST();
+//     for (int value : values) {
+//       bst.insert(value);
+//     }
 
-// // Delete leaf nodes
-// bst.deleteLeafNodes();
+//     // Delete leaf nodes
+//     bst.deleteLeafNodes();
 
-// // Print post-order traversal after deletion
-// System.out.println("Post-order traversal after deletion:");
-// bst.postOrderTraversal(bst.root);
-// }
+//     // Print post-order traversal after deletion
+//     System.out.println("Post-order traversal after deletion:");
+//     bst.postOrderTraversal(bst.root);
+//   }
 // }
 
 // 4. Robot Task Scheduling
@@ -481,34 +481,34 @@
 // import java.util.*;
 
 // class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int r = sc.nextInt();
-// int c = sc.nextInt();
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int r = sc.nextInt();
+//     int c = sc.nextInt();
 
-// int[][] grid = new int[r][c];
-// int[][] dp = new int[r][c];
+//     int[][] grid = new int[r][c];
+//     int[][] dp = new int[r][c];
 
-// for (int i = 0; i < r; i++) {
-// for (int j = 0; j < c; j++)
-// grid[i][j] = sc.nextInt();
-// }
+//     for (int i = 0; i < r; i++) {
+//       for (int j = 0; j < c; j++)
+//         grid[i][j] = sc.nextInt();
+//     }
 
-// dp[0][0] = grid[0][0];
+//     dp[0][0] = grid[0][0];
 
-// for (int i = 1; i < r; i++)
-// dp[i][0] = dp[i - 1][0] + grid[i][0];
+//     for (int i = 1; i < r; i++)
+//       dp[i][0] = dp[i - 1][0] + grid[i][0];
 
-// for (int j = 1; j < c; j++)
-// dp[0][j] = dp[0][j - 1] + grid[0][j];
+//     for (int j = 1; j < c; j++)
+//       dp[0][j] = dp[0][j - 1] + grid[0][j];
 
-// for (int i = 1; i < r; i++) {
-// for (int j = 1; j < c; j++)
-// dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
-// }
+//     for (int i = 1; i < r; i++) {
+//       for (int j = 1; j < c; j++)
+//         dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+//     }
 
-// System.out.println(dp[r - 1][c - 1]);
-// }
+//     System.out.println(dp[r - 1][c - 1]);
+//   }
 // }
 
 // 5. Decode Ways
@@ -559,23 +559,23 @@
 // import java.util.*;
 
 // class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String s = sc.next();
-// int n = s.length();
-// int[] dp = new int[n + 1];
-// dp[0] = 1;
-// dp[1] = s.charAt(0) == '0' ? 0 : 1;
-// for (int i = 2; i <= n; i++) {
-// int oneDigit = Integer.valueOf(s.substring(i - 1, i));
-// int twoDigit = Integer.valueOf(s.substring(i - 2, i));
-// if (oneDigit >= 1)
-// dp[i] += dp[i - 1];
-// if (twoDigit >= 10 && twoDigit <= 26)
-// dp[i] += dp[i - 2];
-// }
-// System.out.println(dp[n]);
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.next();
+//     int n = s.length();
+//     int[] dp = new int[n + 1];
+//     dp[0] = 1;
+//     dp[1] = s.charAt(0) == '0' ? 0 : 1;
+//     for (int i = 2; i <= n; i++) {
+//       int oneDigit = Integer.valueOf(s.substring(i - 1, i));
+//       int twoDigit = Integer.valueOf(s.substring(i - 2, i));
+//       if (oneDigit >= 1)
+//         dp[i] += dp[i - 1];
+//       if (twoDigit >= 10 && twoDigit <= 26)
+//         dp[i] += dp[i - 2];
+//     }
+//     System.out.println(dp[n]);
+//   }
 // }
 
 // 6. lowest common ancestor (LCA)
@@ -612,85 +612,85 @@
 // import java.util.*;
 
 // class TreeNode {
-// int val;
-// TreeNode left, right;
+//   int val;
+//   TreeNode left, right;
 
-// public TreeNode(int value) {
-// val = value;
-// left = right = null;
-// }
+//   public TreeNode(int value) {
+//     val = value;
+//     left = right = null;
+//   }
 // }
 
 // class BinaryTree {
-// TreeNode root;
+//   TreeNode root;
 
-// public BinaryTree() {
-// root = null;
-// }
+//   public BinaryTree() {
+//     root = null;
+//   }
 
-// public void insert(int value) {
-// root = insertRec(root, value);
-// }
+//   public void insert(int value) {
+//     root = insertRec(root, value);
+//   }
 
-// private TreeNode insertRec(TreeNode root, int value) {
-// if (root == null) {
-// root = new TreeNode(value);
-// return root;
-// }
+//   private TreeNode insertRec(TreeNode root, int value) {
+//     if (root == null) {
+//       root = new TreeNode(value);
+//       return root;
+//     }
 
-// if (value < root.val) {
-// root.left = insertRec(root.left, value);
-// } else if (value > root.val) {
-// root.right = insertRec(root.right, value);
-// }
+//     if (value < root.val) {
+//       root.left = insertRec(root.left, value);
+//     } else if (value > root.val) {
+//       root.right = insertRec(root.right, value);
+//     }
 
-// return root;
-// }
+//     return root;
+//   }
 
-// public int findLCA(int p, int q) {
-// return findLCAUtil(root, p, q).val;
-// }
+//   public int findLCA(int p, int q) {
+//     return findLCAUtil(root, p, q).val;
+//   }
 
-// private TreeNode findLCAUtil(TreeNode root, int p, int q) {
-// if (root == null) {
-// return null;
-// }
+//   private TreeNode findLCAUtil(TreeNode root, int p, int q) {
+//     if (root == null) {
+//       return null;
+//     }
 
-// if (p < root.val && q < root.val) {
-// return findLCAUtil(root.left, p, q);
-// } else if (p > root.val && q > root.val) {
-// return findLCAUtil(root.right, p, q);
-// } else {
-// // root is the LCA
-// return root;
-// }
-// }
+//     if (p < root.val && q < root.val) {
+//       return findLCAUtil(root.left, p, q);
+//     } else if (p > root.val && q > root.val) {
+//       return findLCAUtil(root.right, p, q);
+//     } else {
+//       // root is the LCA
+//       return root;
+//     }
+//   }
 // }
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Input integer array separated by space
-// System.out.println("Enter integers separated by space:");
-// String[] values = scanner.nextLine().split(" ");
-// BinaryTree bst = new BinaryTree();
+//     // Input integer array separated by space
+//     System.out.println("Enter integers separated by space:");
+//     String[] values = scanner.nextLine().split(" ");
+//     BinaryTree bst = new BinaryTree();
 
-// for (String value : values) {
-// bst.insert(Integer.parseInt(value));
-// }
+//     for (String value : values) {
+//       bst.insert(Integer.parseInt(value));
+//     }
 
-// // Input values of p and q
-// System.out.println("Enter value of p:");
-// int p = scanner.nextInt();
+//     // Input values of p and q
+//     System.out.println("Enter value of p:");
+//     int p = scanner.nextInt();
 
-// System.out.println("Enter value of q:");
-// int q = scanner.nextInt();
+//     System.out.println("Enter value of q:");
+//     int q = scanner.nextInt();
 
-// // Find and print the LCA
-// int lca = bst.findLCA(p, q);
-// System.out.println("Lowest Common Ancestor (LCA): " + lca);
-// }
+//     // Find and print the LCA
+//     int lca = bst.findLCA(p, q);
+//     System.out.println("Lowest Common Ancestor (LCA): " + lca);
+//   }
 // }
 
 // Q 7. Crack the Passcode
@@ -740,32 +740,32 @@
 
 // public class AdiEndTerm {
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Read input
-// String s = scanner.nextLine().trim();
+//     // Read input
+//     String s = scanner.nextLine().trim();
 
-// // Find and print the substring
-// String result = findSubstring(s);
-// System.out.println(result);
-// }
+//     // Find and print the substring
+//     String result = findSubstring(s);
+//     System.out.println(result);
+//   }
 
-// static String findSubstring(String s) {
-// int n = s.length();
+//   static String findSubstring(String s) {
+//     int n = s.length();
 
-// // Iterate from the middle to find the longest substring
-// for (int i = n / 2; i > 0; i--) {
-// String prefix = s.substring(0, i);
-// String suffix = s.substring(n - i);
+//     // Iterate from the middle to find the longest substring
+//     for (int i = n / 2; i > 0; i--) {
+//       String prefix = s.substring(0, i);
+//       String suffix = s.substring(n - i);
 
-// if (prefix.equals(suffix)) {
-// return prefix;
-// }
-// }
+//       if (prefix.equals(suffix)) {
+//         return prefix;
+//       }
+//     }
 
-// return "Not so Cool";
-// }
+//     return "Not so Cool";
+//   }
 // }
 
 // Que 8. Hearing Challenge
@@ -821,39 +821,39 @@
 
 // public class AdiEndTerm {
 
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Read the number of test cases
-// int t = scanner.nextInt();
-// scanner.nextLine(); // consume the newline character
+//     // Read the number of test cases
+//     int t = scanner.nextInt();
+//     scanner.nextLine(); // consume the newline character
 
-// // Process each test case
-// for (int i = 0; i < t; i++) {
-// // Read the substring for each test case
-// String s = scanner.nextLine().trim();
+//     // Process each test case
+//     for (int i = 0; i < t; i++) {
+//       // Read the substring for each test case
+//       String s = scanner.nextLine().trim();
 
-// // Check if the substring is part of the repeated "Yes" sequence
-// String result = isSubstringOfYes(s);
+//       // Check if the substring is part of the repeated "Yes" sequence
+//       String result = isSubstringOfYes(s);
 
-// // Print the result for each test case
-// System.out.println(result);
-// }
-// }
+//       // Print the result for each test case
+//       System.out.println(result);
+//     }
+//   }
 
-// static String isSubstringOfYes(String s) {
-// int n = s.length();
+//   static String isSubstringOfYes(String s) {
+//     int n = s.length();
 
-// // Check if s is a substring of "YesYesYes..."
-// for (int len = 3; len <= n * 2; len += 3) {
-// String repeatedYes = "Yes".repeat(len / 3);
-// if (repeatedYes.contains(s)) {
-// return "YES";
-// }
-// }
+//     // Check if s is a substring of "YesYesYes..."
+//     for (int len = 3; len <= n * 2; len += 3) {
+//       String repeatedYes = "Yes".repeat(len / 3);
+//       if (repeatedYes.contains(s)) {
+//         return "YES";
+//       }
+//     }
 
-// return "NO";
-// }
+//     return "NO";
+//   }
 // }
 
 // Que 9 :- Given an array and a positive integer k, find the first negative
@@ -880,37 +880,37 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] arr = new int[n];
-// for (int i = 0; i < n; i++) {
-// arr[i] = sc.nextInt();
-// }
-// int k = sc.nextInt();
-// int[] ans = new int[n - k + 1];
-// int j = 0;
-// Deque<Integer> dq = new LinkedList<>();
-// for (int i = 0; i < n; i++) {
-// if (arr[i] < 0) {
-// dq.add(i);
-// }
-// if (i - j + 1 == k) {
-// if (dq.isEmpty()) {
-// ans[j] = 0;
-// } else {
-// ans[j] = arr[dq.peek()];
-// }
-// j++;
-// if (!dq.isEmpty() && dq.peek() < j) {
-// dq.remove();
-// }
-// }
-// }
-// for (int i = 0; i < n - k + 1; i++) {
-// System.out.print(ans[i] + " ");
-// }
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] arr = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = sc.nextInt();
+//     }
+//     int k = sc.nextInt();
+//     int[] ans = new int[n - k + 1];
+//     int j = 0;
+//     Deque<Integer> dq = new LinkedList<>();
+//     for (int i = 0; i < n; i++) {
+//       if (arr[i] < 0) {
+//         dq.add(i);
+//       }
+//       if (i - j + 1 == k) {
+//         if (dq.isEmpty()) {
+//           ans[j] = 0;
+//         } else {
+//           ans[j] = arr[dq.peek()];
+//         }
+//         j++;
+//         if (!dq.isEmpty() && dq.peek() < j) {
+//           dq.remove();
+//         }
+//       }
+//     }
+//     for (int i = 0; i < n - k + 1; i++) {
+//       System.out.print(ans[i] + " ");
+//     }
+//   }
 // }
 
 // or
@@ -919,54 +919,54 @@
 // import java.util.Scanner;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Input: Size of the array
-// int n = scanner.nextInt();
+//     // Input: Size of the array
+//     int n = scanner.nextInt();
 
-// // Input: Array elements
-// int[] arr = new int[n];
-// for (int i = 0; i < n; i++) {
-// arr[i] = scanner.nextInt();
-// }
+//     // Input: Array elements
+//     int[] arr = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       arr[i] = scanner.nextInt();
+//     }
 
-// // Input: Size of the window
-// int k = scanner.nextInt();
+//     // Input: Size of the window
+//     int k = scanner.nextInt();
 
-// // Process each window and print the first negative integer
-// printFirstNegativeInWindow(arr, n, k);
-// }
+//     // Process each window and print the first negative integer
+//     printFirstNegativeInWindow(arr, n, k);
+//   }
 
-// static void printFirstNegativeInWindow(int[] arr, int n, int k) {
-// LinkedList<Integer> queue = new LinkedList<>();
+//   static void printFirstNegativeInWindow(int[] arr, int n, int k) {
+//     LinkedList<Integer> queue = new LinkedList<>();
 
-// // Process the first window
-// for (int i = 0; i < k; i++) {
-// if (arr[i] < 0) {
-// queue.offer(i);
-// }
-// }
+//     // Process the first window
+//     for (int i = 0; i < k; i++) {
+//       if (arr[i] < 0) {
+//         queue.offer(i);
+//       }
+//     }
 
-// // Print the first negative integer or 0 for the first window
-// System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+//     // Print the first negative integer or 0 for the first window
+//     System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
 
-// // Process the remaining windows
-// for (int i = k; i < n; i++) {
-// // Remove elements that are out of the current window
-// while (!queue.isEmpty() && queue.peek() <= i - k) {
-// queue.poll();
-// }
+//     // Process the remaining windows
+//     for (int i = k; i < n; i++) {
+//       // Remove elements that are out of the current window
+//       while (!queue.isEmpty() && queue.peek() <= i - k) {
+//         queue.poll();
+//       }
 
-// // Add the current element to the window
-// if (arr[i] < 0) {
-// queue.offer(i);
-// }
+//       // Add the current element to the window
+//       if (arr[i] < 0) {
+//         queue.offer(i);
+//       }
 
-// // Print the first negative integer or 0 for the current window
-// System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
-// }
-// }
+//       // Print the first negative integer or 0 for the current window
+//       System.out.print(queue.isEmpty() ? "0 " : arr[queue.peek()] + " ");
+//     }
+//   }
 // }
 
 // Que 10. Longest Increasing Subsequence
@@ -1034,27 +1034,27 @@
 // import java.util.*;
 
 // class AdiEndTerm {
-// public static int longestSubsequence(int size, int arr[]) {
-// // code here
-// int[] dp = new int[size];
-// dp[0] = 1;
-// int res = 1;
-// for (int i = 1; i < size; i++) {
-// dp[i] = 1;
-// for (int j = 0; j < i; j++) {
-// if (arr[i] > arr[j]) {
-// dp[i] = Math.max(dp[i], dp[j] + 1);
-// }
-// }
-// res = Math.max(res, dp[i]);
-// }
-// return res;
-// }
+//   public static int longestSubsequence(int size, int arr[]) {
+//     // code here
+//     int[] dp = new int[size];
+//     dp[0] = 1;
+//     int res = 1;
+//     for (int i = 1; i < size; i++) {
+//       dp[i] = 1;
+//       for (int j = 0; j < i; j++) {
+//         if (arr[i] > arr[j]) {
+//           dp[i] = Math.max(dp[i], dp[j] + 1);
+//         }
+//       }
+//       res = Math.max(res, dp[i]);
+//     }
+//     return res;
+//   }
 
-// public static void main(String[] args) {
-// int[] arr = { 3, 4, 2, 8, 10 };
-// System.out.println(longestSubsequence(arr.length, arr));
-// }
+//   public static void main(String[] args) {
+//     int[] arr = { 3, 4, 2, 8, 10 };
+//     System.out.println(longestSubsequence(arr.length, arr));
+//   }
 // }
 
 // Question 11:
@@ -1115,39 +1115,39 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// // int n = sc.nextInt();
-// // int[] heights = new int[n];
-// // for (int i = 0; i < n; i++) {
-// // heights[i] = sc.nextInt();
-// // }
-// String[] heights = sc.nextLine().split(" ");
-// int bricks = sc.nextInt();
-// int ladders = sc.nextInt();
-// int[] arr = new int[heights.length];
-// for (int i = 0; i < heights.length; i++) {
-// arr[i] = Integer.parseInt(heights[i]);
-// }
-// System.out.println(furthestBuilding(arr, bricks, ladders));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     // int n = sc.nextInt();
+//     // int[] heights = new int[n];
+//     // for (int i = 0; i < n; i++) {
+//     // heights[i] = sc.nextInt();
+//     // }
+//     String[] heights = sc.nextLine().split(" ");
+//     int bricks = sc.nextInt();
+//     int ladders = sc.nextInt();
+//     int[] arr = new int[heights.length];
+//     for (int i = 0; i < heights.length; i++) {
+//       arr[i] = Integer.parseInt(heights[i]);
+//     }
+//     System.out.println(furthestBuilding(arr, bricks, ladders));
+//   }
 
-// public static int furthestBuilding(int[] heights, int bricks, int ladders) {
-// PriorityQueue<Integer> pq = new PriorityQueue<>();
-// for (int i = 0; i < heights.length - 1; i++) {
-// int diff = heights[i + 1] - heights[i];
-// if (diff > 0) {
-// pq.add(diff);
-// }
-// if (pq.size() > ladders) {
-// bricks -= pq.poll();
-// }
-// if (bricks < 0) {
-// return i;
-// }
-// }
-// return heights.length - 1;
-// }
+//   public static int furthestBuilding(int[] heights, int bricks, int ladders) {
+//     PriorityQueue<Integer> pq = new PriorityQueue<>();
+//     for (int i = 0; i < heights.length - 1; i++) {
+//       int diff = heights[i + 1] - heights[i];
+//       if (diff > 0) {
+//         pq.add(diff);
+//       }
+//       if (pq.size() > ladders) {
+//         bricks -= pq.poll();
+//       }
+//       if (bricks < 0) {
+//         return i;
+//       }
+//     }
+//     return heights.length - 1;
+//   }
 // }
 
 // Question 12: Password of the treasure box
@@ -1298,31 +1298,29 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] names = sc.nextLine().split(" ");
-// int roll = sc.nextInt();
-// Hashtable<Integer, String> ht = new Hashtable<>();
-// for (int i = 0; i < names.length; i++) {
-// ht.put(i + 1, names[i]);
-// }
-// List<Map.Entry<Integer, String>> list = new LinkedList<Map.Entry<Integer,
-// String>>(ht.entrySet());
-// Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
-// public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String>
-// o2) {
-// return (o2.getKey()).compareTo(o1.getKey());
-// }
-// });
-// for (Map.Entry<Integer, String> aa : list) {
-// System.out.println(aa.getKey() + " " + aa.getValue());
-// }
-// if (ht.containsKey(roll)) {
-// System.out.println("present");
-// } else {
-// System.out.println("not present");
-// }
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     Hashtable<Integer, String> ht = new Hashtable<>();
+//     for (int i = 0; i < names.length; i++) {
+//       ht.put(i + 1, names[i]);
+//     }
+//     List<Map.Entry<Integer, String>> list = new LinkedList<Map.Entry<Integer, String>>(ht.entrySet());
+//     Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
+//       public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+//         return (o2.getKey()).compareTo(o1.getKey());
+//       }
+//     });
+//     for (Map.Entry<Integer, String> aa : list) {
+//       System.out.println(aa.getKey() + " " + aa.getValue());
+//     }
+//     if (ht.containsKey(roll)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
 // }
 
 // 2nd method using TreeMap
@@ -1330,23 +1328,24 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] names = sc.nextLine().split(" ");
-// int roll = sc.nextInt();
-// TreeMap<Integer, String> tm = new TreeMap<>();
-// for (int i = 0; i < names.length; i++) {
-// tm.put(i + 1, names[i]);
-// }
-// for (Map.Entry<Integer, String> entry : tm.entrySet()) {
-// System.out.println(entry.getKey() + " " + entry.getValue());
-// }
-// if (tm.containsKey(roll)) {
-// System.out.println("present");
-// } else {
-// System.out.println("not present");
-// }
-// }
+//     public static void main(String[] args) {
+//         Scanner sc = new Scanner(System.in);
+//         String[] names = sc.nextLine().split(" ");
+//         int roll = sc.nextInt();
+//         // Use TreeMap with a descending order comparator
+//         TreeMap<Integer, String> tm = new TreeMap<>(Collections.reverseOrder());
+//         for (int i = 0; i < names.length; i++) {
+//             tm.put(i + 1, names[i]);
+//         }
+//         for (Map.Entry<Integer, String> entry : tm.entrySet()) {
+//             System.out.println(entry.getKey() + " " + entry.getValue());
+//         }
+//         if (tm.containsKey(roll)) {
+//             System.out.println("present");
+//         } else {
+//             System.out.println("not present");
+//         }
+//     }
 // }
 
 // 3rd method using LinkedHashMap
@@ -1354,23 +1353,23 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] names = sc.nextLine().split(" ");
-// int roll = sc.nextInt();
-// LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
-// for (int i = 0; i < names.length; i++) {
-// lhm.put(i + 1, names[i]);
-// }
-// for (Map.Entry<Integer, String> entry : lhm.entrySet()) {
-// System.out.println(entry.getKey() + " " + entry.getValue());
-// }
-// if (lhm.containsKey(roll)) {
-// System.out.println("present");
-// } else {
-// System.out.println("not present");
-// }
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] names = sc.nextLine().split(" ");
+//     int roll = sc.nextInt();
+//     LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
+//     for (int i = 0; i < names.length; i++) {
+//       lhm.put(i + 1, names[i]);
+//     }
+//     for (Map.Entry<Integer, String> entry : lhm.entrySet()) {
+//       System.out.println(entry.getKey() + " " + entry.getValue());
+//     }
+//     if (lhm.containsKey(roll)) {
+//       System.out.println("present");
+//     } else {
+//       System.out.println("not present");
+//     }
+//   }
 // }
 
 // 4th method using HashMap
@@ -1466,64 +1465,64 @@
 // import java.util.Scanner;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner scanner = new Scanner(System.in);
+//   public static void main(String[] args) {
+//     Scanner scanner = new Scanner(System.in);
 
-// // Input the array
-// String[] inputArray = scanner.nextLine().split(" ");
-// int[] A = new int[inputArray.length];
+//     // Input the array
+//     String[] inputArray = scanner.nextLine().split(" ");
+//     int[] A = new int[inputArray.length];
 
-// for (int i = 0; i < inputArray.length; i++) {
-// A[i] = Integer.parseInt(inputArray[i]);
-// }
+//     for (int i = 0; i < inputArray.length; i++) {
+//       A[i] = Integer.parseInt(inputArray[i]);
+//     }
 
-// // Count the number of special elements
-// int specialCount = 0;
+//     // Count the number of special elements
+//     int specialCount = 0;
 
-// for (int i = 0; i < A.length; i++) {
-// // Remove the current element and check if the array becomes balanced
-// int[] newArray = removeElement(A, i);
+//     for (int i = 0; i < A.length; i++) {
+//       // Remove the current element and check if the array becomes balanced
+//       int[] newArray = removeElement(A, i);
 
-// if (isBalanced(newArray)) {
-// specialCount++;
-// }
-// }
+//       if (isBalanced(newArray)) {
+//         specialCount++;
+//       }
+//     }
 
-// // Output the count of special elements
-// System.out.println(specialCount);
+//     // Output the count of special elements
+//     System.out.println(specialCount);
 
-// scanner.close();
-// }
+//     scanner.close();
+//   }
 
-// // Method to remove an element from the array
-// private static int[] removeElement(int[] array, int index) {
-// int[] newArray = new int[array.length - 1];
-// int newArrayIndex = 0;
+//   // Method to remove an element from the array
+//   private static int[] removeElement(int[] array, int index) {
+//     int[] newArray = new int[array.length - 1];
+//     int newArrayIndex = 0;
 
-// for (int i = 0; i < array.length; i++) {
-// if (i != index) {
-// newArray[newArrayIndex++] = array[i];
-// }
-// }
+//     for (int i = 0; i < array.length; i++) {
+//       if (i != index) {
+//         newArray[newArrayIndex++] = array[i];
+//       }
+//     }
 
-// return newArray;
-// }
+//     return newArray;
+//   }
 
-// // Method to check if the array is balanced
-// private static boolean isBalanced(int[] array) {
-// int sumEven = 0;
-// int sumOdd = 0;
+//   // Method to check if the array is balanced
+//   private static boolean isBalanced(int[] array) {
+//     int sumEven = 0;
+//     int sumOdd = 0;
 
-// for (int i = 0; i < array.length; i++) {
-// if (i % 2 == 0) {
-// sumEven += array[i];
-// } else {
-// sumOdd += array[i];
-// }
-// }
+//     for (int i = 0; i < array.length; i++) {
+//       if (i % 2 == 0) {
+//         sumEven += array[i];
+//       } else {
+//         sumOdd += array[i];
+//       }
+//     }
 
-// return sumEven == sumOdd;
-// }
+//     return sumEven == sumOdd;
+//   }
 // }
 
 // 15. Detecting Plagiarism in Academic Papers
@@ -1567,18 +1566,18 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String[] text = sc.nextLine().split(" ");
-// String pattern = sc.nextLine();
-// int count = 0;
-// for (String word : text) {
-// if (word.equals(pattern)) {
-// count++;
-// }
-// }
-// System.out.println(count);
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String[] text = sc.nextLine().split(" ");
+//     String pattern = sc.nextLine();
+//     int count = 0;
+//     for (String word : text) {
+//       if (word.equals(pattern)) {
+//         count++;
+//       }
+//     }
+//     System.out.println(count);
+//   }
 // }
 
 // 16. The Lost Palindrome Stones
@@ -1637,42 +1636,42 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String pattern = sc.nextLine();
-//     int n = pattern.length();
-//     // for (int i = 0; i < n; i++) {
-//     // for (int j = i + 2; j <= n; j++) {
-//     // String sub = pattern.substring(i, j);
-//     // if (isPalindrome(sub)) {
-//     // System.out.println(sub + " " + i + "-" + (j - 1));
-//     for (int len = 3; len <= n; len++) {
-//       for (int i = 0; i <= n - len; i++) {
-//         String sub = pattern.substring(i, i + len);
-//         if (isPalindrome(sub)) {
-//           System.out.println(sub + " " + i + "-" + (i + len - 1));
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String pattern = sc.nextLine();
+// int n = pattern.length();
+// // for (int i = 0; i < n; i++) {
+// // for (int j = i + 2; j <= n; j++) {
+// // String sub = pattern.substring(i, j);
+// // if (isPalindrome(sub)) {
+// // System.out.println(sub + " " + i + "-" + (j - 1));
+// for (int len = 3; len <= n; len++) {
+// for (int i = 0; i <= n - len; i++) {
+// String sub = pattern.substring(i, i + len);
+// if (isPalindrome(sub)) {
+// System.out.println(sub + " " + i + "-" + (i + len - 1));
 
-//         }
-//       }
-//     }
-//   }
+// }
+// }
+// }
+// }
 
-//   public static boolean isPalindrome(String s) {
-//     // int n = s.length();
-//     // for (int i = 0; i < n / 2; i++) {
-//     // if (s.charAt(i) != s.charAt(n - i - 1)) {
-//     // return false;
-//     // }
-//     // }
-//     // return true;
-//     int i = 0, j = s.length() - 1;
-//     while (i < j) {
-//       if (s.charAt(i++) != s.charAt(j--)) {
-//         return false;
-//       }
-//     }
-//     return true;
-//   }
+// public static boolean isPalindrome(String s) {
+// // int n = s.length();
+// // for (int i = 0; i < n / 2; i++) {
+// // if (s.charAt(i) != s.charAt(n - i - 1)) {
+// // return false;
+// // }
+// // }
+// // return true;
+// int i = 0, j = s.length() - 1;
+// while (i < j) {
+// if (s.charAt(i++) != s.charAt(j--)) {
+// return false;
+// }
+// }
+// return true;
+// }
 // }
 
 // or
@@ -2122,86 +2121,86 @@
 // import java.util.*;
 
 // class TreeNode {
-//   int val;
-//   TreeNode left;
-//   TreeNode right;
+// int val;
+// TreeNode left;
+// TreeNode right;
 
-//   TreeNode(int val) {
-//     this.val = val;
-//   }
+// TreeNode(int val) {
+// this.val = val;
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     TreeNode root = null;
-//     for (int i = 0; i < n; i++) {
-//       root = insert(root, sc.nextInt());
-//     }
-//     leftView(root);
-//     System.out.println();
-//     rightView(root);
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// TreeNode root = null;
+// for (int i = 0; i < n; i++) {
+// root = insert(root, sc.nextInt());
+// }
+// leftView(root);
+// System.out.println();
+// rightView(root);
+// }
 
-//   public static TreeNode insert(TreeNode root, int val) {
-//     if (root == null) {
-//       return new TreeNode(val);
-//     }
-//     if (val < root.val) {
-//       root.left = insert(root.left, val);
-//     } else {
-//       root.right = insert(root.right, val);
-//     }
-//     return root;
-//   }
+// public static TreeNode insert(TreeNode root, int val) {
+// if (root == null) {
+// return new TreeNode(val);
+// }
+// if (val < root.val) {
+// root.left = insert(root.left, val);
+// } else {
+// root.right = insert(root.right, val);
+// }
+// return root;
+// }
 
-//   public static void leftView(TreeNode root) {
-//     if (root == null) {
-//       return;
-//     }
-//     Queue<TreeNode> queue = new LinkedList<>();
-//     queue.add(root);
-//     while (!queue.isEmpty()) {
-//       int size = queue.size();
-//       for (int i = 0; i < size; i++) {
-//         TreeNode curr = queue.poll();
-//         if (i == 0) {
-//           System.out.print(curr.val + " ");
-//         }
-//         if (curr.left != null) {
-//           queue.add(curr.left);
-//         }
-//         if (curr.right != null) {
-//           queue.add(curr.right);
-//         }
-//       }
-//     }
-//   }
+// public static void leftView(TreeNode root) {
+// if (root == null) {
+// return;
+// }
+// Queue<TreeNode> queue = new LinkedList<>();
+// queue.add(root);
+// while (!queue.isEmpty()) {
+// int size = queue.size();
+// for (int i = 0; i < size; i++) {
+// TreeNode curr = queue.poll();
+// if (i == 0) {
+// System.out.print(curr.val + " ");
+// }
+// if (curr.left != null) {
+// queue.add(curr.left);
+// }
+// if (curr.right != null) {
+// queue.add(curr.right);
+// }
+// }
+// }
+// }
 
-//   // right view
-//   public static void rightView(TreeNode root) {
-//     if (root == null) {
-//       return;
-//     }
-//     Queue<TreeNode> queue = new LinkedList<>();
-//     queue.add(root);
-//     while (!queue.isEmpty()) {
-//       int size = queue.size();
-//       for (int i = 0; i < size; i++) {
-//         TreeNode curr = queue.poll();
-//         if (i == size - 1) {
-//           System.out.print(curr.val + " ");
-//         }
-//         if (curr.left != null) {
-//           queue.add(curr.left);
-//         }
-//         if (curr.right != null) {
-//           queue.add(curr.right);
-//         }
-//       }
-//     }
-//   }
+// // right view
+// public static void rightView(TreeNode root) {
+// if (root == null) {
+// return;
+// }
+// Queue<TreeNode> queue = new LinkedList<>();
+// queue.add(root);
+// while (!queue.isEmpty()) {
+// int size = queue.size();
+// for (int i = 0; i < size; i++) {
+// TreeNode curr = queue.poll();
+// if (i == size - 1) {
+// System.out.print(curr.val + " ");
+// }
+// if (curr.left != null) {
+// queue.add(curr.left);
+// }
+// if (curr.right != null) {
+// queue.add(curr.right);
+// }
+// }
+// }
+// }
 // }
 
 // Question 25: Word Segmentation using Dictionary
@@ -3387,134 +3386,134 @@
 // import java.util.*;
 
 // class Node {
-//   int data;
-//   int depth;
-//   Node left, right;
+// int data;
+// int depth;
+// Node left, right;
 
-//   Node(int value, int d) {
-//     data = value;
-//     depth = d;
-//     left = right = null;
-//   }
+// Node(int value, int d) {
+// data = value;
+// depth = d;
+// left = right = null;
+// }
 // }
 
 // class Main {
-//   Node root;
+// Node root;
 
-//   Main() {
-//     root = null;
-//   }
+// Main() {
+// root = null;
+// }
 
-//   void insert(int value, int depth) {
-//     root = insertRec(root, value, depth);
-//   }
+// void insert(int value, int depth) {
+// root = insertRec(root, value, depth);
+// }
 
-//   Node insertRec(Node root, int value, int depth) {
-//     if (root == null)
-//       return new Node(value, depth);
+// Node insertRec(Node root, int value, int depth) {
+// if (root == null)
+// return new Node(value, depth);
 
-//     if (value < root.data)
-//       root.left = insertRec(root.left, value, depth + 1);
-//     else if (value > root.data)
-//       root.right = insertRec(root.right, value, depth + 1);
+// if (value < root.data)
+// root.left = insertRec(root.left, value, depth + 1);
+// else if (value > root.data)
+// root.right = insertRec(root.right, value, depth + 1);
 
-//     return root;
-//   }
+// return root;
+// }
 
-//   void topView() {
-//     class QueueObj {
-//       Node node;
-//       int hd;
+// void topView() {
+// class QueueObj {
+// Node node;
+// int hd;
 
-//       QueueObj(Node node, int hd) {
-//         this.node = node;
-//         this.hd = hd;
-//       }
-//     }
-//     Queue<QueueObj> q = new LinkedList<QueueObj>();
-//     Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+// QueueObj(Node node, int hd) {
+// this.node = node;
+// this.hd = hd;
+// }
+// }
+// Queue<QueueObj> q = new LinkedList<QueueObj>();
+// Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
 
-//     if (root == null) {
-//       return;
-//     } else {
-//       q.add(new QueueObj(root, 0));
-//     }
+// if (root == null) {
+// return;
+// } else {
+// q.add(new QueueObj(root, 0));
+// }
 
-//     while (!q.isEmpty()) {
-//       QueueObj tmpNode = q.poll();
-//       if (!topViewMap.containsKey(tmpNode.hd)) {
-//         topViewMap.put(tmpNode.hd, tmpNode.node);
-//       }
+// while (!q.isEmpty()) {
+// QueueObj tmpNode = q.poll();
+// if (!topViewMap.containsKey(tmpNode.hd)) {
+// topViewMap.put(tmpNode.hd, tmpNode.node);
+// }
 
-//       if (tmpNode.node.left != null) {
-//         q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
-//       }
-//       if (tmpNode.node.right != null) {
-//         q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
-//       }
+// if (tmpNode.node.left != null) {
+// q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+// }
+// if (tmpNode.node.right != null) {
+// q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+// }
 
-//     }
-//     for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
-//       System.out.print(entry.getValue().data + " ");
-//     }
-//   }
+// }
+// for (Map.Entry<Integer, Node> entry : topViewMap.entrySet()) {
+// System.out.print(entry.getValue().data + " ");
+// }
+// }
 
-//   void BottomView() {
-//     class QueueObj {
-//       Node node;
-//       int hd;
+// void BottomView() {
+// class QueueObj {
+// Node node;
+// int hd;
 
-//       QueueObj(Node node, int hd) {
-//         this.node = node;
-//         this.hd = hd;
-//       }
-//     }
-//     Queue<QueueObj> q = new LinkedList<QueueObj>();
-//     Map<Integer, Node> BottomViewMap = new TreeMap<Integer, Node>();
+// QueueObj(Node node, int hd) {
+// this.node = node;
+// this.hd = hd;
+// }
+// }
+// Queue<QueueObj> q = new LinkedList<QueueObj>();
+// Map<Integer, Node> BottomViewMap = new TreeMap<Integer, Node>();
 
-//     if (root == null) {
-//       return;
-//     } else {
-//       q.add(new QueueObj(root, 0));
-//     }
+// if (root == null) {
+// return;
+// } else {
+// q.add(new QueueObj(root, 0));
+// }
 
-//     while (!q.isEmpty()) {
-//       QueueObj tmpNode = q.poll();
-//       BottomViewMap.put(tmpNode.hd, tmpNode.node);
+// while (!q.isEmpty()) {
+// QueueObj tmpNode = q.poll();
+// BottomViewMap.put(tmpNode.hd, tmpNode.node);
 
-//       if (tmpNode.node.left != null) {
-//         q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
-//       }
-//       if (tmpNode.node.right != null) {
-//         q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
-//       }
+// if (tmpNode.node.left != null) {
+// q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+// }
+// if (tmpNode.node.right != null) {
+// q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+// }
 
-//     }
-//     for (Map.Entry<Integer, Node> entry : BottomViewMap.entrySet()) {
-//       System.out.print(entry.getValue().data + " ");
-//     }
-//   }
+// }
+// for (Map.Entry<Integer, Node> entry : BottomViewMap.entrySet()) {
+// System.out.print(entry.getValue().data + " ");
+// }
+// }
 // }
 
 // public class AdiEndTerm {
-//   public static void main(String args[]) {
-//     Scanner scanner = new Scanner(System.in);
+// public static void main(String args[]) {
+// Scanner scanner = new Scanner(System.in);
 
-//     int n = scanner.nextInt();
+// int n = scanner.nextInt();
 
-//     Main tree = new Main();
-//     for (int i = 0; i < n; i++) {
-//       int value = scanner.nextInt();
-//       int depth = scanner.nextInt();
-//       tree.insert(value, depth);
-//     }
+// Main tree = new Main();
+// for (int i = 0; i < n; i++) {
+// int value = scanner.nextInt();
+// int depth = scanner.nextInt();
+// tree.insert(value, depth);
+// }
 
-//     tree.topView();
-//     System.out.println();
-//     tree.BottomView();
+// tree.topView();
+// System.out.println();
+// tree.BottomView();
 
-//     scanner.close();
-//   }
+// scanner.close();
+// }
 
 // }
 
@@ -3556,44 +3555,44 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int k = sc.nextInt();
-//     System.out.println(eggDrop(n, k));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int k = sc.nextInt();
+// System.out.println(eggDrop(n, k));
+// }
 
-//   public static int eggDrop(int n, int k) {
-//     // int[][] dp = new int[n + 1][k + 1];
-//     // for (int i = 1; i <= n; i++) {
-//     // dp[i][1] = i;
-//     // }
-//     // for (int i = 1; i <= k; i++) {
-//     // dp[1][i] = 1;
-//     // }
-//     // for (int i = 2; i <= n; i++) {
-//     // for (int j = 2; j <= k; j++) {
-//     // dp[i][j] = Integer.MAX_VALUE;
-//     // for (int x = 1; x <= i; x++) {
-//     // int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
-//     // dp[i][j] = Math.min(dp[i][j], res);
-//     // }
-//     // }
-//     // }
-//     // return dp[n][k];
-//     // or
-//     int[][] dp = new int[n + 1][k + 1];
-//     for (int i = 1; i <= n; i++) {
-//       for (int j = 1; j <= k; j++) {
-//         dp[i][j] = Integer.MAX_VALUE;
-//         for (int x = 1; x <= i; x++) {
-//           int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
-//           dp[i][j] = Math.min(dp[i][j], res);
-//         }
-//       }
-//     }
-//     return dp[n][k];
-//   }
+// public static int eggDrop(int n, int k) {
+// // int[][] dp = new int[n + 1][k + 1];
+// // for (int i = 1; i <= n; i++) {
+// // dp[i][1] = i;
+// // }
+// // for (int i = 1; i <= k; i++) {
+// // dp[1][i] = 1;
+// // }
+// // for (int i = 2; i <= n; i++) {
+// // for (int j = 2; j <= k; j++) {
+// // dp[i][j] = Integer.MAX_VALUE;
+// // for (int x = 1; x <= i; x++) {
+// // int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
+// // dp[i][j] = Math.min(dp[i][j], res);
+// // }
+// // }
+// // }
+// // return dp[n][k];
+// // or
+// int[][] dp = new int[n + 1][k + 1];
+// for (int i = 1; i <= n; i++) {
+// for (int j = 1; j <= k; j++) {
+// dp[i][j] = Integer.MAX_VALUE;
+// for (int x = 1; x <= i; x++) {
+// int res = 1 + Math.max(dp[x - 1][j - 1], dp[i - x][j]);
+// dp[i][j] = Math.min(dp[i][j], res);
+// }
+// }
+// }
+// return dp[n][k];
+// }
 // }
 
 // Question 35: Counting Bits
@@ -3821,35 +3820,35 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner scanner = new Scanner(System.in);
-//     String pattern = scanner.nextLine();
-//     String str = scanner.nextLine();
-//     scanner.close();
+// public static void main(String[] args) {
+// Scanner scanner = new Scanner(System.in);
+// String pattern = scanner.nextLine();
+// String str = scanner.nextLine();
+// scanner.close();
 
-//     System.out.println(wordPattern(pattern, str));
-//   }
+// System.out.println(wordPattern(pattern, str));
+// }
 
-//   public static boolean wordPattern(String pattern, String str) {
-//     String[] words = str.split(" ");
-//     if (words.length != pattern.length())
-//       return false;
+// public static boolean wordPattern(String pattern, String str) {
+// String[] words = str.split(" ");
+// if (words.length != pattern.length())
+// return false;
 
-//     Map<Character, String> map = new HashMap<>();
-//     for (int i = 0; i < words.length; i++) {
-//       char c = pattern.charAt(i);
-//       if (map.containsKey(c)) {
-//         if (!map.get(c).equals(words[i]))
-//           return false;
-//       } else {
-//         if (map.containsValue(words[i]))
-//           return false;
-//         map.put(c, words[i]);
-//       }
-//     }
+// Map<Character, String> map = new HashMap<>();
+// for (int i = 0; i < words.length; i++) {
+// char c = pattern.charAt(i);
+// if (map.containsKey(c)) {
+// if (!map.get(c).equals(words[i]))
+// return false;
+// } else {
+// if (map.containsValue(words[i]))
+// return false;
+// map.put(c, words[i]);
+// }
+// }
 
-//     return true;
-//   }
+// return true;
+// }
 // }
 
 // Question 39: Finding the Kth Largest Element in Array
@@ -4061,44 +4060,44 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int[] arr = new int[n];
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int[] arr = new int[n];
 
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = sc.nextInt();
-//     }
-//     heapify(arr);
-//     for (int i = 0; i < n; i++) {
-//       System.out.print(arr[i] + " ");
-//     }
-//   }
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
+// heapify(arr);
+// for (int i = 0; i < n; i++) {
+// System.out.print(arr[i] + " ");
+// }
+// }
 
-//   public static void heapify(int[] arr) {
-//     int n = arr.length;
-//     for (int i = n / 2 - 1; i >= 0; i--) {
-//       heapifyUtil(arr, n, i);
-//     }
-//   }
+// public static void heapify(int[] arr) {
+// int n = arr.length;
+// for (int i = n / 2 - 1; i >= 0; i--) {
+// heapifyUtil(arr, n, i);
+// }
+// }
 
-//   public static void heapifyUtil(int[] arr, int n, int i) {
-//     int smallest = i;
-//     int left = 2 * i + 1;
-//     int right = 2 * i + 2;
-//     if (left < n && arr[left] < arr[smallest]) {
-//       smallest = left;
-//     }
-//     if (right < n && arr[right] < arr[smallest]) {
-//       smallest = right;
-//     }
-//     if (smallest != i) {
-//       int temp = arr[i];
-//       arr[i] = arr[smallest];
-//       arr[smallest] = temp;
-//       heapifyUtil(arr, n, smallest);
-//     }
-//   }
+// public static void heapifyUtil(int[] arr, int n, int i) {
+// int smallest = i;
+// int left = 2 * i + 1;
+// int right = 2 * i + 2;
+// if (left < n && arr[left] < arr[smallest]) {
+// smallest = left;
+// }
+// if (right < n && arr[right] < arr[smallest]) {
+// smallest = right;
+// }
+// if (smallest != i) {
+// int temp = arr[i];
+// arr[i] = arr[smallest];
+// arr[smallest] = temp;
+// heapifyUtil(arr, n, smallest);
+// }
+// }
 // }
 
 // Question 43: Sort array indices
@@ -4127,41 +4126,41 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     int n = sc.nextInt();
-//     int[] arr = new int[n];
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int[] arr = new int[n];
 
-//     for (int i = 0; i < n; i++) {
-//       arr[i] = sc.nextInt();
-//     }
-//     sortIndices(arr);
-//   }
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
+// sortIndices(arr);
+// }
 
-//   public static void sortIndices(int[] arr) {
-//     int n = arr.length;
-//     int[] indices = new int[n];
-//     for (int i = 0; i < n; i++) {
-//       indices[i] = i;
-//     }
-//     for (int i = 0; i < n; i++) {
-//       int max = i;
-//       for (int j = i + 1; j < n; j++) {
-//         if (arr[j] > arr[max]) {
-//           max = j;
-//         }
-//       }
-//       int temp = arr[max];
-//       arr[max] = arr[i];
-//       arr[i] = temp;
-//       int temp2 = indices[max];
-//       indices[max] = indices[i];
-//       indices[i] = temp2;
-//     }
-//     for (int i = 0; i < n; i++) {
-//       System.out.print(indices[i] + " ");
-//     }
-//   }
+// public static void sortIndices(int[] arr) {
+// int n = arr.length;
+// int[] indices = new int[n];
+// for (int i = 0; i < n; i++) {
+// indices[i] = i;
+// }
+// for (int i = 0; i < n; i++) {
+// int max = i;
+// for (int j = i + 1; j < n; j++) {
+// if (arr[j] > arr[max]) {
+// max = j;
+// }
+// }
+// int temp = arr[max];
+// arr[max] = arr[i];
+// arr[i] = temp;
+// int temp2 = indices[max];
+// indices[max] = indices[i];
+// indices[i] = temp2;
+// }
+// for (int i = 0; i < n; i++) {
+// System.out.print(indices[i] + " ");
+// }
+// }
 // }
 
 // Question 44: Isomorphic Keyboard Layout Checker
@@ -4193,31 +4192,31 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String s1 = sc.nextLine();
-//     String s2 = sc.nextLine();
-//     System.out.println(isIsomorphic(s1, s2));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String s1 = sc.nextLine();
+// String s2 = sc.nextLine();
+// System.out.println(isIsomorphic(s1, s2));
+// }
 
-//   public static boolean isIsomorphic(String s1, String s2) {
-//     if (s1.length() != s2.length()) {
-//       return false;
-//     }
-//     Map<Character, Character> map = new HashMap<>();
-//     for (int i = 0; i < s1.length(); i++) {
-//       char ch1 = s1.charAt(i);
-//       char ch2 = s2.charAt(i);
-//       if (map.containsKey(ch1)) {
-//         if (map.get(ch1) != ch2) {
-//           return false;
-//         }
-//       } else {
-//         map.put(ch1, ch2);
-//       }
-//     }
-//     return true;
-//   }
+// public static boolean isIsomorphic(String s1, String s2) {
+// if (s1.length() != s2.length()) {
+// return false;
+// }
+// Map<Character, Character> map = new HashMap<>();
+// for (int i = 0; i < s1.length(); i++) {
+// char ch1 = s1.charAt(i);
+// char ch2 = s2.charAt(i);
+// if (map.containsKey(ch1)) {
+// if (map.get(ch1) != ch2) {
+// return false;
+// }
+// } else {
+// map.put(ch1, ch2);
+// }
+// }
+// return true;
+// }
 // }
 
 // Question 45: Find a single element appearing once in a sorted array
@@ -4246,37 +4245,37 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String[] s = sc.nextLine().split(" ");
-//     int[] arr = new int[s.length];
-//     for (int i = 0; i < s.length; i++) {
-//       arr[i] = Integer.parseInt(s[i]);
-//     }
-//     System.out.println(singleNonDuplicate(arr));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String[] s = sc.nextLine().split(" ");
+// int[] arr = new int[s.length];
+// for (int i = 0; i < s.length; i++) {
+// arr[i] = Integer.parseInt(s[i]);
+// }
+// System.out.println(singleNonDuplicate(arr));
+// }
 
-//   public static int singleNonDuplicate(int[] nums) {
-//     int low = 0;
-//     int high = nums.length - 1;
-//     while (low < high) {
-//       int mid = low + (high - low) / 2;
-//       if (mid % 2 == 0) {
-//         if (nums[mid] == nums[mid + 1]) {
-//           low = mid + 2;
-//         } else {
-//           high = mid;
-//         }
-//       } else {
-//         if (nums[mid] == nums[mid - 1]) {
-//           low = mid + 1;
-//         } else {
-//           high = mid - 1;
-//         }
-//       }
-//     }
-//     return nums[low];
-//   }
+// public static int singleNonDuplicate(int[] nums) {
+// int low = 0;
+// int high = nums.length - 1;
+// while (low < high) {
+// int mid = low + (high - low) / 2;
+// if (mid % 2 == 0) {
+// if (nums[mid] == nums[mid + 1]) {
+// low = mid + 2;
+// } else {
+// high = mid;
+// }
+// } else {
+// if (nums[mid] == nums[mid - 1]) {
+// low = mid + 1;
+// } else {
+// high = mid - 1;
+// }
+// }
+// }
+// return nums[low];
+// }
 // }
 
 // Question 46: Starting Index of the Pattern matched in the String
@@ -4308,58 +4307,58 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-//   public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     String s = sc.nextLine();
-//     String pattern = sc.nextLine();
-//     System.out.println(kmp(s, pattern));
-//   }
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// String s = sc.nextLine();
+// String pattern = sc.nextLine();
+// System.out.println(kmp(s, pattern));
+// }
 
-//   public static int kmp(String s, String pattern) {
-//     int n = s.length();
-//     int m = pattern.length();
-//     int[] lps = new int[m];
-//     computeLPS(pattern, lps);
-//     int i = 0;
-//     int j = 0;
-//     while (i < n) {
-//       if (s.charAt(i) == pattern.charAt(j)) {
-//         i++;
-//         j++;
-//       }
-//       if (j == m) {
-//         return i - j;
-//       } else if (i < n && s.charAt() != pattern.charAt(j)) {
-//         if (j != 0) {
-//           j = lps[j - 1];
-//         } else {
-//           i++;
-//         }
-//       }
-//     }
-//     return -1;
-//   }
+// public static int kmp(String s, String pattern) {
+// int n = s.length();
+// int m = pattern.length();
+// int[] lps = new int[m];
+// computeLPS(pattern, lps);
+// int i = 0;
+// int j = 0;
+// while (i < n) {
+// if (s.charAt(i) == pattern.charAt(j)) {
+// i++;
+// j++;
+// }
+// if (j == m) {
+// return i - j;
+// } else if (i < n && s.charAt() != pattern.charAt(j)) {
+// if (j != 0) {
+// j = lps[j - 1];
+// } else {
+// i++;
+// }
+// }
+// }
+// return -1;
+// }
 
-//   public static void computeLPS(String pattern, int[] lps) {
-//     int m = pattern.length();
-//     int len = 0;
-//     int i = 1;
-//     lps[0] = 0;
-//     while (i < m) {
-//       if (pattern.charAt(i) == pattern.charAt(len)) {
-//         len++;
-//         lps[i] = len;
-//         i++;
-//       } else {
-//         if (len != 0) {
-//           len = lps[len - 1];
-//         } else {
-//           lps[i] = len;
-//           i++;
-//         }
-//       }
-//     }
-//   }
+// public static void computeLPS(String pattern, int[] lps) {
+// int m = pattern.length();
+// int len = 0;
+// int i = 1;
+// lps[0] = 0;
+// while (i < m) {
+// if (pattern.charAt(i) == pattern.charAt(len)) {
+// len++;
+// lps[i] = len;
+// i++;
+// } else {
+// if (len != 0) {
+// len = lps[len - 1];
+// } else {
+// lps[i] = len;
+// i++;
+// }
+// }
+// }
+// }
 // }
 
 // Painters Partition Problem II
@@ -4370,55 +4369,55 @@
 // minimized. Note: The length of each board will be a positive integer and not
 // exceed 1000000000.
 
-import java.io.*;
-import java.util.*;
-import java.util.Arrays;
-// User function Template for Java
+// import java.io.*;
+// import java.util.*;
+// import java.util.Arrays;
+// // User function Template for Java
 
-class AdiEndTerm {
-  boolean isPossible(int[] arr, int n, int k, long mid) {
-    int painters = 1;
-    long total = 0;
-    for (int i = 0; i < n; i++) {
-      total += arr[i];
-      if (total > mid) {
-        total = arr[i];
-        painters++;
-        if (painters > k) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
+// class AdiEndTerm {
+// boolean isPossible(int[] arr, int n, int k, long mid) {
+// int painters = 1;
+// long total = 0;
+// for (int i = 0; i < n; i++) {
+// total += arr[i];
+// if (total > mid) {
+// total = arr[i];
+// painters++;
+// if (painters > k) {
+// return false;
+// }
+// }
+// }
+// return true;
+// }
 
-  long minTime(int[] arr, int n, int k) {
-    // long low = Arrays.stream(arr).max().getAsInt();
-    // long high = Arrays.stream(arr).sum();
-    long[] longArr = Arrays.stream(arr).asLongStream().toArray();
-    long low = Arrays.stream(longArr).max().getAsLong();
-    long high = Arrays.stream(longArr).sum();
-    while (low <= high) {
-      long mid = low + (high - low) / 2;
-      if (isPossible(arr, n, k, mid)) {
-        high = mid - 1;
-      } else {
-        low = mid + 1;
-      }
-    }
-    return low;
-  }
+// long minTime(int[] arr, int n, int k) {
+// // long low = Arrays.stream(arr).max().getAsInt();
+// // long high = Arrays.stream(arr).sum();
+// long[] longArr = Arrays.stream(arr).asLongStream().toArray();
+// long low = Arrays.stream(longArr).max().getAsLong();
+// long high = Arrays.stream(longArr).sum();
+// while (low <= high) {
+// long mid = low + (high - low) / 2;
+// if (isPossible(arr, n, k, mid)) {
+// high = mid - 1;
+// } else {
+// low = mid + 1;
+// }
+// }
+// return low;
+// }
 
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    int k = sc.nextInt();
+// public static void main(String[] args) {
+// Scanner sc = new Scanner(System.in);
+// int n = sc.nextInt();
+// int k = sc.nextInt();
 
-    int[] arr = new int[n];
-    for (int i = 0; i < n; i++) {
-      arr[i] = sc.nextInt();
-    }
+// int[] arr = new int[n];
+// for (int i = 0; i < n; i++) {
+// arr[i] = sc.nextInt();
+// }
 
-    System.out.println(new AdiEndTerm().minTime(arr, n, k));
-  }
-}
+// System.out.println(new AdiEndTerm().minTime(arr, n, k));
+// }
+// }
