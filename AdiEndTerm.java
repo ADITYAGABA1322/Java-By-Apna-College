@@ -2061,30 +2061,30 @@
 // import java.util.Arrays;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[][] intervals = new int[n][2];
-// for (int i = 0; i < n; i++) {
-// intervals[i][0] = sc.nextInt();
-// intervals[i][1] = sc.nextInt();
-// }
-// System.out.println(eraseOverlapIntervals(intervals));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[][] intervals = new int[n][2];
+//     for (int i = 0; i < n; i++) {
+//       intervals[i][0] = sc.nextInt();
+//       intervals[i][1] = sc.nextInt();
+//     }
+//     System.out.println(eraseOverlapIntervals(intervals));
+//   }
 
-// public static int eraseOverlapIntervals(int[][] intervals) {
-// Arrays.sort(intervals, (a, b) -> a[1] - b[1]);
-// int count = 0;
-// int end = Integer.MIN_VALUE;
-// for (int[] interval : intervals) {
-// if (interval[0] >= end) {
-// end = interval[1];
-// } else {
-// count++;
-// }
-// }
-// return count;
-// }
+//   public static int eraseOverlapIntervals(int[][] intervals) {
+//     Arrays.sort(intervals, (a, b) -> a[1] - b[1]);
+//     int count = 0;
+//     int end = Integer.MIN_VALUE;
+//     for (int[] interval : intervals) {
+//       if (interval[0] >= end) {
+//         end = interval[1];
+//       } else {
+//         count++;
+//       }
+//     }
+//     return count;
+//   }
 // }
 
 // Question 24: Left View of Binary Search Tree (BST)
@@ -2245,35 +2245,34 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// String s = sc.nextLine();
-// int n = sc.nextInt();
-// Set<String> set = new HashSet<>();
-// for (int i = 0; i < n; i++) {
-// set.add(sc.next());
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     String s = sc.nextLine();
+//     int n = sc.nextInt();
+//     Set<String> set = new HashSet<>();
+//     for (int i = 0; i < n; i++) {
+//       set.add(sc.next());
+//     }
+//     if (wordBreak(s, set))
+//       System.out.println("Yes");
+//   else {
+//     System.out.println("No");
+//   }
 // }
-// if (wordBreak(s, set))
-// System.out.println("Yes");
-// } else {
-// System.out.println("No");
-// }
-// }
-
 // public static boolean wordBreak(String s, Set<String> set) {
-// int n = s.length();
-// boolean[] dp = new boolean[n + 1];
-// dp[0] = true;
-// for (int i = 1; i <= n; i++) {
-// for (int j = i - 1; j >= 0; j--) {
-// if (dp[j] && set.contains(s.substring(j, i))) {
-// dp[i] = true;
-// break;
-// }
-// }
-// }
-// return dp[n];
-// }
+//     int n = s.length();
+//     boolean[] dp = new boolean[n + 1];
+//     dp[0] = true;
+//     for (int i = 1; i <= n; i++) {
+//       for (int j = i - 1; j >= 0; j--) {
+//         if (dp[j] && set.contains(s.substring(j, i))) {
+//           dp[i] = true;
+//           break;
+//         }
+//       }
+//     }
+//     return dp[n];
+//   }
 // }
 
 // Question 26: Postorder Traversal of Binary Search Tree
@@ -3318,27 +3317,27 @@
 // import java.util.*;
 
 // public class AdiEndTerm {
-// public static void main(String[] args) {
-// Scanner sc = new Scanner(System.in);
-// int n = sc.nextInt();
-// int[] coins = new int[n];
-// for (int i = 0; i < n; i++) {
-// coins[i] = sc.nextInt();
-// }
-// int target = sc.nextInt();
-// System.out.println(coinChange(coins, target));
-// }
+//   public static void main(String[] args) {
+//     Scanner sc = new Scanner(System.in);
+//     int n = sc.nextInt();
+//     int[] coins = new int[n];
+//     for (int i = 0; i < n; i++) {
+//       coins[i] = sc.nextInt();
+//     }
+//     int target = sc.nextInt();
+//     System.out.println(coinChange(coins, target));
+//   }
 
-// public static int coinChange(int[] coins, int target) {
-// int[] dp = new int[target + 1];
-// dp[0] = 1;
-// for (int coin : coins) {
-// for (int i = coin; i <= target; i++) {
-// dp[i] += dp[i - coin];
-// }
-// }
-// return dp[target];
-// }
+//   public static int coinChange(int[] coins, int target) {
+//     int[] dp = new int[target + 1];
+//     dp[0] = 1;
+//     for (int coin : coins) {
+//       for (int i = coin; i <= target; i++) {
+//         dp[i] += dp[i - coin];
+//       }
+//     }
+//     return dp[target];
+//   }
 // }
 
 // Question 33: Top View of BST
